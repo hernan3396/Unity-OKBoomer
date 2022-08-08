@@ -3,7 +3,7 @@ using DG.Tweening;
 
 public class Fades : MonoBehaviour
 {
-    private void Start()
+    private void Awake()
     {
         EventManager.MenuFadeOut += FadeOut;
         EventManager.MenuFadeIn += FadeIn;
