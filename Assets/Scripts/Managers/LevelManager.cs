@@ -19,4 +19,10 @@ public class LevelManager : MonoBehaviour
 
         SceneManager.LoadScene(scene);
     }
+
+    public void LoadLevel(string scene)
+    {
+        // agregar transicion
+        LoadLevel(scene);
+    }
 }
