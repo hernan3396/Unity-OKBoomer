@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Collections;
 
 public class MainMenu : MonoBehaviour
 {
@@ -10,26 +11,38 @@ public class MainMenu : MonoBehaviour
         SelectLevel
     }
 
-    #region FirstSelected
-    [Header("First selected")]
-    [SerializeField] private Button _firstSelected;
-    #endregion
-
     #region CanvasGroup
     [Header("Canvas group")]
     [SerializeField] private CanvasElement[] _canvasElements;
     private CanvasGroups _currentCG;
     #endregion
 
+    #region Animations
+    [Header("Animations")]
+    [SerializeField] private int _cameraSpeed;
+    [SerializeField] private int _fadeDur;
+    #endregion
+
     private void Start()
     {
-        EventManager.OnMenuFadeIn(_canvasElements[(int)CanvasGroups.MainMenu], 1);
+        _currentCG = (int)CanvasGroups.MainMenu;
+
+        EventManager.OnFadeIn(_canvasElements[(int)_currentCG], _fadeDur);
+        EventManager.OnInfiniteRotate(_cameraSpeed);
     }
 
     public void ChangeCG(int nextCG)
     {
-        EventManager.OnMenuFadeOut(_canvasElements[(int)_currentCG], _canvasElements[nextCG], 1);
+        StartCoroutine("ChangingCG", nextCG);
+    }
+
+    private IEnumerator ChangingCG(int nextCG)
+    {
+        EventManager.OnFadeOut(_canvasElements[(int)_currentCG], _fadeDur);
+        yield return new WaitForSeconds(_fadeDur);
+
         _currentCG = (CanvasGroups)nextCG;
+        EventManager.OnFadeIn(_canvasElements[(int)_currentCG], _fadeDur);
     }
 
     public void QuitGame()

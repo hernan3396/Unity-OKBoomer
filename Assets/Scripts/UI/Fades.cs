@@ -5,25 +5,25 @@ public class Fades : MonoBehaviour
 {
     private void Awake()
     {
-        EventManager.MenuFadeOut += FadeOut;
-        EventManager.MenuFadeIn += FadeIn;
+        EventManager.FadeOut += FadeOut;
+        EventManager.FadeIn += FadeIn;
     }
 
-    public void FadeOut(CanvasElement ce, CanvasElement nextCe, int timer)
+    public void FadeOut(CanvasElement ce, int timer)
     {
         ce.CanvasGroup.DOFade(0, timer)
-        .OnComplete(() =>
-        {
-            ce.DeactivateCG();
-            // se podria hacer con otro evento
-            // pero de momento creo que no es necesario
-            FadeIn(nextCe, timer);
-        });
+        .OnComplete(() => { ce.DeactivateCG(); });
     }
 
     public void FadeIn(CanvasElement ce, int timer)
     {
-        ce.CanvasGroup.DOFade(1, timer)
-        .OnComplete(() => ce.ActivateCG());
+        ce.ActivateCG();
+        ce.CanvasGroup.DOFade(1, timer);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.FadeOut -= FadeOut;
+        EventManager.FadeIn -= FadeIn;
     }
 }
