@@ -34,6 +34,21 @@ public class LevelManager : MonoBehaviour
         LoadLevel(scene);
     }
 
+    public void OnNextLevel(string scene)
+    {
+        // StartCoroutine("ChangingLevel", scene);
+        EventManager.OnNextLevel();
+    }
+
+    private IEnumerator ChangingLevel(string scene)
+    {
+        EventManager.OnNextLevel();
+        EventManager.OnStartTransition(_transitionSpeed);
+        yield return new WaitForSeconds(_transitionSpeed);
+
+        LoadLevel(scene);
+    }
+
     public void StartTransition(string scene)
     {
         StartCoroutine("Transition", scene);

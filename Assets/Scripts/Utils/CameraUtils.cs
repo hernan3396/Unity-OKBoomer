@@ -12,10 +12,6 @@ public class CameraUtils : MonoBehaviour
     private void Awake()
     {
         EventManager.InfiniteRotate += InfiniteRotate;
-    }
-
-    private void Start()
-    {
         _mainCam = GameManager.GetInstance.MainCam;
     }
 

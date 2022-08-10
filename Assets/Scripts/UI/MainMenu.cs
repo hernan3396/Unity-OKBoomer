@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System;
 using System.Collections;
 
@@ -22,6 +23,16 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private int _cameraSpeed;
     [SerializeField] private int _fadeDur;
     #endregion
+
+    #region Timers
+    [Header("Timers")]
+    [SerializeField] private TMP_Text[] _timers;
+    #endregion
+
+    private void Awake()
+    {
+        EventManager.LoadTimer += ChangeTimers;
+    }
 
     private void Start()
     {
@@ -48,6 +59,12 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    private void ChangeTimers(SavesData[] times)
+    {
+        for (int i = 0; i < _timers.Length; i++)
+            _timers[i].text = times[i].valueString;
     }
 }
 
