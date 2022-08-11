@@ -4,6 +4,11 @@ using UnityEngine.Events;
 public static class EventManager
 {
     #region Utils
+    public static event UnityAction<AudioManager.AudioList> PlayMusic;
+    public static void OnPlayMusic(AudioManager.AudioList music) => PlayMusic?.Invoke(music);
+    #endregion
+
+    #region Utils
     public static event UnityAction<CanvasElement, int> FadeIn;
     public static void OnFadeIn(CanvasElement ce, int speed) => FadeIn?.Invoke(ce, speed);
 

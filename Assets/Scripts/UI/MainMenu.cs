@@ -38,8 +38,14 @@ public class MainMenu : MonoBehaviour
     {
         _currentCG = (int)CanvasGroups.MainMenu;
 
+        ManageEvents();
+    }
+
+    private void ManageEvents()
+    {
         EventManager.OnFadeIn(_canvasElements[(int)_currentCG], _fadeDur);
         EventManager.OnInfiniteRotate(_cameraSpeed);
+        EventManager.OnPlayMusic(AudioManager.AudioList.MainMenu);
     }
 
     public void ChangeCG(int nextCG)
