@@ -46,6 +46,7 @@ public class MainMenu : MonoBehaviour
         EventManager.OnFadeIn(_canvasElements[(int)_currentCG], _fadeDur);
         EventManager.OnInfiniteRotate(_cameraSpeed);
         EventManager.OnPlayMusic(AudioManager.AudioList.MainMenu);
+        EventManager.OnMainMenu();
     }
 
     public void ChangeCG(int nextCG)

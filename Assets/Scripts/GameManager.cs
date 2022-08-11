@@ -2,11 +2,22 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public enum Pools
+    {
+        PlayerBullet,
+    }
+
     private static GameManager _instance;
 
     #region Components
     [Header("Components")]
+    [SerializeField] private GameObject _player;
     [SerializeField] private Camera _mainCam;
+    #endregion
+
+    #region Pools
+    [Header("Pools")]
+    [SerializeField] private PoolManager[] _pools;
     #endregion
 
     private void Awake()
@@ -38,6 +49,11 @@ public class GameManager : MonoBehaviour
     public Camera MainCam
     {
         get { return _mainCam; }
+    }
+
+    public GameObject Player
+    {
+        get { return _player; }
     }
     #endregion
 }

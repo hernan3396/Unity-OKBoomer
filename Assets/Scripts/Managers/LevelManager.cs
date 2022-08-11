@@ -6,7 +6,7 @@ using DG.Tweening;
 public class LevelManager : MonoBehaviour
 {
     #region Transitions
-    [SerializeField] private int _transitionSpeed;
+    [SerializeField] private int _transitionSpeed = 3;
     #endregion
 
     private void LoadLevel(string scene, bool async = false)
