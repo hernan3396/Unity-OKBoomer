@@ -1,8 +1,15 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class Platforms : MonoBehaviour
+public class Movement : MonoBehaviour
 {
+    public enum MovementType
+    {
+        Platform,
+        Door,
+        Key
+    }
+
     #region Position
     [Header("Position")]
     [SerializeField] private Transform _finalPos;
@@ -11,7 +18,7 @@ public class Platforms : MonoBehaviour
     #region Settings
     [Header("Settings")]
     [SerializeField] private Ease _easeFunc = Ease.InOutSine;
-    [SerializeField] private bool _isDoor = false;
+    [SerializeField] private MovementType _type;
     [SerializeField] private float _vel = 1;
     #endregion
 
@@ -22,34 +29,30 @@ public class Platforms : MonoBehaviour
     {
         _transform = GetComponent<Transform>();
         _initPos = _transform.position;
-
     }
 
     private void Start()
     {
         EventManager.Pause += OnPause;
 
-        if (_isDoor) return;
-        MoveIn();
+        switch (_type)
+        {
+            case MovementType.Platform:
+                break;
+            case MovementType.Key:
+                break;
+        }
     }
 
-    public void MoveIn()
+    public void PlatformMovement()
     {
         _transform.DOMove(_finalPos.position, _vel)
         .SetUpdate(UpdateType.Fixed)
         .SetEase(_easeFunc)
-        .OnComplete(MoveOut);
+        .SetLoops(-1, LoopType.Yoyo);
     }
 
-    public void MoveOut()
-    {
-        _transform.DOMove(_initPos, _vel)
-        .SetUpdate(UpdateType.Fixed)
-        .SetEase(_easeFunc)
-        .OnComplete(MoveIn);
-    }
-
-    public void SimpleMove()
+    public void DoorMovement()
     {
         _transform.DOMove(_finalPos.position, _vel)
         .SetEase(_easeFunc)
@@ -66,13 +69,13 @@ public class Platforms : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Player") && !_isDoor)
+        if (other.gameObject.CompareTag("Player") && _type == MovementType.Platform)
             other.transform.parent = _transform;
     }
 
     private void OnCollisionExit(Collision other)
     {
-        if (other.gameObject.CompareTag("Player") && !_isDoor)
+        if (other.gameObject.CompareTag("Player") && _type == MovementType.Platform)
             other.transform.parent = null;
     }
 
