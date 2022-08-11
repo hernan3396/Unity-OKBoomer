@@ -447,6 +447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
   _mainCam: {fileID: 330585545}
+  _pools: []
 --- !u!1 &790077751
 GameObject:
   m_ObjectHideFlags: 0

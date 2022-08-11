@@ -2832,7 +2832,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee13e2af1f96fe4b82a2bb87238e71a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 0}
   _mainCam: {fileID: 330585545}
+  _pools: []
 --- !u!114 &1316455239
 MonoBehaviour:
   m_ObjectHideFlags: 0
