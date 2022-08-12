@@ -40,6 +40,7 @@ public class Movement : MonoBehaviour
             case MovementType.Platform:
                 break;
             case MovementType.Key:
+                KeyMovement();
                 break;
         }
     }
@@ -65,6 +66,21 @@ public class Movement : MonoBehaviour
             _transform.DOPause();
         else
             _transform.DOPlay();
+    }
+
+    public void KeyMovement()
+    {
+        // movimiento de rotacion
+        _transform.DORotate(new Vector3(0, 360, 0), _vel, RotateMode.FastBeyond360)
+        .SetRelative(true)
+        .SetEase(_easeFunc)
+        .SetLoops(-1, LoopType.Yoyo);
+
+        // movimiento vertical
+        _transform.DOMoveY(1, _vel)
+        .SetRelative(true)
+        .SetEase(_easeFunc)
+        .SetLoops(-1, LoopType.Yoyo);
     }
 
     private void OnCollisionEnter(Collision other)
