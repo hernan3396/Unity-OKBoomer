@@ -41,6 +41,9 @@ public static class EventManager
 
     public static event UnityAction MainMenu;
     public static void OnMainMenu() => MainMenu?.Invoke();
+
+    public static event UnityAction GameOver;
+    public static void OnGameOver() => GameOver?.Invoke();
     #endregion
 
     #region PlayerInputs
