@@ -15,11 +15,13 @@ public class Player : Entity, IPauseable
 
     #region BodyParts
     [Header("Body Parts")]
+    [SerializeField] private Transform _body;
+    [SerializeField] private Transform _fpCamera;
     #endregion
 
     #region GroundChecking
     [Header("Ground Checking")]
-    [SerializeField, Range(0, 1)] private float _grdDist;
+    [SerializeField, Range(0, 2)] private float _grdDist;
     [SerializeField] private LayerMask _grdLayer;
     private bool _isGrounded;
     bool _hitDetect;
@@ -157,6 +159,16 @@ public class Player : Entity, IPauseable
     public PlayerMovement PlayerMov
     {
         get { return _playerMovement; }
+    }
+
+    public Transform Body
+    {
+        get { return _body; }
+    }
+
+    public Transform FpCamera
+    {
+        get { return _fpCamera; }
     }
 
     public bool Paused
