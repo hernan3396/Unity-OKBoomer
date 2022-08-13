@@ -28,7 +28,7 @@ MonoBehaviour:
     m_To: StandingCamera
     m_Blend:
       m_Style: 1
-      m_Time: 1
+      m_Time: 0.25
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []
