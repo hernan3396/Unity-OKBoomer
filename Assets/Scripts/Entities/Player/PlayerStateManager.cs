@@ -8,7 +8,9 @@ public class PlayerStateManager : MonoBehaviour
     public enum PlayerState
     {
         Idle,
-        Run
+        Run,
+        Jump,
+        Fall
     }
 
     [SerializeField] private PlayerBaseState _currentState;

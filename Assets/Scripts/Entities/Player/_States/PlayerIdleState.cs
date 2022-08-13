@@ -1,14 +1,15 @@
 public class PlayerIdleState : PlayerBaseState
 {
     private PlayerMovement _playerMovement;
+    private PlayerJump _playerJump;
 
     public override void OnEnterState(PlayerStateManager stateManager)
     {
         if (_playerMovement == null)
-            _playerMovement = stateManager.Player.PlayerMov;
-
-        // if (_playerJump == null)
-        //     _playerJump = stateManager.Player.PlayerJump;
+        {
+            _playerMovement = stateManager.Player.PlayerMovement;
+            _playerJump = stateManager.Player.PlayerJump;
+        }
     }
 
     public override void UpdateState(PlayerStateManager stateManager)
@@ -19,11 +20,11 @@ public class PlayerIdleState : PlayerBaseState
             return;
         }
 
-        // if (_playerJump.IsJumping)
-        // {
-        //     stateManager.SwitchState(PlayerStateManager.PlayerState.Jump);
-        //     return;
-        // }
+        if (_playerJump.IsJumping)
+        {
+            stateManager.SwitchState(PlayerStateManager.PlayerState.Jump);
+            return;
+        }
     }
 
     public override void FixedUpdateState(PlayerStateManager player)

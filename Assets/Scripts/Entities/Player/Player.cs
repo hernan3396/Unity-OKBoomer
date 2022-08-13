@@ -11,6 +11,7 @@ public class Player : Entity, IPauseable
 
     #region Scripts
     private PlayerMovement _playerMovement;
+    private PlayerJump _playerJump;
     #endregion
 
     #region BodyParts
@@ -23,7 +24,7 @@ public class Player : Entity, IPauseable
     [Header("Ground Checking")]
     [SerializeField, Range(0, 2)] private float _grdDist;
     [SerializeField] private LayerMask _grdLayer;
-    private bool _isGrounded;
+    [SerializeField] private bool _isGrounded;
     bool _hitDetect;
     RaycastHit _hit;
     #endregion
@@ -57,6 +58,7 @@ public class Player : Entity, IPauseable
     private void LoadComponents()
     {
         _playerMovement = GetComponent<PlayerMovement>();
+        _playerJump = GetComponent<PlayerJump>();
     }
 
     private void FixedUpdate()
@@ -151,14 +153,24 @@ public class Player : Entity, IPauseable
         get { return _data; }
     }
 
+    public PhysicMaterial NoFricMat
+    {
+        get { return _noFricMat; }
+    }
+
     public Rigidbody RB
     {
         get { return _rb; }
     }
 
-    public PlayerMovement PlayerMov
+    public PlayerMovement PlayerMovement
     {
         get { return _playerMovement; }
+    }
+
+    public PlayerJump PlayerJump
+    {
+        get { return _playerJump; }
     }
 
     public Transform Body
@@ -171,9 +183,24 @@ public class Player : Entity, IPauseable
         get { return _fpCamera; }
     }
 
+    public bool IsGrounded
+    {
+        get { return _isGrounded; }
+    }
+
+    public bool IsFalling
+    {
+        get { return _rb.velocity.y < 0; }
+    }
+
     public bool Paused
     {
         get { return _isPaused; }
+    }
+
+    public GameObject StandingHitbox
+    {
+        get { return _hitboxes[0]; }
     }
     #endregion
 }
