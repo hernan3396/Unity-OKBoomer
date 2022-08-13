@@ -10,7 +10,8 @@ public class PlayerStateManager : MonoBehaviour
         Idle,
         Run,
         Jump,
-        Fall
+        Fall,
+        Slide
     }
 
     [SerializeField] private PlayerBaseState _currentState;

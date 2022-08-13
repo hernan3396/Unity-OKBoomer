@@ -11,6 +11,7 @@ public class Player : Entity, IPauseable
 
     #region Scripts
     private PlayerMovement _playerMovement;
+    private PlayerSlide _playerSlide;
     private PlayerJump _playerJump;
     #endregion
 
@@ -18,6 +19,7 @@ public class Player : Entity, IPauseable
     [Header("Body Parts")]
     [SerializeField] private Transform _body;
     [SerializeField] private Transform _fpCamera;
+    [SerializeField] private Transform _slideCamera;
     #endregion
 
     #region GroundChecking
@@ -40,7 +42,6 @@ public class Player : Entity, IPauseable
     #endregion
 
     #region Hitboxes
-    [SerializeField] private Transform[] _cameraPositions;
     [SerializeField] private GameObject[] _hitboxes;
     #endregion
 
@@ -58,6 +59,7 @@ public class Player : Entity, IPauseable
     private void LoadComponents()
     {
         _playerMovement = GetComponent<PlayerMovement>();
+        _playerSlide = GetComponent<PlayerSlide>();
         _playerJump = GetComponent<PlayerJump>();
     }
 
@@ -168,6 +170,11 @@ public class Player : Entity, IPauseable
         get { return _playerMovement; }
     }
 
+    public PlayerSlide PlayerSlide
+    {
+        get { return _playerSlide; }
+    }
+
     public PlayerJump PlayerJump
     {
         get { return _playerJump; }
@@ -181,6 +188,11 @@ public class Player : Entity, IPauseable
     public Transform FpCamera
     {
         get { return _fpCamera; }
+    }
+
+    public Transform SlideCamera
+    {
+        get { return _slideCamera; }
     }
 
     public bool IsGrounded
@@ -201,6 +213,11 @@ public class Player : Entity, IPauseable
     public GameObject StandingHitbox
     {
         get { return _hitboxes[0]; }
+    }
+
+    public GameObject SlidingHitbox
+    {
+        get { return _hitboxes[1]; }
     }
     #endregion
 }
