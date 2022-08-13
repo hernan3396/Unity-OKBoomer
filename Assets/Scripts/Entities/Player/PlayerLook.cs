@@ -34,7 +34,15 @@ public class PlayerLook : MonoBehaviour
         Quaternion headRotation = Quaternion.AngleAxis(_rotations.x, Vector3.right);
         Quaternion bodyRotation = Quaternion.AngleAxis(_rotations.y, Vector3.up);
 
+        // estas es solo para ver como el brazo se mueve en el editor,
+        // realmente es al pedo lo puse para probar nomas
+        // sacar luego (?)
+        _player.OverlayCamera.localRotation = headRotation;
+        _player.Arm.localRotation = headRotation;
+
+        _player.SlideCamera.localRotation = headRotation;
         _player.FpCamera.localRotation = headRotation;
+
         _player.Body.localRotation = bodyRotation;
     }
 

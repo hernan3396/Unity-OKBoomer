@@ -18,8 +18,10 @@ public class Player : Entity, IPauseable
     #region BodyParts
     [Header("Body Parts")]
     [SerializeField] private Transform _body;
+    [SerializeField] private Transform _arm;
     [SerializeField] private Transform _fpCamera;
     [SerializeField] private Transform _slideCamera;
+    [SerializeField] private Transform _overlayCamera;
     #endregion
 
     #region GroundChecking
@@ -185,6 +187,11 @@ public class Player : Entity, IPauseable
         get { return _body; }
     }
 
+    public Transform Arm
+    {
+        get { return _arm; }
+    }
+
     public Transform FpCamera
     {
         get { return _fpCamera; }
@@ -193,6 +200,11 @@ public class Player : Entity, IPauseable
     public Transform SlideCamera
     {
         get { return _slideCamera; }
+    }
+
+    public Transform OverlayCamera
+    {
+        get { return _overlayCamera; }
     }
 
     public bool IsGrounded
