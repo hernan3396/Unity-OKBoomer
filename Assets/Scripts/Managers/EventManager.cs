@@ -18,6 +18,9 @@ public static class EventManager
     public static event UnityAction<int> StartTransition;
     public static void OnStartTransition(int speed) => StartTransition?.Invoke(speed);
 
+    public static event UnityAction<int> StartTransitionOut;
+    public static void OnStartTransitionOut(int speed) => StartTransitionOut?.Invoke(speed);
+
     public static event UnityAction<int> InfiniteRotate;
     public static void OnInfiniteRotate(int speed) => InfiniteRotate?.Invoke(speed);
     #endregion
@@ -44,6 +47,9 @@ public static class EventManager
 
     public static event UnityAction GameOver;
     public static void OnGameOver() => GameOver?.Invoke();
+
+    public static event UnityAction GameStart;
+    public static void OnGameStart() => GameStart?.Invoke();
     #endregion
 
     #region PlayerInputs

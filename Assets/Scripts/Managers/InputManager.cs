@@ -5,13 +5,13 @@ public class InputManager : MonoBehaviour
 {
     #region Movement
     [Header("Movement")]
-    public bool CanMove = true;
+    public bool CanMove = false;
     public Vector2 Move;
     #endregion
 
     #region Look
     [Header("Look")]
-    public bool CanLook = true;
+    public bool CanLook = false;
     public Vector2 Look;
     #endregion
 
@@ -34,6 +34,11 @@ public class InputManager : MonoBehaviour
     #region Crouch
     public bool Crouch;
     #endregion
+
+    private void Awake()
+    {
+        EventManager.GameStart += OnGameStart;
+    }
 
     private void OnGameStart()
     {
@@ -141,4 +146,9 @@ public class InputManager : MonoBehaviour
         EventManager.OnMelee();
     }
     #endregion
+
+    private void OnDestroy()
+    {
+        EventManager.GameStart -= OnGameStart;
+    }
 }

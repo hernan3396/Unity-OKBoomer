@@ -6,7 +6,9 @@ public class WeaponStateManager : MonoBehaviour
 {
     public enum State
     {
-        Idle
+        Idle,
+        Shooting,
+        Cooldown
     }
 
     [SerializeField] private WeaponBaseState _currentState;

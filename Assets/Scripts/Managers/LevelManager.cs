@@ -10,9 +10,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private bool _isMenu = false;
     #endregion
 
-    private void Awake()
+    private void Start()
     {
-        StartLevel();
+        if (!_isMenu)
+            StartCoroutine("StartLevel");
     }
 
     private void LoadLevel(string scene, bool async = false)
@@ -33,10 +34,15 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
-    private void StartLevel()
+    private IEnumerator StartLevel()
     {
-        if (_isMenu) return;
+        EventManager.OnStartTransitionOut(_transitionSpeed);
+        yield return new WaitForSeconds(_transitionSpeed * 0.5f);
+
         LoadLevel("UI", true);
+
+        yield return new WaitForSeconds(0.1f); // que espere un poquito asi carga la escena antes de lanzar ese evento
+        EventManager.OnGameStart();
     }
 
     public IEnumerator Transition(string scene)

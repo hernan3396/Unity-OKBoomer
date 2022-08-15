@@ -12,12 +12,20 @@ public class WeaponManager : MonoBehaviour
 
     private Player _player;
 
+    private void Awake()
+    {
+        EventManager.ChangeWeapon += ChangeWeapon;
+        EventManager.GameStart += FirstUpdate;
+    }
+
     private void Start()
     {
         _player = GetComponent<Player>();
+    }
 
+    private void FirstUpdate()
+    {
         _player.ChangeWeapons(_player.CurrentWeapon);
-        EventManager.ChangeWeapon += ChangeWeapon;
     }
 
     private void ChangeWeapon(int side)
@@ -39,5 +47,6 @@ public class WeaponManager : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.ChangeWeapon -= ChangeWeapon;
+        EventManager.GameStart -= FirstUpdate;
     }
 }
