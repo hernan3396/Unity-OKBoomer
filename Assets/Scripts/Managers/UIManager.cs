@@ -7,13 +7,19 @@ public class UIManager : MonoBehaviour
     public enum Element
     {
         Hp,
-        Bullets,
+        Weapon,
         Timer
     }
 
     #region UiElements
     [SerializeField] private UiElement[] _uiElements;
     #endregion
+
+    private void Awake()
+    {
+        EventManager.UpdateUIValue += UpdateUIValue;
+        EventManager.UpdateUIText += UpdateUIText;
+    }
 
     public void UpdateUIValue(Element element, int value)
     {
@@ -23,6 +29,12 @@ public class UIManager : MonoBehaviour
     public void UpdateUIText(Element element, string value)
     {
         _uiElements[(int)element].UpdateElement(value);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.UpdateUIValue -= UpdateUIValue;
+        EventManager.UpdateUIText -= UpdateUIText;
     }
 }
 
@@ -39,6 +51,6 @@ public class UiElement
 
     public void UpdateElement(string value)
     {
-        Element.text = value;
+        Element.text = $"{BaseText}{value}";
     }
 }

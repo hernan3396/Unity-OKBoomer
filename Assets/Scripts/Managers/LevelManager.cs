@@ -7,7 +7,13 @@ public class LevelManager : MonoBehaviour
 {
     #region Transitions
     [SerializeField] private int _transitionSpeed = 3;
+    [SerializeField] private bool _isMenu = false;
     #endregion
+
+    private void Awake()
+    {
+        StartLevel();
+    }
 
     private void LoadLevel(string scene, bool async = false)
     {
@@ -25,6 +31,12 @@ public class LevelManager : MonoBehaviour
 
         DOTween.KillAll();
         SceneManager.LoadScene(scene);
+    }
+
+    private void StartLevel()
+    {
+        if (_isMenu) return;
+        LoadLevel("UI", true);
     }
 
     public IEnumerator Transition(string scene)

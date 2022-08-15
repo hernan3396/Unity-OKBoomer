@@ -71,4 +71,12 @@ public static class EventManager
     public static event UnityAction Melee;
     public static void OnMelee() => Melee?.Invoke();
     #endregion
+
+    #region UI
+    public static event UnityAction<UIManager.Element, int> UpdateUIValue;
+    public static void OnUpdateUI(UIManager.Element element, int value) => UpdateUIValue?.Invoke(element, value);
+
+    public static event UnityAction<UIManager.Element, string> UpdateUIText;
+    public static void OnUpdateUIText(UIManager.Element element, string value) => UpdateUIText?.Invoke(element, value);
+    #endregion
 }

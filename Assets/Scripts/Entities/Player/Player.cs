@@ -47,6 +47,13 @@ public class Player : Entity, IPauseable
     [SerializeField] private GameObject[] _hitboxes;
     #endregion
 
+    #region Weapons
+    [SerializeField] private WeaponScriptable[] _weapons;
+    [SerializeField] private Transform _shootPos;
+    private int _currentWeapon = 0;
+    private int _maxWeapons;
+    #endregion
+
     private void Awake()
     {
         _transform = GetComponent<Transform>();
@@ -56,6 +63,8 @@ public class Player : Entity, IPauseable
 
         _currentHp = _data.MaxHealth;
         _invulnerability = _data.Invulnerability;
+
+        _maxWeapons = _weapons.Length;
     }
 
     private void LoadComponents()
@@ -129,6 +138,7 @@ public class Player : Entity, IPauseable
     }
     #endregion
 
+    #region DamageMethods
     public override void TakeDamage(int value)
     {
         base.TakeDamage(value);
@@ -138,6 +148,15 @@ public class Player : Entity, IPauseable
     {
         EventManager.OnGameOver();
     }
+    #endregion
+
+    #region WeaponMethods
+    public void ChangeWeapons(int value)
+    {
+        _currentWeapon = value;
+        EventManager.OnUpdateUIText(UIManager.Element.Weapon, _weapons[_currentWeapon].Name);
+    }
+    #endregion
 
     private void OnDrawGizmos()
     {
@@ -230,6 +249,16 @@ public class Player : Entity, IPauseable
     public GameObject SlidingHitbox
     {
         get { return _hitboxes[1]; }
+    }
+
+    public int CurrentWeapon
+    {
+        get { return _currentWeapon; }
+    }
+
+    public int MaxWeapons
+    {
+        get { return _maxWeapons; }
     }
     #endregion
 }
