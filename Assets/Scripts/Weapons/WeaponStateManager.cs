@@ -15,6 +15,13 @@ public class WeaponStateManager : MonoBehaviour
     [SerializeField] private List<WeaponBaseState> _states;
     [SerializeField] private TMP_Text _stateText;
 
+    private Player _player;
+
+    private void Awake()
+    {
+        _player = GetComponent<Player>();
+    }
+
     private void Start()
     {
         _currentState = _states[(int)State.Idle];
@@ -43,5 +50,10 @@ public class WeaponStateManager : MonoBehaviour
 
         _currentState = _states[(int)state];
         _currentState.OnEnterState(this);
+    }
+
+    public Player Player
+    {
+        get { return _player; }
     }
 }
