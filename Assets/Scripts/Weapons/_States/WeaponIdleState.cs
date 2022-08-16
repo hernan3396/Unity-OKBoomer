@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class WeaponIdleState : WeaponBaseState
 {
     private PlayerShoot _playerShoot;
