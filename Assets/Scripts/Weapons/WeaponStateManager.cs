@@ -7,6 +7,7 @@ public class WeaponStateManager : MonoBehaviour
     public enum State
     {
         Idle,
+        Startup,
         Shooting,
         Cooldown
     }
@@ -35,11 +36,6 @@ public class WeaponStateManager : MonoBehaviour
     public virtual void Update()
     {
         _currentState.UpdateState(this);
-    }
-
-    public virtual void FixedUpdate()
-    {
-        _currentState.FixedUpdateState(this);
     }
 
     public virtual void SwitchState(State state)

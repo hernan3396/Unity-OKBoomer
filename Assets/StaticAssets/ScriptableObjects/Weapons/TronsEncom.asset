@@ -21,6 +21,7 @@ MonoBehaviour:
   SpecialStartup: 3
   SpecialTime: 3
   SpecialCooldown: 5
+  AmmoType: 1
   MaxBounces: 10
   AmmoSpeed: 250
   MaxAmmo: 20

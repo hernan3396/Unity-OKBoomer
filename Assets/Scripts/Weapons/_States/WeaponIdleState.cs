@@ -1,17 +1,18 @@
+using UnityEngine;
+
 public class WeaponIdleState : WeaponBaseState
 {
+    private PlayerShoot _playerShoot;
+
     public override void OnEnterState(WeaponStateManager state)
     {
-        return;
+        if (_playerShoot == null)
+            _playerShoot = state.Player.PlayerShoot;
     }
 
     public override void UpdateState(WeaponStateManager state)
     {
-        // throw new System.NotImplementedException();
-    }
-
-    public override void FixedUpdateState(WeaponStateManager state)
-    {
-        return;
+        if (_playerShoot.IsShooting)
+            state.SwitchState(WeaponStateManager.State.Startup);
     }
 }

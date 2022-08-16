@@ -24,7 +24,7 @@ public class WeaponScriptable : ScriptableObject
 
     #region Ammo
     [Header("Ammo")]
-    // public BulletScriptable AmmoType;
+    public BulletScriptable.BulletType AmmoType;
     public int MaxBounces;
     public int AmmoSpeed;
     public int MaxAmmo;

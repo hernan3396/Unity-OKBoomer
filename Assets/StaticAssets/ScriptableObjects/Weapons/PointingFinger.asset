@@ -15,14 +15,15 @@ MonoBehaviour:
   Id: 0
   Name: Pointing Finger
   Accuracy: {x: 5, y: 5}
-  Cooldown: 0.2
+  Cooldown: 0.6
   Startup: 0
   Damage: 10
   SpecialStartup: 0
   SpecialTime: 3
   SpecialCooldown: 5
+  AmmoType: 0
   MaxBounces: 0
-  AmmoSpeed: 150
+  AmmoSpeed: 250
   MaxAmmo: 200
   RecoilForce: 0
   RecoilTime: 0

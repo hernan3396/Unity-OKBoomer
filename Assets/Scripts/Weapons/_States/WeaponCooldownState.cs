@@ -1,17 +1,25 @@
+using UnityEngine;
+
 public class WeaponCooldownState : WeaponBaseState
 {
-    public override void FixedUpdateState(WeaponStateManager state)
-    {
-        throw new System.NotImplementedException();
-    }
+    private Player _player;
+    private float timer;
+    private float cooldown;
 
     public override void OnEnterState(WeaponStateManager state)
     {
-        throw new System.NotImplementedException();
+        if (_player == null)
+            _player = state.Player;
+
+        timer = 0;
+        cooldown = _player.CurrentWeaponData.Cooldown;
     }
 
     public override void UpdateState(WeaponStateManager state)
     {
-        throw new System.NotImplementedException();
+        timer += Time.deltaTime;
+
+        if (timer >= cooldown)
+            state.SwitchState(WeaponStateManager.State.Idle);
     }
 }

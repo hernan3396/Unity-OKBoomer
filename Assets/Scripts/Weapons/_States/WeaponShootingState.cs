@@ -1,17 +1,20 @@
+using UnityEngine;
+
 public class WeaponShootingState : WeaponBaseState
 {
-    public override void FixedUpdateState(WeaponStateManager state)
-    {
-        throw new System.NotImplementedException();
-    }
+    private PlayerShoot _playerShoot;
 
     public override void OnEnterState(WeaponStateManager state)
     {
-        throw new System.NotImplementedException();
+        if (_playerShoot == null)
+            _playerShoot = state.Player.PlayerShoot;
+
+        _playerShoot.Shoot();
+        state.SwitchState(WeaponStateManager.State.Cooldown);
     }
 
     public override void UpdateState(WeaponStateManager state)
     {
-        throw new System.NotImplementedException();
+        return;
     }
 }

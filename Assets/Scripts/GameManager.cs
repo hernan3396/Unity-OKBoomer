@@ -2,11 +2,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public enum Pools
-    {
-        PlayerBullet,
-    }
-
     private static GameManager _instance;
 
     #region Components
@@ -54,6 +49,11 @@ public class GameManager : MonoBehaviour
     public GameObject Player
     {
         get { return _player; }
+    }
+
+    public PoolManager[] GetPools
+    {
+        get { return _pools; }
     }
     #endregion
 }

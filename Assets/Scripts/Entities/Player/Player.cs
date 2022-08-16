@@ -11,6 +11,7 @@ public class Player : Entity, IPauseable
 
     #region Scripts
     private PlayerMovement _playerMovement;
+    private PlayerShoot _playerShoot;
     private PlayerSlide _playerSlide;
     private PlayerJump _playerJump;
     #endregion
@@ -72,6 +73,7 @@ public class Player : Entity, IPauseable
         _playerMovement = GetComponent<PlayerMovement>();
         _playerSlide = GetComponent<PlayerSlide>();
         _playerJump = GetComponent<PlayerJump>();
+        _playerShoot = GetComponent<PlayerShoot>();
     }
 
     private void FixedUpdate()
@@ -201,6 +203,11 @@ public class Player : Entity, IPauseable
         get { return _playerJump; }
     }
 
+    public PlayerShoot PlayerShoot
+    {
+        get { return _playerShoot; }
+    }
+
     public Transform Body
     {
         get { return _body; }
@@ -256,9 +263,19 @@ public class Player : Entity, IPauseable
         get { return _currentWeapon; }
     }
 
+    public WeaponScriptable CurrentWeaponData
+    {
+        get { return _weapons[_currentWeapon]; }
+    }
+
     public int MaxWeapons
     {
         get { return _maxWeapons; }
+    }
+
+    public Transform ShootPos
+    {
+        get { return _shootPos; }
     }
     #endregion
 }
