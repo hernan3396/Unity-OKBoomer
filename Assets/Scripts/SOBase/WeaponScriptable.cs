@@ -25,6 +25,7 @@ public class WeaponScriptable : ScriptableObject
     #region SpecialShoot
     [Header("Special Shoot")]
     public SpecialAttack SpecialType;
+    public float SpecialDamage;
     public float SpecialStartup;
     public float SpecialTime;
     public float SpecialCooldown;

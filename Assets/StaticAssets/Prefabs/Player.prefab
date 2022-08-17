@@ -592,6 +592,7 @@ Transform:
   - {fileID: 807249966012746874}
   - {fileID: 2641959222507204587}
   - {fileID: 1959459728318677250}
+  - {fileID: 5439812073085265588}
   m_Father: {fileID: 6907486638399581670}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -684,6 +685,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67fb750d45a71db4ab643f85f66550e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &5218752438474150294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5439812073085265588}
+  - component: {fileID: 131401980684798497}
+  m_Layer: 0
+  m_Name: BulletTimeSpecial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5439812073085265588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218752438474150294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8506951735906229411}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &131401980684798497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218752438474150294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 478f80c93e6f9514988e9c9da8c4a5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5513105190962832486
@@ -1003,6 +1048,8 @@ MonoBehaviour:
   - {fileID: 3202694462681932471}
   - {fileID: 3620334873268761393}
   - {fileID: 1522529879852714878}
+  - {fileID: 131401980684798497}
+  - {fileID: 131401980684798497}
   _stateText: {fileID: 0}
 --- !u!114 &94181732932743056
 MonoBehaviour:

@@ -19,6 +19,7 @@ MonoBehaviour:
   Startup: 0
   Damage: 5
   SpecialType: 2
+  SpecialDamage: 0.5
   SpecialStartup: 0
   SpecialTime: 3
   SpecialCooldown: 5
