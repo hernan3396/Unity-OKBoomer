@@ -1970,6 +1970,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6907486639528443142, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 1.7780321
+      objectReference: {fileID: 0}
     - target: {fileID: 8272355505936042002, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: _stateText
