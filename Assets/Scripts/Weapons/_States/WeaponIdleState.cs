@@ -11,6 +11,15 @@ public class WeaponIdleState : WeaponBaseState
     public override void UpdateState(WeaponStateManager state)
     {
         if (_playerShoot.IsShooting)
+        {
             state.SwitchState(WeaponStateManager.State.Startup);
+            return;
+        }
+
+        if (_playerShoot.IsSpecialShooting)
+        {
+            state.SwitchState(WeaponStateManager.State.StartupSpecial);
+            return;
+        }
     }
 }

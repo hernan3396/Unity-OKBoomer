@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WeaponCooldownState : WeaponBaseState
+public class WeaponSpecialCooldownState : WeaponBaseState
 {
     private Player _player;
     private float _timer;
@@ -12,7 +12,7 @@ public class WeaponCooldownState : WeaponBaseState
             _player = state.Player;
 
         _timer = 0;
-        _cooldown = _player.CurrentWeaponData.Cooldown;
+        _cooldown = _player.CurrentWeaponData.SpecialCooldown;
     }
 
     public override void UpdateState(WeaponStateManager state)

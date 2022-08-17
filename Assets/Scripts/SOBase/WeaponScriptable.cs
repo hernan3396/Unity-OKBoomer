@@ -3,6 +3,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewWeapon", menuName = "OKBoomer/New Weapon", order = 0)]
 public class WeaponScriptable : ScriptableObject
 {
+    public enum SpecialAttack
+    {
+        Laser,
+        Explosive,
+        BulletTime
+    }
+
     public int Id;
     public string Name;
 
@@ -17,6 +24,7 @@ public class WeaponScriptable : ScriptableObject
 
     #region SpecialShoot
     [Header("Special Shoot")]
+    public SpecialAttack SpecialType;
     public float SpecialStartup;
     public float SpecialTime;
     public float SpecialCooldown;

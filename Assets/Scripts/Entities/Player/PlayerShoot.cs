@@ -6,6 +6,7 @@ public class PlayerShoot : MonoBehaviour
     private Player _player;
     private PoolManager[] _pools;
     private bool _isShooting = false;
+    private bool _isSpecialShooting = false;
 
     private void Awake()
     {
@@ -17,11 +18,17 @@ public class PlayerShoot : MonoBehaviour
         _pools = GameManager.GetInstance.GetPools;
 
         EventManager.Shoot += ShootInput;
+        EventManager.SpecialShoot += SpecialShootInput;
     }
 
     private void ShootInput(bool value)
     {
         _isShooting = value;
+    }
+
+    private void SpecialShootInput(bool value)
+    {
+        _isSpecialShooting = value;
     }
 
     public void Shoot()
@@ -42,10 +49,16 @@ public class PlayerShoot : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.Shoot -= ShootInput;
+        EventManager.SpecialShoot -= SpecialShootInput;
     }
 
     public bool IsShooting
     {
         get { return _isShooting; }
+    }
+
+    public bool IsSpecialShooting
+    {
+        get { return _isSpecialShooting; }
     }
 }

@@ -9,7 +9,12 @@ public class WeaponStateManager : MonoBehaviour
         Idle,
         Startup,
         Shooting,
-        Cooldown
+        Cooldown,
+        StartupSpecial,
+        CooldownSpecial,
+        LaserSpecial,
+        ExplosiveSpecial,
+        BulletTimeSpecial
     }
 
     [SerializeField] private WeaponBaseState _currentState;

@@ -18,9 +18,10 @@ MonoBehaviour:
   Cooldown: 0.6
   Startup: 0
   Damage: 10
-  SpecialStartup: 0
+  SpecialType: 0
+  SpecialStartup: 1
   SpecialTime: 3
-  SpecialCooldown: 5
+  SpecialCooldown: 1
   AmmoType: 0
   MaxBounces: 0
   AmmoSpeed: 250
