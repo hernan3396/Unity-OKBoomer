@@ -945,8 +945,8 @@ MonoBehaviour:
   - {fileID: 6907486639166935305}
   _weapons:
   - {fileID: 11400000, guid: 87ccc6d67f636094e8200d9d053ef9a1, type: 2}
-  - {fileID: 11400000, guid: 813fa00713a872444926c8ba8e5ea2c2, type: 2}
   - {fileID: 11400000, guid: a206f735466953544b86ec814fbd42fa, type: 2}
+  - {fileID: 11400000, guid: 813fa00713a872444926c8ba8e5ea2c2, type: 2}
   _shootPos: {fileID: 3394043457026011927}
 --- !u!114 &6907486638399581666
 MonoBehaviour:
@@ -1064,6 +1064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55efba12d50943e4daff539a4aa90238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletsAmount: 000000000000000000000000
 --- !u!1 &6907486638952391864
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,9 +8,13 @@ public class PlayerShoot : MonoBehaviour
     private bool _isShooting = false;
     private bool _isSpecialShooting = false;
 
+    [SerializeField] private int[] _bulletsAmount = new int[3];
+
     private void Awake()
     {
         _player = GetComponent<Player>();
+
+        SetBullets();
     }
 
     void Start()
@@ -19,6 +23,14 @@ public class PlayerShoot : MonoBehaviour
 
         EventManager.Shoot += ShootInput;
         EventManager.SpecialShoot += SpecialShootInput;
+    }
+
+    private void SetBullets()
+    {
+        for (int i = 0; i < _player.GetWeapons.Length; i++)
+        {
+            _bulletsAmount[i] = _player.GetWeapons[i].MaxAmmo;
+        }
     }
 
     private void ShootInput(bool value)
@@ -43,6 +55,7 @@ public class PlayerShoot : MonoBehaviour
             bullet.SetData(weapon.Damage, weapon.AmmoSpeed, weapon.MaxBounces, _player.ShootPos);
             newBullet.SetActive(true);
             bullet.Shoot(weapon.Accuracy.x, weapon.Accuracy.y);
+            _bulletsAmount[(int)weapon.AmmoType] -= 1;
         }
     }
 
@@ -60,5 +73,10 @@ public class PlayerShoot : MonoBehaviour
     public bool IsSpecialShooting
     {
         get { return _isSpecialShooting; }
+    }
+
+    public int BulletsAmount
+    {
+        get { return _bulletsAmount[_player.CurrentWeapon]; }
     }
 }

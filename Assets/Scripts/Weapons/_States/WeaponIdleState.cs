@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class WeaponIdleState : WeaponBaseState
 {
     private PlayerShoot _playerShoot;
@@ -12,6 +14,8 @@ public class WeaponIdleState : WeaponBaseState
     {
         if (_playerShoot.IsShooting)
         {
+            if (_playerShoot.BulletsAmount <= 0) return;
+
             state.SwitchState(WeaponStateManager.State.Startup);
             return;
         }

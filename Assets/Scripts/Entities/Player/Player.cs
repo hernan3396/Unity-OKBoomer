@@ -258,6 +258,11 @@ public class Player : Entity, IPauseable
         get { return _hitboxes[1]; }
     }
 
+    public WeaponScriptable[] GetWeapons
+    {
+        get { return _weapons; }
+    }
+
     public int CurrentWeapon
     {
         get { return _currentWeapon; }
