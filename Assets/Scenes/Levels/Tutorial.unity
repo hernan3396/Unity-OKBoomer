@@ -7403,12 +7403,6 @@ PrefabInstance:
       propertyPath: _stateText
       value: 
       objectReference: {fileID: 1833167547}
-    - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
-        type: 3}
-      propertyPath: _data
-      value: 
-      objectReference: {fileID: 11400000, guid: 52e5c5a42447b254589e2a9e1479459c,
-        type: 2}
     - target: {fileID: 6907486638399581670, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_RootOrder
@@ -7473,6 +7467,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907486639528443142, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 1.7780321
       objectReference: {fileID: 0}
     - target: {fileID: 8272355505936042002, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
@@ -8204,9 +8203,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1008f49e340192e46b2a19aa2ce09131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanMove: 1
+  CanMove: 0
   Move: {x: 0, y: 0}
-  CanLook: 1
+  CanLook: 0
   Look: {x: 0, y: 0}
   Jump: 0
   Shoot: 0

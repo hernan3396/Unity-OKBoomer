@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _godMode: 0
-  _data: {fileID: 11400000, guid: a2604801bddafd44e9029ad0f6b129a8, type: 2}
+  _data: {fileID: 11400000, guid: 52e5c5a42447b254589e2a9e1479459c, type: 2}
   _noFricMat: {fileID: 13400000, guid: 80048413abba10449ab5ce973608ccce, type: 2}
   _body: {fileID: 6907486638399581670}
   _arm: {fileID: 5086191569925523561}
