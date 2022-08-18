@@ -1,25 +1,37 @@
-using UnityEngine;
-
 public class WeaponSpecialCooldownState : WeaponBaseState
 {
     private Player _player;
-    private float _timer;
     private float _cooldown;
+
+    private WeaponStateManager _state;
+    private UtilTimer _utilTimer;
 
     public override void OnEnterState(WeaponStateManager state)
     {
         if (_player == null)
+        {
             _player = state.Player;
+            _state = state;
+            _utilTimer = GetComponent<UtilTimer>();
+        }
 
-        _timer = 0;
         _cooldown = _player.CurrentWeaponData.SpecialCooldown;
+        _utilTimer.StartTimer(_cooldown);
+        _utilTimer.onTimerCompleted += OnTimerCompleted;
     }
 
     public override void UpdateState(WeaponStateManager state)
     {
-        _timer += Time.deltaTime;
+        return;
+    }
 
-        if (_timer >= _cooldown)
-            state.SwitchState(WeaponStateManager.State.Idle);
+    private void OnTimerCompleted()
+    {
+        _state.SwitchState(WeaponStateManager.State.Idle);
+    }
+
+    public override void OnExitState(WeaponStateManager state)
+    {
+        _utilTimer.onTimerCompleted -= OnTimerCompleted;
     }
 }

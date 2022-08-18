@@ -1,10 +1,10 @@
-using UnityEngine;
-
 public class WeaponSpecialStartupState : WeaponBaseState
 {
     private Player _player;
     private PlayerShoot _playerShoot;
-    private float _timer;
+
+    private WeaponStateManager _state;
+    private UtilTimer _utilTimer;
 
     public override void OnEnterState(WeaponStateManager state)
     {
@@ -12,33 +12,39 @@ public class WeaponSpecialStartupState : WeaponBaseState
         {
             _player = state.Player;
             _playerShoot = _player.PlayerShoot;
+            _state = state;
+
+            _utilTimer = GetComponent<UtilTimer>();
         }
 
-        _timer = 0;
+        _utilTimer.StartTimer(_player.CurrentWeaponData.SpecialStartup);
+        _utilTimer.onTimerCompleted += OnTimerCompleted;
     }
 
     public override void UpdateState(WeaponStateManager state)
     {
         if (!_playerShoot.IsSpecialShooting)
             state.SwitchState(WeaponStateManager.State.Idle);
+    }
 
-        _timer += Time.deltaTime;
-
-        if (_timer < _player.CurrentWeaponData.SpecialStartup) return;
-
+    private void OnTimerCompleted()
+    {
         switch (_player.CurrentWeaponData.SpecialType)
         {
             case WeaponScriptable.SpecialAttack.Laser:
-                state.SwitchState(WeaponStateManager.State.LaserSpecial);
+                _state.SwitchState(WeaponStateManager.State.LaserSpecial);
                 break;
             case WeaponScriptable.SpecialAttack.Explosive:
-                state.SwitchState(WeaponStateManager.State.ExplosiveSpecial);
+                _state.SwitchState(WeaponStateManager.State.ExplosiveSpecial);
                 break;
             case WeaponScriptable.SpecialAttack.BulletTime:
-                state.SwitchState(WeaponStateManager.State.BulletTimeSpecial);
+                _state.SwitchState(WeaponStateManager.State.BulletTimeSpecial);
                 break;
         }
+    }
 
-
+    public override void OnExitState(WeaponStateManager state)
+    {
+        _utilTimer.onTimerCompleted -= OnTimerCompleted;
     }
 }
