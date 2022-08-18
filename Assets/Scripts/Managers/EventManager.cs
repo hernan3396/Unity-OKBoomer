@@ -51,8 +51,8 @@ public static class EventManager
     public static event UnityAction GameStart;
     public static void OnGameStart() => GameStart?.Invoke();
 
-    public static event UnityAction GodMode;
-    public static void OnGodMode() => GodMode?.Invoke();
+    public static event UnityAction<bool> GodMode;
+    public static void OnGodMode(bool value) => GodMode?.Invoke(value);
     #endregion
 
     #region PlayerInputs

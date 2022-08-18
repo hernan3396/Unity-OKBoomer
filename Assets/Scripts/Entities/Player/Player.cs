@@ -73,10 +73,16 @@ public class Player : Entity, IPauseable
         EventManager.GameStart += GameStart;
     }
 
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        EventManager.OnGodMode(_godMode);
+    }
+#endif
+
     private void GameStart()
     {
-        if (_godMode)
-            EventManager.OnGodMode();
+        EventManager.OnGodMode(_godMode);
         EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
     }
 

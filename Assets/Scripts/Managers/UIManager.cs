@@ -34,9 +34,9 @@ public class UIManager : MonoBehaviour
         _uiElements[(int)element].UpdateElement(value);
     }
 
-    private void OnGodMode()
+    private void OnGodMode(bool value)
     {
-        _uiElements[(int)Element.GodMode].Element.gameObject.SetActive(true);
+        _uiElements[(int)Element.GodMode].Element.gameObject.SetActive(value);
     }
 
     private void OnDestroy()
