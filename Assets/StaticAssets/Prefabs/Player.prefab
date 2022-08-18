@@ -1017,7 +1017,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a206f735466953544b86ec814fbd42fa, type: 2}
   - {fileID: 11400000, guid: 813fa00713a872444926c8ba8e5ea2c2, type: 2}
   _shootPos: {fileID: 3394043457026011927}
-  _bulletsAmount: 000000000000000000000000
+  _bulletsAmount: 
 --- !u!114 &6907486638399581666
 MonoBehaviour:
   m_ObjectHideFlags: 0

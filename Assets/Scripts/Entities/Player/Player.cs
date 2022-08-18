@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Player : Entity, IPauseable
@@ -50,11 +51,11 @@ public class Player : Entity, IPauseable
     #endregion
 
     #region Weapons
-    [SerializeField] private WeaponScriptable[] _weapons;
+    [SerializeField] private List<WeaponScriptable> _weapons = new List<WeaponScriptable>();
     [SerializeField] private Transform _shootPos;
     private int _currentWeapon = 0;
     private int _maxWeapons;
-    [SerializeField] private int[] _bulletsAmount = new int[3];
+    [SerializeField] private List<int> _bulletsAmount = new List<int>();
     #endregion
 
     private void Awake()
@@ -67,7 +68,7 @@ public class Player : Entity, IPauseable
         _currentHp = _data.MaxHealth;
         _invulnerability = _data.Invulnerability;
 
-        _maxWeapons = _weapons.Length;
+        _maxWeapons = _weapons.Count;
         SetBullets();
 
         EventManager.GameStart += GameStart;
@@ -188,7 +189,7 @@ public class Player : Entity, IPauseable
     private void SetBullets()
     {
         for (int i = 0; i < _maxWeapons; i++)
-            _bulletsAmount[i] = _weapons[i].MaxAmmo;
+            _bulletsAmount.Add(_weapons[i].MaxAmmo);
     }
 
     public void ChangeWeapons(int value)
@@ -210,6 +211,14 @@ public class Player : Entity, IPauseable
             BulletsAmount += (int)(_weapons[_currentWeapon].MaxAmmo * 0.25f) * value;
 
         EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
+    }
+
+    public void PickUpWeapon(WeaponScriptable newWeapon)
+    {
+        _weapons.Add(newWeapon);
+
+        _bulletsAmount.Add(newWeapon.MaxAmmo);
+        _maxWeapons = _weapons.Count;
     }
     #endregion
 
@@ -321,7 +330,7 @@ public class Player : Entity, IPauseable
         get { return _hitboxes[1]; }
     }
 
-    public WeaponScriptable[] GetWeapons
+    public List<WeaponScriptable> GetWeapons
     {
         get { return _weapons; }
     }

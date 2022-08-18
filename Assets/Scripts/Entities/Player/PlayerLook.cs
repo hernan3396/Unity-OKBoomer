@@ -17,12 +17,16 @@ public class PlayerLook : MonoBehaviour
         EventManager.Look += LookAtMouse;
     }
 
+    private void Update()
+    {
+        // SwayWeapon();
+    }
+
     private void LookAtMouse(Vector2 look)
     {
         // lo divido entre 10 para que quede un numero mas lindo
         // en el inspector (2 en vez de 0.2 por ejemplo)
         _look = look * 0.1f;
-        // look *= _player.Data.MouseSensitivity / 10;
 
         // up & down
         _rotations.x -= _look.y;
@@ -44,6 +48,8 @@ public class PlayerLook : MonoBehaviour
         _player.FpCamera.localRotation = headRotation;
 
         _player.Body.localRotation = bodyRotation;
+
+        SwayWeapon();
     }
 
     private void SwayWeapon()
@@ -54,7 +60,7 @@ public class PlayerLook : MonoBehaviour
         Quaternion yRotation = Quaternion.AngleAxis(_look.x * _player.Data.SwayMultiplier, Vector3.up);
         Quaternion targetRotation = xRotation * yRotation;
 
-        // _player.WeaponHolder.localRotation = Quaternion.Slerp(_player.WeaponHolder.localRotation, targetRotation, _player.Data.SwaySmoothness * Time.deltaTime);
+        _player.Arm.localRotation = Quaternion.Slerp(_player.Arm.localRotation, targetRotation, _player.Data.SwaySmoothness * Time.deltaTime);
     }
 
     private void OnDestroy()

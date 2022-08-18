@@ -5,12 +5,14 @@ public class Pickup : MonoBehaviour
     private enum PickupType
     {
         Health,
-        Ammo
+        Ammo,
+        Weapon
     }
 
     private Player _player;
     [SerializeField] private int _ammount;
     [SerializeField] private PickupType _pickupType;
+    [SerializeField] private WeaponScriptable _weapon;
 
     private void Start()
     {
@@ -29,6 +31,9 @@ public class Pickup : MonoBehaviour
                     break;
                 case PickupType.Ammo:
                     _player.PickUpAmmo(_ammount);
+                    break;
+                case PickupType.Weapon:
+                    _player.PickUpWeapon(_weapon);
                     break;
             }
 
