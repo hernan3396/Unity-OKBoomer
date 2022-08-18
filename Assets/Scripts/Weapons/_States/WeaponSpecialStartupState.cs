@@ -19,27 +19,26 @@ public class WeaponSpecialStartupState : WeaponBaseState
 
     public override void UpdateState(WeaponStateManager state)
     {
-        if (_playerShoot.IsSpecialShooting)
-        {
-            _timer += Time.deltaTime;
-
-            if (_timer >= _player.CurrentWeaponData.SpecialStartup)
-            {
-                switch (_player.CurrentWeaponData.SpecialType)
-                {
-                    case WeaponScriptable.SpecialAttack.Laser:
-                        state.SwitchState(WeaponStateManager.State.LaserSpecial);
-                        break;
-                    case WeaponScriptable.SpecialAttack.Explosive:
-                        state.SwitchState(WeaponStateManager.State.ExplosiveSpecial);
-                        break;
-                    case WeaponScriptable.SpecialAttack.BulletTime:
-                        state.SwitchState(WeaponStateManager.State.BulletTimeSpecial);
-                        break;
-                }
-            }
-        }
-        else
+        if (!_playerShoot.IsSpecialShooting)
             state.SwitchState(WeaponStateManager.State.Idle);
+
+        _timer += Time.deltaTime;
+
+        if (_timer < _player.CurrentWeaponData.SpecialStartup) return;
+
+        switch (_player.CurrentWeaponData.SpecialType)
+        {
+            case WeaponScriptable.SpecialAttack.Laser:
+                state.SwitchState(WeaponStateManager.State.LaserSpecial);
+                break;
+            case WeaponScriptable.SpecialAttack.Explosive:
+                state.SwitchState(WeaponStateManager.State.ExplosiveSpecial);
+                break;
+            case WeaponScriptable.SpecialAttack.BulletTime:
+                state.SwitchState(WeaponStateManager.State.BulletTimeSpecial);
+                break;
+        }
+
+
     }
 }

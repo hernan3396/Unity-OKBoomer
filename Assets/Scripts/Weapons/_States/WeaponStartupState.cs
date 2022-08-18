@@ -19,14 +19,12 @@ public class WeaponStartupState : WeaponBaseState
 
     public override void UpdateState(WeaponStateManager state)
     {
-        if (_playerShoot.IsShooting)
-        {
-            timer += Time.deltaTime;
-
-            if (timer >= _player.CurrentWeaponData.Startup)
-                state.SwitchState(WeaponStateManager.State.Shooting);
-        }
-        else
+        if (!_playerShoot.IsShooting)
             state.SwitchState(WeaponStateManager.State.Idle);
+
+        timer += Time.deltaTime;
+
+        if (timer >= _player.CurrentWeaponData.Startup)
+            state.SwitchState(WeaponStateManager.State.Shooting);
     }
 }

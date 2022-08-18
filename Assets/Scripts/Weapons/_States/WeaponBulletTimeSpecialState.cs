@@ -22,19 +22,12 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
 
     public override void UpdateState(WeaponStateManager state)
     {
-        // esto que se repite tanto a lo mejor podria estar en 
-        // weapon base state y solo llamar a la funcion
-        // aunque eso requiere que las referencias esten en
-        // el base state que supongo no esta mal(?)
+        if (!_playerShoot.IsSpecialShooting)
+            state.SwitchState(WeaponStateManager.State.CooldownSpecial);
 
-        if (_playerShoot.IsSpecialShooting)
-        {
-            _timer += Time.deltaTime;
+        _timer += Time.deltaTime;
 
-            if (_timer >= _player.CurrentWeaponData.SpecialTime)
-                state.SwitchState(WeaponStateManager.State.CooldownSpecial);
-        }
-        else
+        if (_timer >= _player.CurrentWeaponData.SpecialTime)
             state.SwitchState(WeaponStateManager.State.CooldownSpecial);
     }
 

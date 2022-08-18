@@ -28,14 +28,12 @@ public class WeaponLaserSpecialState : WeaponBaseState
     {
         LaserShoot();
 
-        if (_playerShoot.IsSpecialShooting)
-        {
-            _timer += Time.deltaTime;
+        if (!_playerShoot.IsSpecialShooting)
+            state.SwitchState(WeaponStateManager.State.CooldownSpecial);
 
-            if (_timer >= _player.CurrentWeaponData.SpecialTime)
-                state.SwitchState(WeaponStateManager.State.CooldownSpecial);
-        }
-        else
+        _timer += Time.deltaTime;
+
+        if (_timer >= _player.CurrentWeaponData.SpecialTime)
             state.SwitchState(WeaponStateManager.State.CooldownSpecial);
     }
 

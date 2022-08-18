@@ -2102,7 +2102,7 @@ PrefabInstance:
     - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: _godMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6907486638399581670, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
@@ -2163,6 +2163,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907486639166935305, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6907486639528443142, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
@@ -2354,12 +2359,12 @@ PrefabInstance:
     - target: {fileID: 2366307783822315124, guid: 2e3e09573ba98ee4492586c0e8204557,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.28
       objectReference: {fileID: 0}
     - target: {fileID: 2366307783822315124, guid: 2e3e09573ba98ee4492586c0e8204557,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.33
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2366307783822315124, guid: 2e3e09573ba98ee4492586c0e8204557,
         type: 3}
