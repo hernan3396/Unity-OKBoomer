@@ -9,7 +9,8 @@ public class UIManager : MonoBehaviour
         Hp,
         Weapon,
         Timer,
-        Bullets
+        Bullets,
+        GodMode
     }
 
     #region UiElements
@@ -20,6 +21,7 @@ public class UIManager : MonoBehaviour
     {
         EventManager.UpdateUIValue += UpdateUIValue;
         EventManager.UpdateUIText += UpdateUIText;
+        EventManager.GodMode += OnGodMode;
     }
 
     public void UpdateUIValue(Element element, int value)
@@ -32,10 +34,16 @@ public class UIManager : MonoBehaviour
         _uiElements[(int)element].UpdateElement(value);
     }
 
+    private void OnGodMode()
+    {
+        _uiElements[(int)Element.GodMode].Element.gameObject.SetActive(true);
+    }
+
     private void OnDestroy()
     {
         EventManager.UpdateUIValue -= UpdateUIValue;
         EventManager.UpdateUIText -= UpdateUIText;
+        EventManager.GodMode -= OnGodMode;
     }
 }
 

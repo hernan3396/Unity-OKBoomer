@@ -69,6 +69,15 @@ public class Player : Entity, IPauseable
 
         _maxWeapons = _weapons.Length;
         SetBullets();
+
+        EventManager.GameStart += GameStart;
+    }
+
+    private void GameStart()
+    {
+        if (_godMode)
+            EventManager.OnGodMode();
+        EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
     }
 
     private void LoadComponents()
@@ -203,6 +212,11 @@ public class Player : Entity, IPauseable
         Gizmos.color = Color.blue;
 
         Gizmos.DrawWireCube(transform.position + Vector3.down * _grdDist, transform.localScale);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.GameStart -= GameStart;
     }
 
     #region Getter/Setter
