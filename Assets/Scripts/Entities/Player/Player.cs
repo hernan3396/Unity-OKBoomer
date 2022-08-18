@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : Entity, IPauseable
 {
+    [SerializeField] private bool _godMode;
     #region Components
     [SerializeField] private PlayerScriptable _data;
     [SerializeField] private PhysicMaterial _noFricMat;
@@ -53,6 +54,7 @@ public class Player : Entity, IPauseable
     [SerializeField] private Transform _shootPos;
     private int _currentWeapon = 0;
     private int _maxWeapons;
+    [SerializeField] private int[] _bulletsAmount = new int[3];
     #endregion
 
     private void Awake()
@@ -66,6 +68,7 @@ public class Player : Entity, IPauseable
         _invulnerability = _data.Invulnerability;
 
         _maxWeapons = _weapons.Length;
+        SetBullets();
     }
 
     private void LoadComponents()
@@ -143,20 +146,55 @@ public class Player : Entity, IPauseable
     #region DamageMethods
     public override void TakeDamage(int value)
     {
+        if (_godMode) return;
+        if (_isInmune) return;
+
         base.TakeDamage(value);
+        EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
     }
 
     protected override void Death()
     {
         EventManager.OnGameOver();
     }
+
+    public void PickUpHealth(int value)
+    {
+        if (_currentHp + value > _data.MaxHealth)
+            _currentHp = _data.MaxHealth;
+        else
+            _currentHp += value;
+
+        EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
+    }
     #endregion
 
     #region WeaponMethods
+    private void SetBullets()
+    {
+        for (int i = 0; i < _maxWeapons; i++)
+            _bulletsAmount[i] = _weapons[i].MaxAmmo;
+    }
+
     public void ChangeWeapons(int value)
     {
         _currentWeapon = value;
         EventManager.OnUpdateUIText(UIManager.Element.Weapon, _weapons[_currentWeapon].Name);
+        EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
+    }
+
+    public void PickUpAmmo(int value)
+    {
+        // en el caso de armas lo multiplicamos
+        // si value = 1, entonces solo le sumas 1/4, si es 2 es 1/2 y asi
+        // no hablamos de esto pero lo voy a hacer que agarres 1/4 balas del maximo del arma seleccionada
+        int nextAmmount = (int)(_weapons[_currentWeapon].MaxAmmo * 0.25f) * value;
+        if (BulletsAmount + nextAmmount > _weapons[_currentWeapon].MaxAmmo)
+            BulletsAmount = _weapons[_currentWeapon].MaxAmmo;
+        else
+            BulletsAmount += (int)(_weapons[_currentWeapon].MaxAmmo * 0.25f) * value;
+
+        EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
     }
     #endregion
 
@@ -168,6 +206,11 @@ public class Player : Entity, IPauseable
     }
 
     #region Getter/Setter
+    public bool GodMode
+    {
+        get { return _godMode; }
+    }
+
     public Transform Transform
     {
         get { return _transform; }
@@ -281,6 +324,12 @@ public class Player : Entity, IPauseable
     public Transform ShootPos
     {
         get { return _shootPos; }
+    }
+
+    public int BulletsAmount
+    {
+        get { return _bulletsAmount[_currentWeapon]; }
+        set { _bulletsAmount[_currentWeapon] = value; }
     }
     #endregion
 }

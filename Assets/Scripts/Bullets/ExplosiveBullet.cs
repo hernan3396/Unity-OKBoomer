@@ -18,7 +18,6 @@ public class ExplosiveBullet : Bullet
 
     private void Explosion()
     {
-        Debug.Log(_explosion.transform.localScale.x);
         Collider[] hitColliders = Physics.OverlapSphere(_transform.position, _explosion.transform.localScale.x * 0.5f); // ve contra que choca la explosion
 
         // foreach (Collider collider in hitColliders)

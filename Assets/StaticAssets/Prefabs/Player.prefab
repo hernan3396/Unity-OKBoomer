@@ -927,6 +927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e663e3eba7fbf4ab1ebb7f25de3c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _godMode: 0
   _data: {fileID: 11400000, guid: a2604801bddafd44e9029ad0f6b129a8, type: 2}
   _noFricMat: {fileID: 13400000, guid: 80048413abba10449ab5ce973608ccce, type: 2}
   _body: {fileID: 6907486638399581670}
@@ -948,6 +949,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a206f735466953544b86ec814fbd42fa, type: 2}
   - {fileID: 11400000, guid: 813fa00713a872444926c8ba8e5ea2c2, type: 2}
   _shootPos: {fileID: 3394043457026011927}
+  _bulletsAmount: 000000000000000000000000
 --- !u!114 &6907486638399581666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1064,7 +1066,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55efba12d50943e4daff539a4aa90238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletsAmount: 000000000000000000000000
 --- !u!1 &6907486638952391864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,7 +1122,7 @@ GameObject:
   - component: {fileID: 6907486639166935319}
   m_Layer: 0
   m_Name: SlidingHitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1483,7 +1484,7 @@ GameObject:
   - component: {fileID: 6907486640217217250}
   m_Layer: 0
   m_Name: StandingHitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

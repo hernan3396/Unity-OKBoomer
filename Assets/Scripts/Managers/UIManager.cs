@@ -8,7 +8,8 @@ public class UIManager : MonoBehaviour
     {
         Hp,
         Weapon,
-        Timer
+        Timer,
+        Bullets
     }
 
     #region UiElements
