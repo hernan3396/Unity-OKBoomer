@@ -6,4 +6,9 @@ public static class Utils
     {
         return (b - origin).normalized;
     }
+
+    public static Vector3 CalculateDistance(Vector3 origin, Vector3 b)
+    {
+        return (b - origin);
+    }
 }

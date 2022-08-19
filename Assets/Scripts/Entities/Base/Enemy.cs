@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 using DG.Tweening;
 
 public class Enemy : Entity, IDamageable, IPauseable
@@ -12,9 +13,17 @@ public class Enemy : Entity, IDamageable, IPauseable
     [Header("Components")]
     [SerializeField] protected PoolManager _bulletsPool;
     [SerializeField] protected PoolManager _bloodPool;
-    private CapsuleCollider _col;
-    private Material _mainMat;
-    private Rigidbody _rb;
+    protected CapsuleCollider _col;
+    protected Material _mainMat;
+    protected Rigidbody _rb;
+    #endregion
+
+    #region AI
+    [Header("AI")]
+    [SerializeField] protected LayerMask _groundLayer;
+    protected NavMeshAgent _agent;
+    protected bool _playerInRange;
+    protected Transform _player;
     #endregion
 
     #region States
@@ -36,6 +45,14 @@ public class Enemy : Entity, IDamageable, IPauseable
         _transform = GetComponent<Transform>();
         _col = GetComponentInChildren<CapsuleCollider>();
         _rb = GetComponent<Rigidbody>();
+
+        if (TryGetComponent(out NavMeshAgent agent))
+            _agent = agent;
+    }
+
+    private void Start()
+    {
+        _player = GameManager.GetInstance.Player.GetComponent<Transform>();
     }
 
     #region DamageMethods
@@ -93,6 +110,31 @@ public class Enemy : Entity, IDamageable, IPauseable
     }
     #endregion
 
+    #region MovementMethods
+    public void IsPlayerInRange()
+    {
+        float playerDistance = Utils.CalculateDistance(_transform.position, _player.position).magnitude;
+        _playerInRange = playerDistance < _data.VisionRange;
+    }
+
+    public void SearchWalkPoint()
+    {
+        //Calculate random point in range
+        float randomZ = Random.Range(-_data.WalkPointRange, _data.WalkPointRange);
+        float randomX = Random.Range(-_data.WalkPointRange, _data.WalkPointRange);
+
+        Vector3 _destination = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        if (Physics.Raycast(_destination, -transform.up, 2f, _groundLayer))
+            _agent.SetDestination(_destination);
+    }
+
+    public void ChaseDirection(Vector3 dir)
+    {
+        _agent.SetDestination(dir);
+    }
+    #endregion
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -100,5 +142,10 @@ public class Enemy : Entity, IDamageable, IPauseable
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _data.AttackRange);
+    }
+
+    public bool PlayerInRange
+    {
+        get { return _playerInRange; }
     }
 }
