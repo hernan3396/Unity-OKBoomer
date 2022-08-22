@@ -20,6 +20,7 @@ public class Enemy : Entity, IDamageable, IPauseable
 
     #region AI
     [Header("AI")]
+    [SerializeField] protected LayerMask _playerLayer;
     [SerializeField] protected LayerMask _groundLayer;
     [SerializeField] protected Vector3 _destination;
     protected NavMeshAgent _agent;
@@ -112,6 +113,18 @@ public class Enemy : Entity, IDamageable, IPauseable
     #endregion
 
     #region MovementMethods
+    public bool IsPlayerInSight()
+    {
+        Collider[] circleHit = Physics.OverlapSphere(_transform.position, _data.VisionRange, _playerLayer);
+
+        if (circleHit.Length > 0 && circleHit[0].CompareTag("Player"))
+        {
+            // lanzamos un rayo a ver si pega contra el
+        }
+
+        return false;
+    }
+
     public void IsPlayerInRange()
     {
         float playerDistance = Utils.CalculateDistance(_transform.position, _player.position);

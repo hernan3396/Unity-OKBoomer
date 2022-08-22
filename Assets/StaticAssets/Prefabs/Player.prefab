@@ -1188,7 +1188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6907486639166935304}
   - component: {fileID: 6907486639166935319}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SlidingHitbox
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1550,7 +1550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6907486640217217251}
   - component: {fileID: 6907486640217217250}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StandingHitbox
   m_TagString: Player
   m_Icon: {fileID: 0}

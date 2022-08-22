@@ -1797,6 +1797,9 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: 58f93b7a87c64d34cbc6a32bb9ff0a26, type: 2}
   _bulletsPool: {fileID: 0}
   _bloodPool: {fileID: 0}
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -2856,7 +2859,7 @@ PrefabInstance:
     - target: {fileID: 6907486639528443142, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7780321
+      value: 1.7777778
       objectReference: {fileID: 0}
     - target: {fileID: 8272355505936042002, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
