@@ -8,6 +8,7 @@ public class EnemyStateManager : MonoBehaviour
     public enum EnemyState
     {
         Idle,
+        Patroling,
         Chasing,
         Attacking
     }
@@ -47,13 +48,13 @@ public class EnemyStateManager : MonoBehaviour
     {
         _currentState?.OnExitState(this);
 
-        _stateText.text = "State: " + state.ToString();
+        _stateText.text = state.ToString();
 
         _currentState = _states[(int)state];
         _currentState.OnEnterState(this);
     }
 
-    public Enemy enemy
+    public Enemy Enemy
     {
         get { return _enemy; }
     }

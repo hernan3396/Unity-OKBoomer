@@ -21,6 +21,7 @@ public class Enemy : Entity, IDamageable, IPauseable
     #region AI
     [Header("AI")]
     [SerializeField] protected LayerMask _groundLayer;
+    [SerializeField] protected Vector3 _destination;
     protected NavMeshAgent _agent;
     protected bool _playerInRange;
     protected Transform _player;
@@ -113,7 +114,7 @@ public class Enemy : Entity, IDamageable, IPauseable
     #region MovementMethods
     public void IsPlayerInRange()
     {
-        float playerDistance = Utils.CalculateDistance(_transform.position, _player.position).magnitude;
+        float playerDistance = Utils.CalculateDistance(_transform.position, _player.position);
         _playerInRange = playerDistance < _data.VisionRange;
     }
 
@@ -123,10 +124,17 @@ public class Enemy : Entity, IDamageable, IPauseable
         float randomZ = Random.Range(-_data.WalkPointRange, _data.WalkPointRange);
         float randomX = Random.Range(-_data.WalkPointRange, _data.WalkPointRange);
 
-        Vector3 _destination = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        _destination = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+    }
 
-        if (Physics.Raycast(_destination, -transform.up, 2f, _groundLayer))
-            _agent.SetDestination(_destination);
+    public void GoToDestination()
+    {
+        _agent.SetDestination(_destination);
+    }
+
+    public bool DestinationReached()
+    {
+        return Utils.CalculateDistance(_transform.position, _destination) < 2;
     }
 
     public void ChaseDirection(Vector3 dir)
@@ -142,6 +150,11 @@ public class Enemy : Entity, IDamageable, IPauseable
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _data.AttackRange);
+    }
+
+    public EnemyScriptable Data
+    {
+        get { return _data; }
     }
 
     public bool PlayerInRange

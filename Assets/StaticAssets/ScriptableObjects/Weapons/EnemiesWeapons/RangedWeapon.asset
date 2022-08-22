@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56de695530b5d4542a4ce2cd32a93bc2, type: 3}
+  m_Name: RangedWeapon
+  m_EditorClassIdentifier: 
+  Id: 3
+  Name: Ranged Weapon
+  Accuracy: {x: 10, y: 10}
+  Cooldown: 0.5
+  Startup: 0
+  Damage: 10
+  SpecialType: 0
+  SpecialDamage: 0
+  SpecialStartup: 0
+  SpecialTime: 0
+  SpecialCooldown: 0
+  AmmoType: 0
+  MaxBounces: 1
+  AmmoSpeed: 60
+  MaxAmmo: 0
+  RecoilForce: 0
+  RecoilTime: 0
