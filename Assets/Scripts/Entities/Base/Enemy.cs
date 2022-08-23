@@ -163,6 +163,9 @@ public class Enemy : Entity, IDamageable, IPauseable
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _data.AttackRange);
+
+        Gizmos.color = Color.gray;
+        Gizmos.DrawWireSphere(transform.position, _data.ChasingRange);
     }
 
     public EnemyScriptable Data

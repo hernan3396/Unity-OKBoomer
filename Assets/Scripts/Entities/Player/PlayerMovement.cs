@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour, IPauseable
     #endregion
 
     private Vector3 _dirInput;
+    private float _movementMod = 1;
 
     private void Awake()
     {
@@ -25,7 +26,7 @@ public class PlayerMovement : MonoBehaviour, IPauseable
     {
         if (_player.Paused) return;
         Vector3 dir = (_player.Transform.right * _dirInput.x + _player.Transform.forward * _dirInput.y).normalized;
-        Vector3 rbVelocity = dir * _player.Data.Speed;
+        Vector3 rbVelocity = dir * _player.Data.Speed * _movementMod;
 
         rbVelocity.y = _player.RB.velocity.y; // mantenemos la velocidad en Y que tenia el cuerpo
         _player.RB.velocity = rbVelocity;
@@ -40,5 +41,11 @@ public class PlayerMovement : MonoBehaviour, IPauseable
     public bool IsMoving
     {
         get { return _dirInput.magnitude > 0.01f; }
+    }
+
+    public float MovementMod
+    {
+        get { return _movementMod; }
+        set { _movementMod = value; }
     }
 }

@@ -20,6 +20,7 @@ public class PlayerScriptable : ScriptableObject
     public int JumpStrength;
     public int MaxFallSpeed;
     public int Gravity;
+    public float MovementModifier;
     #endregion
 
     #region Look

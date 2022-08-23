@@ -54,6 +54,7 @@ public class PlayerFallState : PlayerBaseState
     public override void OnExitState(PlayerStateManager stateManager)
     {
         _collider.material = null;
+        _playerMovement.MovementMod = 1;
     }
 
     private void ModifiedGravity()

@@ -11,6 +11,7 @@ public class WeaponSpecialCooldownState : WeaponBaseState
         if (_player == null)
         {
             _player = state.Player;
+
             _state = state;
             _utilTimer = GetComponent<UtilTimer>();
         }

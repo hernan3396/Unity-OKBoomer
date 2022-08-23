@@ -19,17 +19,18 @@ public class PlayerJumpState : PlayerBaseState
 
         _playerJump.Jump();
         _collider.material = _player.NoFricMat;
+        _playerMovement.MovementMod = _player.Data.MovementModifier;
     }
 
     public override void FixedUpdateState(PlayerStateManager stateManager)
     {
-        if (_player.IsFalling)
-            stateManager.SwitchState(PlayerStateManager.PlayerState.Fall);
+        _playerMovement.ApplyMovement();
     }
 
     public override void UpdateState(PlayerStateManager stateManager)
     {
-        _playerMovement.ApplyMovement();
+        if (_player.IsFalling)
+            stateManager.SwitchState(PlayerStateManager.PlayerState.Fall);
     }
 
     public override void OnExitState(PlayerStateManager stateManager)
