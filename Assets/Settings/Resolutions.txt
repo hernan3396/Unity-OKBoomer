@@ -1,0 +1,9 @@
+todas son 16:9
+-pixel crunch:
+320x180px
+-modern retro:
+480x270px
+-Hd:
+1920x1080px
+
+esta nota está hecha por si alguien quiere cambiar la resolución a comodidad xd

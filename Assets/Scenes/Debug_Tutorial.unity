@@ -459,6 +459,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b2e0abf80a00072409e04d3c83b40400,
         type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b2e0abf80a00072409e04d3c83b40400,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -741,6 +746,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: room_foor (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b2e0abf80a00072409e04d3c83b40400,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3451118302482216456, guid: b2e0abf80a00072409e04d3c83b40400,
         type: 3}
@@ -1259,6 +1269,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b2e0abf80a00072409e04d3c83b40400,
         type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b2e0abf80a00072409e04d3c83b40400,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -1426,6 +1441,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: room_foor (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b2e0abf80a00072409e04d3c83b40400,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3451118302482216456, guid: b2e0abf80a00072409e04d3c83b40400,
         type: 3}
       propertyPath: m_Convex
@@ -1554,6 +1574,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: room_foor (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b2e0abf80a00072409e04d3c83b40400,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b2e0abf80a00072409e04d3c83b40400,
         type: 3}
@@ -1756,6 +1781,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: room_foor (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b2e0abf80a00072409e04d3c83b40400,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b2e0abf80a00072409e04d3c83b40400,
         type: 3}
@@ -2942,6 +2972,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: room_foor (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b2e0abf80a00072409e04d3c83b40400,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3451118302482216456, guid: b2e0abf80a00072409e04d3c83b40400,
         type: 3}
