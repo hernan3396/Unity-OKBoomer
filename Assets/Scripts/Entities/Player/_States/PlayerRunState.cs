@@ -1,9 +1,14 @@
+using DG.Tweening;
+using UnityEngine;
+
 public class PlayerRunState : PlayerBaseState
 {
     private Player _player;
     private PlayerMovement _playerMovement;
     private PlayerSlide _playerSlide;
     private PlayerJump _playerJump;
+
+    [SerializeField] private Transform _fpCamera;
 
     public override void OnEnterState(PlayerStateManager stateManager)
     {
@@ -14,6 +19,16 @@ public class PlayerRunState : PlayerBaseState
             _playerSlide = _player.PlayerSlide;
             _playerJump = _player.PlayerJump;
         }
+
+        // CameraShake();
+    }
+
+    private void CameraShake()
+    {
+        if (_fpCamera != null)
+            _fpCamera.DOShakeRotation(2f, 10, 0, 70)
+            .SetId(_fpCamera)
+            .OnComplete(() => CameraShake());
     }
 
     public override void UpdateState(PlayerStateManager stateManager)
@@ -40,5 +55,10 @@ public class PlayerRunState : PlayerBaseState
     public override void FixedUpdateState(PlayerStateManager stateManager)
     {
         _playerMovement.ApplyMovement();
+    }
+
+    public override void OnExitState(PlayerStateManager stateManager)
+    {
+        DOTween.Kill(_fpCamera, true);
     }
 }

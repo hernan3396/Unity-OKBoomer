@@ -16,6 +16,7 @@ public class Player : Entity, IPauseable
     private PlayerShoot _playerShoot;
     private PlayerSlide _playerSlide;
     private PlayerJump _playerJump;
+    private PlayerLook _playerLook;
     #endregion
 
     #region BodyParts
@@ -93,6 +94,7 @@ public class Player : Entity, IPauseable
         _playerSlide = GetComponent<PlayerSlide>();
         _playerJump = GetComponent<PlayerJump>();
         _playerShoot = GetComponent<PlayerShoot>();
+        _playerLook = GetComponent<PlayerLook>();
     }
 
     private void FixedUpdate()
@@ -278,6 +280,11 @@ public class Player : Entity, IPauseable
     public PlayerShoot PlayerShoot
     {
         get { return _playerShoot; }
+    }
+
+    public PlayerLook PlayerLook
+    {
+        get { return _playerLook; }
     }
 
     public Transform Body
