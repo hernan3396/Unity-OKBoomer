@@ -23,7 +23,7 @@ MonoBehaviour:
   MaxFallSpeed: -60
   Gravity: 12
   MovementModifier: 1.5
-  MouseSensitivity: 2
+  MouseSensitivity: 0.2
   LookLimits: {x: -90, y: 80}
   SwayMultiplier: 2
   SwaySmoothness: 8
