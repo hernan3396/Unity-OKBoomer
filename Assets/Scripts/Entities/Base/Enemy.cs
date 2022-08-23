@@ -11,8 +11,9 @@ public class Enemy : Entity, IDamageable, IPauseable
 
     #region Components
     [Header("Components")]
-    [SerializeField] protected PoolManager _bulletsPool;
-    [SerializeField] protected PoolManager _bloodPool;
+    [SerializeField] private Transform _headPos;
+    protected PoolManager _bulletsPool;
+    protected PoolManager _bloodPool;
     protected CapsuleCollider _col;
     protected Material _mainMat;
     protected Rigidbody _rb;
@@ -24,7 +25,6 @@ public class Enemy : Entity, IDamageable, IPauseable
     [SerializeField] protected LayerMask _groundLayer;
     [SerializeField] protected Vector3 _destination;
     protected NavMeshAgent _agent;
-    protected bool _playerInRange;
     protected Transform _player;
     #endregion
 
@@ -115,20 +115,27 @@ public class Enemy : Entity, IDamageable, IPauseable
     #region MovementMethods
     public bool IsPlayerInSight()
     {
+        // se usa para detectar al player
         Collider[] circleHit = Physics.OverlapSphere(_transform.position, _data.VisionRange, _playerLayer);
 
         if (circleHit.Length > 0 && circleHit[0].CompareTag("Player"))
         {
+            Vector3 playerPos = circleHit[0].transform.position;
+
+            Debug.DrawRay(_headPos.position, playerPos - _headPos.position, Color.blue);
             // lanzamos un rayo a ver si pega contra el
+            bool playerOnSight = Physics.Raycast(_headPos.position, playerPos - _headPos.position, _data.VisionRange);
+            return playerOnSight;
         }
 
         return false;
     }
 
-    public void IsPlayerInRange()
+    public bool IsPlayerInChaseRange()
     {
+        // se usa para saber si seguir chaseando al player
         float playerDistance = Utils.CalculateDistance(_transform.position, _player.position);
-        _playerInRange = playerDistance < _data.VisionRange;
+        return playerDistance < _data.ChasingRange;
     }
 
     public void SearchWalkPoint()
@@ -171,10 +178,5 @@ public class Enemy : Entity, IDamageable, IPauseable
     public EnemyScriptable Data
     {
         get { return _data; }
-    }
-
-    public bool PlayerInRange
-    {
-        get { return _playerInRange; }
     }
 }

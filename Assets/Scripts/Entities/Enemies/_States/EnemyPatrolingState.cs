@@ -13,6 +13,8 @@ public class EnemyPatrolingState : EnemyBaseState
 
     public override void UpdateState(EnemyStateManager state)
     {
+        _enemy.IsPlayerInSight();
+
         if (_enemy.DestinationReached())
             state.SwitchState(EnemyStateManager.EnemyState.Idle);
     }

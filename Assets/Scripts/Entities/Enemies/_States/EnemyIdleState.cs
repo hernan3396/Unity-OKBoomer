@@ -22,7 +22,8 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void UpdateState(EnemyStateManager state)
     {
-        return;
+        if (_enemy.IsPlayerInSight())
+            state.SwitchState(EnemyStateManager.EnemyState.Chasing);
     }
 
     public override void FixedUpdateState(EnemyStateManager state)

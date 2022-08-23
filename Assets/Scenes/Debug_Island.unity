@@ -2647,6 +2647,12 @@ MonoBehaviour:
   OnTimerFinished:
     m_PersistentCalls:
       m_Calls: []
+--- !u!4 &1954138643 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3881670669428366345, guid: 3766620456c146841a37bb25ccff1851,
+    type: 3}
+  m_PrefabInstance: {fileID: 6907486640054362919}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2052454683
 GameObject:
   m_ObjectHideFlags: 0
@@ -2887,6 +2893,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6907486638399581665, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: _cameraParent
+      value: 
+      objectReference: {fileID: 1954138643}
     - target: {fileID: 6907486638399581666, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: _stateText
@@ -2982,7 +2993,17 @@ PrefabInstance:
     - target: {fileID: 6907486639528443142, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7782705
+      value: 1.7767221
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907486639893473632, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: _fpCamera
+      value: 
+      objectReference: {fileID: 1954138643}
+    - target: {fileID: 6907486640217217250, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Height
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8272355505936042002, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
@@ -3150,6 +3171,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4107077137671049013, guid: 4b4288b1a57593042a164a8fa5af84f0,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0072129443
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107077137671049013, guid: 4b4288b1a57593042a164a8fa5af84f0,
+        type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.617976
       objectReference: {fileID: 0}
@@ -3166,6 +3192,11 @@ PrefabInstance:
     - target: {fileID: 4107077137671049013, guid: 4b4288b1a57593042a164a8fa5af84f0,
         type: 3}
       propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107077137671049013, guid: 4b4288b1a57593042a164a8fa5af84f0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5006711250308360674, guid: 4b4288b1a57593042a164a8fa5af84f0,
