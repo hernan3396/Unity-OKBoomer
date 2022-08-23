@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
 
-public class Enemy : Entity, IDamageable, IPauseable
+public abstract class Enemy : Entity, IDamageable, IPauseable
 {
     #region Data
     [Header("Data")]
@@ -23,7 +23,7 @@ public class Enemy : Entity, IDamageable, IPauseable
     [Header("AI")]
     [SerializeField] protected LayerMask _playerLayer;
     [SerializeField] protected LayerMask _groundLayer;
-    [SerializeField] protected Vector3 _destination;
+    protected Vector3 _destination;
     protected NavMeshAgent _agent;
     protected Transform _player;
     #endregion
@@ -131,6 +131,17 @@ public class Enemy : Entity, IDamageable, IPauseable
         return false;
     }
 
+    // estos dos de abajo se pueden hacer en uno pero
+    // asi quedan mas descriptivos
+    // si agregamos mas si pasar el valor que queremos
+    // chequear por parametro 
+
+    public bool IsPlayerInAttackRange()
+    {
+        float playerDistance = Utils.CalculateDistance(_transform.position, _player.position);
+        return playerDistance < _data.AttackRange;
+    }
+
     public bool IsPlayerInChaseRange()
     {
         // se usa para saber si seguir chaseando al player
@@ -157,10 +168,28 @@ public class Enemy : Entity, IDamageable, IPauseable
         return Utils.CalculateDistance(_transform.position, _destination) < 2;
     }
 
+    // se podrian juntar estos dos de abajo
+    // pero creo que separados tienen sentido
+    // si se empiezan a agregar juntarlos en uno solo
+
     public void ChaseDirection(Vector3 dir)
     {
         _agent.SetDestination(dir);
     }
+
+    public void ChasePlayer()
+    {
+        _agent.SetDestination(_player.position);
+    }
+
+    public void UseAgent(bool value)
+    {
+        _agent.isStopped = value;
+    }
+    #endregion
+
+    #region Attacking
+    protected abstract void Attacking();
     #endregion
 
     private void OnDrawGizmos()

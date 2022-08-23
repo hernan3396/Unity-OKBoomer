@@ -1,18 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class EnemyAttackingState : MonoBehaviour
+public class EnemyAttackingState : EnemyBaseState
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    private Enemy _enemy;
 
+    public override void OnEnterState(EnemyStateManager state)
+    {
+        if (_enemy == null)
+            _enemy = state.Enemy;
+
+        _enemy.UseAgent(true); // se frena
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void UpdateState(EnemyStateManager state)
     {
+        // aca ataca siguiendo el firerate del arma usar utiltimers 
+        // o usar una statemachine basica en rangedenemy.cs
+        // y tiene que rotar hacia el player antes de disparar
 
+        if (_enemy.IsPlayerInAttackRange()) return;
+
+        state.SwitchState(EnemyStateManager.EnemyState.Idle);
+    }
+
+    public override void FixedUpdateState(EnemyStateManager state)
+    {
+        return;
+    }
+
+    public override void OnExitState(EnemyStateManager state)
+    {
+        _enemy.UseAgent(false);
     }
 }

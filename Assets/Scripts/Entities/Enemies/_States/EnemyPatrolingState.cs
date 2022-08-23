@@ -1,4 +1,3 @@
-using UnityEngine;
 public class EnemyPatrolingState : EnemyBaseState
 {
     private Enemy _enemy;
@@ -13,7 +12,8 @@ public class EnemyPatrolingState : EnemyBaseState
 
     public override void UpdateState(EnemyStateManager state)
     {
-        _enemy.IsPlayerInSight();
+        if (_enemy.IsPlayerInSight())
+            state.SwitchState(EnemyStateManager.EnemyState.Chasing);
 
         if (_enemy.DestinationReached())
             state.SwitchState(EnemyStateManager.EnemyState.Idle);
