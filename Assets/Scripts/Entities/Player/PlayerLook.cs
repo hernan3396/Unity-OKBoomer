@@ -10,16 +10,11 @@ public class PlayerLook : MonoBehaviour
     private Vector2 _rotations = new Vector2(0, 90);
     private Vector2 _frameVelocity;
 
-    private float _timer;
-    [SerializeField] private Transform _cameraParent;
-    private float _defaultYPos;
-
     private void Start()
     {
         _player = GetComponent<Player>();
 
         EventManager.Look += LookAtMouse;
-        _defaultYPos = _cameraParent.localPosition.y;
     }
 
     private void LateUpdate()

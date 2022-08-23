@@ -22,7 +22,6 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     #region AI
     [Header("AI")]
     [SerializeField] protected LayerMask _playerLayer;
-    [SerializeField] protected LayerMask _groundLayer;
     protected Vector3 _destination;
     protected NavMeshAgent _agent;
     protected Transform _player;
@@ -124,8 +123,9 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
 
             Debug.DrawRay(_headPos.position, playerPos - _headPos.position, Color.blue);
             // lanzamos un rayo a ver si pega contra el
-            bool playerOnSight = Physics.Raycast(_headPos.position, playerPos - _headPos.position, _data.VisionRange);
-            return playerOnSight;
+            if (Physics.Raycast(_headPos.position, playerPos - _headPos.position, out RaycastHit hit, _data.VisionRange))
+                if (hit.transform.CompareTag("Player"))
+                    return true;
         }
 
         return false;
