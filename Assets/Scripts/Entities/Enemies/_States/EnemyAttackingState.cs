@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class EnemyAttackingState : EnemyBaseState
 {
     private Enemy _enemy;
@@ -15,10 +17,9 @@ public class EnemyAttackingState : EnemyBaseState
         // aca ataca siguiendo el firerate del arma usar utiltimers 
         // o usar una statemachine basica en rangedenemy.cs
         // y tiene que rotar hacia el player antes de disparar
-
         if (_enemy.IsPlayerInAttackRange()) return;
 
-        state.SwitchState(EnemyStateManager.EnemyState.Idle);
+        state.SwitchState(EnemyStateManager.EnemyState.Chasing);
     }
 
     public override void FixedUpdateState(EnemyStateManager state)

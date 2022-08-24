@@ -121,11 +121,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         {
             Vector3 playerPos = circleHit[0].transform.position;
 
-            Debug.DrawRay(_headPos.position, playerPos - _headPos.position, Color.blue);
-            // lanzamos un rayo a ver si pega contra el
-            if (Physics.Raycast(_headPos.position, playerPos - _headPos.position, out RaycastHit hit, _data.VisionRange))
-                if (hit.transform.CompareTag("Player"))
-                    return true;
+            return Utils.RayHit(_headPos.position, playerPos, "Player", _data.VisionRange);
         }
 
         return false;
@@ -138,8 +134,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
 
     public bool IsPlayerInAttackRange()
     {
-        float playerDistance = Utils.CalculateDistance(_transform.position, _player.position);
-        return playerDistance < _data.AttackRange;
+        return Utils.RayHit(_headPos.position, _player.position, "Player", _data.AttackRange);
     }
 
     public bool IsPlayerInChaseRange()
@@ -207,5 +202,15 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     public EnemyScriptable Data
     {
         get { return _data; }
+    }
+
+    public Transform HeadPos
+    {
+        get { return _headPos; }
+    }
+
+    public Transform Player
+    {
+        get { return _player; }
     }
 }
