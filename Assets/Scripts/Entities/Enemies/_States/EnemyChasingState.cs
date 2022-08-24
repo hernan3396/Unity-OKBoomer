@@ -14,14 +14,14 @@ public class EnemyChasingState : EnemyBaseState
         _enemy.ChasePlayer();
 
         // si el player se va de rango de chase deja de seguirlo
-        if (!_enemy.IsPlayerInChaseRange())
+        if (!_enemy.IsPlayerInRange(_enemy.Data.ChasingRange))
         {
             state.SwitchState(EnemyStateManager.EnemyState.Idle);
             return; // solo para que no siga al de abajo
         }
 
         // si el player entra al rango de ataque pasamos a atacar
-        if (_enemy.IsPlayerInAttackRange())
+        if (_enemy.IsPlayerInSight(_enemy.Data.AttackRange))
             state.SwitchState(EnemyStateManager.EnemyState.Attacking);
     }
 

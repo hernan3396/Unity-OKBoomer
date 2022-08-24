@@ -48,7 +48,11 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         _rb = GetComponent<Rigidbody>();
 
         if (TryGetComponent(out NavMeshAgent agent))
+        {
             _agent = agent;
+            _agent.acceleration = _data.Acceleration;
+            _agent.speed = _data.Speed;
+        }
     }
 
     private void Start()
@@ -111,39 +115,29 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     }
     #endregion
 
-    #region MovementMethods
-    public bool IsPlayerInSight()
+    #region SightMethods
+    public bool IsPlayerInSight(float range)
     {
-        // se usa para detectar al player
-        Collider[] circleHit = Physics.OverlapSphere(_transform.position, _data.VisionRange, _playerLayer);
+        Collider[] circleHit = Physics.OverlapSphere(_transform.position, range, _playerLayer);
 
         if (circleHit.Length > 0 && circleHit[0].CompareTag("Player"))
         {
             Vector3 playerPos = circleHit[0].transform.position;
 
-            return Utils.RayHit(_headPos.position, playerPos, "Player", _data.VisionRange);
+            return Utils.RayHit(_headPos.position, playerPos, "Player", range);
         }
 
         return false;
     }
 
-    // estos dos de abajo se pueden hacer en uno pero
-    // asi quedan mas descriptivos
-    // si agregamos mas si pasar el valor que queremos
-    // chequear por parametro 
-
-    public bool IsPlayerInAttackRange()
+    public bool IsPlayerInRange(float range)
     {
-        return Utils.RayHit(_headPos.position, _player.position, "Player", _data.AttackRange);
-    }
-
-    public bool IsPlayerInChaseRange()
-    {
-        // se usa para saber si seguir chaseando al player
         float playerDistance = Utils.CalculateDistance(_transform.position, _player.position);
-        return playerDistance < _data.ChasingRange;
+        return playerDistance < range;
     }
+    #endregion
 
+    #region MovementMethods
     public void SearchWalkPoint()
     {
         //Calculate random point in range
@@ -175,6 +169,14 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     public void ChasePlayer()
     {
         _agent.SetDestination(_player.position);
+    }
+
+    public void RotateTowards(Transform other)
+    {
+        Vector3 lookDir = Utils.CalculateDirection(_transform.position, _player.position);
+
+        Vector3 newDir = Vector3.RotateTowards(_transform.forward, lookDir, _data.Speed * Time.deltaTime, 0.0f);
+        _transform.rotation = Quaternion.LookRotation(newDir);
     }
 
     public void UseAgent(bool value)

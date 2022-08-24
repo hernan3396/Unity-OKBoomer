@@ -16,7 +16,8 @@ MonoBehaviour:
   DeathDur: 2
   Invulnerability: 0.1
   Weapon: {fileID: 11400000, guid: f75d186b2f8185349ae9f4b7455a2bd6, type: 2}
-  Speed: 10
+  Speed: 12
+  Acceleration: 0
   WalkPointRange: 10
   VisionRange: 40
   AttackRange: 30
