@@ -12,7 +12,6 @@ public class ExplosiveBullet : Bullet
 
     protected override void OnHit(Collision other)
     {
-        // falta daño
         Explosion();
     }
 
@@ -20,11 +19,11 @@ public class ExplosiveBullet : Bullet
     {
         Collider[] hitColliders = Physics.OverlapSphere(_transform.position, _explosion.transform.localScale.x * 0.5f); // ve contra que choca la explosion
 
-        // foreach (Collider collider in hitColliders)
-        // {
-        //     if (collider.TryGetComponent(out Enemy enemy))
-        //         enemy.TakeDamage(_damage);
-        // }
+        foreach (Collider collider in hitColliders)
+        {
+            if (collider.transform.parent.TryGetComponent(out Enemy enemy))
+                enemy.TakeDamage(_damage);
+        }
         DisableBullet();
     }
 

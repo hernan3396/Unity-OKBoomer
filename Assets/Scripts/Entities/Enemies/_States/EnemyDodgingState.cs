@@ -1,4 +1,4 @@
-public class EnemyAttackingState : EnemyBaseState
+public class EnemyDodgingState : EnemyBaseState
 {
     private Enemy _enemy;
 
@@ -7,15 +7,18 @@ public class EnemyAttackingState : EnemyBaseState
         if (_enemy == null)
             _enemy = state.Enemy;
 
-        _enemy.StopAgent(true); // se frena
+        _enemy.SearchWalkPoint();
+        _enemy.GoToDestination();
+        _enemy.Tookdamage = false;
+        _enemy.IsDodging = true;
     }
 
     public override void UpdateState(EnemyStateManager state)
     {
         if (_enemy.IsDead) return;
 
-        if (_enemy.Tookdamage)
-            state.SwitchState(EnemyStateManager.EnemyState.Dodging);
+        if (_enemy.DestinationReached())
+            state.SwitchState(EnemyStateManager.EnemyState.Attacking);
 
         // rotar al player y si esta en un rango que dispare
         _enemy.RotateTowards(_enemy.Player);
@@ -35,6 +38,6 @@ public class EnemyAttackingState : EnemyBaseState
 
     public override void OnExitState(EnemyStateManager state)
     {
-        _enemy.StopAgent(false);
+        _enemy.IsDodging = false;
     }
 }

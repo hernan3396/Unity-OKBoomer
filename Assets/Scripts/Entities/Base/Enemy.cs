@@ -17,10 +17,13 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
 
     #region Components
     [Header("Components")]
+    [SerializeField] private MeshRenderer _bodyModel;
+    [SerializeField] private MeshRenderer _headModel;
     [SerializeField] private Transform _headPos;
     protected PoolManager _bloodPool;
     protected CapsuleCollider _col;
     protected Material _mainMat;
+    protected Material _headMat;
     protected Rigidbody _rb;
     #endregion
 
@@ -31,6 +34,8 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     protected NavMeshAgent _agent;
     protected Transform _player;
     protected bool _canAttack = true;
+    protected bool _tookDamage = false;
+    protected bool _isDodging = false;
     #endregion
 
     #region States
@@ -48,7 +53,8 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
 
     protected virtual void SetComponents()
     {
-        _mainMat = GetComponentInChildren<MeshRenderer>().materials[0];
+        _mainMat = _bodyModel.materials[0];
+        _headMat = _headModel.materials[0];
         _transform = GetComponent<Transform>();
         _col = GetComponentInChildren<CapsuleCollider>();
         _rb = GetComponent<Rigidbody>();
@@ -64,6 +70,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     protected virtual void Start()
     {
         _player = GameManager.GetInstance.Player.GetComponent<Transform>();
+        _bloodPool = GameManager.GetInstance.GetEnemyPools[(int)PoolType.Blood];
     }
 
     #region DamageMethods
@@ -73,13 +80,18 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         // takedamage de base
         if (_isInmune || _isDead) return;
 
+        if (!_isDodging)
+            _tookDamage = true;
+
         GameObject blood = _bloodPool.GetPooledObject();
-        if (!blood) return;
+        if (blood)
+        {
 
-        blood.transform.position = bullet.position;
-        blood.transform.forward = bullet.forward;
+            blood.transform.position = bullet.position;
+            blood.transform.forward = bullet.forward;
+            blood.SetActive(true);
+        }
 
-        blood.SetActive(true);
         // en el codigo de las particulas de la sangre
         // ya esta puesto play on awake y disable en stop action
 
@@ -90,6 +102,9 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     {
         _isDead = true;
         _col.enabled = false;
+
+        _headMat.DOFloat(1, "_DissolveValue", _data.DeathDur)
+        .SetEase(Ease.OutQuint);
 
         _mainMat.DOFloat(1, "_DissolveValue", _data.DeathDur)
         .SetEase(Ease.OutQuint)
@@ -196,7 +211,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         _transform.rotation = Quaternion.LookRotation(newDir);
     }
 
-    public void UseAgent(bool value)
+    public void StopAgent(bool value)
     {
         _agent.isStopped = value;
     }
@@ -231,5 +246,23 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     public Transform Player
     {
         get { return _player; }
+    }
+
+    public bool IsDead
+    {
+        get { return _isDead; }
+    }
+
+    public bool Tookdamage
+    {
+        // se usa mas que nada por si le pegas fuera del rango de chasing
+        get { return _tookDamage; }
+        set { _tookDamage = value; }
+    }
+
+    public bool IsDodging
+    {
+        get { return _isDodging; }
+        set { _isDodging = value; }
     }
 }
