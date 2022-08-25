@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     #region Pools
     [Header("Pools")]
     [SerializeField] private PoolManager[] _pools;
+    [SerializeField] private PoolManager[] _enemyPools;
     #endregion
 
     private void Awake()
@@ -54,6 +55,11 @@ public class GameManager : MonoBehaviour
     public PoolManager[] GetPools
     {
         get { return _pools; }
+    }
+
+    public PoolManager[] GetEnemyPools
+    {
+        get { return _enemyPools; }
     }
     #endregion
 }

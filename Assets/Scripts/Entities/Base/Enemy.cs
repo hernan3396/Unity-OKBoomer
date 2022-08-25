@@ -4,6 +4,12 @@ using DG.Tweening;
 
 public abstract class Enemy : Entity, IDamageable, IPauseable
 {
+    public enum PoolType
+    {
+        SimpleBullet,
+        Blood
+    }
+
     #region Data
     [Header("Data")]
     [SerializeField] protected EnemyScriptable _data;
@@ -12,7 +18,6 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     #region Components
     [Header("Components")]
     [SerializeField] private Transform _headPos;
-    protected PoolManager _bulletsPool;
     protected PoolManager _bloodPool;
     protected CapsuleCollider _col;
     protected Material _mainMat;
@@ -25,6 +30,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     protected Vector3 _destination;
     protected NavMeshAgent _agent;
     protected Transform _player;
+    protected bool _canAttack = true;
     #endregion
 
     #region States
@@ -55,7 +61,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         }
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         _player = GameManager.GetInstance.Player.GetComponent<Transform>();
     }
@@ -135,6 +141,17 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         float playerDistance = Utils.CalculateDistance(_transform.position, _player.position);
         return playerDistance < range;
     }
+
+    public bool IsLookingAtPlayer()
+    {
+        Vector3 lookDir = (_player.position - _transform.position).normalized;
+        float lookingForward = Vector3.Dot(_transform.forward, lookDir);
+
+        if (lookingForward > 0.9f && lookingForward <= 1.1f)
+            return true;
+
+        return false;
+    }
     #endregion
 
     #region MovementMethods
@@ -186,7 +203,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     #endregion
 
     #region Attacking
-    protected abstract void Attacking();
+    public abstract void Attacking();
     #endregion
 
     private void OnDrawGizmos()

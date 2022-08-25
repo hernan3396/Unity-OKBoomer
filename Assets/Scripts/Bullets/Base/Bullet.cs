@@ -36,12 +36,12 @@ public abstract class Bullet : MonoBehaviour
         EventManager.Pause += OnPause;
     }
 
-    public virtual void Shoot(float hAcc, float vAcc)
+    public virtual void Shoot(Vector2 acc)
     {
         // los dividimos entre 100 porque asi quedan numeros mas
         // lindos en el scriptable del arma
-        hAcc *= 0.01f;
-        vAcc *= 0.01f;
+        float hAcc = acc.x * 0.01f;
+        float vAcc = acc.y * 0.01f;
 
         // aca falta normalizar algun valor
 

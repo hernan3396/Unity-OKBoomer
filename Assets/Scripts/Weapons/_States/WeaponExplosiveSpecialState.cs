@@ -33,6 +33,6 @@ public class WeaponExplosiveSpecialState : WeaponBaseState
 
         _explosiveScript.ActivateBullet();
         _explosiveScript.SetData((int)weapon.SpecialDamage, weapon.AmmoSpeed, 0, _player.ShootPos);
-        _explosiveScript.Shoot(0, 0);
+        _explosiveScript.Shoot(new Vector2(0, 0));
     }
 }

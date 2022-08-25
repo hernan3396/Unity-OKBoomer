@@ -44,7 +44,7 @@ public class PlayerShoot : MonoBehaviour
         {
             bullet.SetData(weapon.Damage, weapon.AmmoSpeed, weapon.MaxBounces, _player.ShootPos);
             newBullet.SetActive(true);
-            bullet.Shoot(weapon.Accuracy.x, weapon.Accuracy.y);
+            bullet.Shoot(weapon.Accuracy);
 
             if (!_player.GodMode)
                 _player.BulletsAmount -= 1;

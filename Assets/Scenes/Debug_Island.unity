@@ -230,6 +230,7 @@ Transform:
   - {fileID: 326528658}
   - {fileID: 1140114108}
   - {fileID: 365077116}
+  - {fileID: 1062326731}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1022,6 +1023,8 @@ MonoBehaviour:
   - {fileID: 326528659}
   - {fileID: 1140114109}
   - {fileID: 365077117}
+  _enemyPools:
+  - {fileID: 1062326732}
 --- !u!114 &466082901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1724,6 +1727,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978224385}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1062326730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1062326731}
+  - component: {fileID: 1062326732}
+  m_Layer: 0
+  m_Name: EnemyBulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1062326731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062326730}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 90024117}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1062326732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062326730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23555cc00a3fb1499e5efe9a97f085e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectsPool: []
+  _objectPrefab: {fileID: 2655278983746728008, guid: 4b0ed5193869bed4181279b3a5aae56f,
+    type: 3}
+  _objectsAmount: 10
 --- !u!1 &1070410371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2040,6 +2091,7 @@ GameObject:
   - component: {fileID: 1428115311}
   - component: {fileID: 1428115309}
   - component: {fileID: 1428115312}
+  - component: {fileID: 1428115313}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -2095,8 +2147,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 1
-  m_Acceleration: 1
+  m_Speed: 0
+  m_Acceleration: 0
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -2125,6 +2177,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _shootingPos: {fileID: 676496880}
+--- !u!114 &1428115313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428115306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61afa1c6a117694b8b4c7dbae91898e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isStarted: 0
+  OnTimerFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1445993073
 GameObject:
   m_ObjectHideFlags: 0
