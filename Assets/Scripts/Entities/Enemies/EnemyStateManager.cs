@@ -10,7 +10,8 @@ public class EnemyStateManager : MonoBehaviour
         Idle,
         Patroling,
         Chasing,
-        Attacking
+        Attacking,
+        Dodging
     }
 
     [SerializeField] private EnemyBaseState _currentState;

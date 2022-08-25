@@ -6,6 +6,7 @@ public abstract class Bullet : MonoBehaviour
     protected TrailRenderer _trailRenderer;
     protected Transform _transform;
     protected Rigidbody _rb;
+    protected Player _player;
     #endregion
 
     #region Data
@@ -33,6 +34,7 @@ public abstract class Bullet : MonoBehaviour
 
     private void Start()
     {
+        _player = GameManager.GetInstance.Player.GetComponent<Player>();
         EventManager.Pause += OnPause;
     }
 

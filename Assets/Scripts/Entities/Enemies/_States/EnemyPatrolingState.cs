@@ -12,6 +12,11 @@ public class EnemyPatrolingState : EnemyBaseState
 
     public override void UpdateState(EnemyStateManager state)
     {
+        if (_enemy.IsDead) return;
+
+        if (_enemy.Tookdamage)
+            state.SwitchState(EnemyStateManager.EnemyState.Chasing);
+
         if (_enemy.IsPlayerInSight(_enemy.Data.VisionRange))
             state.SwitchState(EnemyStateManager.EnemyState.Chasing);
 

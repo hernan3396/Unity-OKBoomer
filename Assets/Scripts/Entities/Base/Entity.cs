@@ -8,7 +8,7 @@ public abstract class Entity : MonoBehaviour, IDamageable
     #endregion
 
     #region Parameters
-    protected int _currentHp;
+    [SerializeField] protected int _currentHp;
     protected bool _isInmune = false;
     protected int _invulnerability;
     #endregion

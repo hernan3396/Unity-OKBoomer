@@ -6,10 +6,14 @@ public class EnemyChasingState : EnemyBaseState
     {
         if (_enemy == null)
             _enemy = state.Enemy;
+
+        _enemy.Tookdamage = false;
     }
 
     public override void UpdateState(EnemyStateManager state)
     {
+        if (_enemy.IsDead) return;
+
         // ir hacia el player
         _enemy.ChasePlayer();
 
