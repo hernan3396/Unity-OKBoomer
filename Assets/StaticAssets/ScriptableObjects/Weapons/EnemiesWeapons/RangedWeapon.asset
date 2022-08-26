@@ -15,7 +15,7 @@ MonoBehaviour:
   Id: 3
   Name: Ranged Weapon
   Accuracy: {x: 10, y: 10}
-  Cooldown: 0.5
+  Cooldown: 0.3
   Startup: 0
   Damage: 10
   SpecialType: 0
@@ -24,7 +24,7 @@ MonoBehaviour:
   SpecialTime: 0
   SpecialCooldown: 0
   AmmoType: 0
-  MaxBounces: 1
+  MaxBounces: 0
   AmmoSpeed: 60
   MaxAmmo: 0
   RecoilForce: 0

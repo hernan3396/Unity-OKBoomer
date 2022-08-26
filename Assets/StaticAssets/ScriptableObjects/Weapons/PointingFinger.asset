@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   Name: Pointing Finger
-  Accuracy: {x: 5, y: 5}
+  Accuracy: {x: 2, y: 2}
   Cooldown: 0.6
   Startup: 0
   Damage: 10

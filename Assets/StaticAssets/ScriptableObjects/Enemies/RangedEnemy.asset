@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2300711db7a2e77418f591379d1c8ed5, type: 3}
   m_Name: RangedEnemy
   m_EditorClassIdentifier: 
-  MaxHealth: 30
+  MaxHealth: 60
   DeathDur: 2
   Invulnerability: 0.1
   Weapon: {fileID: 11400000, guid: f75d186b2f8185349ae9f4b7455a2bd6, type: 2}
   Speed: 12
   Acceleration: 8
   WalkPointRange: 10
-  VisionRange: 40
-  AttackRange: 30
-  ChasingRange: 60
+  VisionRange: 80
+  AttackRange: 70
+  ChasingRange: 150
