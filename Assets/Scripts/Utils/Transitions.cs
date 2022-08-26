@@ -14,7 +14,6 @@ public class Transitions : MonoBehaviour
 
     private void TransitionIn(int speed)
     {
-        Debug.Log("aa");
         _transitionPanel.localScale = new Vector3(0, 1, 1);
         _transitionPanel.gameObject.SetActive(true);
 
