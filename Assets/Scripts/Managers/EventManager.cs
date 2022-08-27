@@ -87,5 +87,8 @@ public static class EventManager
 
     public static event UnityAction<UIManager.Element, string> UpdateUIText;
     public static void OnUpdateUIText(UIManager.Element element, string value) => UpdateUIText?.Invoke(element, value);
+
+    public static event UnityAction<Vector3> PlayerHit;
+    public static void OnPlayerHit(Vector3 pos) => PlayerHit?.Invoke(pos);
     #endregion
 }

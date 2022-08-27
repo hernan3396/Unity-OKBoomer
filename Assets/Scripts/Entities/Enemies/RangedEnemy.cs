@@ -26,6 +26,7 @@ public class RangedEnemy : Enemy
         if (newBullet.TryGetComponent(out Bullet bullet))
         {
             bullet.SetData(weapon.Damage, weapon.AmmoSpeed, weapon.MaxBounces, _shootingPos);
+            bullet.SetInitPos(_shootingPos.position);
             newBullet.SetActive(true);
             bullet.Shoot(weapon.Accuracy);
         }

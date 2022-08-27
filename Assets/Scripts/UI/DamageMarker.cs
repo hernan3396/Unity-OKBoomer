@@ -1,7 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class HitMarker : MonoBehaviour
+public class DamageMarker : MonoBehaviour
 {
     private Transform _player;
     private RectTransform _hitParent;

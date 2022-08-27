@@ -162,6 +162,15 @@ public class Player : Entity, IPauseable
     #endregion
 
     #region DamageMethods
+    public void TakeDamage(int value, Vector3 pos)
+    {
+        if (_godMode) return;
+        if (_isInmune) return;
+
+        EventManager.OnPlayerHit(pos);
+        TakeDamage(value);
+    }
+
     public override void TakeDamage(int value)
     {
         if (_godMode) return;

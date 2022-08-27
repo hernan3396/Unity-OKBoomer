@@ -11,6 +11,7 @@ public abstract class Bullet : MonoBehaviour
 
     #region Data
     [SerializeField] protected BulletScriptable _data;
+    protected Vector3 _initPosition;
     protected float _bulletTimer;
 
     // estos ultimos 3 vienen del arma
@@ -62,6 +63,11 @@ public abstract class Bullet : MonoBehaviour
         _damage = damage;
         _speed = speed;
         _bounces = bounces;
+    }
+
+    public void SetInitPos(Vector3 initPos)
+    {
+        _initPosition = initPos;
     }
 
     protected virtual void BulletLifetime()
