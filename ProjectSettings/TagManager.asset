@@ -15,8 +15,8 @@ TagManager:
   - Floor
   - Arm
   - Player
-  - 
-  - 
+  - PlayerBullets
+  - EnemyBullets
   - 
   - 
   - 
