@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerRunState : PlayerBaseState
 {
@@ -10,6 +11,9 @@ public class PlayerRunState : PlayerBaseState
 
     [SerializeField] private Transform _fpCamera;
 
+    private CinemachineImpulseSource _cmImpSrc;
+    private UtilTimer _utilTimer;
+
     public override void OnEnterState(PlayerStateManager stateManager)
     {
         if (_player == null)
@@ -18,17 +22,27 @@ public class PlayerRunState : PlayerBaseState
             _playerMovement = _player.PlayerMovement;
             _playerSlide = _player.PlayerSlide;
             _playerJump = _player.PlayerJump;
+
+            _utilTimer = GetComponent<UtilTimer>();
+            _cmImpSrc = GetComponent<CinemachineImpulseSource>();
         }
 
-        // CameraShake();
+        _utilTimer.StartTimer(0.5f);
+        _utilTimer.onTimerCompleted += Bump;
     }
 
-    private void CameraShake()
+    // private void CameraShake()
+    // {
+    //     if (_fpCamera != null)
+    //         _fpCamera.DOShakeRotation(2f, 10, 0, 70)
+    //         .SetId(_fpCamera)
+    //         .OnComplete(() => CameraShake());
+    // }
+
+    private void Bump()
     {
-        if (_fpCamera != null)
-            _fpCamera.DOShakeRotation(2f, 10, 0, 70)
-            .SetId(_fpCamera)
-            .OnComplete(() => CameraShake());
+        _cmImpSrc.GenerateImpulse();
+        _utilTimer.StartTimer(0.5f);
     }
 
     public override void UpdateState(PlayerStateManager stateManager)
@@ -60,5 +74,6 @@ public class PlayerRunState : PlayerBaseState
     public override void OnExitState(PlayerStateManager stateManager)
     {
         DOTween.Kill(_fpCamera, true);
+        _utilTimer.onTimerCompleted -= Bump;
     }
 }

@@ -22,6 +22,12 @@ public class SimpleBullet : Bullet
         if (other.transform.TryGetComponent(out EnemyHead head))
             head.TakeDamage(_damage, _transform);
 
+        // si el enemigo tiene Rigidbody (en este caso el volador)
+        // choca contra el gameobject que lo tenga, por eso parece repetido
+        // con el primero
+        if (other.transform.TryGetComponent(out Enemy enemyRB))
+            enemyRB.TakeDamage(_damage, _transform);
+
         DisableBullet();
     }
 }

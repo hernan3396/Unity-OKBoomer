@@ -27,10 +27,10 @@ public class UtilTimer : MonoBehaviour, IPauseable
 
         if (_timer >= _duration)
         {
-            onTimerCompleted?.Invoke();
-            OnTimerFinished?.Invoke();
             _timer = 0;
             _isStarted = false;
+            onTimerCompleted?.Invoke();
+            OnTimerFinished?.Invoke();
         }
     }
 

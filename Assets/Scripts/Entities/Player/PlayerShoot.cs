@@ -1,4 +1,5 @@
 using UnityEngine;
+using Cinemachine;
 
 [RequireComponent(typeof(Player))]
 public class PlayerShoot : MonoBehaviour
@@ -8,11 +9,12 @@ public class PlayerShoot : MonoBehaviour
     private bool _isShooting = false;
     private bool _isSpecialShooting = false;
 
-    // [SerializeField] private int[] _bulletsAmount = new int[3];
+    private CinemachineImpulseSource _cmImpSrc;
 
     private void Awake()
     {
         _player = GetComponent<Player>();
+        _cmImpSrc = GetComponent<CinemachineImpulseSource>();
     }
 
     void Start()
@@ -39,6 +41,8 @@ public class PlayerShoot : MonoBehaviour
 
         GameObject newBullet = _pools[(int)weapon.AmmoType].GetPooledObject();
         if (!newBullet) return;
+
+        _cmImpSrc.GenerateImpulse();
 
         if (newBullet.TryGetComponent(out Bullet bullet))
         {
