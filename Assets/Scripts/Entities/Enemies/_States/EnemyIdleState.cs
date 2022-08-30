@@ -1,3 +1,6 @@
+using UnityEngine;
+
+[RequireComponent(typeof(UtilTimer))]
 public class EnemyIdleState : EnemyBaseState
 {
     private Enemy _enemy;

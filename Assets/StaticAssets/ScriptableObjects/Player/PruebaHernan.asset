@@ -16,7 +16,7 @@ MonoBehaviour:
   Invulnerability: 1
   CrouchTimer: 0.6
   CrouchVel: 5
-  Speed: 30
+  Speed: 32
   HalfGravityLimit: 0.1
   CoyoteMaxTime: 0.2
   JumpStrength: 40

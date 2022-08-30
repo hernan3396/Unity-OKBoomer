@@ -57,7 +57,10 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         _headMat = _headModel.materials[0];
         _transform = GetComponent<Transform>();
         _col = GetComponentInChildren<CapsuleCollider>();
-        _rb = GetComponent<Rigidbody>();
+
+
+        if (TryGetComponent(out Rigidbody rb))
+            _rb = rb;
 
         if (TryGetComponent(out NavMeshAgent agent))
         {
@@ -125,12 +128,16 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
 
     protected virtual void PauseEnemy()
     {
+        if (_rb == null) return;
+
         _lastVel = _rb.velocity;
         _rb.velocity = Vector3.zero;
         _rb.useGravity = false;
     }
     protected virtual void ResumeEnemy()
     {
+        if (_rb == null) return;
+
         _rb.velocity = _lastVel;
         _rb.useGravity = true;
     }
@@ -186,7 +193,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
 
     public bool DestinationReached()
     {
-        return Utils.CalculateDistance(_transform.position, _destination) < 2;
+        return Utils.CalculateDistanceNoHeight(_transform.position, _destination) < 2;
     }
 
     // se podrian juntar estos dos de abajo
@@ -241,6 +248,16 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     public Transform HeadPos
     {
         get { return _headPos; }
+    }
+
+    public NavMeshAgent Agent
+    {
+        get { return _agent; }
+    }
+
+    public Rigidbody RB
+    {
+        get { return _rb; }
     }
 
     public Transform Player

@@ -12,6 +12,11 @@ public static class Utils
         return (b - origin).magnitude;
     }
 
+    public static float CalculateDistanceNoHeight(Vector3 origin, Vector3 b)
+    {
+        return (new Vector3(origin.x, 0, origin.z) - new Vector3(b.x, 0, b.z)).magnitude;
+    }
+
     public static bool RayHit(Vector3 origin, Vector3 b, string tag, float range)
     {
         Debug.DrawRay(origin, b - origin, Color.blue);
