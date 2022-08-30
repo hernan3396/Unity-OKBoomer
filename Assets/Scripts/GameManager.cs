@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [Header("Pools")]
     [SerializeField] private PoolManager[] _pools;
     [SerializeField] private PoolManager[] _enemyPools;
+    [SerializeField] private PoolManager[] _utilsPools;
     #endregion
 
     private void Awake()
@@ -60,6 +61,11 @@ public class GameManager : MonoBehaviour
     public PoolManager[] GetEnemyPools
     {
         get { return _enemyPools; }
+    }
+
+    public PoolManager GetUtilsPool(int index)
+    {
+        return _utilsPools[index];
     }
     #endregion
 }

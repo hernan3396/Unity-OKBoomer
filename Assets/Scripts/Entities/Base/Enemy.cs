@@ -22,6 +22,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     [SerializeField] private Transform _headPos;
     protected PoolManager _bloodPool;
     protected CapsuleCollider _col;
+    // protected SphereCollider
     protected Material _mainMat;
     protected Material _headMat;
     protected Rigidbody _rb;
@@ -81,7 +82,6 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     {
         // esta solo crea las particulas y luego llama al
         // takedamage de base
-        Debug.Log("Taking damage");
         if (_isInmune || _isDead) return;
 
         if (!_isDodging)

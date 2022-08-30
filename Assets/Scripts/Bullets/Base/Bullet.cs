@@ -33,7 +33,7 @@ public abstract class Bullet : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         _player = GameManager.GetInstance.Player.GetComponent<Player>();
         EventManager.Pause += OnPause;
