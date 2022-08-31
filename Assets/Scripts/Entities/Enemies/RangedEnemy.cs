@@ -22,6 +22,7 @@ public class RangedEnemy : Enemy
         WeaponScriptable weapon = _data.Weapon;
 
         GameObject newBullet = _bulletsPool.GetPooledObject();
+        if (!newBullet) return;
 
         if (newBullet.TryGetComponent(out Bullet bullet))
         {

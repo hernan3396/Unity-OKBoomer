@@ -28,7 +28,7 @@ public class ExplosiveBullet : Bullet
         {
             explosion.transform.position = _transform.position;
             explosion.SetActive(true);
-            explosionScript.StartExplosion(10, _data.Duration, _damage);
+            explosionScript.StartExplosion(10, 0.5f, _damage);
         }
     }
 

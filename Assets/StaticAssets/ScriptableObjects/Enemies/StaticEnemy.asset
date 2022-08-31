@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2300711db7a2e77418f591379d1c8ed5, type: 3}
+  m_Name: StaticEnemy
+  m_EditorClassIdentifier: 
+  MaxHealth: 120
+  DeathDur: 2
+  Invulnerability: 0.1
+  Weapon: {fileID: 11400000, guid: 293f4ef793b37b14b8923d1084804f4d, type: 2}
+  Speed: 5
+  Acceleration: 0
+  WalkPointRange: 0
+  VisionRange: 100
+  AttackRange: 90
+  ChasingRange: 150

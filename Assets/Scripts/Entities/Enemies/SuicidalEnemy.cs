@@ -32,7 +32,7 @@ public class SuicidalEnemy : Enemy
         {
             explosion.transform.position = _transform.position;
             explosion.SetActive(true);
-            explosionScript.StartExplosion(_data.Weapon.Startup, _data.Weapon.Cooldown, _data.Weapon.Damage);
+            explosionScript.StartExplosion(_data.Weapon.Startup, 0.5f, _data.Weapon.Damage);
         }
     }
 }
