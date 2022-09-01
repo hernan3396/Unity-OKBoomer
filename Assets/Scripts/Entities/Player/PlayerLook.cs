@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(Player))]
 public class PlayerLook : MonoBehaviour
@@ -9,12 +10,15 @@ public class PlayerLook : MonoBehaviour
 
     private Vector2 _rotations = new Vector2(0, 90);
     private Vector2 _frameVelocity;
+    private float _defaultYPos;
+    private float _timer;
 
     private void Start()
     {
         _player = GetComponent<Player>();
 
         EventManager.Look += LookAtMouse;
+        _defaultYPos = _player.Arm.localPosition.y;
     }
 
     private void LateUpdate()
@@ -54,6 +58,14 @@ public class PlayerLook : MonoBehaviour
         Quaternion targetRotation = xRotation * yRotation;
 
         _player.Arm.localRotation = Quaternion.Slerp(_player.Arm.localRotation, targetRotation, _player.Data.SwaySmoothness * Time.deltaTime);
+    }
+
+    public void RotateWeapon()
+    {
+        _timer += Time.deltaTime * _player.Data.WeaponFrequency; // frecuencia
+        Vector3 pos = _player.Arm.transform.localPosition;
+        Vector3 finalPos = new Vector3(pos.x, _defaultYPos + Mathf.Sin(_timer) * _player.Data.WeaponAmplitude, pos.z); // amplitud
+        _player.Arm.transform.localPosition = Vector3.Lerp(pos, finalPos, Time.deltaTime * 10);
     }
 
     private void OnDestroy()

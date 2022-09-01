@@ -30,4 +30,10 @@ public class PlayerScriptable : ScriptableObject
     public float SwayMultiplier;
     public float SwaySmoothness;
     #endregion
+
+    #region WeaponMovement
+    [Header("Weapon Movement")]
+    public float WeaponAmplitude;
+    public float WeaponFrequency;
+    #endregion
 }

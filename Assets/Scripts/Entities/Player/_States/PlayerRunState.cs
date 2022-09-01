@@ -1,18 +1,11 @@
-using DG.Tweening;
-using UnityEngine;
-using Cinemachine;
-
 public class PlayerRunState : PlayerBaseState
 {
     private Player _player;
     private PlayerMovement _playerMovement;
     private PlayerSlide _playerSlide;
     private PlayerJump _playerJump;
+    private PlayerLook _playerLook;
 
-    [SerializeField] private Transform _fpCamera;
-
-    private CinemachineImpulseSource _cmImpSrc;
-    private UtilTimer _utilTimer;
 
     public override void OnEnterState(PlayerStateManager stateManager)
     {
@@ -22,31 +15,14 @@ public class PlayerRunState : PlayerBaseState
             _playerMovement = _player.PlayerMovement;
             _playerSlide = _player.PlayerSlide;
             _playerJump = _player.PlayerJump;
-
-            _utilTimer = GetComponent<UtilTimer>();
-            _cmImpSrc = GetComponent<CinemachineImpulseSource>();
+            _playerLook = _player.PlayerLook;
         }
-
-        _utilTimer.StartTimer(0.5f);
-        _utilTimer.onTimerCompleted += Bump;
-    }
-
-    // private void CameraShake()
-    // {
-    //     if (_fpCamera != null)
-    //         _fpCamera.DOShakeRotation(2f, 10, 0, 70)
-    //         .SetId(_fpCamera)
-    //         .OnComplete(() => CameraShake());
-    // }
-
-    private void Bump()
-    {
-        _cmImpSrc.GenerateImpulse();
-        _utilTimer.StartTimer(0.5f);
     }
 
     public override void UpdateState(PlayerStateManager stateManager)
     {
+        _playerLook.RotateWeapon();
+
         if (!_playerMovement.IsMoving)
         {
             stateManager.SwitchState(PlayerStateManager.PlayerState.Idle);
@@ -69,11 +45,5 @@ public class PlayerRunState : PlayerBaseState
     public override void FixedUpdateState(PlayerStateManager stateManager)
     {
         _playerMovement.ApplyMovement();
-    }
-
-    public override void OnExitState(PlayerStateManager stateManager)
-    {
-        DOTween.Kill(_fpCamera, true);
-        _utilTimer.onTimerCompleted -= Bump;
     }
 }
