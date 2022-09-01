@@ -8,6 +8,12 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
     private WeaponStateManager _state;
     private UtilTimer _utilTimer;
 
+    [SerializeField] private UtilTimer _utilTimerShooting;
+    // usamos un segundo timer para disparar, ya que con la logica
+    // de las state machine como esta no podriamos disparar
+    // desde este estado, entonces voy a "hardcodear" la logica del disparo aca
+    private bool _canAttack = true;
+
     public override void OnEnterState(WeaponStateManager state)
     {
         if (_player == null)
@@ -21,19 +27,33 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
 
         Time.timeScale = _player.CurrentWeaponData.SpecialDamage;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
+
         _utilTimer.StartTimer(_player.CurrentWeaponData.SpecialTime);
         _utilTimer.onTimerCompleted += OnTimerCompleted;
+        _utilTimerShooting.onTimerCompleted += CanAttack;
     }
 
     public override void UpdateState(WeaponStateManager state)
     {
+        if (_canAttack)
+        {
+            _playerShoot.Shoot();
+            _canAttack = false;
+            _utilTimerShooting.StartTimer(_player.CurrentWeaponData.Cooldown);
+        }
+
         if (!_playerShoot.IsSpecialShooting)
             state.SwitchState(WeaponStateManager.State.CooldownSpecial);
     }
 
     private void OnTimerCompleted()
     {
-        _state.SwitchState(WeaponStateManager.State.Idle);
+        _state.SwitchState(WeaponStateManager.State.CooldownSpecial);
+    }
+
+    private void CanAttack()
+    {
+        _canAttack = true;
     }
 
     public override void OnExitState(WeaponStateManager state)

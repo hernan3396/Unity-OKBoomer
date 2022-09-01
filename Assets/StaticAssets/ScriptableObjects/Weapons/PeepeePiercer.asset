@@ -20,7 +20,7 @@ MonoBehaviour:
   Damage: 5
   SpecialType: 2
   SpecialDamage: 1
-  SpecialStartup: 0
+  SpecialStartup: 2
   SpecialTime: 3
   SpecialCooldown: 5
   AmmoType: 2

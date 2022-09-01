@@ -4056,6 +4056,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StaticEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8032703309078252923, guid: e511a1192f34be94fbbf87c782421184,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e511a1192f34be94fbbf87c782421184, type: 3}
 --- !u!1001 &6907486640054362919
