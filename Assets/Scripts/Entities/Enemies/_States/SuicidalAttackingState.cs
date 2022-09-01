@@ -1,17 +1,19 @@
-using UnityEngine;
+using DG.Tweening;
 
 public class SuicidalAttackingState : EnemyBaseState
 {
-    private Enemy _enemy;
+    private SuicidalEnemy _enemy;
 
     public override void OnEnterState(EnemyStateManager state)
     {
         if (_enemy == null)
-            _enemy = state.Enemy;
+            _enemy = (SuicidalEnemy)state.Enemy;
 
         _enemy.StopAgent(true); // se frena
         _enemy.RB.isKinematic = false;
         _enemy.Agent.enabled = false;
+
+        DOTween.KillAll();
     }
 
     public override void UpdateState(EnemyStateManager state)
@@ -36,5 +38,7 @@ public class SuicidalAttackingState : EnemyBaseState
         _enemy.Agent.enabled = true;
         _enemy.StopAgent(false);
         _enemy.RB.isKinematic = true;
+
+        _enemy.FloatingAnim();
     }
 }

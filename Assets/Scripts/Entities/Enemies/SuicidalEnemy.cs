@@ -1,13 +1,27 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class SuicidalEnemy : Enemy
 {
-    [SerializeField] private PoolManager _explosionPool;
+    private PoolManager _explosionPool;
+    [SerializeField] private Transform BodyPivot;
+
+    [SerializeField] private float _floatingHeight = 1;
+    [SerializeField] private float _floatingSpeed = 1;
 
     protected override void Start()
     {
         base.Start();
         _explosionPool = GameManager.GetInstance.GetUtilsPool(0);
+        FloatingAnim();
+    }
+
+    public void FloatingAnim()
+    {
+        _transform.DOMoveY(_floatingHeight, _floatingSpeed)
+        .SetLoops(-1, LoopType.Yoyo)
+        .SetEase(Ease.Linear)
+        .SetRelative(true);
     }
 
     private void OnCollisionEnter(Collision other)
