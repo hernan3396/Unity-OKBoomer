@@ -49,7 +49,7 @@ public class Explosion : MonoBehaviour
 
     private void DisableExplosion()
     {
-        _mainMat.DOFloat(1, "_DissolveValue", 2)
+        _mainMat.DOFloat(1, "_DissolveValue", 1)
         .SetEase(Ease.OutQuint)
         .OnComplete(() => gameObject.SetActive(false));
     }
