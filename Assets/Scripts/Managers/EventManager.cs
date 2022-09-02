@@ -23,6 +23,9 @@ public static class EventManager
 
     public static event UnityAction<int> InfiniteRotate;
     public static void OnInfiniteRotate(int speed) => InfiniteRotate?.Invoke(speed);
+
+    public static event UnityAction<Vector3> SpawnPickable;
+    public static void OnSpawnPickable(Vector3 pos) => SpawnPickable?.Invoke(pos);
     #endregion
 
     #region Saves
