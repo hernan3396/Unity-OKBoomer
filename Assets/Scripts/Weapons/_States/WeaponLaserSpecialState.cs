@@ -64,6 +64,9 @@ public class WeaponLaserSpecialState : WeaponBaseState, IPauseable
 
             if (hit.collider.transform.TryGetComponent(out EnemyHead head))
                 head.TakeDamage(_player.CurrentWeaponData.SpecialDamage, hit.transform);
+
+            if (hit.transform.parent.TryGetComponent(out Breakable breakable))
+                breakable.TakeDamage(_player.CurrentWeaponData.SpecialDamage);
         }
         else
             _laserLR.SetPosition(1, _shootPoint.position + _shootPoint.forward * 20);

@@ -15,6 +15,9 @@ public class DiscBullet : Bullet
         if (other.transform.TryGetComponent(out EnemyHead head))
             head.TakeDamage(_damage, _transform);
 
+        if (other.transform.parent.TryGetComponent(out Breakable breakable))
+            breakable.TakeDamage(_damage);
+
         if (_bounces > 0)
             Bounce();
         else

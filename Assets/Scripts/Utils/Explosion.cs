@@ -37,6 +37,9 @@ public class Explosion : MonoBehaviour
             if (collider.transform.CompareTag("Player"))
                 GameManager.GetInstance.Player.GetComponent<Player>().TakeDamage(damage, _transform.position);
 
+            if (collider.transform.parent.TryGetComponent(out Breakable breakable))
+                breakable.TakeDamage(damage);
+
             // si el enemigo tiene Rigidbody (en este caso el volador)
             // choca contra el gameobject que lo tenga, por eso parece repetido
             // con el primero
