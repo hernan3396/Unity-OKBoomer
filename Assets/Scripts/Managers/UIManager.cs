@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 using System;
 using TMPro;
 
@@ -53,13 +54,30 @@ public class UiElement
     public TMP_Text Element;
     public string BaseText;
 
+    public bool AutoHide = false;
+    public CanvasGroup CG;
+    public float FadeDur = 1;
+
     public void UpdateElement(int value)
     {
+        if (AutoHide) Show();
         Element.text = $"{BaseText}{value}";
     }
 
     public void UpdateElement(string value)
     {
+        if (AutoHide) Show();
         Element.text = $"{BaseText}{value}";
+    }
+
+    private void Show()
+    {
+        CG.DOFade(1, FadeDur)
+        .OnComplete(() => Hide());
+    }
+
+    private void Hide()
+    {
+        CG.DOFade(0, FadeDur);
     }
 }

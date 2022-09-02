@@ -84,7 +84,7 @@ public class Player : Entity, IPauseable
 
     private void GameStart()
     {
-        EventManager.OnGodMode(_godMode);
+        EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
         EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
     }
 

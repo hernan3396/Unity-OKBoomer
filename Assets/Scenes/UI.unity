@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 100894117}
   - component: {fileID: 100894119}
   - component: {fileID: 100894118}
+  - component: {fileID: 100894120}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -258,6 +259,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100894116}
   m_CullTransparentMesh: 1
+--- !u!225 &100894120
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100894116}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &156440629
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,14 +1012,24 @@ MonoBehaviour:
   _uiElements:
   - Element: {fileID: 1770081458}
     BaseText: 'HP: '
+    AutoHide: 1
+    CG: {fileID: 1770081460}
   - Element: {fileID: 100894118}
     BaseText: 
+    AutoHide: 1
+    CG: {fileID: 100894120}
   - Element: {fileID: 858071333}
     BaseText: 
+    AutoHide: 0
+    CG: {fileID: 0}
   - Element: {fileID: 275489326}
     BaseText: 
+    AutoHide: 0
+    CG: {fileID: 0}
   - Element: {fileID: 2084135268}
     BaseText: 
+    AutoHide: 0
+    CG: {fileID: 0}
 --- !u!1 &1583949109
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,6 +1435,7 @@ GameObject:
   - component: {fileID: 1770081457}
   - component: {fileID: 1770081459}
   - component: {fileID: 1770081458}
+  - component: {fileID: 1770081460}
   m_Layer: 0
   m_Name: HP
   m_TagString: Untagged
@@ -1536,6 +1560,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1770081456}
   m_CullTransparentMesh: 1
+--- !u!225 &1770081460
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770081456}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1938878602
 GameObject:
   m_ObjectHideFlags: 0
