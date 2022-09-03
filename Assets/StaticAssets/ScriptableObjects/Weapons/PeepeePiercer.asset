@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1
   Name: Peepee Piercer
-  Accuracy: {x: 20, y: 20}
+  Accuracy: {x: 10, y: 10}
   Cooldown: 0.08
   Startup: 0
   Damage: 5

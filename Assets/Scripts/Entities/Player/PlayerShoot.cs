@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using Cinemachine;
 
 [RequireComponent(typeof(Player))]
 public class PlayerShoot : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerShoot : MonoBehaviour
     private bool _isShooting = false;
     private bool _isSpecialShooting = false;
 
+    [SerializeField] private CinemachineImpulseSource _cmImpSrc;
 
     private void Awake()
     {
@@ -58,6 +60,12 @@ public class PlayerShoot : MonoBehaviour
     private void StartRecoil(float force, float dur)
     {
         dur *= 0.5f;
+
+        float impulseX = Random.Range(-force, force);
+        Vector3 impulseDir = new Vector3(impulseX, force * 2, 0);
+        _cmImpSrc.GenerateImpulseWithVelocity(impulseDir);
+
+        _player.FpCamera.eulerAngles += new Vector3(-force * 10, impulseX * 10, 0);
 
         _player.Arm.DOLocalMoveZ(-force, dur)
         .SetRelative(true)

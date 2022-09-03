@@ -4586,6 +4586,36 @@ PrefabInstance:
       propertyPath: _stateText
       value: 
       objectReference: {fileID: 200471342}
+    - target: {fileID: 8546646302346627524, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_ImpulseDefinition.m_ImpulseShape
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546646302346627524, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_ImpulseDefinition.m_CustomImpulseShape.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546646302346627524, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_ImpulseDefinition.m_CustomImpulseShape.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546646302346627524, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_ImpulseDefinition.m_CustomImpulseShape.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546646302346627524, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_ImpulseDefinition.m_CustomImpulseShape.m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8546646302346627524, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_ImpulseDefinition.m_CustomImpulseShape.m_Curve.Array.data[1].outSlope
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3766620456c146841a37bb25ccff1851, type: 3}
 --- !u!1001 &6942502892786838491
@@ -4774,6 +4804,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107077137671049013, guid: 4b4288b1a57593042a164a8fa5af84f0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5006711250308360674, guid: 4b4288b1a57593042a164a8fa5af84f0,
         type: 3}
