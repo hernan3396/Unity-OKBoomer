@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using TMPro;
 using Cinemachine;
 using System.Collections.Generic;
 
@@ -55,6 +57,12 @@ public class Player : Entity, IPauseable
     #endregion
 
     #region Weapons
+    // esto se podria haber hecho como una clase sola pero
+    // agregaria un poco de complejidad y ya esta hecho para que funcione asi
+    // ademas creo que se entiende la idea ya que todos usan el indice de
+    // currentWeapon por lo que no hay problemas para manejarlos
+    [SerializeField] private TMP_Text[] _uiIndicators;
+    [SerializeField] private GameObject[] _models;
     [SerializeField] private List<WeaponScriptable> _weapons = new List<WeaponScriptable>();
     [SerializeField] private Transform _shootPos;
     private int _currentWeapon = 0;
@@ -211,6 +219,7 @@ public class Player : Entity, IPauseable
     public void ChangeWeapons(int value)
     {
         _currentWeapon = value;
+
         EventManager.OnUpdateUIText(UIManager.Element.Weapon, _weapons[_currentWeapon].Name);
         EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
     }
@@ -369,6 +378,11 @@ public class Player : Entity, IPauseable
     public WeaponScriptable CurrentWeaponData
     {
         get { return _weapons[_currentWeapon]; }
+    }
+
+    public GameObject GetCurrentModel
+    {
+        get { return _models[_currentWeapon]; }
     }
 
     public int MaxWeapons

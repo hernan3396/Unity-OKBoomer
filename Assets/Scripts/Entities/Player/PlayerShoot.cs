@@ -50,7 +50,7 @@ public class PlayerShoot : MonoBehaviour
             newBullet.SetActive(true);
             bullet.Shoot(weapon.Accuracy);
 
-            if (!_player.GodMode)
+            if (!_player.GodMode && weapon.UseBullets)
                 _player.BulletsAmount -= 1;
 
             EventManager.OnUpdateUI(UIManager.Element.Bullets, _player.BulletsAmount);

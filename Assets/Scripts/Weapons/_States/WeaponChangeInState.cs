@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class WeaponChangeInState : WeaponBaseState
 {
     private Player _player;
@@ -16,6 +18,9 @@ public class WeaponChangeInState : WeaponBaseState
 
         _utilTimer.StartTimer(_player.CurrentWeaponData.ChangeDur);
         _utilTimer.onTimerCompleted += OnTimerCompleted;
+
+        _player.GetCurrentModel.SetActive(true);
+        _player.GetCurrentModel.GetComponent<Animator>().Play("ChangeIn");
     }
 
     public override void UpdateState(WeaponStateManager state)

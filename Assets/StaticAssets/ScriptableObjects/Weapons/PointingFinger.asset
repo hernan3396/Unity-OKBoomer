@@ -24,6 +24,7 @@ MonoBehaviour:
   SpecialStartup: 1
   SpecialTime: 3
   SpecialCooldown: 1
+  UseBullets: 0
   AmmoType: 0
   MaxBounces: 0
   AmmoSpeed: 250
