@@ -5,6 +5,7 @@ public class Movement : MonoBehaviour
 {
     public enum MovementType
     {
+        Static,
         Platform,
         Door,
         Key
@@ -38,6 +39,7 @@ public class Movement : MonoBehaviour
         switch (_type)
         {
             case MovementType.Platform:
+                PlatformMovement();
                 break;
             case MovementType.Key:
                 KeyMovement();

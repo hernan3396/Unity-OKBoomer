@@ -1,4 +1,5 @@
 using UnityEngine;
+using Cinemachine;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -26,6 +27,7 @@ public class Player : Entity, IPauseable
     [SerializeField] private Transform _fpCamera;
     [SerializeField] private Transform _slideCamera;
     [SerializeField] private Transform _overlayCamera;
+    [SerializeField] private CinemachineImpulseSource _cmImpSrc;
     #endregion
 
     #region GroundChecking
@@ -177,6 +179,7 @@ public class Player : Entity, IPauseable
         if (_isInmune) return;
 
         base.TakeDamage(value);
+        _cmImpSrc.GenerateImpulse();
         EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
     }
 

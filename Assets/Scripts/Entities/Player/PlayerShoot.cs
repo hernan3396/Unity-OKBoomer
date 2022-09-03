@@ -9,12 +9,11 @@ public class PlayerShoot : MonoBehaviour
     private bool _isShooting = false;
     private bool _isSpecialShooting = false;
 
-    private CinemachineImpulseSource _cmImpSrc;
+    [SerializeField] private CinemachineImpulseSource _cmImpSrc;
 
     private void Awake()
     {
         _player = GetComponent<Player>();
-        _cmImpSrc = GetComponent<CinemachineImpulseSource>();
     }
 
     void Start()
