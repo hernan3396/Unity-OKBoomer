@@ -12,6 +12,8 @@ public class WeaponStateManager : MonoBehaviour
         Cooldown,
         StartupSpecial,
         CooldownSpecial,
+        ChangeIn,
+        ChangeOut,
         LaserSpecial,
         ExplosiveSpecial,
         BulletTimeSpecial

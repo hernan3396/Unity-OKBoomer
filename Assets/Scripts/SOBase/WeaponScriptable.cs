@@ -20,6 +20,7 @@ public class WeaponScriptable : ScriptableObject
     public float Cooldown;
     public float Startup;
     public int Damage;
+    public float ChangeDur;
     #endregion
 
     #region SpecialShoot
