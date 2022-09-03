@@ -41,8 +41,7 @@ public class WeaponScriptable : ScriptableObject
 
     #region Recoil
     [Header("Recoil")]
-    public int RecoilForce;
-    public float RecoilTime;
+    public float RecoilForce;
     #endregion
 
     // esto lo dejo ya por si lo llegamos a usar de esta

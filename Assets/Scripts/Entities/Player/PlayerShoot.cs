@@ -1,5 +1,5 @@
 using UnityEngine;
-using Cinemachine;
+using DG.Tweening;
 
 [RequireComponent(typeof(Player))]
 public class PlayerShoot : MonoBehaviour
@@ -9,7 +9,6 @@ public class PlayerShoot : MonoBehaviour
     private bool _isShooting = false;
     private bool _isSpecialShooting = false;
 
-    [SerializeField] private CinemachineImpulseSource _cmImpSrc;
 
     private void Awake()
     {
@@ -41,7 +40,7 @@ public class PlayerShoot : MonoBehaviour
         GameObject newBullet = _pools[(int)weapon.AmmoType].GetPooledObject();
         if (!newBullet) return;
 
-        _cmImpSrc.GenerateImpulse();
+        StartRecoil(weapon.RecoilForce, weapon.Cooldown);
 
         if (newBullet.TryGetComponent(out Bullet bullet))
         {
@@ -54,6 +53,21 @@ public class PlayerShoot : MonoBehaviour
 
             EventManager.OnUpdateUI(UIManager.Element.Bullets, _player.BulletsAmount);
         }
+    }
+
+    private void StartRecoil(float force, float dur)
+    {
+        dur *= 0.5f;
+
+        _player.Arm.DOLocalMoveZ(-force, dur)
+        .SetRelative(true)
+        .OnComplete(() => EndRecoil(force, dur));
+    }
+
+    private void EndRecoil(float force, float dur)
+    {
+        _player.Arm.DOLocalMoveZ(force, dur)
+        .SetRelative(true);
     }
 
     private void OnDestroy()

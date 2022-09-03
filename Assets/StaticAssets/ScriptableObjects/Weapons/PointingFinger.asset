@@ -27,5 +27,4 @@ MonoBehaviour:
   MaxBounces: 0
   AmmoSpeed: 250
   MaxAmmo: 200
-  RecoilForce: 0
-  RecoilTime: 0
+  RecoilForce: 0.1
