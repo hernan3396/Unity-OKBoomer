@@ -255,7 +255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 200
+  m_text: 20
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1805,10 +1805,14 @@ MonoBehaviour:
   _hitboxes:
   - {fileID: 6907486640217217252}
   - {fileID: 6907486639166935305}
+  _uiIndicators:
+  - {fileID: 5940134309993813847}
+  - {fileID: 7265758085501843192}
+  - {fileID: 4296379722689372597}
   _models:
   - {fileID: 1206574595589739220}
-  - {fileID: 8741147150374593590}
   - {fileID: 1739702365621247888}
+  - {fileID: 8741147150374593590}
   _weapons:
   - {fileID: 11400000, guid: 87ccc6d67f636094e8200d9d053ef9a1, type: 2}
   - {fileID: 11400000, guid: a206f735466953544b86ec814fbd42fa, type: 2}

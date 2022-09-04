@@ -15,6 +15,7 @@ public class WeaponIdleState : WeaponBaseState
         }
 
         EventManager.ChangeWeapon += ChangeWeapon;
+        EventManager.PickUpWeapon += ChangeWeapon;
     }
 
     public override void UpdateState(WeaponStateManager state)
@@ -37,6 +38,7 @@ public class WeaponIdleState : WeaponBaseState
     public override void OnExitState(WeaponStateManager state)
     {
         EventManager.ChangeWeapon -= ChangeWeapon;
+        EventManager.PickUpWeapon -= ChangeWeapon;
     }
 
     private void ChangeWeapon(int side)

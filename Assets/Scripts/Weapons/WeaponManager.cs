@@ -39,6 +39,8 @@ public class WeaponManager : MonoBehaviour
 
     public void ChangeWeapon(int side)
     {
+        _player.GetCurrentModel.GetComponent<Animator>().Play("ChangeOut");
+
         _currentWeapon = _player.CurrentWeapon;
         int maxWeapons = _player.MaxWeapons;
 

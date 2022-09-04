@@ -20,8 +20,6 @@ public class WeaponChangeOutState : WeaponBaseState
 
         _utilTimer.StartTimer(_player.CurrentWeaponData.ChangeDur);
         _utilTimer.onTimerCompleted += OnTimerCompleted;
-
-        _player.GetCurrentModel.GetComponent<Animator>().Play("ChangeOut");
     }
 
     public override void UpdateState(WeaponStateManager state)

@@ -51,9 +51,12 @@ public class PlayerShoot : MonoBehaviour
             bullet.Shoot(weapon.Accuracy);
 
             if (!_player.GodMode && weapon.UseBullets)
+            {
                 _player.BulletsAmount -= 1;
+                _player.GetCurrentBulletCounter.text = _player.BulletsAmount.ToString();
+            }
 
-            EventManager.OnUpdateUI(UIManager.Element.Bullets, _player.BulletsAmount);
+            // EventManager.OnUpdateUI(UIManager.Element.Bullets, _player.BulletsAmount);
         }
     }
 

@@ -10,7 +10,6 @@ public class UIManager : MonoBehaviour
         Hp,
         Weapon,
         Timer,
-        Bullets,
         GodMode
     }
 

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56de695530b5d4542a4ce2cd32a93bc2, type: 3}
-  m_Name: PeepeePiercer
+  m_Name: PowerGlove
   m_EditorClassIdentifier: 
   Id: 1
-  Name: Peepee Piercer
+  Name: Power Glove
   Accuracy: {x: 10, y: 10}
   Cooldown: 0.08
   Startup: 0

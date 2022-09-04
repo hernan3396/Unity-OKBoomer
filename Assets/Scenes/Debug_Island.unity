@@ -1959,6 +1959,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 586652692}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &689493484 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3916339879476137753, guid: f715f2401401d6a4fab90409ea4efd46,
+    type: 3}
+  m_PrefabInstance: {fileID: 6197265106081774108}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &789725211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6032660414578841200, guid: e6b2900bf2dcec0499074702cc509e4d,
@@ -4499,9 +4505,15 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 6496104098053645462, guid: f715f2401401d6a4fab90409ea4efd46,
         type: 3}
+      propertyPath: _parent
+      value: 
+      objectReference: {fileID: 689493484}
+    - target: {fileID: 6496104098053645462, guid: f715f2401401d6a4fab90409ea4efd46,
+        type: 3}
       propertyPath: _weapon
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 813fa00713a872444926c8ba8e5ea2c2,
+        type: 2}
     - target: {fileID: 6787049002868625074, guid: f715f2401401d6a4fab90409ea4efd46,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -4657,26 +4669,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
-      propertyPath: _weapons.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
-        type: 3}
       propertyPath: _testList.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
-        type: 3}
-      propertyPath: _weapons.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 813fa00713a872444926c8ba8e5ea2c2,
-        type: 2}
-    - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
-        type: 3}
-      propertyPath: _weapons.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: a206f735466953544b86ec814fbd42fa,
-        type: 2}
     - target: {fileID: 6907486638399581670, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_RootOrder
@@ -4745,7 +4740,7 @@ PrefabInstance:
     - target: {fileID: 6907486639528443142, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.777551
+      value: 1.7777778
       objectReference: {fileID: 0}
     - target: {fileID: 6907486639528443142, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}

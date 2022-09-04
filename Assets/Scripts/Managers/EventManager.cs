@@ -77,6 +77,9 @@ public static class EventManager
     public static event UnityAction<int> ChangeWeapon;
     public static void OnChangeWeapon(int side) => ChangeWeapon?.Invoke(side);
 
+    public static event UnityAction<int> PickUpWeapon;
+    public static void OnPickUpWeapon(int value) => PickUpWeapon?.Invoke(value);
+
     public static event UnityAction<bool> Crouch;
     public static void OnCrouch(bool crouch) => Crouch?.Invoke(crouch);
 

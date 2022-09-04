@@ -57,6 +57,7 @@ public class Player : Entity, IPauseable
     #endregion
 
     #region Weapons
+    [Header("Weapons")]
     // esto se podria haber hecho como una clase sola pero
     // agregaria un poco de complejidad y ya esta hecho para que funcione asi
     // ademas creo que se entiende la idea ya que todos usan el indice de
@@ -96,7 +97,8 @@ public class Player : Entity, IPauseable
     private void GameStart()
     {
         EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
-        EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
+        UpdateBullets();
+        // EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
     }
 
     private void LoadComponents()
@@ -219,9 +221,13 @@ public class Player : Entity, IPauseable
     public void ChangeWeapons(int value)
     {
         _currentWeapon = value;
+        _models[_currentWeapon].SetActive(true);
+        _models[_currentWeapon].GetComponent<Animator>().Play("ChangeIn");
+
+        UpdateBullets();
 
         EventManager.OnUpdateUIText(UIManager.Element.Weapon, _weapons[_currentWeapon].Name);
-        EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
+        // EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
     }
 
     public void PickUpAmmo(int value)
@@ -235,7 +241,8 @@ public class Player : Entity, IPauseable
         else
             BulletsAmount += (int)(_weapons[_currentWeapon].MaxAmmo * 0.25f) * value;
 
-        EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
+        UpdateBullets();
+        // EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
     }
 
     public void PickUpWeapon(WeaponScriptable newWeapon)
@@ -244,6 +251,14 @@ public class Player : Entity, IPauseable
 
         _bulletsAmount.Add(newWeapon.MaxAmmo);
         _maxWeapons = _weapons.Count;
+
+        EventManager.OnPickUpWeapon(_maxWeapons - 1);
+    }
+
+    private void UpdateBullets()
+    {
+        if (_weapons[CurrentWeapon].UseBullets)
+            _uiIndicators[_currentWeapon].text = _bulletsAmount[_currentWeapon].ToString();
     }
     #endregion
 
@@ -383,6 +398,11 @@ public class Player : Entity, IPauseable
     public GameObject GetCurrentModel
     {
         get { return _models[_currentWeapon]; }
+    }
+
+    public TMP_Text GetCurrentBulletCounter
+    {
+        get { return _uiIndicators[_currentWeapon]; }
     }
 
     public int MaxWeapons
