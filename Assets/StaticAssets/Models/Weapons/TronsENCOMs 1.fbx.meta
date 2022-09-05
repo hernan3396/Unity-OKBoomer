@@ -1,0 +1,224 @@
+fileFormatVersion: 2
+guid: 4fb08d97a57854847977bb28db8a7d24
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable:
+  - first:
+      74: -3668750714624657938
+    second: RightHand|Action
+  - first:
+      74: 5591936453237994787
+    second: RightHand|DiskAction
+  - first:
+      74: -726767698180193627
+    second: RightHand|DisketerBoxAction
+  - first:
+      74: 7698044784980410736
+    second: RightHand|DisketerLauncher.001Action
+  - first:
+      74: -1893704232460148675
+    second: RightHand|Idle
+  - first:
+      74: 8086540981216912168
+    second: RightHand|LeftHandAction
+  - first:
+      74: -988096698462963427
+    second: RightHand|ReloadHandAction
+  - first:
+      74: -606643617230180944
+    second: DisketerBox|Action
+  - first:
+      74: -7795731937632512341
+    second: DisketerBox|DiskAction
+  - first:
+      74: -3441716225540557060
+    second: DisketerBox|DisketerBoxAction
+  - first:
+      74: 4383976265565233595
+    second: DisketerBox|DisketerLauncher.001Action
+  - first:
+      74: -6973547990490977416
+    second: DisketerBox|Idle
+  - first:
+      74: 5253602351052434799
+    second: DisketerBox|LeftHandAction
+  - first:
+      74: 634596357190329958
+    second: DisketerBox|ReloadHandAction
+  - first:
+      74: -683376998239534598
+    second: Disk|Action
+  - first:
+      74: 7356842065823074358
+    second: Disk|DiskAction
+  - first:
+      74: 1274064765647972252
+    second: Disk|DisketerBoxAction
+  - first:
+      74: -8256625018811865729
+    second: Disk|DisketerLauncher.001Action
+  - first:
+      74: -2442403765704943179
+    second: Disk|Idle
+  - first:
+      74: 926581530021662239
+    second: Disk|LeftHandAction
+  - first:
+      74: 1497913493565320398
+    second: Disk|ReloadHandAction
+  - first:
+      74: 885944232402757753
+    second: Armature|Action
+  - first:
+      74: 3964603285758183379
+    second: Armature|DiskAction
+  - first:
+      74: 1462487447457785627
+    second: Armature|DisketerBoxAction
+  - first:
+      74: -5997904218715435689
+    second: Armature|DisketerLauncher.001Action
+  - first:
+      74: -8945691123924629249
+    second: Armature|Idle
+  - first:
+      74: 4106399916549189888
+    second: Armature|Idle.001
+  - first:
+      74: -5179785421388635773
+    second: Armature|Fire
+  - first:
+      74: 4767643698514167324
+    second: Armature|LeftHandAction
+  - first:
+      74: 7332139420686511986
+    second: Armature|Reload
+  - first:
+      74: -2108259319515452307
+    second: Armature|ReloadHandAction
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: dce0ddcdcd89c624bbb3e3fd38a3ae61, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Primary Material
+    second: {fileID: 2100000, guid: a07836899cf0ad042831a3e67fe502ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Quart Material
+    second: {fileID: 2100000, guid: 330612683c7afd14a9154f6899267179, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Secondary Material
+    second: {fileID: 2100000, guid: 02245015bc74086478c3718211706aa9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Terciary Material
+    second: {fileID: 2100000, guid: eb32de075b73de2419fd0784ceaa9096, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
