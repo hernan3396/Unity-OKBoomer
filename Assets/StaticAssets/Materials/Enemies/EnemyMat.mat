@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: EnemyMat
-  m_Shader: {fileID: -6465566751694194690, guid: 43ff367d2750f184dbedd8ad8feaec6c,
+  m_Shader: {fileID: -6465566751694194690, guid: 08df585672681984fb5a8af9a61ef119,
     type: 3}
   m_ValidKeywords:
   - _ALPHATEST_ON
@@ -29,7 +29,7 @@ Material:
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap:
     RenderType: TransparentCutout
   disabledShaderPasses: []
@@ -73,13 +73,17 @@ Material:
     - _AlphaClip: 1
     - _Blend: 0
     - _CastShadows: 1
+    - _Color_Intensity: 1
     - _Cull: 2
     - _DissolveValue: 0
     - _Dissolve_Intensity: 0
     - _DitherValue: 0.4
     - _DstBlend: 0
     - _EdgeWidth: 0.05
+    - _Intensity: 0.152
     - _Metallic: 0
+    - _NoiseIntensity: 500
+    - _NoiseSpeed: 2
     - _NoiseValue: 25
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -96,10 +100,11 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 0, g: 1, b: 1, a: 0}
     - _EdgeColor: {r: 0.75, g: 0, b: 0, a: 1}
-    - _EmissionColor: {r: 1, g: 0, b: 0, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _Secondary_Color: {r: 0, g: 0, b: 1367.1202, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _Tilling: {r: 0.1, g: 0.1, b: 0, a: 0}
   m_BuildTextureStacks: []
