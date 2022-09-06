@@ -115,12 +115,12 @@ public class Movement : MonoBehaviour
     private void OnCollisionExit(Collision other)
     {
         if (other.gameObject.CompareTag("Player") && _type == MovementType.Platform)
-            other.transform.parent = _transform;
+            other.transform.parent = null;
 
         if (other.gameObject.CompareTag("Player") && _type == MovementType.Elevator)
         {
-            ElevatorDown();
             other.transform.parent = null;
+            ElevatorDown();
         }
     }
 

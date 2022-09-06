@@ -448,7 +448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _finalPos: {fileID: 4784596341027219499}
   _easeFunc: 1
-  _type: 3
+  _type: 4
   _vel: 2
 --- !u!23 &3969654510139550040 stripped
 MeshRenderer:

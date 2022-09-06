@@ -54,8 +54,7 @@ public class LevelManager : MonoBehaviour
 
     public void OnNextLevel(string scene)
     {
-        // StartCoroutine("ChangingLevel", scene);
-        EventManager.OnNextLevel();
+        StartCoroutine("ChangingLevel", scene);
     }
 
     private IEnumerator ChangingLevel(string scene)

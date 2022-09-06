@@ -437,7 +437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _finalPos: {fileID: 7912377862542626626}
   _easeFunc: 1
-  _type: 3
+  _type: 4
   _vel: 2
 --- !u!4 &7657474805541817882 stripped
 Transform:

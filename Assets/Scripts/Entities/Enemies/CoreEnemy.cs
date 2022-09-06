@@ -13,6 +13,8 @@ public class CoreEnemy : Enemy
 
     public override void TakeDamage(int value)
     {
+        if (_isInmune || _isDead) return;
+
         base.TakeDamage(value);
         float intensityValue = (_data.MaxHealth - _currentHp) * 0.01f;
 
@@ -21,6 +23,8 @@ public class CoreEnemy : Enemy
 
     protected override void Death()
     {
+        if (_isDead) return;
+
         base.Death();
         DeathEvent?.Invoke();
     }

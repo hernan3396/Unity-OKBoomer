@@ -5,10 +5,10 @@ public class SavesManager : MonoBehaviour
 {
     [SerializeField] private string _savesPrefix = "Hyperwave_";
     [SerializeField] private SavesData[] _timers;
-    [SerializeField] private int _levelNumber;
+    [SerializeField] private string _levelName;
 
 
-    private void Awake()
+    private void Start()
     {
         EventManager.SaveTime += SaveTime;
 
@@ -17,9 +17,11 @@ public class SavesManager : MonoBehaviour
 
     private void LoadTimers()
     {
+        if (_timers.Length <= 0) return;
+
         foreach (SavesData item in _timers)
         {
-            string prefName = _savesPrefix + item.Name;
+            string prefName = _savesPrefix + item.Name; // same as _levelName
 
             if (PlayerPrefs.HasKey(prefName + "_string"))
             {
@@ -27,24 +29,24 @@ public class SavesManager : MonoBehaviour
                 item.valueInt = PlayerPrefs.GetFloat(prefName + "_float");
             }
         }
-    }
-
-    private void Start()
-    {
         EventManager.OnLoadTimer(_timers);
     }
 
     private void SaveTime(string valueString, float valueInt)
     {
-        SavesData timer = _timers[_levelNumber];
-        if (valueInt >= timer.valueInt) return; // solo guardamos el menor tiempo
+        string prefName = _savesPrefix + _levelName;
 
-        timer.valueString = valueString;
-        timer.valueInt = valueInt;
+        if (PlayerPrefs.HasKey(prefName + "_string") &&
+         valueInt >= PlayerPrefs.GetFloat(prefName + "_float"))
+            return; // solo guardamos el menor tiempo
 
-        string prefName = _savesPrefix + timer.Name;
         PlayerPrefs.SetString(prefName + "_string", valueString);
         PlayerPrefs.SetFloat(prefName + "_float", valueInt);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.SaveTime -= SaveTime;
     }
 }
 
