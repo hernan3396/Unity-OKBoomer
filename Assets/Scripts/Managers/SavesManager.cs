@@ -1,17 +1,19 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 
 public class SavesManager : MonoBehaviour
 {
     [SerializeField] private string _savesPrefix = "Hyperwave_";
     [SerializeField] private SavesData[] _timers;
-    [SerializeField] private string _levelName;
+    private string _levelName;
 
 
     private void Start()
     {
         EventManager.SaveTime += SaveTime;
 
+        _levelName = SceneManager.GetActiveScene().name;
         LoadTimers();
     }
 

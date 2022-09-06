@@ -43,6 +43,12 @@ public class WeaponIdleState : WeaponBaseState
         EventManager.PickUpWeapon -= ChangeWeapon;
     }
 
+    private void OnDestroy()
+    {
+        EventManager.ChangeWeapon -= ChangeWeapon;
+        EventManager.PickUpWeapon -= ChangeWeapon;
+    }
+
     private void ChangeWeapon(int side)
     {
         if (_player.GetWeapons.Count == 0) return;
