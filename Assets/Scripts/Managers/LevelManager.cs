@@ -13,7 +13,10 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         if (!_isMenu)
+        {
             StartCoroutine("StartLevel");
+            EventManager.Pause += OnPause;
+        }
     }
 
     private void LoadLevel(string scene, bool async = false)
@@ -32,6 +35,11 @@ public class LevelManager : MonoBehaviour
 
         DOTween.KillAll();
         SceneManager.LoadScene(scene);
+    }
+
+    private void OnPause(bool value)
+    {
+        LoadLevel("PauseMenu", true);
     }
 
     private IEnumerator StartLevel()
@@ -69,5 +77,10 @@ public class LevelManager : MonoBehaviour
     public void StartTransition(string scene)
     {
         StartCoroutine("Transition", scene);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.Pause -= OnPause;
     }
 }
