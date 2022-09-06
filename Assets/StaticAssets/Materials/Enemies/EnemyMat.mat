@@ -91,6 +91,7 @@ Material:
     - _Smoothness: 0
     - _SrcBlend: 1
     - _Surface: 0
+    - _UseCustomTexture: 0
     - _UseDissolve: 1
     - _UseNoiseCustomTexture: 0
     - _UseVertexJitter: 0

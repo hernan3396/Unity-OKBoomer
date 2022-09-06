@@ -41,6 +41,8 @@ public class WeaponManager : MonoBehaviour
 
     public void ChangeWeapon(int side)
     {
+        if (_player.GetWeapons.Count == 0) return;
+
         _player.GetCurrentModel.GetComponent<Animator>().Play("ChangeOut");
 
         _currentWeapon = _player.CurrentWeapon;
