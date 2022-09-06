@@ -34,6 +34,8 @@ public class WeaponManager : MonoBehaviour
 
     private void FirstUpdate()
     {
+        if (_player.GetWeapons.Count == 0) return;
+
         _player.ChangeWeapons(_player.CurrentWeapon);
     }
 

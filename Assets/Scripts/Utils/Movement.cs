@@ -79,8 +79,8 @@ public class Movement : MonoBehaviour
         .SetLoops(-1, LoopType.Yoyo);
 
         // movimiento vertical
-        _transform.DOMoveY(1, _vel)
-        .SetRelative(true)
+        _transform.DOMove(_finalPos.position, _vel)
+        // .SetRelative(true)
         .SetEase(_easeFunc)
         .SetLoops(-1, LoopType.Yoyo);
     }
