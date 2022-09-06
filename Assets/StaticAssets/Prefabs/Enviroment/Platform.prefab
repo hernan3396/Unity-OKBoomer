@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 763370415621085999}
   - component: {fileID: 763370415621085992}
   m_Layer: 6
-  m_Name: Elevator_v2
+  m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

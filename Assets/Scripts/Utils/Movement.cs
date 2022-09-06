@@ -7,8 +7,9 @@ public class Movement : MonoBehaviour
     {
         Static,
         Platform,
+        Elevator,
         Door,
-        Key
+        Key,
     }
 
     #region Position
@@ -70,7 +71,7 @@ public class Movement : MonoBehaviour
             _transform.DOPlay();
     }
 
-    public void KeyMovement()
+    private void KeyMovement()
     {
         // movimiento de rotacion
         _transform.DORotate(new Vector3(0, 360, 0), _vel, RotateMode.FastBeyond360)
@@ -85,16 +86,42 @@ public class Movement : MonoBehaviour
         .SetLoops(-1, LoopType.Yoyo);
     }
 
+    private void ElevatorUp()
+    {
+        _transform.DOMove(_finalPos.position, _vel)
+        .SetEase(_easeFunc)
+        .SetUpdate(UpdateType.Fixed);
+    }
+
+    private void ElevatorDown()
+    {
+        _transform.DOMove(_initPos, _vel)
+        .SetEase(_easeFunc)
+        .SetUpdate(UpdateType.Fixed);
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player") && _type == MovementType.Platform)
             other.transform.parent = _transform;
+
+        if (other.gameObject.CompareTag("Player") && _type == MovementType.Elevator)
+        {
+            ElevatorUp();
+            other.transform.parent = _transform;
+        }
     }
 
     private void OnCollisionExit(Collision other)
     {
         if (other.gameObject.CompareTag("Player") && _type == MovementType.Platform)
+            other.transform.parent = _transform;
+
+        if (other.gameObject.CompareTag("Player") && _type == MovementType.Elevator)
+        {
+            ElevatorDown();
             other.transform.parent = null;
+        }
     }
 
     private void OnDrawGizmos()
