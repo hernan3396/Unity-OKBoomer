@@ -97,6 +97,12 @@ public class Movement : MonoBehaviour
             other.transform.parent = null;
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, _finalPos.position);
+    }
+
     private void OnDestroy()
     {
         EventManager.Pause -= OnPause;
