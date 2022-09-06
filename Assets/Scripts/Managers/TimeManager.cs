@@ -18,6 +18,7 @@ public class TimeManager : MonoBehaviour
         _uiManager = GetComponent<UIManager>();
 
         EventManager.NextLevel += OnLevelFinished;
+        EventManager.Pause += OnPause;
     }
 
     private void Update()
@@ -41,5 +42,16 @@ public class TimeManager : MonoBehaviour
     {
         _isPaused = true;
         EventManager.OnSaveTime(totalTime, time);
+    }
+
+    private void OnPause(bool value)
+    {
+        _isPaused = value;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.NextLevel -= OnLevelFinished;
+        EventManager.Pause -= OnPause;
     }
 }
