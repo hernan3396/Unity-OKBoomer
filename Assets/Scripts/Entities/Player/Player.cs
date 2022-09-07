@@ -257,6 +257,8 @@ public class Player : Entity, IPauseable
 
     private void UpdateBullets()
     {
+        if (_weapons.Count == 0) return;
+
         if (_weapons[CurrentWeapon].UseBullets)
             _uiIndicators[_currentWeapon].text = _bulletsAmount[_currentWeapon].ToString();
     }

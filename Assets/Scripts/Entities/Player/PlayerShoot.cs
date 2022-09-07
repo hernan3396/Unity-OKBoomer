@@ -37,6 +37,8 @@ public class PlayerShoot : MonoBehaviour
 
     public void Shoot()
     {
+        if (_player.GetWeapons.Count == 0) return;
+
         WeaponScriptable weapon = _player.CurrentWeaponData;
 
         GameObject newBullet = _pools[(int)weapon.AmmoType].GetPooledObject();

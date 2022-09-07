@@ -8,9 +8,9 @@ public class PlayerLook : MonoBehaviour
     private Player _player;
     #endregion
 
-    private Vector2 _rotations = new Vector2(0, 90);
     private Vector2 _frameVelocity;
     private float _defaultYPos;
+    private Vector2 _rotations;
     private float _timer;
 
     private void Start()
@@ -19,6 +19,7 @@ public class PlayerLook : MonoBehaviour
 
         EventManager.Look += LookAtMouse;
         _defaultYPos = _player.Arm.localPosition.y;
+        _rotations = new Vector2(0, _player.Transform.eulerAngles.y);
     }
 
     private void LateUpdate()
@@ -67,6 +68,8 @@ public class PlayerLook : MonoBehaviour
         Vector3 finalPos = new Vector3(pos.x, _defaultYPos + Mathf.Sin(_timer) * _player.Data.WeaponAmplitude, pos.z); // amplitud
         _player.Arm.transform.localPosition = Vector3.Lerp(pos, finalPos, Time.deltaTime * 10);
     }
+
+    // pasar el recoil para aca
 
     private void OnDestroy()
     {

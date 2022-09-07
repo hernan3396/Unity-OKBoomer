@@ -18,14 +18,15 @@ MonoBehaviour:
   Cooldown: 0.3
   Startup: 0
   Damage: 10
+  ChangeDur: 0
   SpecialType: 0
   SpecialDamage: 0
   SpecialStartup: 0
   SpecialTime: 0
   SpecialCooldown: 0
+  UseBullets: 1
   AmmoType: 0
   MaxBounces: 0
   AmmoSpeed: 60
   MaxAmmo: 0
   RecoilForce: 0
-  RecoilTime: 0

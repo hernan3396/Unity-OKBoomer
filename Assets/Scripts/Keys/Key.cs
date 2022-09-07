@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class Key : MonoBehaviour
 {
@@ -10,11 +11,21 @@ public class Key : MonoBehaviour
     }
 
     [SerializeField] private KeyType _keyType;
+    [SerializeField] private MeshRenderer _mesh;
+    private BoxCollider _col;
+
+    private void Awake()
+    {
+        _col = GetComponent<BoxCollider>();
+    }
 
     public void DeactivateKey()
     {
-        gameObject.SetActive(false);
-        // aca hacer la animacion con disolve
+        _col.enabled = false;
+
+        _mesh.material.DOFloat(1, "_DissolveValue", 2)
+        .SetEase(Ease.OutQuint)
+        .OnComplete(() => gameObject.SetActive(false));
     }
 
     private void ChangeColor()

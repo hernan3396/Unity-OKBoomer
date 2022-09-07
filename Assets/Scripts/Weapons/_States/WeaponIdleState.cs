@@ -20,6 +20,8 @@ public class WeaponIdleState : WeaponBaseState
 
     public override void UpdateState(WeaponStateManager state)
     {
+        if (_player.GetWeapons.Count == 0) return;
+
         if (_playerShoot.IsShooting)
         {
             if (_player.BulletsAmount <= 0 && !_player.GodMode) return;
@@ -41,8 +43,16 @@ public class WeaponIdleState : WeaponBaseState
         EventManager.PickUpWeapon -= ChangeWeapon;
     }
 
+    private void OnDestroy()
+    {
+        EventManager.ChangeWeapon -= ChangeWeapon;
+        EventManager.PickUpWeapon -= ChangeWeapon;
+    }
+
     private void ChangeWeapon(int side)
     {
+        if (_player.GetWeapons.Count == 0) return;
+
         _player.WeaponManager.ChangeWeapon(side);
         _state.SwitchState(WeaponStateManager.State.ChangeOut);
     }
