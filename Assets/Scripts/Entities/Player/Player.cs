@@ -8,6 +8,8 @@ using System.Collections.Generic;
 public class Player : Entity, IPauseable
 {
     [SerializeField] private bool _godMode;
+    private bool _isDead = false;
+
     #region Components
     [SerializeField] private PlayerScriptable _data;
     [SerializeField] private PhysicMaterial _noFricMat;
@@ -187,8 +189,7 @@ public class Player : Entity, IPauseable
 
     public override void TakeDamage(int value)
     {
-        if (_godMode) return;
-        if (_isInmune) return;
+        if (_godMode || _isDead || _isInmune) return;
 
         base.TakeDamage(value);
         _cmImpSrc.GenerateImpulse();
@@ -197,6 +198,7 @@ public class Player : Entity, IPauseable
 
     protected override void Death()
     {
+        _isDead = true;
         EventManager.OnGameOver();
     }
 

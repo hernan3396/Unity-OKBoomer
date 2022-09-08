@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
             StartCoroutine("StartLevel");
             EventManager.Pause += OnPause;
             EventManager.ChangeLevel += OnNextLevel;
+            EventManager.GameOver += ReloadLevel;
         }
     }
 
@@ -61,6 +62,11 @@ public class LevelManager : MonoBehaviour
         LoadLevel(scene);
     }
 
+    private void ReloadLevel()
+    {
+        StartCoroutine("ChangingLevel", SceneManager.GetActiveScene().name);
+    }
+
     public void OnNextLevel(string scene)
     {
         StartCoroutine("ChangingLevel", scene);
@@ -84,5 +90,6 @@ public class LevelManager : MonoBehaviour
     {
         EventManager.Pause -= OnPause;
         EventManager.ChangeLevel -= OnNextLevel;
+        EventManager.GameOver -= ReloadLevel;
     }
 }
