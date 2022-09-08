@@ -42,6 +42,12 @@ public static class EventManager
     #region Levels
     public static event UnityAction NextLevel;
     public static void OnNextLevel() => NextLevel?.Invoke();
+
+    public static event UnityAction<string> ChangeLevel;
+    public static void OnChangeLevel(string sceneName) => ChangeLevel?.Invoke(sceneName);
+
+    public static event UnityAction WaveUpdated;
+    public static void OnWaveUpdated() => WaveUpdated?.Invoke();
     #endregion
 
     #region GameState

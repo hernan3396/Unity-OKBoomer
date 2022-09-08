@@ -112,6 +112,8 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         _isDead = true;
         _col.enabled = false;
 
+        EventManager.OnWaveUpdated();
+
         _headMat.DOFloat(1, "_DissolveValue", _data.DeathDur)
         .SetEase(Ease.OutQuint);
 

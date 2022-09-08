@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
         {
             StartCoroutine("StartLevel");
             EventManager.Pause += OnPause;
+            EventManager.ChangeLevel += OnNextLevel;
         }
     }
 
@@ -82,5 +83,6 @@ public class LevelManager : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.Pause -= OnPause;
+        EventManager.ChangeLevel -= OnNextLevel;
     }
 }
