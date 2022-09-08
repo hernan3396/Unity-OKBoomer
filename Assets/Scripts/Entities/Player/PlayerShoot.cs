@@ -6,11 +6,15 @@ using Cinemachine;
 public class PlayerShoot : MonoBehaviour
 {
     private Player _player;
+    private PlayerLook _playerLook;
     private PoolManager[] _pools;
     private bool _isShooting = false;
     private bool _isSpecialShooting = false;
 
     [SerializeField] private CinemachineImpulseSource _cmImpSrc;
+
+
+    private Vector3 _recoilForce;
 
     private void Awake()
     {
@@ -20,6 +24,7 @@ public class PlayerShoot : MonoBehaviour
     void Start()
     {
         _pools = GameManager.GetInstance.GetPools;
+        _playerLook = _player.PlayerLook;
 
         EventManager.Shoot += ShootInput;
         EventManager.SpecialShoot += SpecialShootInput;
@@ -70,7 +75,9 @@ public class PlayerShoot : MonoBehaviour
         Vector3 impulseDir = new Vector3(impulseX, force * 2, 0);
         _cmImpSrc.GenerateImpulseWithVelocity(impulseDir);
 
-        _player.FpCamera.eulerAngles += new Vector3(-force * 10, impulseX * 10, 0);
+        // _player.FpCamera.eulerAngles += new Vector3(-force * 10, impulseX * 10, 0);
+        _recoilForce = new Vector3(-force * 10, impulseX * 10, 0);
+        _playerLook.AddRecoil(_recoilForce);
 
         _player.Arm.DOLocalMoveZ(-force, dur)
         .SetRelative(true)
@@ -97,5 +104,10 @@ public class PlayerShoot : MonoBehaviour
     public bool IsSpecialShooting
     {
         get { return _isSpecialShooting; }
+    }
+
+    public Vector3 RecoilForce
+    {
+        get { return _recoilForce; }
     }
 }

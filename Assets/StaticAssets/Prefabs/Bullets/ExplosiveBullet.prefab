@@ -49,7 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 3df77902022840247968acd85ac87a1a, type: 2}
   _bulletModel: {fileID: 2232222681637050162}
-  _explosionPool: {fileID: 0}
 --- !u!54 &2232222680691711895
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -30,7 +30,6 @@ public class PlayerLook : MonoBehaviour
     private void LookAtMouse(Vector2 look)
     {
         _frameVelocity = Vector2.Scale(look, Vector2.one * _player.Data.MouseSensitivity);
-        // _frameVelocity = Vector2.Lerp(_frameVelocity, rawFrameVelocity, 20 * Time.deltaTime);
 
         // up & down
         _rotations.x -= _frameVelocity.y;
@@ -39,6 +38,19 @@ public class PlayerLook : MonoBehaviour
         // Sideways
         _rotations.y += _frameVelocity.x;
 
+        UpdateRotation();
+    }
+
+    public void AddRecoil(Vector3 force)
+    {
+        _rotations.x += force.x;
+        _rotations.y += force.y;
+
+        UpdateRotation();
+    }
+
+    private void UpdateRotation()
+    {
         Quaternion headRotation = Quaternion.AngleAxis(_rotations.x, Vector3.right);
         Quaternion bodyRotation = Quaternion.AngleAxis(_rotations.y, Vector3.up);
 
