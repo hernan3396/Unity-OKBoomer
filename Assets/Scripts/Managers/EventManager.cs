@@ -26,6 +26,9 @@ public static class EventManager
 
     public static event UnityAction<Vector3> SpawnPickable;
     public static void OnSpawnPickable(Vector3 pos) => SpawnPickable?.Invoke(pos);
+
+    public static event UnityAction<Vector3, int> SpawnSpecificPickable;
+    public static void OnSpawnSpecificPickable(Vector3 pos, int value) => SpawnSpecificPickable?.Invoke(pos, value);
     #endregion
 
     #region Saves

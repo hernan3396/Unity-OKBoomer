@@ -14,9 +14,11 @@ public class Collisions : MonoBehaviour
     #region TriggerEnter
     private void OnTriggerEnter(Collider other)
     {
-        if (_useOneTime) gameObject.SetActive(false);
         if (other.gameObject.CompareTag(_tag))
+        {
+            if (_useOneTime) gameObject.SetActive(false);
             _onEnter?.Invoke();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -29,9 +31,11 @@ public class Collisions : MonoBehaviour
     #region CollisionEnter    
     private void OnCollisionEnter(Collision other)
     {
-        if (_useOneTime) gameObject.SetActive(false);
         if (other.gameObject.CompareTag(_tag))
+        {
+            if (_useOneTime) gameObject.SetActive(false);
             _onEnter?.Invoke();
+        }
     }
 
     private void OnCollisionExit(Collision other)

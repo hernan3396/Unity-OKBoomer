@@ -24,6 +24,7 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 43ff367d2750f184dbedd8ad8feaec6c,
     type: 3}
   m_ValidKeywords:
+  - _ALPHATEST_ON
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords:
   - _ALPHAMODULATE_ON
@@ -105,7 +106,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Alpha: 0.5
-    - _AlphaClip: 0
+    - _AlphaClip: 1
     - _Blend: 3
     - _BumpScale: 1
     - _CastShadows: 1

@@ -216,7 +216,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Debug_Island
+          m_StringArgument: Level1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &81063443
@@ -2894,13 +2894,12 @@ MonoBehaviour:
   - Name: Tutorial
     valueString: --:--:--
     valueInt: 0
-  - Name: Debug_Island
+  - Name: Level1
     valueString: --:--:--
     valueInt: 0
-  - Name: Level_003
+  - Name: Tutorial
     valueString: --:--:--
     valueInt: 0
-  _levelName: 
 --- !u!114 &1316455242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3068,11 +3067,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1361519395}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1316455237}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: StartTransition
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Debug_Island
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1361519395
 MonoBehaviour:
   m_ObjectHideFlags: 0

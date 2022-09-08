@@ -6,6 +6,8 @@ public class Breakable : MonoBehaviour, IDamageable
     [SerializeField] private bool _dropPickable = false;
     [SerializeField] private Transform _spawnPosition;
     [SerializeField] private int _fadeDur = 2;
+    [SerializeField] private bool _spawnSpecificPickable = false;
+    [SerializeField] private PickupManager.Pickup _pickupType;
     private Material _mat;
     private BoxCollider _col;
 
@@ -29,10 +31,13 @@ public class Breakable : MonoBehaviour, IDamageable
         .SetEase(Ease.Linear)
         .OnComplete(() =>
         {
-            if (_dropPickable)
-                EventManager.OnSpawnPickable(_spawnPosition.position);
-
             FinishDissolve();
+            if (!_dropPickable) return;
+
+            if (_spawnSpecificPickable)
+                EventManager.OnSpawnSpecificPickable(_spawnPosition.position, (int)_pickupType);
+            else
+                EventManager.OnSpawnPickable(_spawnPosition.position);
         });
     }
 

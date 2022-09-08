@@ -11,7 +11,9 @@ public class SimpleBullet : Bullet
     protected override void OnHit(Collision other)
     {
         if (other.transform.parent.TryGetComponent(out Enemy enemy))
+        {
             enemy.TakeDamage(_damage, _transform);
+        }
 
         if (other.transform.CompareTag("Player"))
         {

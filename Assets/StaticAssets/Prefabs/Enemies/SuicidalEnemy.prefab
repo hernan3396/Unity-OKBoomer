@@ -111,7 +111,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3676999668562893339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -229.9, y: 21.9, z: -5.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -158,12 +158,14 @@ MonoBehaviour:
   _currentHp: 0
   _data: {fileID: 11400000, guid: d67f738faa01af94aaa954dd2eb1b3e1, type: 2}
   _bodyModel: {fileID: 3676999668535880249}
-  _headModel: {fileID: 3676999668535880249}
+  _bodyModelSkinned: {fileID: 0}
   _headPos: {fileID: 3676999668535880248}
   _playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  _explosionPool: {fileID: 0}
+  BodyPivot: {fileID: 0}
+  _floatingHeight: 1
+  _floatingSpeed: 1
 --- !u!114 &3676999668562893319
 MonoBehaviour:
   m_ObjectHideFlags: 0

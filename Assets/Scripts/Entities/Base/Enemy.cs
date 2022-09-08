@@ -18,7 +18,8 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     #region Components
     [Header("Components")]
     [SerializeField] private MeshRenderer _bodyModel;
-    [SerializeField] private MeshRenderer _headModel;
+    [SerializeField] private SkinnedMeshRenderer _bodyModelSkinned;
+    // [SerializeField] private MeshRenderer _headModel;
     [SerializeField] private Transform _headPos;
     protected PoolManager _bloodPool;
     protected CapsuleCollider _col;
@@ -54,8 +55,12 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
 
     protected virtual void SetComponents()
     {
-        _mainMat = _bodyModel.materials[0];
-        _headMat = _headModel.materials[0];
+        if (_bodyModel == null)
+            _mainMat = _bodyModelSkinned.material;
+        else
+            _mainMat = _bodyModel.materials[0];
+
+        _headMat = _headPos.gameObject.GetComponent<MeshRenderer>().material;
         _transform = GetComponent<Transform>();
         _col = GetComponentInChildren<CapsuleCollider>();
 
@@ -110,6 +115,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         _headMat.DOFloat(1, "_DissolveValue", _data.DeathDur)
         .SetEase(Ease.OutQuint);
 
+        // if(_mainMat)
         _mainMat.DOFloat(1, "_DissolveValue", _data.DeathDur)
         .SetEase(Ease.OutQuint)
         .OnComplete(() => gameObject.SetActive(false));
