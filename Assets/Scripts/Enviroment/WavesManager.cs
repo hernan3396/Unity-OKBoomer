@@ -21,11 +21,6 @@ public class WavesManager : MonoBehaviour
             WaveFinished?.Invoke();
     }
 
-    public void Test()
-    {
-        Debug.Log("Avemaria");
-    }
-
     private void OnDisable()
     {
         EventManager.WaveUpdated -= Counting;
