@@ -12,12 +12,12 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        // EventManager.OnResumeMenu();
+        EventManager.OnResumeMenu();
     }
 
     public void MainMenu(string value)
     {
-        // EventManager.OnGoToNextLevel(value);
+        EventManager.OnChangeLevel(value);
     }
 
     public void Quit()

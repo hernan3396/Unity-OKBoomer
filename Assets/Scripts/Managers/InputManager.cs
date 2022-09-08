@@ -38,6 +38,7 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         EventManager.GameStart += OnGameStart;
+        EventManager.ResumeMenu += OnPause;
     }
 
     private void OnGameStart()
@@ -150,5 +151,6 @@ public class InputManager : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.GameStart -= OnGameStart;
+        EventManager.ResumeMenu -= OnPause;
     }
 }
