@@ -26,6 +26,7 @@ public class SuicidalEnemy : Enemy
 
     private void OnCollisionEnter(Collision other)
     {
+        if (other.transform.CompareTag("Bullet")) return;
         Death();
     }
 

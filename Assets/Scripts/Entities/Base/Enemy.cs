@@ -117,7 +117,6 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         _headMat.DOFloat(1, "_DissolveValue", _data.DeathDur)
         .SetEase(Ease.OutQuint);
 
-        // if(_mainMat)
         _mainMat.DOFloat(1, "_DissolveValue", _data.DeathDur)
         .SetEase(Ease.OutQuint)
         .OnComplete(() => gameObject.SetActive(false));
