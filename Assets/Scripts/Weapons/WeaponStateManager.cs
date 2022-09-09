@@ -35,9 +35,9 @@ public class WeaponStateManager : MonoBehaviour
         _currentState = _states[(int)State.Idle];
         _currentState.OnEnterState(this);
 
-#if UNITY_EDITOR
+        // #if UNITY_EDITOR
         _stateText.gameObject.SetActive(true);
-#endif
+        // #endif
     }
 
     public virtual void Update()

@@ -25,7 +25,7 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
             _utilTimer = GetComponent<UtilTimer>();
         }
 
-        Time.timeScale = _player.CurrentWeaponData.SpecialDamage;
+        Time.timeScale = _player.CurrentWeaponData.SpecialDamage * 0.1f;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
         _utilTimer.StartTimer(_player.CurrentWeaponData.SpecialTime);
