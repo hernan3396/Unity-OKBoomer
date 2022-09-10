@@ -4,8 +4,8 @@ using UnityEngine.Events;
 public static class EventManager
 {
     #region Sound
-    public static event UnityAction<AudioManager.AudioList> PlayMusic;
-    public static void OnPlayMusic(AudioManager.AudioList music) => PlayMusic?.Invoke(music);
+    public static event UnityAction<AudioManager.OST> PlayMusic;
+    public static void OnPlayMusic(AudioManager.OST music) => PlayMusic?.Invoke(music);
     #endregion
 
     #region Utils

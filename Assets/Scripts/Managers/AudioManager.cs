@@ -5,10 +5,10 @@ using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
-    public enum AudioList
+    public enum OST
     {
         MainMenu,
-        Shoot
+        Tutorial,
     }
 
     [SerializeField] private List<AudioScriptable> _audioList;
@@ -34,7 +34,7 @@ public class AudioManager : MonoBehaviour
         EventManager.PlayMusic += FadeBetweenMusic;
     }
 
-    public void PlaySound(AudioList audioItem, bool randomSound = false, int index = 0)
+    public void PlaySound(OST audioItem, bool randomSound = false, int index = 0)
     {
         AudioScriptable audioScript = _audioList[(int)audioItem];
 
@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour
             _soundSource.PlayOneShot(audioScript.GetAudioClip(index));
     }
 
-    public void PlayMusic(AudioList audioItem, bool randomSound = false, int index = 0)
+    public void PlayMusic(OST audioItem, bool randomSound = false, int index = 0)
     {
         if (_isFading) return;
 
@@ -67,13 +67,13 @@ public class AudioManager : MonoBehaviour
         _musicSource.Play();
     }
 
-    private void FadeBetweenMusic(AudioList musicClip)
+    private void FadeBetweenMusic(OST musicClip)
     {
         _isFading = true;
         StartCoroutine("FadeOut", musicClip);
     }
 
-    private IEnumerator FadeOut(AudioList musicClip)
+    private IEnumerator FadeOut(OST musicClip)
     {
         float musicVolume;
         _mixer.GetFloat("MusicVolume", out musicVolume);
