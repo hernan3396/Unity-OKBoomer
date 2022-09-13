@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.080577634, g: 0.09927249, b: 0.34124932, a: 1}
+  m_IndirectSpecularColor: {r: 0.08061532, g: 0.09959756, b: 0.34130022, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10313,6 +10313,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerHandsCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 109171569411873956, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 474151964441755530, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_RootOrder
@@ -10322,6 +10327,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TronsText
+      objectReference: {fileID: 0}
+    - target: {fileID: 772646775366959353, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 863716823512589693, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
@@ -10448,6 +10458,26 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2505966741556750865, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2552130438097747812, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826448048421598170, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3043259314749342730, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3043259314749342730, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_IsActive
@@ -10457,6 +10487,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276750256899352158, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3394043457026011927, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
@@ -10538,6 +10573,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4608267761194363966, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4793286624851819449, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10602,6 +10642,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6031786176898694426, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6319458228582042119, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6325352918645635938, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6496204481732394033, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
@@ -10799,6 +10854,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7894415983973837655, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8024349116755530154, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8069358095820526557, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315664559057957423, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8506951735906229411, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_RootOrder
@@ -10833,6 +10908,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ImpulseDefinition.m_CustomImpulseShape.m_Curve.Array.data[1].outSlope
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718544860639082945, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8741147150374593590, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
