@@ -49,8 +49,6 @@ public class PlayerShoot : MonoBehaviour
         GameObject newBullet = _pools[(int)weapon.AmmoType].GetPooledObject();
         if (!newBullet) return;
 
-        StartRecoil(weapon.RecoilForce, weapon.Cooldown);
-
         if (newBullet.TryGetComponent(out Bullet bullet))
         {
             bullet.SetData(weapon.Damage, weapon.AmmoSpeed, weapon.MaxBounces, _player.ShootPos);
@@ -65,6 +63,8 @@ public class PlayerShoot : MonoBehaviour
 
             // EventManager.OnUpdateUI(UIManager.Element.Bullets, _player.BulletsAmount);
         }
+
+        StartRecoil(weapon.RecoilForce, weapon.Cooldown);
     }
 
     private void StartRecoil(float force, float dur)
