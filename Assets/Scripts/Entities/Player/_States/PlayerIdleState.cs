@@ -1,5 +1,6 @@
 public class PlayerIdleState : PlayerBaseState
 {
+    private Player _player;
     private PlayerMovement _playerMovement;
     private PlayerJump _playerJump;
 
@@ -7,13 +8,17 @@ public class PlayerIdleState : PlayerBaseState
     {
         if (_playerMovement == null)
         {
-            _playerMovement = stateManager.Player.PlayerMovement;
-            _playerJump = stateManager.Player.PlayerJump;
+            _player = stateManager.Player;
+            _playerMovement = _player.PlayerMovement;
+            _playerJump = _player.PlayerJump;
         }
     }
 
     public override void UpdateState(PlayerStateManager stateManager)
     {
+        if (_player.IsDead)
+            stateManager.SwitchState(PlayerStateManager.PlayerState.Dead);
+
         if (_playerMovement.IsMoving)
         {
             stateManager.SwitchState(PlayerStateManager.PlayerState.Run);

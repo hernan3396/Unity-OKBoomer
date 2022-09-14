@@ -33,6 +33,9 @@ public class PlayerSlideState : PlayerBaseState
     {
         if (_player.Paused) return;
 
+        if (_player.IsDead)
+            stateManager.SwitchState(PlayerStateManager.PlayerState.Dead);
+
         if (_crouching)
         {
             _crouchTimer += Time.deltaTime;

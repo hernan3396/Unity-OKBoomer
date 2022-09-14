@@ -13,6 +13,7 @@ public class Player : Entity, IPauseable
     #region Components
     [SerializeField] private PlayerScriptable _data;
     [SerializeField] private PhysicMaterial _noFricMat;
+    [SerializeField] private Animator _camAnimator;
     private Rigidbody _rb;
     #endregion
 
@@ -299,6 +300,11 @@ public class Player : Entity, IPauseable
         get { return _noFricMat; }
     }
 
+    public Animator CamAnimator
+    {
+        get { return _camAnimator; }
+    }
+
     public Rigidbody RB
     {
         get { return _rb; }
@@ -417,6 +423,11 @@ public class Player : Entity, IPauseable
     public Transform ShootPos
     {
         get { return _shootPos; }
+    }
+
+    public bool IsDead
+    {
+        get { return _isDead; }
     }
 
     public int BulletsAmount

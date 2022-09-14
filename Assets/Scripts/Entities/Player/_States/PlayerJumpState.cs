@@ -29,6 +29,9 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager stateManager)
     {
+        if (_player.IsDead)
+            stateManager.SwitchState(PlayerStateManager.PlayerState.Dead);
+
         if (_player.IsFalling)
             stateManager.SwitchState(PlayerStateManager.PlayerState.Fall);
     }

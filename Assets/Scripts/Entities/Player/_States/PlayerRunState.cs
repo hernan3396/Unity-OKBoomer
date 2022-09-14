@@ -21,6 +21,9 @@ public class PlayerRunState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager stateManager)
     {
+        if (_player.IsDead)
+            stateManager.SwitchState(PlayerStateManager.PlayerState.Dead);
+
         _playerLook.RotateWeapon();
 
         if (!_playerMovement.IsMoving)
