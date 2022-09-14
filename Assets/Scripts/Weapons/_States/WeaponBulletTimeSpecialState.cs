@@ -35,7 +35,7 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
 
     public override void UpdateState(WeaponStateManager state)
     {
-        if (_canAttack)
+        if (_canAttack && _player.BulletsAmount > 0)
         {
             _playerShoot.Shoot();
             _canAttack = false;
