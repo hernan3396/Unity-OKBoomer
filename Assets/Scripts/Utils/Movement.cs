@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
     #region Position
     [Header("Position")]
     [SerializeField] private Transform _finalPos;
+    private Vector3 _finalPosition; // esta es a la que te moves
     #endregion
 
     #region Settings
@@ -30,6 +31,7 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         _transform = GetComponent<Transform>();
+        _finalPosition = _finalPos.position;
         _initPos = _transform.position;
     }
 
@@ -50,7 +52,7 @@ public class Movement : MonoBehaviour
 
     public void PlatformMovement()
     {
-        _transform.DOMove(_finalPos.position, _vel)
+        _transform.DOMove(_finalPosition, _vel)
         .SetUpdate(UpdateType.Fixed)
         .SetEase(_easeFunc)
         .SetLoops(-1, LoopType.Yoyo);
@@ -58,7 +60,7 @@ public class Movement : MonoBehaviour
 
     public void DoorMovement()
     {
-        _transform.DOMove(_finalPos.position, _vel)
+        _transform.DOMove(_finalPosition, _vel)
         .SetEase(_easeFunc)
         .SetUpdate(UpdateType.Fixed);
     }
@@ -80,7 +82,7 @@ public class Movement : MonoBehaviour
         .SetLoops(-1, LoopType.Yoyo);
 
         // movimiento vertical
-        _transform.DOMove(_finalPos.position, _vel)
+        _transform.DOMove(_finalPosition, _vel)
         // .SetRelative(true)
         .SetEase(_easeFunc)
         .SetLoops(-1, LoopType.Yoyo);
@@ -88,7 +90,7 @@ public class Movement : MonoBehaviour
 
     private void ElevatorUp()
     {
-        _transform.DOMove(_finalPos.position, _vel)
+        _transform.DOMove(_finalPosition, _vel)
         .SetEase(_easeFunc)
         .SetUpdate(UpdateType.Fixed);
     }
