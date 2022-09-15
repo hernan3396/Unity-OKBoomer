@@ -34,7 +34,7 @@ public class Pickup : MonoBehaviour
                     _player.PickUpAmmo(_ammount);
                     break;
                 case PickupType.Weapon:
-                    _player.PickUpWeapon(_weapon);
+                    _player.PickUpWeapon();
                     break;
             }
 

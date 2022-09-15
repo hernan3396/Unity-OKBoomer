@@ -3,7 +3,6 @@ using UnityEngine;
 public class WeaponChangeOutState : WeaponBaseState
 {
     private Player _player;
-    private PlayerShoot _playerShoot;
     private WeaponManager _weaponManager;
     private UtilTimer _utilTimer;
     private WeaponStateManager _state;
@@ -18,8 +17,11 @@ public class WeaponChangeOutState : WeaponBaseState
             _utilTimer = GetComponent<UtilTimer>();
         }
 
-        _utilTimer.StartTimer(_player.CurrentWeaponData.ChangeDur);
+        _utilTimer.StartTimer(_player.CurrentWeaponData.Data.ChangeDur);
         _utilTimer.onTimerCompleted += OnTimerCompleted;
+
+
+        _player.CurrentWeaponData.ChangeOut();
     }
 
     public override void UpdateState(WeaponStateManager state)
@@ -29,8 +31,8 @@ public class WeaponChangeOutState : WeaponBaseState
 
     private void OnTimerCompleted()
     {
-        _player.GetCurrentModel.SetActive(false);
-        _player.ChangeWeapons(_weaponManager.CurrentWeapon);
+        _player.CurrentWeaponData.gameObject.SetActive(false);
+        // _player.ChangeWeapons(_weaponManager.CurrentWeapon);
         _state.SwitchState(WeaponStateManager.State.ChangeIn);
     }
 }

@@ -41,6 +41,21 @@ public class PlayerLook : MonoBehaviour
         UpdateRotation();
     }
 
+    //     private void AddRecoil(Vector2 recoilOffset)
+    // {
+    // DOVirtual.Float(_rotations.x, _rotations.x - recoilOffset.y, 0.1f, (float value) => {
+    // _rotations.x = value;
+    // });
+
+    // _rotations.x = Mathf.Clamp(_rotations.x, -60, 60);
+
+    // DOVirtual.Float(_rotations.y, _rotations.y - recoilOffset.x, 0.1f, (float value) => {
+    // _rotations.y += recoilOffset.x;
+    // });
+
+    // UpdateRotations();
+    // }
+
     public void AddRecoil(Vector3 force)
     {
         _rotations.x += force.x;

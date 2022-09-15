@@ -25,21 +25,21 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
             _utilTimer = GetComponent<UtilTimer>();
         }
 
-        Time.timeScale = _player.CurrentWeaponData.SpecialDamage * 0.1f;
+        Time.timeScale = _player.CurrentWeaponData.Data.SpecialDamage * 0.1f;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
-        _utilTimer.StartTimer(_player.CurrentWeaponData.SpecialTime);
+        _utilTimer.StartTimer(_player.CurrentWeaponData.Data.SpecialTime);
         _utilTimer.onTimerCompleted += OnTimerCompleted;
         _utilTimerShooting.onTimerCompleted += CanAttack;
     }
 
     public override void UpdateState(WeaponStateManager state)
     {
-        if (_canAttack && _player.BulletsAmount > 0)
+        if (_canAttack && _player.CurrentWeaponData.CurrentBullets > 0)
         {
             _playerShoot.Shoot();
             _canAttack = false;
-            _utilTimerShooting.StartTimer(_player.CurrentWeaponData.Cooldown);
+            _utilTimerShooting.StartTimer(_player.CurrentWeaponData.Data.Cooldown);
         }
 
         if (!_playerShoot.IsSpecialShooting)

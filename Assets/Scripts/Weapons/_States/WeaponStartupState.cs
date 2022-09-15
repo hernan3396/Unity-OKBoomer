@@ -17,7 +17,7 @@ public class WeaponStartupState : WeaponBaseState
             _utilTimer = GetComponent<UtilTimer>();
         }
 
-        _utilTimer.StartTimer(_player.CurrentWeaponData.Startup);
+        _utilTimer.StartTimer(_player.CurrentWeaponData.Data.Startup);
         _utilTimer.onTimerCompleted += OnTimerCompleted;
     }
 

@@ -17,7 +17,7 @@ public class WeaponSpecialStartupState : WeaponBaseState
             _utilTimer = GetComponent<UtilTimer>();
         }
 
-        _utilTimer.StartTimer(_player.CurrentWeaponData.SpecialStartup);
+        _utilTimer.StartTimer(_player.CurrentWeaponData.Data.SpecialStartup);
         _utilTimer.onTimerCompleted += OnTimerCompleted;
     }
 
@@ -29,7 +29,7 @@ public class WeaponSpecialStartupState : WeaponBaseState
 
     private void OnTimerCompleted()
     {
-        switch (_player.CurrentWeaponData.SpecialType)
+        switch (_player.CurrentWeaponData.Data.SpecialType)
         {
             case WeaponScriptable.SpecialAttack.Laser:
                 _state.SwitchState(WeaponStateManager.State.LaserSpecial);

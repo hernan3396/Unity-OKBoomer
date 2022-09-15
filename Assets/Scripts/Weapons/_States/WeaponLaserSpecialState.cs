@@ -32,7 +32,7 @@ public class WeaponLaserSpecialState : WeaponBaseState, IPauseable
 
         _laser.SetActive(true);
 
-        _utilTimer.StartTimer(_player.CurrentWeaponData.SpecialTime);
+        _utilTimer.StartTimer(_player.CurrentWeaponData.Data.SpecialTime);
         _utilTimer.onTimerCompleted += OnTimerCompleted;
     }
 
@@ -60,13 +60,13 @@ public class WeaponLaserSpecialState : WeaponBaseState, IPauseable
             _laserLR.SetPosition(1, hit.point);
 
             if (hit.collider.transform.parent.TryGetComponent(out Enemy enemy))
-                enemy.TakeDamage(_player.CurrentWeaponData.SpecialDamage, hit.transform);
+                enemy.TakeDamage(_player.CurrentWeaponData.Data.SpecialDamage, hit.transform);
 
             if (hit.collider.transform.TryGetComponent(out EnemyHead head))
-                head.TakeDamage(_player.CurrentWeaponData.SpecialDamage, hit.transform);
+                head.TakeDamage(_player.CurrentWeaponData.Data.SpecialDamage, hit.transform);
 
             if (hit.transform.parent.TryGetComponent(out Breakable breakable))
-                breakable.TakeDamage(_player.CurrentWeaponData.SpecialDamage);
+                breakable.TakeDamage(_player.CurrentWeaponData.Data.SpecialDamage);
         }
         else
             _laserLR.SetPosition(1, _shootPoint.position + _shootPoint.forward * 20);
