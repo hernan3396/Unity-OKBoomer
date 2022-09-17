@@ -15,7 +15,7 @@ MonoBehaviour:
   MaxHealth: 100
   Invulnerability: 1
   CrouchTimer: 0.6
-  CrouchVel: 5
+  CrouchVel: 160
   Speed: 32
   HalfGravityLimit: 0.1
   CoyoteMaxTime: 0.2

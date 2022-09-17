@@ -4,6 +4,7 @@ public class PlayerSlide : MonoBehaviour
 {
     #region Components
     private Player _player;
+    private PlayerMovement _playerMovement;
     #endregion
 
     #region Cameras
@@ -16,6 +17,7 @@ public class PlayerSlide : MonoBehaviour
     private void Start()
     {
         _player = GetComponent<Player>();
+        _playerMovement = _player.PlayerMovement;
 
         _fpCamera = _player.FpCamera.gameObject;
         _slideCamera = _player.SlideCamera.gameObject;
@@ -34,11 +36,15 @@ public class PlayerSlide : MonoBehaviour
         _fpCamera.SetActive(false);
 
         int speed = _player.Data.CrouchVel;
+        Vector2 dir = _playerMovement.DirInput;
 
         _player.StandingHitbox.SetActive(false);
         _player.SlidingHitbox.SetActive(true);
 
-        Vector3 newVel = new Vector3(_player.RB.velocity.x * speed, _player.RB.velocity.y, _player.RB.velocity.z * speed);
+        Vector3 newVel = (_player.Transform.right * _playerMovement.DirInput.x + _player.Transform.forward * _playerMovement.DirInput.y).normalized;
+        newVel *= speed;
+        newVel.y = _player.RB.velocity.y;
+
         _player.RB.velocity = newVel;
     }
 
