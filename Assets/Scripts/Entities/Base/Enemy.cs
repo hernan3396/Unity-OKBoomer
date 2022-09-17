@@ -188,10 +188,19 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     public void SearchWalkPoint()
     {
         //Calculate random point in range
-        float randomZ = Random.Range(-_data.WalkPointRange, _data.WalkPointRange);
-        float randomX = Random.Range(-_data.WalkPointRange, _data.WalkPointRange);
+        Vector3 randDir = Random.insideUnitSphere * _data.WalkPointRange;
+        randDir += _transform.position;
+        _destination = randDir;
+    }
 
-        _destination = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+    public void Dodge()
+    {
+        int dir = Random.Range(-1, 1);
+        if (dir == 0) dir = 1;
+
+        Vector3 dodgeDir = _transform.position + _transform.right * dir * _data.DodgeRange;
+
+        _destination = dodgeDir;
     }
 
     public void GoToDestination()

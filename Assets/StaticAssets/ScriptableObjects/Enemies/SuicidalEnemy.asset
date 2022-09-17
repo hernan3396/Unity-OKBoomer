@@ -18,7 +18,10 @@ MonoBehaviour:
   Weapon: {fileID: 11400000, guid: 06a29a49f0c30da4882a2ac877b4d959, type: 2}
   Speed: 20
   Acceleration: 10
-  WalkPointRange: 5
+  WalkPointRange: 20
+  DodgeRange: 0
+  DodgeSpeed: 0
+  DodgeAcceleration: 0
   VisionRange: 80
   AttackRange: 35
   ChasingRange: 150

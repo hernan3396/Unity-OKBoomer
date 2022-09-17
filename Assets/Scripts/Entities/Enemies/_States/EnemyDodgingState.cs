@@ -1,13 +1,22 @@
+using UnityEngine.AI;
+
 public class EnemyDodgingState : EnemyBaseState
 {
     private Enemy _enemy;
+    private NavMeshAgent _agent;
 
     public override void OnEnterState(EnemyStateManager state)
     {
         if (_enemy == null)
+        {
             _enemy = state.Enemy;
+            _agent = _enemy.Agent;
+        }
 
-        _enemy.SearchWalkPoint();
+        _agent.speed = _enemy.Data.DodgeSpeed;
+        _agent.acceleration = _enemy.Data.DodgeAcceleration;
+
+        _enemy.Dodge();
         _enemy.GoToDestination();
         _enemy.Tookdamage = false;
         _enemy.IsDodging = true;
@@ -39,5 +48,7 @@ public class EnemyDodgingState : EnemyBaseState
     public override void OnExitState(EnemyStateManager state)
     {
         _enemy.IsDodging = false;
+        _agent.speed = _enemy.Data.Speed;
+        _agent.acceleration = _enemy.Data.Acceleration;
     }
 }
