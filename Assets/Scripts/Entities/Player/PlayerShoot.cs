@@ -54,7 +54,7 @@ public class PlayerShoot : MonoBehaviour
 
         if (newBullet.TryGetComponent(out Bullet bullet))
         {
-            bullet.SetData(weaponData.Damage, weaponData.AmmoSpeed, weaponData.MaxBounces, weapon.ShootPos);
+            bullet.SetData(weaponData.Damage, weaponData.AmmoSpeed, weaponData.MaxBounces, weapon.GetShootPos());
             newBullet.SetActive(true);
             bullet.Shoot(weaponData.Accuracy);
 

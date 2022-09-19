@@ -10668,6 +10668,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4015882154348966108, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4386108380713917058, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10716,7 +10721,7 @@ PrefabInstance:
     - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: _maxWeapons
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
@@ -10848,6 +10853,16 @@ PrefabInstance:
       propertyPath: _shootPos
       value: 
       objectReference: {fileID: 6907486640054362921}
+    - target: {fileID: 7404752143931767299, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: _shootPos.Array.data[1]
+      value: 
+      objectReference: {fileID: 6907486640054362920}
+    - target: {fileID: 7404752143931767299, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: _shootPos.Array.data[2]
+      value: 
+      objectReference: {fileID: 6907486640054362920}
     - target: {fileID: 7566331723573724711, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_IsActive
@@ -10883,6 +10898,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8268928620780690313, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: _shootPos.Array.data[1]
+      value: 
+      objectReference: {fileID: 6907486640054362922}
     - target: {fileID: 8315664559057957423, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_Layer
@@ -10949,6 +10969,12 @@ Transform:
 --- !u!4 &6907486640054362921 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7630167084272520325, guid: 3766620456c146841a37bb25ccff1851,
+    type: 3}
+  m_PrefabInstance: {fileID: 6907486640054362919}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6907486640054362922 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3394043457026011927, guid: 3766620456c146841a37bb25ccff1851,
     type: 3}
   m_PrefabInstance: {fileID: 6907486640054362919}
   m_PrefabAsset: {fileID: 0}

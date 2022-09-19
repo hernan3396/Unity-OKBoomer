@@ -5,8 +5,9 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private TMP_Text _uiIndicator;
     [SerializeField] private WeaponScriptable _data;
-    [SerializeField] private Transform _shootPos;
+    [SerializeField] private Transform[] _shootPos;
     [SerializeField] private int _currentBullets;
+    private int _lastShootPos = 0;
     private Animator _animator;
 
     private int _changeInHash;
@@ -60,6 +61,17 @@ public class Weapon : MonoBehaviour
     {
         _currentBullets = _data.MaxAmmo;
     }
+
+    public Transform GetShootPos()
+    {
+        Transform pos = _shootPos[_lastShootPos];
+        _lastShootPos += 1;
+
+        if (_lastShootPos >= _shootPos.Length)
+            _lastShootPos = 0;
+
+        return pos;
+    }
     #endregion
 
     #region Getter/Setter
@@ -75,7 +87,7 @@ public class Weapon : MonoBehaviour
 
     public Transform ShootPos
     {
-        get { return _shootPos; }
+        get { return _shootPos[0]; }
     }
     #endregion
 }

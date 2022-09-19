@@ -32,7 +32,7 @@ public class WeaponExplosiveSpecialState : WeaponBaseState
         Weapon weapon = _player.CurrentWeaponData;
 
         _explosiveScript.ActivateBullet();
-        _explosiveScript.SetData((int)weapon.Data.SpecialDamage, weapon.Data.AmmoSpeed, 0, weapon.ShootPos);
+        _explosiveScript.SetData((int)weapon.Data.SpecialDamage, weapon.Data.AmmoSpeed, 0, weapon.GetShootPos());
         _explosiveScript.Shoot(new Vector2(0, 0));
     }
 }

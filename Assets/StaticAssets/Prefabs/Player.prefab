@@ -510,7 +510,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiIndicator: {fileID: 5940134309993813847}
   _data: {fileID: 11400000, guid: 87ccc6d67f636094e8200d9d053ef9a1, type: 2}
-  _shootPos: {fileID: 3394043457026011927}
+  _shootPos:
+  - {fileID: 3394043457026011927}
   _currentBullets: 0
 --- !u!1 &1285160212077576358
 GameObject:
@@ -777,7 +778,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiIndicator: {fileID: 7265758085501843192}
   _data: {fileID: 11400000, guid: a206f735466953544b86ec814fbd42fa, type: 2}
-  _shootPos: {fileID: 3394043457026011927}
+  _shootPos:
+  - {fileID: 5868897917307987892}
   _currentBullets: 0
 --- !u!1 &2096365309635204246
 GameObject:
@@ -3518,7 +3520,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiIndicator: {fileID: 4296379722689372597}
   _data: {fileID: 11400000, guid: 813fa00713a872444926c8ba8e5ea2c2, type: 2}
-  _shootPos: {fileID: 3394043457026011927}
+  _shootPos:
+  - {fileID: 7630167084272520325}
   _currentBullets: 0
 --- !u!1 &8924028944167082753
 GameObject:
