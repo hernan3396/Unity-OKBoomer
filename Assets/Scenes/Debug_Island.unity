@@ -10391,7 +10391,7 @@ PrefabInstance:
     - target: {fileID: 3916339879476137753, guid: f715f2401401d6a4fab90409ea4efd46,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3916339879476137755, guid: f715f2401401d6a4fab90409ea4efd46,
         type: 3}
@@ -10410,6 +10410,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 813fa00713a872444926c8ba8e5ea2c2,
         type: 2}
+    - target: {fileID: 6496104098053645462, guid: f715f2401401d6a4fab90409ea4efd46,
+        type: 3}
+      propertyPath: _weaponIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6787049002868625074, guid: f715f2401401d6a4fab90409ea4efd46,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -10708,6 +10713,11 @@ PrefabInstance:
       propertyPath: _cameraParent
       value: 
       objectReference: {fileID: 1954138643}
+    - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: _maxWeapons
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: _testList.Array.size
@@ -11325,7 +11335,7 @@ PrefabInstance:
     - target: {fileID: 3383900504121028152, guid: 2e3e09573ba98ee4492586c0e8204557,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7092767242795895594, guid: 2e3e09573ba98ee4492586c0e8204557,
         type: 3}

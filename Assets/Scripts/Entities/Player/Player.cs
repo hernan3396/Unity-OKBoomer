@@ -239,8 +239,14 @@ public class Player : Entity, IPauseable
         }
     }
 
-    public void PickUpWeapon()
+    public void PickUpWeapon(int weaponIndex)
     {
+        if (weaponIndex <= _maxWeapons)
+        {
+            PickUpAmmo(1);
+            return; // si spameas el nivel en busca de armas esto no te deja agarrar la siguiente
+        }
+
         if (_maxWeapons >= _weapons.Length) return;
 
         _maxWeapons += 1;

@@ -12,6 +12,7 @@ public class Pickup : MonoBehaviour
     private Player _player;
     [SerializeField] private int _ammount;
     [SerializeField] private PickupType _pickupType;
+    [SerializeField] private int _weaponIndex; // es el arma "maxima" que da, asi si spameas el mismo pickup de arma recargando el nivel no agarras las siguientes hasta la maxima
     [SerializeField] private GameObject _parent;
 
     private void Start()
@@ -33,7 +34,7 @@ public class Pickup : MonoBehaviour
                     _player.PickUpAmmo(_ammount);
                     break;
                 case PickupType.Weapon:
-                    _player.PickUpWeapon();
+                    _player.PickUpWeapon(_weaponIndex);
                     break;
             }
 

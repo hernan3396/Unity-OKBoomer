@@ -14042,7 +14042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ammount: 25
   _pickupType: 2
-  _weapon: {fileID: 11400000, guid: 87ccc6d67f636094e8200d9d053ef9a1, type: 2}
+  _weaponIndex: 1
   _parent: {fileID: 7239162449718528743}
 --- !u!65 &1635605079615829067
 BoxCollider:
