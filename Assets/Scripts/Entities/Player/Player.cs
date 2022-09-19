@@ -228,9 +228,15 @@ public class Player : Entity, IPauseable
         // en el caso de armas lo multiplicamos
         // si value = 1, entonces solo le sumas 1/4, si es 2 es 1/2 y asi
         // no hablamos de esto pero lo voy a hacer que agarres 1/4 balas del maximo del arma seleccionada
-        Weapon currentWeapon = _weapons[_currentWeapon];
-        int nextAmmount = (int)(currentWeapon.Data.MaxAmmo * 0.25f) * value;
-        currentWeapon.AddBullets(nextAmmount);
+        // Weapon currentWeapon = _weapons[_currentWeapon];
+        // int nextAmmount = (int)(currentWeapon.Data.MaxAmmo * 0.25f) * value;
+        // currentWeapon.AddBullets(nextAmmount);
+
+        foreach (Weapon weapon in _weapons)
+        {
+            int nextAmmount = (int)(weapon.Data.MaxAmmo * 0.25f) * value;
+            weapon.AddBullets(nextAmmount);
+        }
     }
 
     public void PickUpWeapon()

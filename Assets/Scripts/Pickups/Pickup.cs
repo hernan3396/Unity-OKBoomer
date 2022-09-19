@@ -12,7 +12,6 @@ public class Pickup : MonoBehaviour
     private Player _player;
     [SerializeField] private int _ammount;
     [SerializeField] private PickupType _pickupType;
-    [SerializeField] private WeaponScriptable _weapon;
     [SerializeField] private GameObject _parent;
 
     private void Start()
