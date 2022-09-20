@@ -15,14 +15,18 @@ MonoBehaviour:
   MaxHealth: 100
   Invulnerability: 1
   CrouchTimer: 0.6
-  CrouchVel: 6
-  Speed: 36
+  CrouchVel: 160
+  Speed: 32
   HalfGravityLimit: 0.1
-  CoyoteMaxTime: 0.2
+  CoyoteMaxTime: 0.1
+  JumpBufferTime: 0.1
   JumpStrength: 40
   MaxFallSpeed: -60
   Gravity: 12
-  MouseSensitivity: 2
+  MovementModifier: 1.5
+  MouseSensitivity: 0.2
   LookLimits: {x: -90, y: 80}
   SwayMultiplier: 2
   SwaySmoothness: 8
+  WeaponAmplitude: 0.025
+  WeaponFrequency: 10
