@@ -10870,6 +10870,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TronsENCOMs
       objectReference: {fileID: 0}
+    - target: {fileID: 6500865902593840163, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6907486638399581665, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: _cameraParent

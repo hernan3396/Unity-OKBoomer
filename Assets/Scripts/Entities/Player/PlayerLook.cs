@@ -13,11 +13,14 @@ public class PlayerLook : MonoBehaviour
     private Vector2 _rotations;
     private float _timer;
 
+    private Vector2 _dirInput;
+
     private void Start()
     {
         _player = GetComponent<Player>();
 
         EventManager.Look += LookAtMouse;
+        EventManager.Move += ChangeDirection;
         _defaultYPos = _player.Arm.localPosition.y;
         _rotations = new Vector2(0, _player.Transform.eulerAngles.y);
     }
@@ -81,10 +84,23 @@ public class PlayerLook : MonoBehaviour
         _player.Arm.transform.localPosition = Vector3.Lerp(pos, finalPos, Time.deltaTime * 10);
     }
 
-    // pasar el recoil para aca
+    private void ChangeDirection(Vector2 move)
+    {
+        _dirInput = move;
+
+        if (_dirInput.x == 0) return;
+        // TiltCamera(-_dirInput.x);
+    }
+
+    private void TiltCamera(float value)
+    {
+        Vector3 camRotation = _player.CameraParent.eulerAngles;
+        _player.CameraParent.DORotate(new Vector3(camRotation.x, camRotation.y, 15) * value, .5f);
+    }
 
     private void OnDestroy()
     {
         EventManager.Look -= LookAtMouse;
+        EventManager.Move -= ChangeDirection;
     }
 }

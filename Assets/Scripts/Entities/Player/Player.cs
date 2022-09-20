@@ -28,6 +28,7 @@ public class Player : Entity, IPauseable
     [Header("Body Parts")]
     [SerializeField] private Transform _body;
     [SerializeField] private Transform _arm;
+    [SerializeField] private Transform _cameraParent;
     [SerializeField] private Transform _fpCamera;
     [SerializeField] private Transform _slideCamera;
     [SerializeField] private Transform _overlayCamera;
@@ -395,6 +396,11 @@ public class Player : Entity, IPauseable
     public bool IsDead
     {
         get { return _isDead; }
+    }
+
+    public Transform CameraParent
+    {
+        get { return _cameraParent; }
     }
     #endregion
 }

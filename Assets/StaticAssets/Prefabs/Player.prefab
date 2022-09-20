@@ -2299,6 +2299,7 @@ MonoBehaviour:
   _camAnimator: {fileID: 6500865902593840163}
   _body: {fileID: 6907486638399581670}
   _arm: {fileID: 5086191569925523561}
+  _cameraParent: {fileID: 3881670669428366345}
   _fpCamera: {fileID: 6907486639528443143}
   _slideCamera: {fileID: 2920825902777700643}
   _overlayCamera: {fileID: 3828174434420352160}
