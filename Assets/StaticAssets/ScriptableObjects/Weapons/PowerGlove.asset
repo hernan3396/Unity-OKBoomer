@@ -18,7 +18,7 @@ MonoBehaviour:
   Cooldown: 0.08
   Startup: 0
   Damage: 5
-  ChangeDur: 1
+  ChangeDur: 0.5
   SpecialType: 2
   SpecialDamage: 5
   SpecialStartup: 2
