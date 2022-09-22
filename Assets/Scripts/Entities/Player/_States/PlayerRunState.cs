@@ -48,5 +48,6 @@ public class PlayerRunState : PlayerBaseState
     public override void FixedUpdateState(PlayerStateManager stateManager)
     {
         _playerMovement.ApplyMovement();
+        _playerLook.TiltCamera();
     }
 }

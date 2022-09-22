@@ -3,6 +3,7 @@ public class PlayerIdleState : PlayerBaseState
     private Player _player;
     private PlayerMovement _playerMovement;
     private PlayerJump _playerJump;
+    private PlayerLook _playerLook;
 
     public override void OnEnterState(PlayerStateManager stateManager)
     {
@@ -11,6 +12,7 @@ public class PlayerIdleState : PlayerBaseState
             _player = stateManager.Player;
             _playerMovement = _player.PlayerMovement;
             _playerJump = _player.PlayerJump;
+            _playerLook = _player.PlayerLook;
         }
     }
 
@@ -34,6 +36,6 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void FixedUpdateState(PlayerStateManager player)
     {
-        return;
+        _playerLook.TiltCamera();
     }
 }

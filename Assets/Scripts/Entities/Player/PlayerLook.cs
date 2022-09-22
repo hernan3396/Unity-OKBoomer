@@ -10,7 +10,7 @@ public class PlayerLook : MonoBehaviour
 
     private Vector2 _frameVelocity;
     private float _defaultYPos;
-    private Vector2 _rotations;
+    private Vector3 _rotations;
     private float _timer;
 
     private Vector2 _dirInput;
@@ -56,9 +56,10 @@ public class PlayerLook : MonoBehaviour
     {
         Quaternion headRotation = Quaternion.AngleAxis(_rotations.x, Vector3.right);
         Quaternion bodyRotation = Quaternion.AngleAxis(_rotations.y, Vector3.up);
+        Quaternion tiltRotation = Quaternion.AngleAxis(_rotations.z, Vector3.forward);
 
         _player.SlideCamera.localRotation = headRotation;
-        _player.FpCamera.localRotation = headRotation;
+        _player.FpCamera.localRotation = headRotation * tiltRotation;
 
         _player.Body.localRotation = bodyRotation;
     }
@@ -87,15 +88,16 @@ public class PlayerLook : MonoBehaviour
     private void ChangeDirection(Vector2 move)
     {
         _dirInput = move;
-
-        if (_dirInput.x == 0) return;
-        // TiltCamera(-_dirInput.x);
     }
 
-    private void TiltCamera(float value)
+    public void TiltCamera()
     {
-        Vector3 camRotation = _player.CameraParent.eulerAngles;
-        _player.CameraParent.DORotate(new Vector3(camRotation.x, camRotation.y, 15) * value, .5f);
+        int tiltDir = Mathf.RoundToInt(-_dirInput.x);
+        int tiltAngle = 5;
+
+        _rotations.z = Mathf.Lerp(_rotations.z, tiltAngle * tiltDir, Time.deltaTime * 5);
+
+        UpdateRotation();
     }
 
     private void OnDestroy()
