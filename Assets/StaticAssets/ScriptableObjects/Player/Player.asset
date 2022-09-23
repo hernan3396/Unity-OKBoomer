@@ -28,5 +28,7 @@ MonoBehaviour:
   LookLimits: {x: -90, y: 80}
   SwayMultiplier: 2
   SwaySmoothness: 8
+  TiltAngle: 5
+  TiltSpeed: 5
   WeaponAmplitude: 0.025
   WeaponFrequency: 10

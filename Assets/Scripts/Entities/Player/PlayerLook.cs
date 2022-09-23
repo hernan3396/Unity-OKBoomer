@@ -93,9 +93,9 @@ public class PlayerLook : MonoBehaviour
     public void TiltCamera()
     {
         int tiltDir = Mathf.RoundToInt(-_dirInput.x);
-        int tiltAngle = 5;
+        int tiltAngle = _player.Data.TiltAngle;
 
-        _rotations.z = Mathf.Lerp(_rotations.z, tiltAngle * tiltDir, Time.deltaTime * 5);
+        _rotations.z = Mathf.Lerp(_rotations.z, tiltAngle * tiltDir, Time.deltaTime * _player.Data.TiltSpeed);
 
         UpdateRotation();
     }
