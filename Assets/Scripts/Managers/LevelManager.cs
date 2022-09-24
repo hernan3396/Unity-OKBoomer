@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour
         {
             StartCoroutine("StartLevel");
             EventManager.Pause += OnPause;
-            EventManager.ChangeLevel += OnNextLevel;
+            EventManager.ChangeLevel += OnNextLevelNoSave;
             EventManager.GameOver += ReloadLevel;
         }
     }
@@ -81,6 +81,19 @@ public class LevelManager : MonoBehaviour
         LoadLevel(scene);
     }
 
+    public void OnNextLevelNoSave(string scene)
+    {
+        StartCoroutine("ChangingLevelNoSave", scene);
+    }
+
+    private IEnumerator ChangingLevelNoSave(string scene)
+    {
+        EventManager.OnStartTransition(_transitionSpeed);
+        yield return new WaitForSeconds(_transitionSpeed);
+
+        LoadLevel(scene);
+    }
+
     public void StartTransition(string scene)
     {
         StartCoroutine("Transition", scene);
@@ -89,7 +102,7 @@ public class LevelManager : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.Pause -= OnPause;
-        EventManager.ChangeLevel -= OnNextLevel;
+        EventManager.ChangeLevel -= OnNextLevelNoSave;
         EventManager.GameOver -= ReloadLevel;
     }
 }

@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 78b53ea925abf174db9bc3a32455ec16, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ammount: 25
   _pickupType: 0
-  _weapon: {fileID: 0}
+  _weaponIndex: 0
   _parent: {fileID: 6942502894329527135}
 --- !u!1 &6942502892924628367
 GameObject:

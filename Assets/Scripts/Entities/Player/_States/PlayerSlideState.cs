@@ -46,7 +46,7 @@ public class PlayerSlideState : PlayerBaseState
 
             if (_crouchTimer >= _player.Data.CrouchTimer)
             {
-                if (Utils.RayHit(_crouchHitboxPos.position, _crouchHitboxPos.position + Vector3.up, "Ceiling", 5))
+                if (Utils.RayHit(_crouchHitboxPos.position, _crouchHitboxPos.position + Vector3.up, "Ceiling", 5, _player.Data.CeilingLayer))
                 {
                     _canStand = false;
                     stateManager.SwitchState(PlayerStateManager.PlayerState.Crouch);

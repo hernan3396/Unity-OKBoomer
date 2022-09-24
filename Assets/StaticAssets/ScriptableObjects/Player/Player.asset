@@ -17,6 +17,9 @@ MonoBehaviour:
   CrouchTimer: 0.6
   CrouchVel: 160
   Speed: 32
+  CeilingLayer:
+    serializedVersion: 2
+    m_Bits: 2147483647
   HalfGravityLimit: 0.1
   CoyoteMaxTime: 0.1
   JumpBufferTime: 0.1

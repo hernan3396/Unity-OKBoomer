@@ -163,6 +163,9 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 256
+  _visionLayer:
+    serializedVersion: 2
+    m_Bits: 2551
   BodyPivot: {fileID: 0}
   _floatingHeight: 1
   _floatingSpeed: 1

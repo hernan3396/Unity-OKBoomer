@@ -800,6 +800,9 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 256
+  _visionLayer:
+    serializedVersion: 2
+    m_Bits: 2551
   _shootingPivot: {fileID: 6608198227539871844}
 --- !u!1 &8032703309233796596
 GameObject:

@@ -30,7 +30,7 @@ public class PlayerCrouchState : PlayerBaseState
 
         _playerLook.RotateWeapon();
 
-        if (!Utils.RayHit(_crouchHitboxPos.position, _crouchHitboxPos.position + Vector3.up, "Ceiling", 5))
+        if (!Utils.RayHit(_crouchHitboxPos.position, _crouchHitboxPos.position + Vector3.up, "Ceiling", 5, _player.Data.CeilingLayer))
         {
             if (_player.IsGrounded)
             {

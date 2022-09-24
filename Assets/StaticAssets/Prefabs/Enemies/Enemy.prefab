@@ -754,6 +754,9 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 256
+  _visionLayer:
+    serializedVersion: 2
+    m_Bits: 2551
   _shootingPos: {fileID: 2569350235233298264}
 --- !u!114 &2569350237066391001
 MonoBehaviour:

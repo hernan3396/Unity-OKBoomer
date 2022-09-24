@@ -12316,13 +12316,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2395439072523636899, guid: 85bda5b00ff15be4abcf2e8eb1d77d44,
         type: 3}
+      propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395439072523636899, guid: 85bda5b00ff15be4abcf2e8eb1d77d44,
+        type: 3}
+      propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395439072523636899, guid: 85bda5b00ff15be4abcf2e8eb1d77d44,
+        type: 3}
       propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2077519123}
     - target: {fileID: 2395439072523636899, guid: 85bda5b00ff15be4abcf2e8eb1d77d44,
         type: 3}
+      propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395439072523636899, guid: 85bda5b00ff15be4abcf2e8eb1d77d44,
+        type: 3}
       propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnNextLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395439072523636899, guid: 85bda5b00ff15be4abcf2e8eb1d77d44,
+        type: 3}
+      propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395439072523636899, guid: 85bda5b00ff15be4abcf2e8eb1d77d44,
+        type: 3}
+      propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395439072523636899, guid: 85bda5b00ff15be4abcf2e8eb1d77d44,
+        type: 3}
+      propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85bda5b00ff15be4abcf2e8eb1d77d44, type: 3}

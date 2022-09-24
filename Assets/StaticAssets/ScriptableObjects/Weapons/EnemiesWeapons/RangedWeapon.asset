@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 3
   Name: Ranged Weapon
-  Accuracy: {x: 10, y: 10}
+  Accuracy: {x: 5, y: 5}
   Cooldown: 0.3
   Startup: 0
   Damage: 10

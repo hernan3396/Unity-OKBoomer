@@ -91,7 +91,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
-    - _BigWavesTilling: 1
+    - _BigWavesTilling: 0.1
     - _Blend: 0
     - _BumpScale: 1
     - _CastShadows: 1
@@ -113,15 +113,15 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _SmallWavesTilling: 4
+    - _SmallWavesTilling: 0.1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _Surface: 1
     - _UseCustomMap: 1
-    - _WaveBias: 0.4
-    - _WaveSpeed: 0.5
+    - _WaveBias: 0
+    - _WaveSpeed: 0.2
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 0

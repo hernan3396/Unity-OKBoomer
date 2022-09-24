@@ -32,6 +32,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     #region AI
     [Header("AI")]
     [SerializeField] protected LayerMask _playerLayer;
+    [SerializeField] protected LayerMask _visionLayer;
     protected Vector3 _destination;
     protected NavMeshAgent _agent;
     protected Transform _player;
@@ -160,7 +161,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         {
             Vector3 playerPos = circleHit[0].transform.position;
 
-            return Utils.RayHit(_headPos.position, playerPos, "Player", range);
+            return Utils.RayHit(_headPos.position, playerPos, "Player", range, _visionLayer);
         }
 
         return false;
@@ -230,9 +231,11 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     public void RotateTowards(Transform other)
     {
         Vector3 lookDir = Utils.CalculateDirection(_transform.position, _player.position);
+        // _transform.rotation = Quaternion.Lerp(_transform.rotation, Quaternion.LookRotation(lookDir), _data.Speed * Time.deltaTime);
+        _transform.rotation = Quaternion.LookRotation(lookDir);
 
-        Vector3 newDir = Vector3.RotateTowards(_transform.forward, lookDir, _data.Speed * Time.deltaTime, 0.0f);
-        _transform.rotation = Quaternion.LookRotation(newDir);
+        // Vector3 newDir = Vector3.RotateTowards(_transform.forward, lookDir, _data.Speed * Time.deltaTime, 0.1f);
+        // _transform.rotation = Quaternion.LookRotation(newDir);
     }
 
     public void StopAgent(bool value)
