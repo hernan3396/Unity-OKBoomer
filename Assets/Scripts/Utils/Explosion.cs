@@ -30,7 +30,6 @@ public class Explosion : MonoBehaviour
 
         foreach (Collider collider in hitColliders)
         {
-            Debug.Log(collider.name);
             Transform otherTransform = collider.transform;
 
             if (otherTransform.CompareTag("Player"))

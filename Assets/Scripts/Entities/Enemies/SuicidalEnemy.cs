@@ -26,8 +26,15 @@ public class SuicidalEnemy : Enemy
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.transform.CompareTag("Bullet")) return;
-        Death();
+        Transform otherTransform = other.transform;
+
+        if (otherTransform.CompareTag("Bullet"))
+            Death();
+
+        if (otherTransform.CompareTag("Player"))
+            Death();
+
+        Bounce(other);
     }
 
     public override void Attacking()
@@ -49,5 +56,24 @@ public class SuicidalEnemy : Enemy
             explosion.SetActive(true);
             explosionScript.StartExplosion(_data.Weapon.Startup, 0.5f, _data.Weapon.Damage);
         }
+    }
+
+    private void Bounce(Collision col)
+    {
+        Vector3 inNormal;
+        Vector3 crashPos;
+        Vector3 outDir;
+
+        inNormal = col.contacts[0].normal;
+        crashPos = _transform.position;
+        outDir = Vector3.Reflect(_rb.velocity, inNormal);
+
+        outDir += new Vector3(0, 10, 0);
+
+        Debug.Log(outDir.normalized);
+
+        _rb.velocity = Vector3.zero;
+        _rb.AddForce(outDir.normalized * 100, ForceMode.Impulse);
+        // _rb.velocity = outDir.normalized * 20;
     }
 }

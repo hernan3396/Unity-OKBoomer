@@ -16,16 +16,17 @@ MonoBehaviour:
   Name: Ranged Weapon
   Accuracy: {x: 10, y: 10}
   Cooldown: 2
-  Startup: 10
+  Startup: 40
   Damage: 20
+  ChangeDur: 0
   SpecialType: 0
   SpecialDamage: 0
   SpecialStartup: 0
   SpecialTime: 0
   SpecialCooldown: 0
+  UseBullets: 1
   AmmoType: 0
   MaxBounces: 0
   AmmoSpeed: 60
   MaxAmmo: 0
   RecoilForce: 0
-  RecoilTime: 0
