@@ -3,6 +3,8 @@ using UnityEngine;
 public class ExplosiveBullet : Bullet
 {
     [SerializeField] private GameObject _bulletModel;
+    [SerializeField] private int _explosionSize = 10;
+    [SerializeField] private float _explosionDur = 0.5f;
     private PoolManager _explosionPool;
 
     protected override void Start()
@@ -28,7 +30,7 @@ public class ExplosiveBullet : Bullet
         {
             explosion.transform.position = _transform.position;
             explosion.SetActive(true);
-            explosionScript.StartExplosion(10, 0.5f, _damage);
+            explosionScript.StartExplosion(_explosionSize, _explosionDur, _damage);
         }
     }
 

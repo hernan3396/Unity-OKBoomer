@@ -58,14 +58,20 @@ public class WeaponLaserSpecialState : WeaponBaseState, IPauseable
         if (Physics.Raycast(_shootPoint.position, _shootPoint.forward, out RaycastHit hit, Mathf.Infinity))
         {
             _laserLR.SetPosition(1, hit.point);
+            Transform otherTransform = hit.transform;
 
-            if (hit.collider.transform.parent.TryGetComponent(out Enemy enemy))
-                enemy.TakeDamage(_player.CurrentWeaponData.Data.SpecialDamage, hit.transform);
+            if (otherTransform.transform.TryGetComponent(out EnemyHead head))
+                head.TakeDamage(_player.CurrentWeaponData.Data.SpecialDamage, otherTransform);
 
-            if (hit.collider.transform.TryGetComponent(out EnemyHead head))
-                head.TakeDamage(_player.CurrentWeaponData.Data.SpecialDamage, hit.transform);
+            if (otherTransform.TryGetComponent(out Enemy enemyRB))
+                enemyRB.TakeDamage(_player.CurrentWeaponData.Data.SpecialDamage, otherTransform);
 
-            if (hit.transform.parent.TryGetComponent(out Breakable breakable))
+            if (otherTransform.parent == null) return;
+
+            if (otherTransform.parent.TryGetComponent(out Enemy enemy))
+                enemy.TakeDamage(_player.CurrentWeaponData.Data.SpecialDamage, otherTransform);
+
+            if (otherTransform.parent.TryGetComponent(out Breakable breakable))
                 breakable.TakeDamage(_player.CurrentWeaponData.Data.SpecialDamage);
         }
         else

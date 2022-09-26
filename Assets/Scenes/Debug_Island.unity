@@ -577,7 +577,7 @@ PrefabInstance:
     - target: {fileID: 3676999668562893339, guid: 65e9be14261f22945afc49ba435ce04e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3676999669726389732, guid: 65e9be14261f22945afc49ba435ce04e,
         type: 3}
@@ -6113,7 +6113,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 127
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1474450381
 Transform:
   m_ObjectHideFlags: 0
@@ -6533,7 +6533,7 @@ PrefabInstance:
     - target: {fileID: 2569350237066390978, guid: 8e38918db35599041992eae36ee910a2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2569350237066390979, guid: 8e38918db35599041992eae36ee910a2,
         type: 3}
@@ -10664,7 +10664,7 @@ PrefabInstance:
     - target: {fileID: 8032703309078252923, guid: e511a1192f34be94fbbf87c782421184,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e511a1192f34be94fbbf87c782421184, type: 3}
@@ -10877,6 +10877,11 @@ PrefabInstance:
       objectReference: {fileID: 1954138643}
     - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
+      propertyPath: _godMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
       propertyPath: _testList.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -10953,7 +10958,7 @@ PrefabInstance:
     - target: {fileID: 6907486639528443142, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7777778
+      value: 1.7747035
       objectReference: {fileID: 0}
     - target: {fileID: 6907486639528443142, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
