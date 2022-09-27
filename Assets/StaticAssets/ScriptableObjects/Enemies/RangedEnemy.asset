@@ -25,3 +25,4 @@ MonoBehaviour:
   VisionRange: 80
   AttackRange: 70
   ChasingRange: 150
+  AimSpeed: 50
