@@ -27,5 +27,6 @@ public class EnemyScriptable : ScriptableObject
     public int VisionRange;
     public int AttackRange;
     public int ChasingRange;
+    public int AimSpeed;
     #endregion
 }

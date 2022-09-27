@@ -36,6 +36,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     protected Vector3 _destination;
     protected NavMeshAgent _agent;
     protected Transform _player;
+    protected PlayerMovement _playerMov;
     protected bool _canAttack = true;
     protected bool _tookDamage = false;
     protected bool _isDodging = false;
@@ -80,6 +81,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     protected virtual void Start()
     {
         _player = GameManager.GetInstance.Player.GetComponent<Transform>();
+        _playerMov = _player.GetComponent<Player>().PlayerMovement;
         _bloodPool = GameManager.GetInstance.GetEnemyPools[(int)PoolType.Blood];
     }
 
@@ -178,7 +180,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         Vector3 lookDir = (_player.position - _transform.position).normalized;
         float lookingForward = Vector3.Dot(_transform.forward, lookDir);
 
-        if (lookingForward > 0.9f && lookingForward <= 1.1f)
+        if (lookingForward > 0.8f && lookingForward <= 1.2f)
             return true;
 
         return false;
@@ -228,14 +230,29 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         _agent.SetDestination(_player.position);
     }
 
+    protected Vector3 PredictMovement()
+    {
+        float timeToReach = Vector3.Distance(_transform.position, _player.position) / _data.Weapon.AmmoSpeed;
+        Vector3 forwSpeed = _playerMov.GetVelocity.magnitude * _playerMov.DirInput;
+
+        int dir = 1;
+
+        if (_transform.right.x < 0)
+            dir = -1;
+
+        forwSpeed *= -dir;
+
+        Vector3 result = forwSpeed * timeToReach;
+        result.y = 0;
+
+        return result;
+    }
+
     public void RotateTowards(Transform other)
     {
-        Vector3 lookDir = Utils.CalculateDirection(_transform.position, _player.position);
-        // _transform.rotation = Quaternion.Lerp(_transform.rotation, Quaternion.LookRotation(lookDir), _data.Speed * Time.deltaTime);
+        Vector3 lookDir = Utils.CalculateDirection(_transform.position, _player.position + PredictMovement());
         _transform.rotation = Quaternion.LookRotation(lookDir);
-
-        // Vector3 newDir = Vector3.RotateTowards(_transform.forward, lookDir, _data.Speed * Time.deltaTime, 0.1f);
-        // _transform.rotation = Quaternion.LookRotation(newDir);
+        // _transform.forward = Vector3.Slerp(_transform.forward, lookDir, Time.deltaTime * _data.AimSpeed);
     }
 
     public void StopAgent(bool value)
