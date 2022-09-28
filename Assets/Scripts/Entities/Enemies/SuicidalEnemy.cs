@@ -8,6 +8,7 @@ public class SuicidalEnemy : Enemy
 
     [SerializeField] private float _floatingHeight = 1;
     [SerializeField] private float _floatingSpeed = 1;
+    [SerializeField] private int _currentBounces = 0;
 
     protected override void Start()
     {
@@ -40,7 +41,7 @@ public class SuicidalEnemy : Enemy
     public override void Attacking()
     {
         Vector3 direction = Utils.CalculateDirection(_transform.position, _player.position);
-        _rb.velocity = Vector3.Lerp(_rb.velocity, direction * _data.Speed * 2, Time.deltaTime);
+        _rb.velocity = Vector3.Lerp(_rb.velocity, direction * _data.Speed * 2, Time.deltaTime * _data.DodgeAcceleration);
     }
 
     protected override void Death()
@@ -61,19 +62,22 @@ public class SuicidalEnemy : Enemy
     private void Bounce(Collision col)
     {
         Vector3 inNormal;
-        Vector3 crashPos;
+        Vector3 crashVel;
+
         Vector3 outDir;
 
         inNormal = col.contacts[0].normal;
-        crashPos = _transform.position;
-        outDir = Vector3.Reflect(_rb.velocity, inNormal);
+        crashVel = (_rb.velocity).normalized; // la direccion opuesta
 
-        outDir += new Vector3(0, 10, 0);
-
-        Debug.Log(outDir.normalized);
+        outDir = Vector3.Reflect(crashVel, inNormal);
+        outDir.y = 1f;
 
         _rb.velocity = Vector3.zero;
-        _rb.AddForce(outDir.normalized * 100, ForceMode.Impulse);
-        // _rb.velocity = outDir.normalized * 20;
+        _rb.AddForce(outDir.normalized * _data.DodgeSpeed, ForceMode.Impulse);
+
+        _currentBounces += 1;
+
+        if (_currentBounces >= _data.DodgeRange)
+            Death();
     }
 }
