@@ -31,8 +31,8 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         _transform = GetComponent<Transform>();
-        _finalPosition = _finalPos.position;
         _initPos = _transform.position;
+        _finalPosition = _finalPos.position;
     }
 
     private void Start()
