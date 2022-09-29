@@ -21,6 +21,7 @@ public class Movement : MonoBehaviour
     #region Settings
     [Header("Settings")]
     [SerializeField] private Ease _easeFunc = Ease.InOutSine;
+    [SerializeField] private bool _autoStart = true;
     [SerializeField] private MovementType _type;
     [SerializeField] private float _vel = 1;
     #endregion
@@ -31,13 +32,21 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         _transform = GetComponent<Transform>();
-        _initPos = _transform.position;
-        _finalPosition = _finalPos.position;
     }
 
     private void Start()
     {
         EventManager.Pause += OnPause;
+
+        if (!_autoStart) return;
+
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        _initPos = _transform.position;
+        _finalPosition = _finalPos.position;
 
         switch (_type)
         {
@@ -100,6 +109,11 @@ public class Movement : MonoBehaviour
         _transform.DOMove(_initPos, _vel)
         .SetEase(_easeFunc)
         .SetUpdate(UpdateType.Fixed);
+    }
+
+    public void StartMovement()
+    {
+        Initialize();
     }
 
     private void OnCollisionEnter(Collision other)
