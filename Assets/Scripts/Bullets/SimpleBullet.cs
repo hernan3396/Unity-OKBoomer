@@ -29,6 +29,9 @@ public class SimpleBullet : Bullet
         if (otherTransform.TryGetComponent(out EnemyHead head))
             head.TakeDamage(_damage, _transform);
 
+        if (otherTransform.TryGetComponent(out Breakable breakable))
+            breakable.TakeDamage(_damage);
+
         if (otherTransform.parent == null)
         {
             DisableBullet();
@@ -37,9 +40,6 @@ public class SimpleBullet : Bullet
 
         if (otherTransform.parent.TryGetComponent(out Enemy enemy))
             enemy.TakeDamage(_damage, _transform);
-
-        if (otherTransform.parent.TryGetComponent(out Breakable breakable))
-            breakable.TakeDamage(_damage);
 
         DisableBullet();
     }

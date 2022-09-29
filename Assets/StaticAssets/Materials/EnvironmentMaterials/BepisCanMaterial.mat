@@ -107,7 +107,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DissolveValue: 0.5
+    - _DissolveValue: 0
     - _DstBlend: 0
     - _EdgeWidth: 0.1
     - _EnvironmentReflections: 1
@@ -127,7 +127,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _UseDissolve: 0
+    - _UseDissolve: 1
     - _UseNoiseCustomTexture: 0
     - _UseTextureAutotilling: 0
     - _UseVertexJitter: 1

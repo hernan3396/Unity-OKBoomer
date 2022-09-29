@@ -41,13 +41,13 @@ public class Explosion : MonoBehaviour
             if (otherTransform.TryGetComponent(out Enemy enemyRB))
                 enemyRB.TakeDamage(damage, otherTransform);
 
+            if (otherTransform.TryGetComponent(out Breakable breakable))
+                breakable.TakeDamage(damage);
+
             if (otherTransform.parent == null) return;
 
             if (otherTransform.parent.TryGetComponent(out Enemy enemy))
                 enemy.TakeDamage(damage);
-
-            if (otherTransform.parent.TryGetComponent(out Breakable breakable))
-                breakable.TakeDamage(damage);
         }
 
         _utilTimer.StartTimer(lifeTime);
