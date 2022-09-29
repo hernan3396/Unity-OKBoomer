@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
             EventManager.Pause += OnPause;
             EventManager.ChangeLevel += OnNextLevelNoSave;
             EventManager.GameOver += ReloadLevel;
+            EventManager.OnGameLoad();
         }
     }
 

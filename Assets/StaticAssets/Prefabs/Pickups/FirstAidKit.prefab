@@ -81,7 +81,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _finalPos: {fileID: 6942502892924628366}
   _easeFunc: 4
-  _type: 0
+  _autoStart: 0
+  _type: 4
   _vel: 5
 --- !u!65 &6310799183881603204
 BoxCollider:

@@ -81,6 +81,7 @@ public class Player : Entity, IPauseable
         SetBullets();
 
         EventManager.GameStart += GameStart;
+        // EventManager.LoadPlayerPos += ;
     }
 
 #if UNITY_EDITOR
@@ -95,6 +96,11 @@ public class Player : Entity, IPauseable
         EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
         _weapons[_currentWeapon].UpdateBullets();
         // EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
+    }
+
+    public void SetLoadedInfo(SaveData save)
+    {
+        _transform.position = save.GetPlayerPosition();
     }
 
     private void LoadComponents()
@@ -228,9 +234,6 @@ public class Player : Entity, IPauseable
         // en el caso de armas lo multiplicamos
         // si value = 1, entonces solo le sumas 1/4, si es 2 es 1/2 y asi
         // no hablamos de esto pero lo voy a hacer que agarres 1/4 balas del maximo del arma seleccionada
-        // Weapon currentWeapon = _weapons[_currentWeapon];
-        // int nextAmmount = (int)(currentWeapon.Data.MaxAmmo * 0.25f) * value;
-        // currentWeapon.AddBullets(nextAmmount);
 
         foreach (Weapon weapon in _weapons)
         {
@@ -395,6 +398,20 @@ public class Player : Entity, IPauseable
     public bool IsDead
     {
         get { return _isDead; }
+    }
+
+    public int[] GetBullets
+    {
+        get
+        {
+            int[] ammoCount = new int[3];
+            for (int i = 0; i < ammoCount.Length; i++)
+            {
+                ammoCount[i] = _weapons[i].CurrentBullets;
+            }
+
+            return ammoCount;
+        }
     }
     #endregion
 }

@@ -37,6 +37,12 @@ public static class EventManager
 
     public static event UnityAction<string, float> SaveTime;
     public static void OnSaveTime(string valueString, float valueInt) => SaveTime?.Invoke(valueString, valueInt);
+
+    public static event UnityAction GameSaved;
+    public static void OnGameSaved() => GameSaved?.Invoke();
+
+    public static event UnityAction GameLoad;
+    public static void OnGameLoad() => GameLoad?.Invoke();
     #endregion
 
     #region Levels
