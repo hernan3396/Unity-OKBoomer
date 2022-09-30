@@ -12,6 +12,7 @@ public class Player : Entity, IPauseable
     [SerializeField] private PlayerScriptable _data;
     [SerializeField] private PhysicMaterial _noFricMat;
     [SerializeField] private Animator _camAnimator;
+    private int _idleCamAnimation;
     private Rigidbody _rb;
     #endregion
 
@@ -101,6 +102,7 @@ public class Player : Entity, IPauseable
     public void SetLoadedInfo(SaveData save)
     {
         _transform.position = save.GetPlayerPosition();
+        LoadBullets(save.Ammo);
     }
 
     private void LoadComponents()
@@ -111,6 +113,8 @@ public class Player : Entity, IPauseable
         _playerShoot = GetComponent<PlayerShoot>();
         _playerLook = GetComponent<PlayerLook>();
         _weaponManager = GetComponent<WeaponManager>();
+
+        _idleCamAnimation = Animator.StringToHash("Idle");
     }
 
     private void FixedUpdate()
@@ -211,6 +215,18 @@ public class Player : Entity, IPauseable
 
         EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
     }
+
+    public void Respawn()
+    {
+        EventManager.OnGameLoad();
+
+        _currentHp = _data.MaxHealth; // este cambiarlo por uno que chequee la save data
+        _isDead = false;
+        _camAnimator.Play(_idleCamAnimation);
+
+        EventManager.OnStartTransitionOut(_data.DeathDuration);
+        EventManager.OnGameStart();
+    }
     #endregion
 
     #region WeaponMethods
@@ -218,6 +234,16 @@ public class Player : Entity, IPauseable
     {
         foreach (Weapon weapon in _weapons)
             weapon.InitialBullets();
+    }
+
+    private void LoadBullets(int[] bullets)
+    {
+        int i = 0;
+        foreach (Weapon weapon in _weapons)
+        {
+            weapon.LoadBullets(bullets[i]);
+            i++;
+        }
     }
 
     public void ChangeWeapons(int value)

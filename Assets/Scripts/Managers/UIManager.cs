@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
         EventManager.UpdateUIValue += UpdateUIValue;
         EventManager.UpdateUIText += UpdateUIText;
         EventManager.GodMode += OnGodMode;
+        EventManager.OnGameStart();
     }
 
     public void UpdateUIValue(Element element, int value)

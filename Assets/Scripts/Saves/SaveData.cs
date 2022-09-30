@@ -3,16 +3,19 @@ using UnityEngine;
 [System.Serializable]
 public class SaveData
 {
+    // player pos data
     public float PlayerPosX;
     public float PlayerPosY;
     public float PlayerPosZ;
 
-    public bool HasData = false;
+    // level data
+    public string CurrentLevelName;
+    public bool HasData = true;
+    public int MaxLevelUnlocked;
 
+    // weapon data
     public int WeaponsObtained;
     public int[] Ammo;
-
-    public int MaxLevelUnlocked;
 
     public void SavePlayerPosition(Vector3 position)
     {

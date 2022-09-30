@@ -47,10 +47,10 @@ public class SaveManager : MonoBehaviour
 
         // si no hay data en este nivel no enviar esta info
         if (save.HasData)
-        {
             _player.SetLoadedInfo(save);
-        }
 
+        Debug.Log(save.Ammo[1]);
+        Debug.Log(save.Ammo[2]);
         Debug.Log("Game Loaded");
     }
 

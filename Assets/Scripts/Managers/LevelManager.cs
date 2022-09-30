@@ -17,7 +17,6 @@ public class LevelManager : MonoBehaviour
             StartCoroutine("StartLevel");
             EventManager.Pause += OnPause;
             EventManager.ChangeLevel += OnNextLevelNoSave;
-            EventManager.GameOver += ReloadLevel;
             EventManager.OnGameLoad();
         }
     }
@@ -52,8 +51,10 @@ public class LevelManager : MonoBehaviour
 
         LoadLevel("UI", true);
 
-        yield return new WaitForSeconds(0.1f); // que espere un poquito asi carga la escena antes de lanzar ese evento
-        EventManager.OnGameStart();
+        // al final lo envie a la ui como bien me dijo fede
+        // lo dejo aca a modo de recordatorio
+        // yield return new WaitForSeconds(0.1f); // que espere un poquito asi carga la escena antes de lanzar ese evento
+        // EventManager.OnGameStart();
     }
 
     public IEnumerator Transition(string scene)
@@ -61,11 +62,6 @@ public class LevelManager : MonoBehaviour
         EventManager.OnStartTransition(_transitionSpeed);
         yield return new WaitForSeconds(_transitionSpeed);
         LoadLevel(scene);
-    }
-
-    private void ReloadLevel()
-    {
-        StartCoroutine("ChangingLevel", SceneManager.GetActiveScene().name);
     }
 
     public void OnNextLevel(string scene)
@@ -104,6 +100,5 @@ public class LevelManager : MonoBehaviour
     {
         EventManager.Pause -= OnPause;
         EventManager.ChangeLevel -= OnNextLevelNoSave;
-        EventManager.GameOver -= ReloadLevel;
     }
 }

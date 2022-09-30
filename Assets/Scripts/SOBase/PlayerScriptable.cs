@@ -5,6 +5,7 @@ public class PlayerScriptable : ScriptableObject
 {
     public int MaxHealth;
     public int Invulnerability;
+    public int DeathDuration; // tiene que ser igual a la death anim
 
     #region Movement
     [Header("Movement")]

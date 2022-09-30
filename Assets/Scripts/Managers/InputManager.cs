@@ -38,6 +38,7 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         EventManager.GameStart += OnGameStart;
+        EventManager.GameOver += OnGameOver;
         EventManager.ResumeMenu += OnPause;
     }
 
@@ -51,6 +52,11 @@ public class InputManager : MonoBehaviour
     {
         CanMove = false;
         CanLook = false;
+
+        Move = Vector2.zero;
+        Look = Vector2.zero;
+        EventManager.OnLook(Look);
+        EventManager.OnMove(Move);
     }
 
     #region MovementMethods
@@ -151,6 +157,7 @@ public class InputManager : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.GameStart -= OnGameStart;
+        EventManager.GameOver -= OnGameOver;
         EventManager.ResumeMenu -= OnPause;
     }
 }
