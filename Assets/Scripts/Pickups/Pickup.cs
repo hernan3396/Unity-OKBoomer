@@ -20,7 +20,10 @@ public class Pickup : MonoBehaviour
     private void Start()
     {
         _player = GameManager.GetInstance.Player.GetComponent<Player>();
+    }
 
+    private void OnEnable()
+    {
         _mat = GetComponentInChildren<MeshRenderer>().material;
 
         _mat.SetFloat("_DissolveValue", 1);
