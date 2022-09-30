@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2470855615261545478}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2470855614448860456
 MeshFilter:
@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2470855615261545478}
   - component: {fileID: 2470855615261545477}
+  - component: {fileID: 8518101398450987709}
   m_Layer: 0
   m_Name: Breakable_Drops
   m_TagString: Untagged
@@ -112,7 +113,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2470855615817915439}
   - {fileID: 2470855614448860458}
   - {fileID: 2470855616216821404}
   m_Father: {fileID: 0}
@@ -130,55 +130,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baab67518cb5786498da99b3dbb6513f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dropPickable: 1
-  _spawnPosition: {fileID: 2470855616216821404}
-  _fadeDur: 1
+  _maxHealth: 1
+  _infinite: 0
   _spawnSpecificPickable: 0
   _pickupType: 0
---- !u!1 &2470855615817915424
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2470855615817915439}
-  - component: {fileID: 2470855615817915438}
-  m_Layer: 0
-  m_Name: Hitbox
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2470855615817915439
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2470855615817915424}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 2470855615261545478}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2470855615817915438
+  _dropPickable: 1
+  _spawnPosition: {fileID: 2470855616216821404}
+  _spawnRandomness: 5
+  _fadeDur: 1
+--- !u!65 &8518101398450987709
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2470855615817915424}
+  m_GameObject: {fileID: 2470855615261545479}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 5, y: 5, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2470855616216821405
 GameObject:
@@ -211,7 +182,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2470855615261545478}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2470855616216821401
 MeshFilter:
