@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Debug_Island.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+    path: Assets/Scenes/Levels/Tutorial.unity
+    guid: 23bd770268e627b49a23c7e0ae1fe739
+  - enabled: 1
     path: Assets/Scenes/Levels/Level1.unity
     guid: c4e4779485c2dac4b888d70bf4eea451
   - enabled: 1

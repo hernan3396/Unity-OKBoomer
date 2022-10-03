@@ -16,6 +16,7 @@ public class MainMenu : MonoBehaviour
     [Header("Canvas group")]
     [SerializeField] private CanvasElement[] _canvasElements;
     private CanvasGroups _currentCG;
+    [SerializeField] private Button _continueBtn;
     #endregion
 
     #region Animations
@@ -32,6 +33,7 @@ public class MainMenu : MonoBehaviour
     private void Awake()
     {
         EventManager.LoadTimer += ChangeTimers;
+        EventManager.ActivateContinueBtn += ActivateContinue;
     }
 
     private void Start()
@@ -71,6 +73,17 @@ public class MainMenu : MonoBehaviour
     {
         for (int i = 0; i < times.Length; i++)
             _timers[i].text = Utils.FloatToTime(times[i]);
+    }
+
+    private void ActivateContinue()
+    {
+        _continueBtn.interactable = true;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.LoadTimer -= ChangeTimers;
+        EventManager.ActivateContinueBtn -= ActivateContinue;
     }
 }
 

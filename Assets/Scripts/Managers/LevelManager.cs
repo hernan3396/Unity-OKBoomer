@@ -16,9 +16,10 @@ public class LevelManager : MonoBehaviour
         {
             StartCoroutine("StartLevel");
             EventManager.Pause += OnPause;
-            EventManager.ChangeLevel += OnNextLevelNoSave;
             EventManager.OnGameLoad();
         }
+
+        EventManager.ChangeLevel += OnNextLevelNoSave;
     }
 
     private void LoadLevel(string scene, bool async = false)
@@ -89,11 +90,6 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(_transitionSpeed);
 
         LoadLevel(scene);
-    }
-
-    public void StartTransition(string scene)
-    {
-        StartCoroutine("Transition", scene);
     }
 
     private void OnDestroy()

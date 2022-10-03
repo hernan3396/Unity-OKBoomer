@@ -1,9 +1,15 @@
 using UnityEngine;
 using System.IO;
+using UnityEngine.SceneManagement;
 using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveManager : MonoBehaviour
 {
+    // hay muchas cosas repetidas en este script, pero queria
+    // familiarizarme con la estructura de guardar/cargar data
+    // asi que lo repeti varias veces. Si bien no creo que pase,
+    // habria que ordenarlo un poco ya que hay cosas repetidas que 
+    // se podrian pasar a un metodo para no tener que repetir codigo
     private Player _player;
     // juntar con saves manager luego
     private void Awake()
@@ -18,8 +24,9 @@ public class SaveManager : MonoBehaviour
         if (GameManager.GetInstance.Player != null)
             _player = GameManager.GetInstance.Player.GetComponent<Player>();
         else
-            LoadTimers(); // esto funciona, pero sino cambiarlo luego por algo mas normal
-                          // el unico lugar donde no esta el player pero si este script es en el menu
+            LoadMenuData();
+        // esto funciona, pero sino cambiarlo luego por algo mas normal
+        // el unico lugar donde no esta el player pero si este script es en el menu
     }
 
     private void SaveGame()
@@ -56,6 +63,29 @@ public class SaveManager : MonoBehaviour
         Debug.Log("Game Loaded");
     }
 
+    public void NewLevel(string level)
+    {
+        CleanSave();
+        EventManager.OnChangeLevel(level);
+    }
+
+    public void Continue()
+    {
+        if (!File.Exists(Application.persistentDataPath + "/gamesave.save"))
+        {
+            _player.NoSaveInfo();
+            Debug.LogWarning("No game file saved!");
+            return;
+        }
+
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
+        SaveData save = (SaveData)bf.Deserialize(file);
+        file.Close();
+
+        EventManager.OnChangeLevel(save.CurrentLevelName);
+    }
+
     public void SaveAsJSON()
     {
         SaveData save = CreateSaveGameObject();
@@ -68,6 +98,7 @@ public class SaveManager : MonoBehaviour
 
         save.SavePlayerPosition(_player.Transform.position);
         save.Ammo = _player.GetBullets;
+        save.CurrentLevelName = SceneManager.GetActiveScene().name;
         save.HasData = true;
 
         return save;
@@ -157,8 +188,9 @@ public class SaveManager : MonoBehaviour
         CleanSave();
     }
 
-    private void LoadTimers()
+    private void LoadMenuData()
     {
+        // level times data
         if (!Directory.Exists(Application.persistentDataPath + "/levels"))
         {
             Debug.LogWarning("No timers!");
@@ -181,6 +213,19 @@ public class SaveManager : MonoBehaviour
         }
 
         EventManager.OnLoadTimer(timers);
+
+        // player has data?
+        if (!File.Exists(Application.persistentDataPath + "/gamesave.save"))
+        {
+            Debug.LogWarning("No game file saved!");
+            return;
+        }
+
+        FileStream playerData = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
+        SaveData save = (SaveData)bf.Deserialize(playerData);
+        playerData.Close();
+
+        if (save.HasData) EventManager.OnActivateContinueBtn();
     }
 
     private void OnDestroy()

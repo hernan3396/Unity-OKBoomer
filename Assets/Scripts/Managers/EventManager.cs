@@ -43,6 +43,9 @@ public static class EventManager
 
     public static event UnityAction GameLoad;
     public static void OnGameLoad() => GameLoad?.Invoke();
+
+    public static event UnityAction ActivateContinueBtn;
+    public static void OnActivateContinueBtn() => ActivateContinueBtn?.Invoke();
     #endregion
 
     #region Levels
