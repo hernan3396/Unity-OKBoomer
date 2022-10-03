@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 4239267127941095}
   - component: {fileID: 4239267127941092}
   - component: {fileID: 4239267127941093}
-  - component: {fileID: 209235253125758658}
+  - component: {fileID: 7423405806531419940}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5c2698c1cd94c34189831038cbef2c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &209235253125758658
+--- !u!114 &7423405806531419940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -414,11 +414,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4239267127941091}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62025e275b46e9d4aadf88f867d82526, type: 3}
+  m_Script: {fileID: 11500000, guid: ba8913ef77f6eee4f9a41f496b5b9d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _savesPrefix: Hyperwave_
-  _timers: []
 --- !u!1 &4239267305792262
 GameObject:
   m_ObjectHideFlags: 0

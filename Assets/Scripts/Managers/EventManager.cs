@@ -32,11 +32,11 @@ public static class EventManager
     #endregion
 
     #region Saves
-    public static event UnityAction<SavesData[]> LoadTimer;
-    public static void OnLoadTimer(SavesData[] times) => LoadTimer?.Invoke(times);
+    public static event UnityAction<float[]> LoadTimer;
+    public static void OnLoadTimer(float[] times) => LoadTimer?.Invoke(times);
 
     public static event UnityAction<string, float> SaveTime;
-    public static void OnSaveTime(string valueString, float valueInt) => SaveTime?.Invoke(valueString, valueInt);
+    public static void OnSaveTime(string name, float valueInt) => SaveTime?.Invoke(name, valueInt);
 
     public static event UnityAction GameSaved;
     public static void OnGameSaved() => GameSaved?.Invoke();

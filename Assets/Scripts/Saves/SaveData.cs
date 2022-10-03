@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class SaveData
@@ -10,7 +11,7 @@ public class SaveData
 
     // level data
     public string CurrentLevelName;
-    public bool HasData = true;
+    public bool HasData = false;
     public int MaxLevelUnlocked;
 
     // weapon data
@@ -28,4 +29,11 @@ public class SaveData
     {
         return new Vector3(PlayerPosX, PlayerPosY, PlayerPosZ);
     }
+}
+
+[System.Serializable]
+public class TimerData
+{
+    public string Name;
+    public float LevelTime;
 }

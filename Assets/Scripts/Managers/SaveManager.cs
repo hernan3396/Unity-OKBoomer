@@ -10,11 +10,16 @@ public class SaveManager : MonoBehaviour
     {
         EventManager.GameSaved += SaveGame;
         EventManager.GameLoad += LoadGame;
+        EventManager.SaveTime += NextLevel;
     }
 
     private void Start()
     {
-        _player = GameManager.GetInstance.Player.GetComponent<Player>();
+        if (GameManager.GetInstance.Player != null)
+            _player = GameManager.GetInstance.Player.GetComponent<Player>();
+        else
+            LoadTimers(); // esto funciona, pero sino cambiarlo luego por algo mas normal
+                          // el unico lugar donde no esta el player pero si este script es en el menu
     }
 
     private void SaveGame()
@@ -33,24 +38,21 @@ public class SaveManager : MonoBehaviour
     {
         if (!File.Exists(Application.persistentDataPath + "/gamesave.save"))
         {
+            _player.NoSaveInfo();
             Debug.LogWarning("No game file saved!");
             return;
         }
-
 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
         SaveData save = (SaveData)bf.Deserialize(file);
         file.Close();
 
-        // pasar esta data al player por evento como parametro
-
         // si no hay data en este nivel no enviar esta info
-        if (save.HasData)
-            _player.SetLoadedInfo(save);
+        if (!save.HasData) return;
 
-        Debug.Log(save.Ammo[1]);
-        Debug.Log(save.Ammo[2]);
+        _player.SetLoadedInfo(save);
+
         Debug.Log("Game Loaded");
     }
 
@@ -66,13 +68,125 @@ public class SaveManager : MonoBehaviour
 
         save.SavePlayerPosition(_player.Transform.position);
         save.Ammo = _player.GetBullets;
+        save.HasData = true;
 
         return save;
+    }
+
+    /// <Summary>
+    /// FULL DELETE
+    /// </Summary>
+    public void DeleteSave()
+    {
+        if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
+            File.Delete(Application.persistentDataPath + "/gamesave.save");
+
+        if (Directory.Exists(Application.persistentDataPath + "/levels"))
+        {
+            string[] timersFileName = Directory.GetFiles(Application.persistentDataPath + "/levels", "*.save");
+
+            foreach (string fileName in timersFileName)
+                File.Delete(fileName);
+        }
+    }
+
+    /// <Summary>
+    /// Borra la data cuando cambias entre niveles, nada muy grave
+    /// </Summary>
+    private void CleanSave()
+    {
+        if (!File.Exists(Application.persistentDataPath + "/gamesave.save"))
+        {
+            Debug.LogWarning("No game file saved!");
+            return;
+        }
+
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file;
+
+        file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
+        SaveData save = (SaveData)bf.Deserialize(file);
+        file.Close();
+
+        save.HasData = false;
+
+        file = File.Create(Application.persistentDataPath + "/gamesave.save");
+        bf.Serialize(file, save);
+        file.Close();
+    }
+
+    private void NextLevel(string levelName, float levelTime)
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file;
+
+        // preguntar si el archivo existe
+        if (File.Exists(Application.persistentDataPath + "/levels/" + levelName + ".save"))
+        {
+            // lo carga
+            file = File.Open(Application.persistentDataPath + "/levels/" + levelName + ".save", FileMode.Open);
+            TimerData timerData = (TimerData)bf.Deserialize(file);
+            file.Close();
+
+            // compara el tiempo
+            if (levelTime < timerData.LevelTime)
+                timerData.LevelTime = levelTime;
+
+            file = File.Create(Application.persistentDataPath + "/levels/" + levelName + ".save");
+            bf.Serialize(file, timerData); // lo guarda
+        }
+        else
+        {
+            // crea la carpeta si no existe
+            if (!Directory.Exists(Application.persistentDataPath + "/levels/"))
+                Directory.CreateDirectory(Application.persistentDataPath + "/levels/");
+
+            // crea el archivo
+            file = File.Create(Application.persistentDataPath + "/levels/" + levelName + ".save");
+
+            // guarda la data
+            TimerData newTimer = new TimerData();
+            newTimer.Name = levelName;
+            newTimer.LevelTime = levelTime;
+            bf.Serialize(file, newTimer);
+        }
+
+        // cerrar el archivo
+        file.Close();
+
+        CleanSave();
+    }
+
+    private void LoadTimers()
+    {
+        if (!Directory.Exists(Application.persistentDataPath + "/levels"))
+        {
+            Debug.LogWarning("No timers!");
+            return;
+        }
+
+        BinaryFormatter bf = new BinaryFormatter();
+        string[] timersFileName = Directory.GetFiles(Application.persistentDataPath + "/levels", "*.save");
+
+        float[] timers = new float[timersFileName.Length];
+        int i = 0;
+
+        foreach (string fileName in timersFileName)
+        {
+            FileStream file = File.Open(fileName, FileMode.Open);
+            TimerData timerData = (TimerData)bf.Deserialize(file);
+            timers[i] = timerData.LevelTime;
+            file.Close();
+            i++;
+        }
+
+        EventManager.OnLoadTimer(timers);
     }
 
     private void OnDestroy()
     {
         EventManager.GameSaved -= SaveGame;
         EventManager.GameLoad -= LoadGame;
+        EventManager.SaveTime -= NextLevel;
     }
 }

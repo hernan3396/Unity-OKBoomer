@@ -67,10 +67,10 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    private void ChangeTimers(SavesData[] times)
+    private void ChangeTimers(float[] times)
     {
-        for (int i = 0; i < _timers.Length; i++)
-            _timers[i].text = times[i].valueString;
+        for (int i = 0; i < times.Length; i++)
+            _timers[i].text = Utils.FloatToTime(times[i]);
     }
 }
 

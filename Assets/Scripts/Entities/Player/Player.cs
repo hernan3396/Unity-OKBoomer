@@ -13,6 +13,7 @@ public class Player : Entity, IPauseable
     [SerializeField] private PhysicMaterial _noFricMat;
     [SerializeField] private Animator _camAnimator;
     private int _idleCamAnimation;
+    private Vector3 _initPos;
     private Rigidbody _rb;
     #endregion
 
@@ -105,6 +106,11 @@ public class Player : Entity, IPauseable
         LoadBullets(save.Ammo);
     }
 
+    public void NoSaveInfo()
+    {
+        _transform.position = _initPos;
+    }
+
     private void LoadComponents()
     {
         _playerMovement = GetComponent<PlayerMovement>();
@@ -113,6 +119,7 @@ public class Player : Entity, IPauseable
         _playerShoot = GetComponent<PlayerShoot>();
         _playerLook = GetComponent<PlayerLook>();
         _weaponManager = GetComponent<WeaponManager>();
+        _initPos = _transform.position;
 
         _idleCamAnimation = Animator.StringToHash("Idle");
     }
@@ -203,7 +210,7 @@ public class Player : Entity, IPauseable
     protected override void Death()
     {
         _isDead = true;
-        EventManager.OnGameOver();
+        // EventManager.OnGameOver();
     }
 
     public void PickUpHealth(int value)

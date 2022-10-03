@@ -60,11 +60,13 @@ public class Weapon : MonoBehaviour
     public void InitialBullets()
     {
         _currentBullets = _data.MaxAmmo;
+        UpdateBullets();
     }
 
     public void LoadBullets(int bullets)
     {
         _currentBullets = bullets;
+        UpdateBullets();
     }
 
     public Transform GetShootPos()
