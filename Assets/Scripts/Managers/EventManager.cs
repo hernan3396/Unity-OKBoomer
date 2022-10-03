@@ -46,6 +46,9 @@ public static class EventManager
 
     public static event UnityAction ActivateContinueBtn;
     public static void OnActivateContinueBtn() => ActivateContinueBtn?.Invoke();
+
+    public static event UnityAction<int> ActivateLevels;
+    public static void OnActivateLevels(int maxLevel) => ActivateLevels?.Invoke(maxLevel);
     #endregion
 
     #region Levels

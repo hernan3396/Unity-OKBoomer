@@ -14,6 +14,7 @@ public class Breakable : MonoBehaviour, IDamageable
     [SerializeField] private bool _dropPickable = false;
     [SerializeField] private Transform _spawnPosition;
     [SerializeField] private int _spawnRandomness = 5;
+    [SerializeField] private bool _respawn = false;
 
     [Header("Anim")]
     [SerializeField] private int _fadeDur = 2;
@@ -27,6 +28,9 @@ public class Breakable : MonoBehaviour, IDamageable
         _spawnPosition.GetComponent<MeshRenderer>().enabled = false;
 
         _currentHealth = _maxHealth;
+
+        if (_respawn)
+            EventManager.GameStart += Respawn;
     }
 
     public void TakeDamage(int value)
@@ -66,5 +70,19 @@ public class Breakable : MonoBehaviour, IDamageable
             EventManager.OnSpawnSpecificPickable(finalPos, (int)_pickupType);
         else
             EventManager.OnSpawnPickable(finalPos);
+    }
+
+    private void Respawn()
+    {
+        gameObject.SetActive(true);
+        _mat.SetFloat("_DissolveValue", 0);
+        _currentHealth = _maxHealth;
+        _col.enabled = true;
+    }
+
+    private void OnDestroy()
+    {
+        if (_respawn)
+            EventManager.GameStart -= Respawn;
     }
 }

@@ -748,6 +748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentHp: 0
   _data: {fileID: 11400000, guid: 58f93b7a87c64d34cbc6a32bb9ff0a26, type: 2}
+  _respawn: 1
   _bodyModel: {fileID: 0}
   _bodyModelSkinned: {fileID: 5148551722833665398}
   _headPos: {fileID: 4368397284812301644}

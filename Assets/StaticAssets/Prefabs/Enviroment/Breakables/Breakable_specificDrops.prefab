@@ -137,6 +137,7 @@ MonoBehaviour:
   _dropPickable: 1
   _spawnPosition: {fileID: 8228064402681435141}
   _spawnRandomness: 5
+  _respawn: 1
   _fadeDur: 1
 --- !u!65 &8164308071367217757
 BoxCollider:

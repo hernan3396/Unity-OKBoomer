@@ -13,6 +13,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     #region Data
     [Header("Data")]
     [SerializeField] protected EnemyScriptable _data;
+    [SerializeField] private bool _respawn = false;
     #endregion
 
     #region Components
@@ -53,6 +54,9 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         SetComponents();
 
         _currentHp = _data.MaxHealth;
+
+        if (_respawn)
+            EventManager.GameStart += Respawn;
     }
 
     protected virtual void SetComponents()
@@ -123,6 +127,16 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         _mainMat.DOFloat(1, "_DissolveValue", _data.DeathDur)
         .SetEase(Ease.OutQuint)
         .OnComplete(() => gameObject.SetActive(false));
+    }
+
+    protected void Respawn()
+    {
+        _currentHp = _data.MaxHealth;
+        _isDead = false;
+        _col.enabled = true;
+        _headMat.SetFloat("_DissolveValue", 0);
+        _mainMat.SetFloat("_DissolveValue", 0);
+        gameObject.SetActive(true);
     }
     #endregion
 
@@ -265,7 +279,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     public abstract void Attacking();
     #endregion
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, _data.VisionRange);
@@ -275,6 +289,12 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
 
         Gizmos.color = Color.gray;
         Gizmos.DrawWireSphere(transform.position, _data.ChasingRange);
+    }
+
+    private void OnDestroy()
+    {
+        if (_respawn)
+            EventManager.GameStart -= Respawn;
     }
 
     public EnemyScriptable Data

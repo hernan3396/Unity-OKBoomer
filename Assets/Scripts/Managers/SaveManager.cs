@@ -65,7 +65,7 @@ public class SaveManager : MonoBehaviour
 
     public void NewLevel(string level)
     {
-        CleanSave();
+        CleanSave(false);
         EventManager.OnChangeLevel(level);
     }
 
@@ -112,9 +112,9 @@ public class SaveManager : MonoBehaviour
         if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
             File.Delete(Application.persistentDataPath + "/gamesave.save");
 
-        if (Directory.Exists(Application.persistentDataPath + "/levels"))
+        if (Directory.Exists(Application.persistentDataPath + "/levels/"))
         {
-            string[] timersFileName = Directory.GetFiles(Application.persistentDataPath + "/levels", "*.save");
+            string[] timersFileName = Directory.GetFiles(Application.persistentDataPath + "/levels/", "*.save");
 
             foreach (string fileName in timersFileName)
                 File.Delete(fileName);
@@ -122,9 +122,9 @@ public class SaveManager : MonoBehaviour
     }
 
     /// <Summary>
-    /// Borra la data cuando cambias entre niveles, nada muy grave
+    /// cambia HasData = false cuando cambias entre niveles, nada muy grave
     /// </Summary>
-    private void CleanSave()
+    private void CleanSave(bool updateMaxLevel)
     {
         if (!File.Exists(Application.persistentDataPath + "/gamesave.save"))
         {
@@ -139,7 +139,9 @@ public class SaveManager : MonoBehaviour
         SaveData save = (SaveData)bf.Deserialize(file);
         file.Close();
 
+        // creo que falta guardar cuando reptimos el nivel porque lo esta reiniciando
         save.HasData = false;
+        if (updateMaxLevel) save.MaxLevelUnlocked += 1;
 
         file = File.Create(Application.persistentDataPath + "/gamesave.save");
         bf.Serialize(file, save);
@@ -150,6 +152,7 @@ public class SaveManager : MonoBehaviour
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file;
+        bool _addMaxLevel = true;
 
         // preguntar si el archivo existe
         if (File.Exists(Application.persistentDataPath + "/levels/" + levelName + ".save"))
@@ -165,6 +168,8 @@ public class SaveManager : MonoBehaviour
 
             file = File.Create(Application.persistentDataPath + "/levels/" + levelName + ".save");
             bf.Serialize(file, timerData); // lo guarda
+
+            _addMaxLevel = false;
         }
         else
         {
@@ -185,7 +190,7 @@ public class SaveManager : MonoBehaviour
         // cerrar el archivo
         file.Close();
 
-        CleanSave();
+        CleanSave(_addMaxLevel);
     }
 
     private void LoadMenuData()
@@ -218,6 +223,7 @@ public class SaveManager : MonoBehaviour
         if (!File.Exists(Application.persistentDataPath + "/gamesave.save"))
         {
             Debug.LogWarning("No game file saved!");
+            EventManager.OnActivateLevels(0);
             return;
         }
 
@@ -226,6 +232,7 @@ public class SaveManager : MonoBehaviour
         playerData.Close();
 
         if (save.HasData) EventManager.OnActivateContinueBtn();
+        EventManager.OnActivateLevels(save.MaxLevelUnlocked);
     }
 
     private void OnDestroy()

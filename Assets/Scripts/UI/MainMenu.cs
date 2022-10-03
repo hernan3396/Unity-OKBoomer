@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MainMenu : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class MainMenu : MonoBehaviour
     [Header("Canvas group")]
     [SerializeField] private CanvasElement[] _canvasElements;
     private CanvasGroups _currentCG;
+
+    [SerializeField] private RectTransform _levels;
+    [SerializeField] private List<Button> _levelsBtn = new List<Button>();
+
     [SerializeField] private Button _continueBtn;
     #endregion
 
@@ -34,6 +39,12 @@ public class MainMenu : MonoBehaviour
     {
         EventManager.LoadTimer += ChangeTimers;
         EventManager.ActivateContinueBtn += ActivateContinue;
+        EventManager.ActivateLevels += ActivateLevels;
+
+        foreach (RectTransform item in _levels)
+        {
+            _levelsBtn.Add(item.GetComponent<Button>());
+        }
     }
 
     private void Start()
@@ -80,10 +91,22 @@ public class MainMenu : MonoBehaviour
         _continueBtn.interactable = true;
     }
 
+    private void ActivateLevels(int maxLevel)
+    {
+        if (maxLevel >= _levelsBtn.Count)
+            maxLevel = _levelsBtn.Count - 1;
+
+        for (int i = 0; i <= maxLevel; i++)
+        {
+            _levelsBtn[i].interactable = true;
+        }
+    }
+
     private void OnDestroy()
     {
         EventManager.LoadTimer -= ChangeTimers;
         EventManager.ActivateContinueBtn -= ActivateContinue;
+        EventManager.ActivateLevels -= ActivateLevels;
     }
 }
 

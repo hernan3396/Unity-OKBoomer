@@ -112,6 +112,7 @@ MonoBehaviour:
   _ammount: 25
   _pickupType: 0
   _weaponIndex: 0
+  _respawn: 0
 --- !u!1001 &4192917349388672195
 PrefabInstance:
   m_ObjectHideFlags: 0

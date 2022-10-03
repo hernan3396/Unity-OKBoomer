@@ -158,6 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentHp: 0
   _data: {fileID: 11400000, guid: d67f738faa01af94aaa954dd2eb1b3e1, type: 2}
+  _respawn: 1
   _bodyModel: {fileID: 3676999668535880249}
   _bodyModelSkinned: {fileID: 0}
   _headPos: {fileID: 3676999668535880248}
@@ -170,6 +171,7 @@ MonoBehaviour:
   BodyPivot: {fileID: 0}
   _floatingHeight: 1
   _floatingSpeed: 1
+  _currentBounces: 0
 --- !u!114 &3676999668562893319
 MonoBehaviour:
   m_ObjectHideFlags: 0
