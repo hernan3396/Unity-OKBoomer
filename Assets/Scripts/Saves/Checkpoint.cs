@@ -6,7 +6,8 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            EventManager.OnGameSaved();
+            // EventManager.OnGameSaved();
+            // EventManager.OnSetCheckpoint();
         }
     }
 }

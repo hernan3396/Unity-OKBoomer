@@ -131,6 +131,8 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
 
     protected void Respawn()
     {
+        if (_col == null) return;
+
         _currentHp = _data.MaxHealth;
         _isDead = false;
         _col.enabled = true;
@@ -293,8 +295,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
 
     private void OnDestroy()
     {
-        if (_respawn)
-            EventManager.GameStart -= Respawn;
+        EventManager.GameStart -= Respawn;
     }
 
     public EnemyScriptable Data

@@ -749,8 +749,8 @@ MonoBehaviour:
   _currentHp: 0
   _data: {fileID: 11400000, guid: 58f93b7a87c64d34cbc6a32bb9ff0a26, type: 2}
   _respawn: 1
-  _bodyModel: {fileID: 0}
-  _bodyModelSkinned: {fileID: 5148551722833665398}
+  _bodyModel: {fileID: 8250082711867815682}
+  _bodyModelSkinned: {fileID: 0}
   _headPos: {fileID: 4368397284812301644}
   _playerLayer:
     serializedVersion: 2
@@ -937,15 +937,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5896034212402626596}
   m_PrefabAsset: {fileID: 0}
---- !u!137 &5148551722833665398 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 1630794972795428178, guid: 490131318e9022349afa9ea28c17193e,
-    type: 3}
-  m_PrefabInstance: {fileID: 5896034212402626596}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6221813723023173583 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 490131318e9022349afa9ea28c17193e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5896034212402626596}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8250082711867815682 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -6652725513331149018, guid: 490131318e9022349afa9ea28c17193e,
     type: 3}
   m_PrefabInstance: {fileID: 5896034212402626596}
   m_PrefabAsset: {fileID: 0}

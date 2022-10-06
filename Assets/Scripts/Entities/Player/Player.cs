@@ -102,7 +102,7 @@ public class Player : Entity, IPauseable
 
     public void SetLoadedInfo(SaveData save)
     {
-        _transform.position = save.GetPlayerPosition();
+        // _transform.position = save.GetPlayerPosition();
         LoadBullets(save.Ammo);
     }
 
@@ -226,6 +226,7 @@ public class Player : Entity, IPauseable
     public void Respawn()
     {
         EventManager.OnGameLoad();
+        NoSaveInfo();
 
         _currentHp = _data.MaxHealth; // este cambiarlo por uno que chequee la save data
         _isDead = false;

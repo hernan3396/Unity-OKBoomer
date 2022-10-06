@@ -1,32 +1,26 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class SaveData
 {
-    // player pos data
-    public float PlayerPosX;
-    public float PlayerPosY;
-    public float PlayerPosZ;
-
-    // level data
-    public string CurrentLevelName;
-    public bool HasData = false;
-    public int MaxLevelUnlocked;
-
-    // weapon data
+    // player data
     public int WeaponsObtained;
+    public Vector3 PlayerPos;
     public int[] Ammo;
 
-    public void SavePlayerPosition(Vector3 position)
-    {
-        PlayerPosX = position.x;
-        PlayerPosY = position.y;
-        PlayerPosZ = position.z;
-    }
+    // level data
+    public int MaxLevelUnlocked;
+    public List<TimerData> TimerInfo = new List<TimerData>() {
+        new TimerData("nivel1", 10),
+        new TimerData("nivel2", 15),
+        new TimerData("nivel3", 20)
+    };
 
-    public Vector3 GetPlayerPosition()
+    public SaveData(Vector3 playerPos, TimerData timerData)
     {
-        return new Vector3(PlayerPosX, PlayerPosY, PlayerPosZ);
+        PlayerPos = playerPos;
+        TimerInfo.Add(timerData);
     }
 }
 
@@ -35,4 +29,10 @@ public class TimerData
 {
     public string Name;
     public float LevelTime;
+
+    public TimerData(string name, float levelTime)
+    {
+        Name = name;
+        LevelTime = levelTime;
+    }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class TimeManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class TimeManager : MonoBehaviour
     private string _levelName;
 
     private bool _isPaused = false;
-    private float time;
+    private float _time;
     private string totalTime;
 
     private void Awake()
@@ -31,8 +32,8 @@ public class TimeManager : MonoBehaviour
 
     private void UpdateTimer()
     {
-        time += Time.deltaTime;
-        totalTime = Utils.FloatToTime(time);
+        _time += Time.deltaTime;
+        totalTime = Utils.FloatToTime(_time);
 
         _uiManager.UpdateUIText(UIManager.Element.Timer, totalTime);
     }
@@ -40,7 +41,7 @@ public class TimeManager : MonoBehaviour
     private void OnLevelFinished()
     {
         _isPaused = true;
-        EventManager.OnSaveTime(_levelName, time);
+        // EventManager.OnSaveTime(_levelName, time);
     }
 
     private void OnPause(bool value)
