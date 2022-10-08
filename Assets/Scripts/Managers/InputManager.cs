@@ -52,11 +52,18 @@ public class InputManager : MonoBehaviour
     {
         CanMove = false;
         CanLook = false;
+        Jump = false;
+        Shoot = false;
+        SpecialShoot = false;
+        Crouch = false;
 
         Move = Vector2.zero;
         Look = Vector2.zero;
         EventManager.OnLook(Look);
         EventManager.OnMove(Move);
+        EventManager.OnJump(Jump);
+        EventManager.OnShoot(Shoot);
+        EventManager.OnCrouch(Crouch);
     }
 
     #region MovementMethods
@@ -68,6 +75,7 @@ public class InputManager : MonoBehaviour
         // funciona asi como esta
         Move = value.Get<Vector2>();
         EventManager.OnMove(Move);
+        EventManager.OnSpecialShoot(SpecialShoot);
     }
     #endregion
 

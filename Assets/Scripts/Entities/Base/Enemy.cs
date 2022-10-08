@@ -41,6 +41,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     protected bool _canAttack = true;
     protected bool _tookDamage = false;
     protected bool _isDodging = false;
+    private Vector3 _initPos;
     #endregion
 
     #region States
@@ -54,6 +55,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         SetComponents();
 
         _currentHp = _data.MaxHealth;
+        _initPos = _transform.position;
 
         if (_respawn)
             EventManager.GameStart += Respawn;
@@ -129,13 +131,14 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         .OnComplete(() => gameObject.SetActive(false));
     }
 
-    protected void Respawn()
+    protected virtual void Respawn()
     {
         if (_col == null) return;
 
         _currentHp = _data.MaxHealth;
         _isDead = false;
         _col.enabled = true;
+        _transform.position = _initPos;
         _headMat.SetFloat("_DissolveValue", 0);
         _mainMat.SetFloat("_DissolveValue", 0);
         gameObject.SetActive(true);

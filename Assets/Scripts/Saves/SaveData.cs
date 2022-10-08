@@ -7,21 +7,15 @@ public class SaveData
     // player data
     public int WeaponsObtained;
     public Vector3 PlayerPos;
+    public int PlayerHealth;
     public int[] Ammo;
 
-    // level data
-    public int MaxLevelUnlocked;
-    public List<TimerData> TimerInfo = new List<TimerData>() {
-        new TimerData("nivel1", 10),
-        new TimerData("nivel2", 15),
-        new TimerData("nivel3", 20)
-    };
+    public float CheckpointTimer;
+    public bool OnALevel;
+    public string CurrentLevel;
 
-    public SaveData(Vector3 playerPos, TimerData timerData)
-    {
-        PlayerPos = playerPos;
-        TimerInfo.Add(timerData);
-    }
+    // level data
+    public List<TimerData> TimerInfo = new List<TimerData>();
 }
 
 [System.Serializable]

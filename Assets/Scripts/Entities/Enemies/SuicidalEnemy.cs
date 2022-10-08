@@ -59,6 +59,12 @@ public class SuicidalEnemy : Enemy
         }
     }
 
+    protected override void Respawn()
+    {
+        base.Respawn();
+        _currentBounces = 0;
+    }
+
     private void Bounce(Collision col)
     {
         Vector3 inNormal;

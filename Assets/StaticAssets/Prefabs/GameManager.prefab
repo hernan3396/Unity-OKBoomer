@@ -339,6 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee13e2af1f96fe4b82a2bb87238e71a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _saveManager: {fileID: 7423405806531419940}
   _player: {fileID: 0}
   _mainCam: {fileID: 0}
   _pools:

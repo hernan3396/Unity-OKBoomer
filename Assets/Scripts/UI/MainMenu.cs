@@ -37,10 +37,6 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
-        EventManager.LoadTimer += ChangeTimers;
-        EventManager.ActivateContinueBtn += ActivateContinue;
-        EventManager.ActivateLevels += ActivateLevels;
-
         foreach (RectTransform item in _levels)
         {
             _levelsBtn.Add(item.GetComponent<Button>());
@@ -57,6 +53,7 @@ public class MainMenu : MonoBehaviour
     private void ManageEvents()
     {
         EventManager.OnFadeIn(_canvasElements[(int)_currentCG], _fadeDur);
+        EventManager.GameLoaded += GameLoaded;
         EventManager.OnInfiniteRotate(_cameraSpeed);
         EventManager.OnMainMenu();
     }
@@ -80,10 +77,17 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    private void ChangeTimers(float[] times)
+    private void GameLoaded(SaveData saveData)
     {
-        for (int i = 0; i < times.Length; i++)
-            _timers[i].text = Utils.FloatToTime(times[i]);
+        ChangeTimers(saveData.TimerInfo);
+        ActivateLevels(saveData.TimerInfo.Count);
+        if (saveData.OnALevel) ActivateContinue();
+    }
+
+    private void ChangeTimers(List<TimerData> timerInfo)
+    {
+        for (int i = 0; i < timerInfo.Count; i++)
+            _timers[i].text = Utils.FloatToTime(timerInfo[i].LevelTime);
     }
 
     private void ActivateContinue()
@@ -93,20 +97,21 @@ public class MainMenu : MonoBehaviour
 
     private void ActivateLevels(int maxLevel)
     {
-        if (maxLevel >= _levelsBtn.Count)
-            maxLevel = _levelsBtn.Count - 1;
+        maxLevel += 1; // le sumamos uno porque queremos desbloquear el siguiente
 
-        for (int i = 0; i <= maxLevel; i++)
-        {
+        if (maxLevel >= _levelsBtn.Count)
+            maxLevel = _levelsBtn.Count;
+
+        for (int i = 0; i < maxLevel; i++)
             _levelsBtn[i].interactable = true;
-        }
+
+        for (int i = maxLevel; i < _levelsBtn.Count; i++)
+            _levelsBtn[i].interactable = false;
     }
 
     private void OnDestroy()
     {
-        EventManager.LoadTimer -= ChangeTimers;
-        EventManager.ActivateContinueBtn -= ActivateContinue;
-        EventManager.ActivateLevels -= ActivateLevels;
+        EventManager.GameLoaded -= GameLoaded;
     }
 }
 

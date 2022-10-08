@@ -32,26 +32,11 @@ public static class EventManager
     #endregion
 
     #region Saves
-    public static event UnityAction<float[]> LoadTimer;
-    public static void OnLoadTimer(float[] times) => LoadTimer?.Invoke(times);
-
-    public static event UnityAction<string, float> SaveTime;
-    public static void OnSaveTime(string name, float valueInt) => SaveTime?.Invoke(name, valueInt);
-
-    public static event UnityAction<SaveData> GameSaved;
-    public static void OnGameSaved(SaveData save) => GameSaved?.Invoke(save);
-
-    public static event UnityAction GameLoad;
-    public static void OnGameLoad() => GameLoad?.Invoke();
-
     public static event UnityAction<SaveData> GameLoaded;
     public static void OnGameLoaded(SaveData data) => GameLoaded?.Invoke(data);
 
-    public static event UnityAction ActivateContinueBtn;
-    public static void OnActivateContinueBtn() => ActivateContinueBtn?.Invoke();
-
-    public static event UnityAction<int> ActivateLevels;
-    public static void OnActivateLevels(int maxLevel) => ActivateLevels?.Invoke(maxLevel);
+    public static event UnityAction Checkpoint;
+    public static void OnCheckpoint() => Checkpoint?.Invoke();
     #endregion
 
     #region Levels

@@ -8,6 +8,12 @@ public class Player : Entity, IPauseable
     [SerializeField] private bool _godMode;
     private bool _isDead = false;
 
+    #region Checkpoin
+    private Vector3 _currentCheckpoint;
+    private int _healthCheckpoint;
+    private int[] _ammoCheckpoint;
+    #endregion
+
     #region Components
     [SerializeField] private PlayerScriptable _data;
     [SerializeField] private PhysicMaterial _noFricMat;
@@ -61,10 +67,6 @@ public class Player : Entity, IPauseable
 
     #region Weapons
     [Header("Weapons")]
-    // esto se podria haber hecho como una clase sola pero
-    // agregaria un poco de complejidad y ya esta hecho para que funcione asi
-    // ademas creo que se entiende la idea ya que todos usan el indice de
-    // currentWeapon por lo que no hay problemas para manejarlos
     [SerializeField] private Weapon[] _weapons;
     [SerializeField] private int _maxWeapons;
     private int _currentWeapon = 0;
@@ -77,38 +79,34 @@ public class Player : Entity, IPauseable
 
         LoadComponents();
 
+        _currentCheckpoint = _transform.position;
         _currentHp = _data.MaxHealth;
+        _healthCheckpoint = _currentHp;
         _invulnerability = _data.Invulnerability;
 
         SetBullets();
 
         EventManager.GameStart += GameStart;
-        // EventManager.LoadPlayerPos += ;
+        EventManager.GameLoaded += LoadSaveData;
     }
-
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        EventManager.OnGodMode(_godMode);
-    }
-#endif
 
     private void GameStart()
     {
         EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
         _weapons[_currentWeapon].UpdateBullets();
-        // EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
     }
 
-    public void SetLoadedInfo(SaveData save)
+    private void LoadSaveData(SaveData saveData)
     {
-        // _transform.position = save.GetPlayerPosition();
-        LoadBullets(save.Ammo);
-    }
+        if (saveData.OnALevel)
+        {
+            _currentCheckpoint = saveData.PlayerPos;
+            _transform.position = _currentCheckpoint;
+            _currentHp = saveData.PlayerHealth;
 
-    public void NoSaveInfo()
-    {
-        _transform.position = _initPos;
+            for (int i = 0; i < _weapons.Length; i++)
+                _weapons[i].LoadBullets(saveData.Ammo[i]);
+        }
     }
 
     private void LoadComponents()
@@ -225,11 +223,13 @@ public class Player : Entity, IPauseable
 
     public void Respawn()
     {
-        EventManager.OnGameLoad();
-        NoSaveInfo();
-
-        _currentHp = _data.MaxHealth; // este cambiarlo por uno que chequee la save data
+        _currentHp = _healthCheckpoint;
         _isDead = false;
+        _transform.position = _currentCheckpoint;
+
+        for (int i = 0; i < _weapons.Length; i++)
+            _weapons[i].LoadBullets(_ammoCheckpoint[i]);
+
         _camAnimator.Play(_idleCamAnimation);
 
         EventManager.OnStartTransitionOut(_data.DeathDuration);
@@ -301,6 +301,7 @@ public class Player : Entity, IPauseable
     private void OnDestroy()
     {
         EventManager.GameStart -= GameStart;
+        EventManager.GameLoaded -= LoadSaveData;
     }
 
     #region Getter/Setter
@@ -446,6 +447,29 @@ public class Player : Entity, IPauseable
 
             return ammoCount;
         }
+    }
+
+    public Vector3 Checkpoint
+    {
+        get { return _currentCheckpoint; }
+        set { _currentCheckpoint = value; }
+    }
+
+    public int CurrentHP
+    {
+        get { return _currentHp; }
+    }
+
+    public int HealthCheckpoint
+    {
+        get { return _healthCheckpoint; }
+        set { _healthCheckpoint = value; }
+    }
+
+    public int[] AmmoCheckpoint
+    {
+        get { return _ammoCheckpoint; }
+        set { _ammoCheckpoint = value; }
     }
     #endregion
 }

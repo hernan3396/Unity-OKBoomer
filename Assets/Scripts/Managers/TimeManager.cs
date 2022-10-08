@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
 
 public class TimeManager : MonoBehaviour
 {
@@ -14,6 +13,8 @@ public class TimeManager : MonoBehaviour
     private float _time;
     private string totalTime;
 
+    private float _timeCheckpoint;
+
     private void Awake()
     {
         _uiManager = GetComponent<UIManager>();
@@ -22,12 +23,43 @@ public class TimeManager : MonoBehaviour
         EventManager.Pause += OnPause;
 
         _levelName = SceneManager.GetActiveScene().name;
+        EventManager.Checkpoint += SetCheckpointTime;
+    }
+
+    private void Start()
+    {
+        EventManager.GameStart += StartGame;
+
+        LoadSaveData();
     }
 
     private void Update()
     {
         if (_isPaused) return;
         UpdateTimer();
+    }
+
+    private void LoadSaveData()
+    {
+        SaveData saveData = GameManager.GetInstance.GetSaveData;
+
+        if (saveData.OnALevel)
+        {
+            _timeCheckpoint = saveData.CheckpointTimer;
+            _time = _timeCheckpoint;
+        }
+    }
+
+    private void StartGame()
+    {
+        // esta separado para no cargar del gamemanager cada vez que respawneas
+        _time = _timeCheckpoint;
+    }
+
+    private void SetCheckpointTime()
+    {
+        _timeCheckpoint = _time;
+        GameManager.GetInstance.SaveCheckpointTime(_timeCheckpoint, _levelName);
     }
 
     private void UpdateTimer()
@@ -41,7 +73,8 @@ public class TimeManager : MonoBehaviour
     private void OnLevelFinished()
     {
         _isPaused = true;
-        // EventManager.OnSaveTime(_levelName, time);
+        TimerData newTimerData = new TimerData(_levelName, _time);
+        GameManager.GetInstance.OnLevelFinished(newTimerData);
     }
 
     private void OnPause(bool value)
@@ -53,5 +86,7 @@ public class TimeManager : MonoBehaviour
     {
         EventManager.NextLevel -= OnLevelFinished;
         EventManager.Pause -= OnPause;
+        EventManager.GameStart -= StartGame;
+        EventManager.Checkpoint -= SetCheckpointTime;
     }
 }

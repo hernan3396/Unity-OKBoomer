@@ -17,11 +17,13 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenu(string value)
     {
+        GameManager.GetInstance.OnExit();
         EventManager.OnChangeLevel(value);
     }
 
     public void Quit()
     {
+        GameManager.GetInstance.OnExit();
         Application.Quit();
     }
 }
