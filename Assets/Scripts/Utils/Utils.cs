@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public static class Utils
 {
@@ -37,6 +38,28 @@ public static class Utils
         if (Physics.Raycast(origin, b - origin, out RaycastHit hit, range, layer))
             if (hit.transform.CompareTag(tag))
                 return true;
+
+        return false;
+    }
+
+    public static Vector3 RandomNavSphere(Vector3 origin, float dist)
+    {
+        Vector3 randDir = Random.insideUnitSphere * dist;
+        randDir += origin;
+
+        NavMeshHit navHit;
+        if (NavMesh.SamplePosition(randDir, out navHit, dist, NavMesh.AllAreas))
+            return navHit.position;
+
+        return origin;
+    }
+
+    public static bool IsPointInNavMesh(Vector3 origin, float dist)
+    {
+        NavMeshHit hit;
+        // Finds the nearest point based on the NavMesh within a specified range.
+        if (NavMesh.SamplePosition(origin, out hit, dist, NavMesh.AllAreas))
+            return true;
 
         return false;
     }

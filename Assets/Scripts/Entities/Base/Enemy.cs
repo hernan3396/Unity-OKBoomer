@@ -210,9 +210,8 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     #region MovementMethods
     public void SearchWalkPoint()
     {
-        //Calculate random point in range
-        Vector3 randDir = Random.insideUnitSphere * _data.WalkPointRange;
-        randDir += _transform.position;
+        //Calculates random point in range
+        Vector3 randDir = Utils.RandomNavSphere(_transform.position, _data.WalkPointRange);
         _destination = randDir;
     }
 
@@ -221,9 +220,13 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         int dir = Random.Range(-1, 1);
         if (dir == 0) dir = 1;
 
-        Vector3 dodgeDir = _transform.position + _transform.right * dir * _data.DodgeRange;
+        Vector3 predictedDir = _transform.right * dir * _data.DodgeRange;
+        Vector3 dodgeDir = _transform.position + predictedDir;
 
-        _destination = dodgeDir;
+        if (Utils.IsPointInNavMesh(dodgeDir, 4))
+            _destination = dodgeDir;
+        else
+            _destination = _transform.position;
     }
 
     public void GoToDestination()
