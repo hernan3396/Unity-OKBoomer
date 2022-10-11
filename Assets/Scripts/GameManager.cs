@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
             _instance = null;
     }
 
+    #region Saves
     public void OnCheckpoint()
     {
         _saveData.WeaponsObtained = _playerScript.MaxWeapons;
@@ -102,6 +103,7 @@ public class GameManager : MonoBehaviour
     {
         _saveManager.GameSave(_saveData);
     }
+    #endregion
 
     public static GameManager GetInstance
     {

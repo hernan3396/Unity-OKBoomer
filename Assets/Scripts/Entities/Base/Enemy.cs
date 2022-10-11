@@ -41,6 +41,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     protected bool _canAttack = true;
     protected bool _tookDamage = false;
     protected bool _isDodging = false;
+    private Vector2 _playerInputLerped;
     private Vector3 _initPos;
     #endregion
 
@@ -252,7 +253,8 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     protected Vector3 PredictMovement()
     {
         float timeToReach = Vector3.Distance(_transform.position, _player.position) / _data.Weapon.AmmoSpeed;
-        Vector3 forwSpeed = _playerMov.GetVelocity.magnitude * _playerMov.DirInput;
+        _playerInputLerped = Vector2.Lerp(_playerInputLerped, _playerMov.DirInput, Time.deltaTime * _data.AimSpeed);
+        Vector3 forwSpeed = _playerMov.GetVelocity.magnitude * _playerInputLerped;
 
         int dir = 1;
 
