@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - Ceiling
+  - Floor
   layers:
   - Default
   - TransparentFX

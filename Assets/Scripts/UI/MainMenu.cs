@@ -1,22 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class MainMenu : MonoBehaviour
 {
-    public enum CanvasGroups
-    {
-        MainMenu,
-        SelectLevel
-    }
-
     #region CanvasGroup
-    [Header("Canvas group")]
-    [SerializeField] private CanvasElement[] _canvasElements;
-    private CanvasGroups _currentCG;
+    [Header("Canvas Group")]
+    [SerializeField] private RectTransform _mainMenu;
+    [SerializeField] private RectTransform _levelsPanel;
+    private CanvasGroup _mainGroup;
+    private CanvasGroup _levelsGroup;
 
     [SerializeField] private RectTransform _levels;
     [SerializeField] private List<Button> _levelsBtn = new List<Button>();
@@ -24,15 +19,24 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button _continueBtn;
     #endregion
 
-    #region Animations
-    [Header("Animations")]
-    [SerializeField] private int _cameraSpeed;
-    [SerializeField] private int _fadeDur;
-    #endregion
-
     #region Timers
     [Header("Timers")]
     [SerializeField] private TMP_Text[] _timers;
+    #endregion
+
+    #region StartMenu
+    [Header("StartMenu")]
+    [SerializeField] private Button _startButton;
+    private bool _startMenuVisible = false;
+    private bool _isAnimating = false;
+    private Vector2 _startMenuInitPos;
+    #endregion
+
+    #region LevelsMenu
+    [SerializeField] private Button _selectLevel;
+    [SerializeField] private Button _backBtn;
+    private bool _levelMenuVisible = false;
+    private Vector2 _levelMenuInitPos;
     #endregion
 
     private void Awake()
@@ -45,31 +49,100 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        _currentCG = (int)CanvasGroups.MainMenu;
-
         ManageEvents();
+        InitializeUI();
     }
 
     private void ManageEvents()
     {
-        EventManager.OnFadeIn(_canvasElements[(int)_currentCG], _fadeDur);
         EventManager.GameLoaded += GameLoaded;
-        EventManager.OnInfiniteRotate(_cameraSpeed);
         EventManager.OnMainMenu();
     }
 
-    public void ChangeCG(int nextCG)
+    private void OnStartButtonClick()
     {
-        StartCoroutine("ChangingCG", nextCG);
+        if (_isAnimating) return;
+
+        _startMenuVisible = !_startMenuVisible;
+
+        if (_startMenuVisible) ShowStartMenu();
+        else HideStartMenu();
     }
 
-    private IEnumerator ChangingCG(int nextCG)
+    private void ShowStartMenu()
     {
-        EventManager.OnFadeOut(_canvasElements[(int)_currentCG], _fadeDur);
-        yield return new WaitForSeconds(_fadeDur);
+        _isAnimating = true;
+        _mainMenu.gameObject.SetActive(true);
+        _mainGroup.DOFade(1, 0.5f);
 
-        _currentCG = (CanvasGroups)nextCG;
-        EventManager.OnFadeIn(_canvasElements[(int)_currentCG], _fadeDur);
+        _mainMenu.DOAnchorPos(_startMenuInitPos, 0.5f)
+        .OnComplete(() => _isAnimating = false);
+    }
+
+    private void HideStartMenu()
+    {
+        _isAnimating = true;
+        _mainGroup.DOFade(0, 0.5f);
+        Vector2 resultPos = _mainMenu.anchoredPosition - new Vector2(0, 100);
+
+        _mainMenu.DOAnchorPos(resultPos, 0.5f).OnComplete(() =>
+        {
+            _mainMenu.gameObject.SetActive(false);
+            _isAnimating = false;
+        });
+    }
+
+    private void OnSelectLevelClick()
+    {
+        if (_isAnimating) return;
+
+        _levelMenuVisible = !_levelMenuVisible;
+
+        if (_levelMenuVisible) ShowLevelsMenu();
+        else HideLevelsMenu();
+    }
+
+    private void ShowLevelsMenu()
+    {
+        _isAnimating = true;
+        _levelsPanel.gameObject.SetActive(true);
+        _levelsGroup.DOFade(1, 0.5f);
+
+        _levelsPanel.DOAnchorPos(_levelMenuInitPos, 0.5f)
+        .OnComplete(() => _isAnimating = false);
+    }
+
+    private void HideLevelsMenu()
+    {
+        _isAnimating = true;
+        _levelsGroup.DOFade(0, 0.5f);
+        Vector2 resultPos = _levelsPanel.anchoredPosition - new Vector2(30, 0);
+
+        _levelsPanel.DOAnchorPos(resultPos, 0.5f)
+        .OnComplete(() =>
+        {
+            _levelsPanel.gameObject.SetActive(false);
+            _isAnimating = false;
+        });
+    }
+
+    private void InitializeUI()
+    {
+        _mainMenu.gameObject.SetActive(false);
+        _levelsPanel.gameObject.SetActive(false);
+
+        _mainGroup = _mainMenu.GetComponent<CanvasGroup>();
+        _levelsGroup = _levelsPanel.GetComponent<CanvasGroup>();
+
+        _startMenuInitPos = _mainMenu.anchoredPosition;
+        _mainMenu.anchoredPosition -= new Vector2(0, 100);
+
+        _levelMenuInitPos = _levelsPanel.anchoredPosition;
+        _levelsPanel.anchoredPosition -= new Vector2(30, 0);
+
+        _startButton.onClick.AddListener(OnStartButtonClick);
+        _selectLevel.onClick.AddListener(OnSelectLevelClick);
+        _backBtn.onClick.AddListener(OnSelectLevelClick);
     }
 
     public void QuitGame()
@@ -112,28 +185,5 @@ public class MainMenu : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.GameLoaded -= GameLoaded;
-    }
-}
-
-[Serializable]
-public class CanvasElement
-{
-    public Button Button;
-    public CanvasGroup CanvasGroup;
-
-    public void SelectButton()
-    {
-        Button.Select();
-    }
-
-    public void ActivateCG()
-    {
-        CanvasGroup.gameObject.SetActive(true);
-        SelectButton();
-    }
-
-    public void DeactivateCG()
-    {
-        CanvasGroup.gameObject.SetActive(false);
     }
 }

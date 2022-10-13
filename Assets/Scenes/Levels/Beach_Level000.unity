@@ -34806,7 +34806,7 @@ GameObject:
   - component: {fileID: 1206565509}
   m_Layer: 6
   m_Name: Floor_up
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -38481,7 +38481,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh76866
+  m_Name: pb_Mesh44060
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -39315,7 +39315,7 @@ GameObject:
   - component: {fileID: 1443294324}
   m_Layer: 6
   m_Name: Floor_down
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -54915,7 +54915,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh76904
+  m_Name: pb_Mesh44100
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -56185,7 +56185,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-185226
+  m_Name: pb_Mesh43888
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

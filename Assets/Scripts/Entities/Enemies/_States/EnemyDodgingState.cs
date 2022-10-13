@@ -58,6 +58,7 @@ public class EnemyDodgingState : EnemyBaseState
 
     private void OnDestroy()
     {
+        if (_utilTimer == null) return;
         _utilTimer.onTimerCompleted -= OnTimerCompleted;
     }
 
