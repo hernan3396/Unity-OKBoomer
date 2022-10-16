@@ -15,7 +15,7 @@ MonoBehaviour:
   Id: 3
   Name: Ranged Weapon
   Accuracy: {x: 5, y: 5}
-  Cooldown: 0.3
+  Cooldown: 0.5
   Startup: 0
   Damage: 10
   ChangeDur: 0
