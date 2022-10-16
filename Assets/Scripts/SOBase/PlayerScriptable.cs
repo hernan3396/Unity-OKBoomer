@@ -12,6 +12,7 @@ public class PlayerScriptable : ScriptableObject
     public float CrouchTimer;
     public int CrouchVel;
     public int Speed;
+    public float SlideCooldown;
     public LayerMask CeilingLayer;
     #endregion
 

@@ -18,6 +18,7 @@ MonoBehaviour:
   CrouchTimer: 0.6
   CrouchVel: 160
   Speed: 32
+  SlideCooldown: 1
   CeilingLayer:
     serializedVersion: 2
     m_Bits: 2147483647

@@ -2,9 +2,11 @@ public class PlayerRunState : PlayerBaseState
 {
     private Player _player;
     private PlayerMovement _playerMovement;
+    private UtilTimer _utilTimer;
     private PlayerSlide _playerSlide;
     private PlayerJump _playerJump;
     private PlayerLook _playerLook;
+    private bool _canSlide = false;
 
 
     public override void OnEnterState(PlayerStateManager stateManager)
@@ -16,7 +18,11 @@ public class PlayerRunState : PlayerBaseState
             _playerSlide = _player.PlayerSlide;
             _playerJump = _player.PlayerJump;
             _playerLook = _player.PlayerLook;
+            _utilTimer = GetComponent<UtilTimer>();
         }
+
+        _utilTimer.StartTimer(_player.Data.SlideCooldown);
+        _utilTimer.onTimerCompleted += TimerCompleted;
     }
 
     public override void UpdateState(PlayerStateManager stateManager)
@@ -38,9 +44,10 @@ public class PlayerRunState : PlayerBaseState
             return;
         }
 
-        if (_player.RB.velocity.magnitude > 1 && _playerSlide.Crouching)
+        if (_canSlide && _playerSlide.Crouching)
         {
             stateManager.SwitchState(PlayerStateManager.PlayerState.Slide);
+            _canSlide = false;
             return;
         }
     }
@@ -49,5 +56,22 @@ public class PlayerRunState : PlayerBaseState
     {
         _playerMovement.ApplyMovement();
         _playerLook.TiltCamera();
+    }
+
+    private void TimerCompleted()
+    {
+        _canSlide = true;
+    }
+
+    public override void OnExitState(PlayerStateManager stateManager)
+    {
+        _canSlide = false;
+        _utilTimer.onTimerCompleted -= TimerCompleted;
+    }
+
+    private void OnDestroy()
+    {
+        if (_utilTimer != null)
+            _utilTimer.onTimerCompleted -= TimerCompleted;
     }
 }
