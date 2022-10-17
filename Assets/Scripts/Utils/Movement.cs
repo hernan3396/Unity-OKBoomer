@@ -3,6 +3,9 @@ using DG.Tweening;
 
 public class Movement : MonoBehaviour
 {
+    // este deberia tener movmientos simples, como ir hacia un lado, rotar,etc.
+    // y luego tener scripts separados de cada cosa especifica como la llave, elevador, etc.
+    // y que llamen al movimiento que queres hacer, en vez de como hice aca que estan las cosas mezcladas
     public enum MovementType
     {
         Static,
@@ -28,6 +31,9 @@ public class Movement : MonoBehaviour
 
     private Transform _transform;
     private Vector3 _initPos;
+
+    private Tween _rotationTween;
+    private Tween _movementTween;
 
     private void Awake()
     {
@@ -85,16 +91,15 @@ public class Movement : MonoBehaviour
     private void KeyMovement()
     {
         // movimiento de rotacion
-        _transform.DORotate(new Vector3(0, 360, 0), _vel, RotateMode.FastBeyond360)
+        _rotationTween = _transform.DORotate(new Vector3(0, 360, 0), _vel, RotateMode.FastBeyond360)
         .SetRelative(true)
         .SetEase(_easeFunc)
         .SetLoops(-1, LoopType.Yoyo);
 
         // movimiento vertical
-        _transform.DOMove(_finalPosition, _vel)
-        // .SetRelative(true)
-        .SetEase(_easeFunc)
-        .SetLoops(-1, LoopType.Yoyo);
+        _movementTween = _transform.DOMove(_finalPosition, _vel)
+         .SetEase(_easeFunc)
+         .SetLoops(-1, LoopType.Yoyo);
     }
 
     private void ElevatorUp()
@@ -149,5 +154,15 @@ public class Movement : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.Pause -= OnPause;
+    }
+
+    private void OnDisable()
+    {
+        // se supone que si uno es != nulo, el otro tambien
+        if (_rotationTween != null)
+        {
+            _rotationTween.Kill();
+            _movementTween.Kill();
+        }
     }
 }

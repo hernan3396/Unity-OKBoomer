@@ -35,9 +35,7 @@ public class PickupManager : MonoBehaviour
         newPickable.SetActive(true);
 
         if (newPickable.TryGetComponent(out Movement movement))
-        {
             movement.StartMovement();
-        }
     }
 
     private void OnDestroy()
