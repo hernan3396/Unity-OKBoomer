@@ -67,7 +67,7 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0
+    - _OutlineWidth: 0.4
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.9
@@ -115,11 +115,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: VT323-Regular SDF
+  m_Name: VT323-Regular SDF_outline
   m_EditorClassIdentifier: 
-  hashCode: -87318858
+  hashCode: -729028663
   material: {fileID: -8459519567027693783}
-  materialHashCode: 1590960598
+  materialHashCode: 253448265
   m_Version: 1.1.0
   m_SourceFontFileGUID: 51ab8497c94280f498e56de252d523c3
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 51ab8497c94280f498e56de252d523c3,

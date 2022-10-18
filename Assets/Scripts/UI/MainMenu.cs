@@ -43,7 +43,9 @@ public class MainMenu : MonoBehaviour
     {
         foreach (RectTransform item in _levels)
         {
-            _levelsBtn.Add(item.GetComponent<Button>());
+            Button itemBtn = item.GetComponent<Button>();
+            _levelsBtn.Add(itemBtn);
+            itemBtn.onClick.AddListener(() => OnLevelItemClick(itemBtn.name));
         }
     }
 
@@ -59,6 +61,7 @@ public class MainMenu : MonoBehaviour
         EventManager.OnMainMenu();
     }
 
+    #region Menu
     private void OnStartButtonClick()
     {
         if (_isAnimating) return;
@@ -66,7 +69,15 @@ public class MainMenu : MonoBehaviour
         _startMenuVisible = !_startMenuVisible;
 
         if (_startMenuVisible) ShowStartMenu();
-        else HideStartMenu();
+        else
+        {
+            HideStartMenu();
+            if (_levelMenuVisible)
+            {
+                _levelMenuVisible = false;
+                HideLevelsMenu();
+            }
+        }
     }
 
     private void ShowStartMenu()
@@ -91,7 +102,9 @@ public class MainMenu : MonoBehaviour
             _isAnimating = false;
         });
     }
+    #endregion
 
+    #region LevelSelect
     private void OnSelectLevelClick()
     {
         if (_isAnimating) return;
@@ -125,6 +138,7 @@ public class MainMenu : MonoBehaviour
             _isAnimating = false;
         });
     }
+    #endregion
 
     private void InitializeUI()
     {
@@ -143,6 +157,11 @@ public class MainMenu : MonoBehaviour
         _startButton.onClick.AddListener(OnStartButtonClick);
         _selectLevel.onClick.AddListener(OnSelectLevelClick);
         _backBtn.onClick.AddListener(OnSelectLevelClick);
+    }
+
+    private void OnLevelItemClick(string buttonName)
+    {
+        EventManager.OnChangeLevel(buttonName);
     }
 
     public void QuitGame()
