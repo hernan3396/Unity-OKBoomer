@@ -60,6 +60,7 @@ public class SaveManager : MonoBehaviour
 
         newSaveData.WeaponsObtained = 0;
         newSaveData.PlayerPos = Vector3.zero;
+        newSaveData.PlayerRot = Quaternion.identity;
         newSaveData.Ammo = new int[0];
         newSaveData.CheckpointTimer = 0;
         newSaveData.OnALevel = false;

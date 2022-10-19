@@ -51,12 +51,14 @@ public class GameManager : MonoBehaviour
     {
         _saveData.WeaponsObtained = _playerScript.MaxWeapons;
         _saveData.PlayerPos = _player.transform.position;
+        _saveData.PlayerRot = _player.transform.rotation;
         _saveData.PlayerHealth = _playerScript.CurrentHP;
         _saveData.Ammo = _playerScript.GetBullets;
 
         _playerScript.Checkpoint = _player.transform.position; // un poco raro que esten aca pero whatever
         _playerScript.HealthCheckpoint = _playerScript.CurrentHP; // un poco raro que esten aca pero whatever
         _playerScript.AmmoCheckpoint = _playerScript.GetBullets; // un poco raro que esten aca pero whatever
+        _playerScript.CurrentRot = _player.transform.rotation;
 
         _saveData.OnALevel = true;
     }

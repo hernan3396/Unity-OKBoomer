@@ -7,6 +7,7 @@ public class SaveData
     // player data
     public int WeaponsObtained;
     public Vector3 PlayerPos;
+    public Quaternion PlayerRot;
     public int PlayerHealth;
     public int[] Ammo;
 
