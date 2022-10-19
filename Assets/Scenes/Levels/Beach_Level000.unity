@@ -10752,6 +10752,11 @@ PrefabInstance:
       objectReference: {fileID: 8400000, guid: d7ee808ba491278418b5348c3fd5d014, type: 2}
     - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
+      propertyPath: _godMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
       propertyPath: _maxWeapons
       value: 1
       objectReference: {fileID: 0}
@@ -33521,15 +33526,15 @@ Transform:
   - {fileID: 2101454075}
   - {fileID: 867657131}
   - {fileID: 1247528845}
-  - {fileID: 1076311620}
   - {fileID: 1451884753}
-  - {fileID: 1393162398}
   - {fileID: 1426179500}
+  - {fileID: 1076311620}
   - {fileID: 1718217638}
+  - {fileID: 1393162398}
   - {fileID: 1602130906}
   - {fileID: 1092002132}
-  - {fileID: 416588285}
   - {fileID: 1365916141}
+  - {fileID: 416588285}
   - {fileID: 638761259}
   - {fileID: 1888152143}
   m_Father: {fileID: 1808563705}
