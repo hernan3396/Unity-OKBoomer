@@ -22,7 +22,8 @@ public class Pickup : MonoBehaviour
     private void Start()
     {
         _player = GameManager.GetInstance.Player.GetComponent<Player>();
-        EventManager.GameStart += Respawn;
+        if (_respawn)
+            EventManager.GameStart += Respawn;
     }
 
     private void OnEnable()
@@ -57,11 +58,7 @@ public class Pickup : MonoBehaviour
 
     private void Respawn()
     {
-        if (_respawn)
-            gameObject.SetActive(true);
-        else
-            gameObject.SetActive(false);
-
+        gameObject.SetActive(true);
         /*
         esta hecho para que si queres un pickup en el mundo
         independiente de un breakable que respawnee al lanzar OnGameStart,
@@ -73,6 +70,7 @@ public class Pickup : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventManager.GameStart -= Respawn;
+        if (_respawn)
+            EventManager.GameStart -= Respawn;
     }
 }

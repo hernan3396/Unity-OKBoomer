@@ -8,8 +8,9 @@ public class Player : Entity, IPauseable
     [SerializeField] private bool _godMode;
     private bool _isDead = false;
 
-    #region Checkpoin
+    #region Checkpoint
     private Vector3 _currentCheckpoint;
+    private Quaternion _currentRotation;
     private int _healthCheckpoint;
     private int[] _ammoCheckpoint;
     #endregion
@@ -101,7 +102,9 @@ public class Player : Entity, IPauseable
         if (saveData.OnALevel)
         {
             _currentCheckpoint = saveData.PlayerPos;
+            _currentRotation = saveData.PlayerRot;
             _transform.position = _currentCheckpoint;
+            _transform.rotation = _currentRotation;
             _currentHp = saveData.PlayerHealth;
             _maxWeapons = saveData.WeaponsObtained;
 
@@ -471,6 +474,12 @@ public class Player : Entity, IPauseable
     {
         get { return _ammoCheckpoint; }
         set { _ammoCheckpoint = value; }
+    }
+
+    public Quaternion CurrentRot
+    {
+        get { return _currentRotation; }
+        set { _currentRotation = value; }
     }
     #endregion
 }
