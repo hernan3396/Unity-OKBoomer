@@ -13,7 +13,7 @@ public class SuicidalAttackingState : EnemyBaseState
         _enemy.RB.isKinematic = false;
         _enemy.Agent.enabled = false;
 
-        DOTween.KillAll();
+        _enemy.FloatingTween.Kill();
     }
 
     public override void UpdateState(EnemyStateManager state)

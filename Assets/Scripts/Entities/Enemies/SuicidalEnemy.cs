@@ -10,6 +10,8 @@ public class SuicidalEnemy : Enemy
     [SerializeField] private float _floatingSpeed = 1;
     [SerializeField] private int _currentBounces = 0;
 
+    private Tween _floatingTween;
+
     protected override void Start()
     {
         base.Start();
@@ -19,10 +21,10 @@ public class SuicidalEnemy : Enemy
 
     public void FloatingAnim()
     {
-        _transform.DOMoveY(_floatingHeight, _floatingSpeed)
-        .SetLoops(-1, LoopType.Yoyo)
-        .SetEase(Ease.Linear)
-        .SetRelative(true);
+        _floatingTween = _transform.DOMoveY(_floatingHeight, _floatingSpeed)
+          .SetLoops(-1, LoopType.Yoyo)
+          .SetEase(Ease.Linear)
+          .SetRelative(true);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -85,5 +87,10 @@ public class SuicidalEnemy : Enemy
 
         if (_currentBounces >= _data.DodgeRange)
             Death();
+    }
+
+    public Tween FloatingTween
+    {
+        get { return _floatingTween; }
     }
 }
