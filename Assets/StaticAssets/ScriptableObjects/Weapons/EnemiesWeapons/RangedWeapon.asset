@@ -27,6 +27,6 @@ MonoBehaviour:
   UseBullets: 1
   AmmoType: 0
   MaxBounces: 0
-  AmmoSpeed: 60
+  AmmoSpeed: 100
   MaxAmmo: 0
   RecoilForce: 0
