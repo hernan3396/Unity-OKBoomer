@@ -212,7 +212,6 @@ public class Player : Entity, IPauseable
     protected override void Death()
     {
         _isDead = true;
-        // EventManager.OnGameOver();
     }
 
     public void PickUpHealth(int value)

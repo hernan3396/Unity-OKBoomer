@@ -4,6 +4,7 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
 {
     private Player _player;
     private PlayerShoot _playerShoot;
+    private PlayerMovement _playerMovement;
 
     private WeaponStateManager _state;
     private UtilTimer _utilTimer;
@@ -21,10 +22,12 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
             _state = state;
             _player = state.Player;
             _playerShoot = _player.PlayerShoot;
+            _playerMovement = _player.PlayerMovement;
 
             _utilTimer = GetComponent<UtilTimer>();
         }
 
+        _playerMovement.MovementMod = 3;
         Time.timeScale = _player.CurrentWeaponData.Data.SpecialDamage * 0.1f;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
@@ -58,6 +61,8 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
 
     public override void OnExitState(WeaponStateManager state)
     {
+        _playerMovement.MovementMod = 1;
+
         Time.timeScale = 1f;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
         _utilTimer.onTimerCompleted -= OnTimerCompleted;
