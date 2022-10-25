@@ -18,9 +18,7 @@ public class StaticEnemy : Enemy
         _utilTimer.onTimerCompleted += OnTimerCompleted;
 
         foreach (Transform shoot in _shootingPivot)
-        {
             _shootingPositions.Add(shoot);
-        }
     }
 
     public override void Attacking()
@@ -36,6 +34,8 @@ public class StaticEnemy : Enemy
 
             if (newBullet.TryGetComponent(out Bullet bullet))
             {
+                Vector3 playerDir = Utils.CalculateDirection(shootPos.position, _player.position);
+                shootPos.transform.forward = _lookDir + new Vector3(0, playerDir.y * 0.5f, 0);
                 bullet.SetData(weapon.Damage, weapon.AmmoSpeed, weapon.MaxBounces, shootPos);
                 bullet.SetInitPos(shootPos.position);
                 newBullet.SetActive(true);

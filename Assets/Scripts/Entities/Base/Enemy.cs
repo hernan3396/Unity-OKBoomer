@@ -43,6 +43,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     protected bool _isDodging = false;
     private Vector2 _playerInputLerped;
     private Vector3 _initPos;
+    protected Vector3 _lookDir;
     #endregion
 
     #region States
@@ -274,8 +275,8 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
 
     public void RotateTowards(Transform other)
     {
-        Vector3 lookDir = Utils.CalculateDirection(_transform.position, _player.position + PredictMovement());
-        _transform.rotation = Quaternion.LookRotation(lookDir);
+        _lookDir = Utils.CalculateDirection(_transform.position, _player.position + PredictMovement());
+        _transform.rotation = Quaternion.LookRotation(_lookDir);
         // _transform.forward = Vector3.Slerp(_transform.forward, lookDir, Time.deltaTime * _data.AimSpeed);
     }
 
