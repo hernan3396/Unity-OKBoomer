@@ -19903,7 +19903,7 @@ PrefabInstance:
     - target: {fileID: 2395439072523636899, guid: 85bda5b00ff15be4abcf2e8eb1d77d44,
         type: 3}
       propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Level1
+      value: Beach_Level000
       objectReference: {fileID: 0}
     - target: {fileID: 2395439072523636899, guid: 85bda5b00ff15be4abcf2e8eb1d77d44,
         type: 3}
