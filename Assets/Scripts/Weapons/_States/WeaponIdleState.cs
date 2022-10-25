@@ -60,7 +60,7 @@ public class WeaponIdleState : WeaponBaseState
 
     private void PickUpWeapon(int side)
     {
-        _player.WeaponManager.ChangeWeapon(side);
+        _player.WeaponManager.SetWeapon(side);
 
         if (_player.MaxWeapons > 1)
             _state.SwitchState(WeaponStateManager.State.ChangeOut);

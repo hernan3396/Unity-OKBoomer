@@ -46,6 +46,11 @@ public class WeaponManager : MonoBehaviour
             _currentWeapon = maxWeapons - 1;
     }
 
+    public void SetWeapon(int value)
+    {
+        _currentWeapon = value;
+    }
+
     private void OnDestroy()
     {
         // EventManager.ChangeWeapon -= ChangeWeapon;

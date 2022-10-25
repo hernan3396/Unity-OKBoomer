@@ -290,7 +290,7 @@ public class Player : Entity, IPauseable
         if (_maxWeapons >= _weapons.Length) return;
 
         _maxWeapons += 1;
-        EventManager.OnPickUpWeapon(1); // 1 indica que sumas 1 al indice del currentWeapon
+        EventManager.OnPickUpWeapon(_maxWeapons - 1); // 1 indica que sumas 1 al indice del currentWeapon
     }
     #endregion
 
