@@ -8,7 +8,6 @@ public class SuicidalEnemy : Enemy
 
     [SerializeField] private float _floatingHeight = 1;
     [SerializeField] private float _floatingSpeed = 1;
-    [SerializeField] private int _currentBounces = 0;
 
     private Tween _floatingTween;
 
@@ -61,10 +60,14 @@ public class SuicidalEnemy : Enemy
         }
     }
 
+    public void CallExplosion()
+    {
+        Death();
+    }
+
     protected override void Respawn()
     {
         base.Respawn();
-        _currentBounces = 0;
     }
 
     private void Bounce(Collision col)
@@ -82,11 +85,6 @@ public class SuicidalEnemy : Enemy
 
         _rb.velocity = Vector3.zero;
         _rb.AddForce(outDir.normalized * _data.DodgeSpeed, ForceMode.Impulse);
-
-        _currentBounces += 1;
-
-        if (_currentBounces >= _data.DodgeRange)
-            Death();
     }
 
     public Tween FloatingTween

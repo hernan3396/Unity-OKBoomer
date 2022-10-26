@@ -2,18 +2,27 @@ using DG.Tweening;
 
 public class SuicidalAttackingState : EnemyBaseState
 {
+    private EnemyStateManager _state;
     private SuicidalEnemy _enemy;
+    private UtilTimer _utilTimer;
 
     public override void OnEnterState(EnemyStateManager state)
     {
         if (_enemy == null)
-            _enemy = (SuicidalEnemy)state.Enemy;
+        {
+            _state = state;
+            _enemy = (SuicidalEnemy)_state.Enemy;
+            _utilTimer = GetComponent<UtilTimer>();
+        }
 
         _enemy.StopAgent(true); // se frena
         _enemy.RB.isKinematic = false;
         _enemy.Agent.enabled = false;
 
         _enemy.FloatingTween.Kill();
+
+        _utilTimer.StartTimer(_enemy.Data.AimSpeed);
+        _utilTimer.onTimerCompleted += OnTimerCompleted;
     }
 
     public override void UpdateState(EnemyStateManager state)
@@ -40,5 +49,17 @@ public class SuicidalAttackingState : EnemyBaseState
         _enemy.RB.isKinematic = true;
 
         _enemy.FloatingAnim();
+        _utilTimer.onTimerCompleted -= OnTimerCompleted;
+    }
+
+    private void OnTimerCompleted()
+    {
+        _state.SwitchState(EnemyStateManager.EnemyState.Dodging);
+    }
+
+    private void OnDestroy()
+    {
+        if (_utilTimer == null) return;
+        _utilTimer.onTimerCompleted -= OnTimerCompleted;
     }
 }
