@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08061532, g: 0.09959756, b: 0.34130022, a: 1}
+  m_IndirectSpecularColor: {r: 0.080577634, g: 0.09927249, b: 0.34124932, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1848,7 +1848,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-271448
+  m_Name: pb_Mesh37244
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3575,7 +3575,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1331390
+  m_Name: pb_Mesh36528
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4627,7 +4627,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4512f7d3e63ff4040b03694331710d45, type: 2}
+  - {fileID: 2100000, guid: 590327207a695f1458f025d5070e19f9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10307,7 +10307,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4512f7d3e63ff4040b03694331710d45, type: 2}
+  - {fileID: 2100000, guid: 590327207a695f1458f025d5070e19f9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31368,6 +31368,17 @@ PrefabInstance:
       objectReference: {fileID: 8400000, guid: d7ee808ba491278418b5348c3fd5d014, type: 2}
     - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
+      propertyPath: _data
+      value: 
+      objectReference: {fileID: 11400000, guid: a2604801bddafd44e9029ad0f6b129a8,
+        type: 2}
+    - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: _godMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907486638399581669, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
       propertyPath: _maxWeapons
       value: 1
       objectReference: {fileID: 0}
@@ -43180,7 +43191,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1351104
+  m_Name: pb_Mesh36586
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -56574,7 +56585,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4512f7d3e63ff4040b03694331710d45, type: 2}
+  - {fileID: 2100000, guid: 590327207a695f1458f025d5070e19f9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
