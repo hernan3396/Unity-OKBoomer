@@ -20,7 +20,7 @@ MonoBehaviour:
   Damage: 50
   ChangeDur: 0.75
   SpecialType: 1
-  SpecialDamage: 100
+  SpecialDamage: 120
   SpecialStartup: 0
   SpecialTime: 1
   SpecialCooldown: 3

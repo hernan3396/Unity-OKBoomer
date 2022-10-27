@@ -99,6 +99,8 @@ public class Player : Entity, IPauseable
 
     private void LoadSaveData(SaveData saveData)
     {
+        _maxWeapons = saveData.WeaponsObtained;
+
         if (saveData.OnALevel)
         {
             _currentCheckpoint = saveData.PlayerPos;
@@ -106,7 +108,6 @@ public class Player : Entity, IPauseable
             _transform.position = _currentCheckpoint;
             _transform.rotation = _currentRotation;
             _currentHp = saveData.PlayerHealth;
-            _maxWeapons = saveData.WeaponsObtained;
 
             for (int i = 0; i < _weapons.Length; i++)
                 _weapons[i].LoadBullets(saveData.Ammo[i]);

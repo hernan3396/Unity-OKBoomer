@@ -66,6 +66,7 @@ public class LevelManager : MonoBehaviour
 
     public void OnNextLevel(string scene)
     {
+        GameManager.GetInstance.OnCheckpoint();
         GameManager.GetInstance.OnExit();
         StartCoroutine("ChangingLevel", scene);
     }
@@ -77,6 +78,12 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(_transitionSpeed);
 
         LoadLevel(scene);
+    }
+
+    public void OnNewLevelSelected(string scene)
+    {
+        GameManager.GetInstance.OnNewLevel();
+        StartCoroutine("ChangingLevelNoSave", scene);
     }
 
     public void OnNextLevelNoSave(string scene)

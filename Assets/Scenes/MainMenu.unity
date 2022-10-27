@@ -423,7 +423,7 @@ RectTransform:
   - {fileID: 1946832470}
   - {fileID: 275999927}
   m_Father: {fileID: 1993184968}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1502,8 +1502,9 @@ RectTransform:
   - {fileID: 372684153}
   - {fileID: 451642242}
   - {fileID: 183487234}
+  - {fileID: 1937505652}
   m_Father: {fileID: 1993184968}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -1835,6 +1836,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1316455237}
+    - target: {fileID: 7363994318415169037, guid: 10ea90baffcacfa46ab21a6f203d8c16,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnNewLevelSelected
+      objectReference: {fileID: 0}
     - target: {fileID: 7363994318415169037, guid: 10ea90baffcacfa46ab21a6f203d8c16,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -3348,7 +3354,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1993184968}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3551,6 +3557,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1316455237}
+    - target: {fileID: 7363994318415169037, guid: 10ea90baffcacfa46ab21a6f203d8c16,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnNewLevelSelected
+      objectReference: {fileID: 0}
     - target: {fileID: 7363994318415169037, guid: 10ea90baffcacfa46ab21a6f203d8c16,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -3923,6 +3934,11 @@ PrefabInstance:
       objectReference: {fileID: 1316455237}
     - target: {fileID: 7363994318415169037, guid: 10ea90baffcacfa46ab21a6f203d8c16,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnNewLevelSelected
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363994318415169037, guid: 10ea90baffcacfa46ab21a6f203d8c16,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Beach_Level000
       objectReference: {fileID: 0}
@@ -4067,7 +4083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1937505652
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4075,20 +4091,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937505651}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 728792803}
-  m_Father: {fileID: 1993184968}
+  m_Father: {fileID: 693203227}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 1, y: 1}
+  m_SizeDelta: {x: 100, y: 20}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1937505653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4339,7 +4355,6 @@ RectTransform:
   - {fileID: 1793408095}
   - {fileID: 1801658617}
   - {fileID: 625014272}
-  - {fileID: 1937505652}
   - {fileID: 209513340}
   - {fileID: 693203227}
   - {fileID: 1319763259}
@@ -4665,6 +4680,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1316455237}
+    - target: {fileID: 7363994318415169037, guid: 10ea90baffcacfa46ab21a6f203d8c16,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnNewLevelSelected
+      objectReference: {fileID: 0}
     - target: {fileID: 7363994318415169038, guid: 10ea90baffcacfa46ab21a6f203d8c16,
         type: 3}
       propertyPath: m_Pivot.x

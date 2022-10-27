@@ -43,6 +43,7 @@ public class RangedEnemy : Enemy
 
     private void OnDestroy()
     {
-        _utilTimer.onTimerCompleted -= OnTimerCompleted;
+        if (_utilTimer != null)
+            _utilTimer.onTimerCompleted -= OnTimerCompleted;
     }
 }

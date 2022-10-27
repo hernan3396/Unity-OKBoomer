@@ -105,6 +105,12 @@ public class GameManager : MonoBehaviour
     {
         _saveManager.GameSave(_saveData);
     }
+
+    public void OnNewLevel()
+    {
+        _saveData.OnALevel = false;
+        _saveManager.GameSave(_saveData);
+    }
     #endregion
 
     public static GameManager GetInstance
