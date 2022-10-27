@@ -6,6 +6,9 @@ public static class EventManager
     #region Sound
     public static event UnityAction<AudioManager.OST> PlayMusic;
     public static void OnPlayMusic(AudioManager.OST music) => PlayMusic?.Invoke(music);
+
+    public static event UnityAction<AudioManager.PlayerWeaponSFX> PlayPlayerWeaponSound;
+    public static void OnPlayerPlayerWeaponSound(AudioManager.PlayerWeaponSFX sfx) => PlayPlayerWeaponSound?.Invoke(sfx);
     #endregion
 
     #region Utils

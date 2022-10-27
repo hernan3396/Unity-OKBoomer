@@ -31,18 +31,19 @@ public class UIManager : MonoBehaviour
 
         EventManager.UpdateUIValue += UpdateUIValue;
         EventManager.UpdateUIText += UpdateUIText;
+        EventManager.GameOver += OnGameOver;
         EventManager.GodMode += OnGodMode;
         EventManager.OnGameStart();
     }
 
     public void UpdateUIValue(Element element, int value)
     {
+        // solo se usa para la vida, ojo si se agrega algo mas
         _uiElements[(int)element].UpdateElement(value);
 
         if (_firstUpdateImage)
         {
             _healthImageIndex = _imagesAmount - 1 - Mathf.CeilToInt(value * _imagesAmount / 100);
-
             if (_healthImageIndex < 0) _healthImageIndex = 0;
             if (_healthImageIndex > _imagesAmount) _healthImageIndex = _imagesAmount - 1;
 
@@ -56,6 +57,11 @@ public class UIManager : MonoBehaviour
 
         if (element == Element.Hp)
             ManageHealthImage(value);
+    }
+
+    private void OnGameOver()
+    {
+        _firstUpdateImage = true;
     }
 
     private void ManageHealthImage(int value)
@@ -97,6 +103,7 @@ public class UIManager : MonoBehaviour
         EventManager.UpdateUIValue -= UpdateUIValue;
         EventManager.UpdateUIText -= UpdateUIText;
         EventManager.GodMode -= OnGodMode;
+        EventManager.GameOver -= OnGameOver;
     }
 }
 

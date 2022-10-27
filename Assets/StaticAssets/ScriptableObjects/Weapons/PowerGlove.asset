@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1
   Name: Power Glove
+  SFX: 1
   Accuracy: {x: 10, y: 10}
   Cooldown: 0.08
   Startup: 0

@@ -12,6 +12,7 @@ public class WeaponScriptable : ScriptableObject
 
     public int Id;
     public string Name;
+    public AudioManager.PlayerWeaponSFX SFX;
 
     #region Stats
     [Header("Stats")]
