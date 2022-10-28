@@ -33,13 +33,13 @@ public class DiscBullet : Bullet
         if (otherTransform.TryGetComponent(out EnemyHead head))
             head.TakeDamage(_damage, _transform);
 
+        if (otherTransform.TryGetComponent(out Breakable breakable))
+            breakable.TakeDamage(_damage);
+
         if (otherTransform.parent == null) return;
 
         if (otherTransform.parent.TryGetComponent(out Enemy enemy))
             enemy.TakeDamage(_damage, _transform);
-
-        if (otherTransform.parent.TryGetComponent(out Breakable breakable))
-            breakable.TakeDamage(_damage);
     }
 
     private void Bounce()

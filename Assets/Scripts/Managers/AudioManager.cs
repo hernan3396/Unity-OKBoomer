@@ -54,7 +54,6 @@ public class AudioManager : MonoBehaviour
     public void PlaySound(PlayerWeaponSFX audioItem)
     {
         AudioScriptable audioScript = _sfxList[(int)audioItem];
-        Debug.Log(audioScript.name);
 
         if (!audioScript) return;
 
