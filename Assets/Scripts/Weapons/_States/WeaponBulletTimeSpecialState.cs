@@ -27,7 +27,7 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
             _utilTimer = GetComponent<UtilTimer>();
         }
 
-        _playerMovement.MovementMod = 3;
+        _playerMovement.MovementMod = 2;
         Time.timeScale = _player.CurrentWeaponData.Data.SpecialDamage * 0.1f;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
@@ -38,6 +38,8 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
 
     public override void UpdateState(WeaponStateManager state)
     {
+        _playerMovement.MovementMod = 2;
+
         if (_canAttack && _player.CurrentWeaponData.CurrentBullets > 0)
         {
             _playerShoot.Shoot();

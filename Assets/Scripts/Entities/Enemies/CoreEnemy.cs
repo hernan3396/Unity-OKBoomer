@@ -26,7 +26,7 @@ public class CoreEnemy : Enemy
         if (_isDead) return;
 
         base.Death();
-        EventManager.OnChangeLevel("MainMenu");
+        // EventManager.OnChangeLevel("MainMenu");
         DeathEvent?.Invoke();
     }
 }

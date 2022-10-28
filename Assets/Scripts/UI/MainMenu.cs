@@ -179,7 +179,10 @@ public class MainMenu : MonoBehaviour
     private void ChangeTimers(List<TimerData> timerInfo)
     {
         for (int i = 0; i < timerInfo.Count; i++)
+        {
+            if (timerInfo[i].Name == "Debug_Island") continue;
             _timers[i].text = Utils.FloatToTime(timerInfo[i].LevelTime);
+        }
     }
 
     private void ActivateContinue()
