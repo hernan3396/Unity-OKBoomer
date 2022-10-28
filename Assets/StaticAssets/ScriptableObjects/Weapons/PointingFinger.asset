@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   Name: Pointing Finger
+  SFX: 0
   Accuracy: {x: 2, y: 2}
   Cooldown: 0.3
   Startup: 0
@@ -22,7 +23,7 @@ MonoBehaviour:
   SpecialType: 0
   SpecialDamage: 1
   SpecialStartup: 1
-  SpecialTime: 3
+  SpecialTime: 1.5
   SpecialCooldown: 1
   UseBullets: 0
   AmmoType: 0
