@@ -16,7 +16,7 @@ public class EnemyHead : MonoBehaviour
         if (_enemy == null) return;
 
         if (_audio != null)
-            _audio.PlaySound();
+            _audio.PlayOwnSound();
 
         _enemy.TakeDamage(value * 2, other);
     }

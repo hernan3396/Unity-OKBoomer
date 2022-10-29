@@ -12,6 +12,9 @@ public static class EventManager
 
     public static event UnityAction<Vector3, AudioScriptable> Play3dSound;
     public static void OnPlay3dSound(Vector3 pos, AudioScriptable audioScript) => Play3dSound?.Invoke(pos, audioScript);
+
+    public static event UnityAction<AudioSource, AudioScriptable> PlayOwn3dSound;
+    public static void OnPlayOwn3dSound(AudioSource source, AudioScriptable audioScript) => PlayOwn3dSound?.Invoke(source, audioScript);
     #endregion
 
     #region Utils

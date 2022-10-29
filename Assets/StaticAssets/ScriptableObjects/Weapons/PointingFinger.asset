@@ -22,9 +22,9 @@ MonoBehaviour:
   ChangeDur: 0.25
   SpecialType: 0
   SpecialDamage: 1
-  SpecialStartup: 1
-  SpecialTime: 1.5
-  SpecialCooldown: 1
+  SpecialStartup: 0.8
+  SpecialTime: 3
+  SpecialCooldown: 0.8
   UseBullets: 0
   AmmoType: 0
   MaxBounces: 0

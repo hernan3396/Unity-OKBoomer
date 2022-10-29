@@ -52,6 +52,7 @@ public class AudioManager : MonoBehaviour
         EventManager.PlayMusic += FadeBetweenMusic;
         EventManager.PlaySound += PlaySound;
         EventManager.Play3dSound += CreateSoundAndPlay;
+        EventManager.PlayOwn3dSound += RandomizeExternalSound;
     }
 
     public void PlaySound(SFX audioItem)
@@ -125,9 +126,10 @@ public class AudioManager : MonoBehaviour
     {
         if (!audioScript) return;
 
-        // audioSource.clip = audioScript.GetAudioClip(0);
+        audioSource.clip = audioScript.GetAudioClip(0);
         audioSource.volume = Random.Range(audioScript.volume.x, audioScript.volume.y);
         audioSource.pitch = Random.Range(audioScript.pitch.x, audioScript.pitch.y);
+        audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, audioScript.AnimCurve);
 
         audioSource.PlayOneShot(audioScript.GetAudioClip(0));
     }
@@ -154,5 +156,6 @@ public class AudioManager : MonoBehaviour
         EventManager.PlayMusic -= FadeBetweenMusic;
         EventManager.PlaySound -= PlaySound;
         EventManager.Play3dSound -= CreateSoundAndPlay;
+        EventManager.PlayOwn3dSound -= RandomizeExternalSound;
     }
 }

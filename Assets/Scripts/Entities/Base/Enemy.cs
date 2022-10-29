@@ -116,14 +116,13 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         GameObject blood = _bloodPool.GetPooledObject();
         if (blood)
         {
-
             blood.transform.position = bullet.position;
             blood.transform.forward = bullet.forward;
             blood.SetActive(true);
         }
 
         if (_audio != null)
-            _audio.PlaySound((int)SFX.Hit);
+            _audio.PlayOwnSound((int)SFX.Hit);
 
         // en el codigo de las particulas de la sangre
         // ya esta puesto play on awake y disable en stop action
