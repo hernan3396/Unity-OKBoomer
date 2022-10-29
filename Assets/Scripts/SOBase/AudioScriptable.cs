@@ -10,6 +10,8 @@ public class AudioScriptable : ScriptableObject
     public Vector2 volume = new Vector2(1, 1);
     public Vector2 pitch = new Vector2(1, 1);
 
+    public AnimationCurve AnimCurve;
+
     public AudioClip GetAudioClip(int index)
     {
         return clips[index];

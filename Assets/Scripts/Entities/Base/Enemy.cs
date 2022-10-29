@@ -10,6 +10,12 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         Blood
     }
 
+    private enum SFX
+    {
+        Hit,
+        Death,
+    }
+
     #region Data
     [Header("Data")]
     [SerializeField] protected EnemyScriptable _data;
@@ -116,6 +122,9 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
             blood.SetActive(true);
         }
 
+        if (_audio != null)
+            _audio.PlaySound((int)SFX.Hit);
+
         // en el codigo de las particulas de la sangre
         // ya esta puesto play on awake y disable en stop action
 
@@ -130,7 +139,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         EventManager.OnWaveUpdated();
 
         if (_audio != null)
-            _audio.PlaySound();
+            _audio.PlaySound((int)SFX.Death);
 
         _headMat.DOFloat(1, "_DissolveValue", _data.DeathDur)
         .SetEase(Ease.OutQuint);

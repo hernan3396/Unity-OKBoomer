@@ -132,7 +132,7 @@ public class AudioManager : MonoBehaviour
         audioSource.PlayOneShot(audioScript.GetAudioClip(0));
     }
 
-    public void CreateSoundAndPlay(Vector3 pos, AudioScriptable audioScript, AnimationCurve curve)
+    public void CreateSoundAndPlay(Vector3 pos, AudioScriptable audioScript)
     {
         GameObject go = new GameObject();
         go.transform.position = pos;
@@ -141,7 +141,7 @@ public class AudioManager : MonoBehaviour
         source.spatialBlend = 1.0f;
         source.rolloffMode = AudioRolloffMode.Custom;
         source.maxDistance = 200;
-        source.SetCustomCurve(AudioSourceCurveType.CustomRolloff, curve);
+        source.SetCustomCurve(AudioSourceCurveType.CustomRolloff, audioScript.AnimCurve);
 
         source.clip = audioScript.GetAudioClip(0);
         source.PlayOneShot(source.clip);

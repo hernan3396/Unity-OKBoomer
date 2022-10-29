@@ -446,7 +446,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e3db6c77b58d54db23545014330e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioScript: {fileID: 11400000, guid: 8403cd56413e2844aad3ee08b553599e, type: 2}
+  _audioScript:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _animCurve:
     serializedVersion: 2
     m_Curve:
@@ -489,7 +492,7 @@ MonoBehaviour:
       - m_Target: {fileID: 6517839108336199114}
         m_TargetAssemblyTypeName: PlayAudio, Assembly-CSharp
         m_MethodName: PlaySound
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

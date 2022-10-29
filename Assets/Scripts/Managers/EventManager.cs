@@ -10,8 +10,8 @@ public static class EventManager
     public static event UnityAction<AudioManager.SFX> PlaySound;
     public static void OnPlaySound(AudioManager.SFX sfx) => PlaySound?.Invoke(sfx);
 
-    public static event UnityAction<Vector3, AudioScriptable, AnimationCurve> Play3dSound;
-    public static void OnPlay3dSound(Vector3 pos, AudioScriptable audioScript, AnimationCurve animCurve) => Play3dSound?.Invoke(pos, audioScript, animCurve);
+    public static event UnityAction<Vector3, AudioScriptable> Play3dSound;
+    public static void OnPlay3dSound(Vector3 pos, AudioScriptable audioScript) => Play3dSound?.Invoke(pos, audioScript);
     #endregion
 
     #region Utils
