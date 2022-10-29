@@ -12,11 +12,13 @@ public class AudioManager : MonoBehaviour
         RestoDeLevels,
     }
 
-    public enum PlayerWeaponSFX
+    public enum SFX
     {
         PointingFinger,
         PowerGloves,
         TronsEncom,
+        PlayerHit,
+        PlayerDeath,
     }
 
     private static AudioManager _instance;
@@ -48,10 +50,11 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         EventManager.PlayMusic += FadeBetweenMusic;
-        EventManager.PlayPlayerWeaponSound += PlaySound;
+        EventManager.PlaySound += PlaySound;
+        EventManager.Play3dSound += CreateSoundAndPlay;
     }
 
-    public void PlaySound(PlayerWeaponSFX audioItem)
+    public void PlaySound(SFX audioItem)
     {
         AudioScriptable audioScript = _sfxList[(int)audioItem];
 
@@ -149,6 +152,7 @@ public class AudioManager : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.PlayMusic -= FadeBetweenMusic;
-        EventManager.PlayPlayerWeaponSound -= PlaySound;
+        EventManager.PlaySound -= PlaySound;
+        EventManager.Play3dSound -= CreateSoundAndPlay;
     }
 }

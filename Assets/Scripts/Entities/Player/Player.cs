@@ -207,12 +207,14 @@ public class Player : Entity, IPauseable
 
         base.TakeDamage(value);
         _cmImpSrc.GenerateImpulse();
+        EventManager.OnPlaySound(AudioManager.SFX.PlayerHit);
         EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
     }
 
     protected override void Death()
     {
         _isDead = true;
+        EventManager.OnPlaySound(AudioManager.SFX.PlayerDeath);
     }
 
     public void PickUpHealth(int value)

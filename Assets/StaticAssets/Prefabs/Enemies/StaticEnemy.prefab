@@ -638,6 +638,7 @@ GameObject:
   - component: {fileID: 8032703309078252924}
   - component: {fileID: 8032703309078252896}
   - component: {fileID: 8032703309078252921}
+  - component: {fileID: 2486990219672739341}
   m_Layer: 0
   m_Name: StaticEnemy
   m_TagString: Untagged
@@ -722,6 +723,45 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2551
   _shootingPivot: {fileID: 6608198227539871844}
+--- !u!114 &2486990219672739341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8032703309078252923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e3db6c77b58d54db23545014330e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playOnHit: 1
+  _audioScript: {fileID: 11400000, guid: 6603904d04af0484da1b0e50cc5d40ea, type: 2}
+  _animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.4
+      inSlope: -0.942111
+      outSlope: -0.942111
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.058224156
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _tag: Bullet
 --- !u!1 &8032703309233796596
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,6 +941,7 @@ GameObject:
   - component: {fileID: 8032703309495668876}
   - component: {fileID: 8032703309495668877}
   - component: {fileID: 8032703309495668878}
+  - component: {fileID: 1340121756758934089}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -999,6 +1040,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemy: {fileID: 8032703309078252921}
+--- !u!114 &1340121756758934089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8032703309495668875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e3db6c77b58d54db23545014330e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playOnHit: 1
+  _audioScript: {fileID: 11400000, guid: ac004e244e2a3fb408735b02a9636f72, type: 2}
+  _animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: -0.942111
+      outSlope: -0.942111
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.058224156
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _tag: Bullet
 --- !u!1 &8032703309587550099
 GameObject:
   m_ObjectHideFlags: 0

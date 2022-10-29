@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3676999668562893317}
   - component: {fileID: 3676999668562893319}
   - component: {fileID: 3676999668562893312}
+  - component: {fileID: 8455351044556218268}
   m_Layer: 0
   m_Name: SuicidalEnemy
   m_TagString: Untagged
@@ -124,6 +125,45 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &8455351044556218268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3676999668562893339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e3db6c77b58d54db23545014330e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playOnHit: 1
+  _audioScript: {fileID: 11400000, guid: a1e05b07699e63d4c860c2a085222ddf, type: 2}
+  _animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.8
+      inSlope: -1.8034583
+      outSlope: -1.8034583
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.039301306
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _tag: Bullet
 --- !u!1 &3676999669018556246
 GameObject:
   m_ObjectHideFlags: 0

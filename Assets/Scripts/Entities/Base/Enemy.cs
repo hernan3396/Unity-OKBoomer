@@ -27,6 +27,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     // protected SphereCollider
     protected Material _mainMat;
     protected Material _headMat;
+    protected PlayAudio _audio;
     protected Rigidbody _rb;
     #endregion
 
@@ -73,6 +74,9 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         _headMat = _headPos.gameObject.GetComponent<MeshRenderer>().material;
         _transform = GetComponent<Transform>();
         _col = GetComponentInChildren<CapsuleCollider>();
+
+        if (TryGetComponent(out PlayAudio audio))
+            _audio = audio;
 
 
         if (TryGetComponent(out Rigidbody rb))
@@ -124,6 +128,9 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         _col.enabled = false;
 
         EventManager.OnWaveUpdated();
+
+        if (_audio != null)
+            _audio.PlaySound();
 
         _headMat.DOFloat(1, "_DissolveValue", _data.DeathDur)
         .SetEase(Ease.OutQuint);

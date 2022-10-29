@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1456951372973320490}
   - component: {fileID: 1456951372973320467}
   - component: {fileID: 1456951372973320466}
+  - component: {fileID: 144548050231160792}
   m_Layer: 9
   m_Name: ExplosionRadius
   m_TagString: Untagged
@@ -51,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456951372973320492}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -114,6 +115,45 @@ MonoBehaviour:
   OnTimerFinished:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &144548050231160792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456951372973320492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e3db6c77b58d54db23545014330e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playOnHit: 0
+  _audioScript: {fileID: 11400000, guid: 027533864fd61334996c8079de582859, type: 2}
+  _animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.8
+      inSlope: -1.8034583
+      outSlope: -1.8034583
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.039301306
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _tag: Bullet
 --- !u!1 &7731683712241065868
 GameObject:
   m_ObjectHideFlags: 0

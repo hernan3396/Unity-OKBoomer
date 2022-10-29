@@ -5,6 +5,7 @@ public class Explosion : MonoBehaviour
 {
     private Transform _transform;
     private Material _mainMat;
+    private PlayAudio _audio;
     private Player _player;
 
     private UtilTimer _utilTimer;
@@ -15,11 +16,17 @@ public class Explosion : MonoBehaviour
         _utilTimer = GetComponent<UtilTimer>();
         _mainMat = GetComponent<MeshRenderer>().material;
 
+        if (TryGetComponent(out PlayAudio audio))
+            _audio = audio;
+
         _utilTimer.onTimerCompleted += DisableExplosion;
     }
 
     public void StartExplosion(float size, float lifeTime, int damage)
     {
+        if (_audio != null)
+            _audio.PlaySound();
+
         _mainMat.SetFloat("_DissolveValue", 1);
         _mainMat.DOFloat(0, "_DissolveValue", 1)
         .SetEase(Ease.OutQuint);

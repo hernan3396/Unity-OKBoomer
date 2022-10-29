@@ -7,8 +7,11 @@ public static class EventManager
     public static event UnityAction<AudioManager.OST> PlayMusic;
     public static void OnPlayMusic(AudioManager.OST music) => PlayMusic?.Invoke(music);
 
-    public static event UnityAction<AudioManager.PlayerWeaponSFX> PlayPlayerWeaponSound;
-    public static void OnPlayerPlayerWeaponSound(AudioManager.PlayerWeaponSFX sfx) => PlayPlayerWeaponSound?.Invoke(sfx);
+    public static event UnityAction<AudioManager.SFX> PlaySound;
+    public static void OnPlaySound(AudioManager.SFX sfx) => PlaySound?.Invoke(sfx);
+
+    public static event UnityAction<Vector3, AudioScriptable, AnimationCurve> Play3dSound;
+    public static void OnPlay3dSound(Vector3 pos, AudioScriptable audioScript, AnimationCurve animCurve) => Play3dSound?.Invoke(pos, audioScript, animCurve);
     #endregion
 
     #region Utils

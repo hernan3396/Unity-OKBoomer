@@ -57,7 +57,7 @@ public class PlayerShoot : MonoBehaviour
             bullet.SetData(weaponData.Damage, weaponData.AmmoSpeed, weaponData.MaxBounces, weapon.GetShootPos());
             newBullet.SetActive(true);
             bullet.Shoot(weaponData.Accuracy);
-            EventManager.OnPlayerPlayerWeaponSound(weaponData.SFX);
+            EventManager.OnPlaySound(weaponData.SFX);
 
             if (!_player.GodMode && weaponData.UseBullets)
                 weapon.UseBullets(1);
