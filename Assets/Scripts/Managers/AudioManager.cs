@@ -19,6 +19,8 @@ public class AudioManager : MonoBehaviour
         TronsEncom,
         PlayerHit,
         PlayerDeath,
+        Dialogue,
+        FinishDialogue
     }
 
     private static AudioManager _instance;
