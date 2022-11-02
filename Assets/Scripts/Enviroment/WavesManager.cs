@@ -30,4 +30,9 @@ public class WavesManager : MonoBehaviour
     {
         EventManager.WaveUpdated -= Counting;
     }
+
+    public void ResetWave()
+    {
+        _currentAmount = 0;
+    }
 }
