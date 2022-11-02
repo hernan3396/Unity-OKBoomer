@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 3
   Name: Ranged Weapon
-  Accuracy: {x: 5, y: 5}
+  SFX: 0
+  Accuracy: {x: 2, y: 2}
   Cooldown: 0.5
   Startup: 0
   Damage: 10
@@ -27,6 +28,6 @@ MonoBehaviour:
   UseBullets: 1
   AmmoType: 0
   MaxBounces: 0
-  AmmoSpeed: 100
+  AmmoSpeed: 120
   MaxAmmo: 0
   RecoilForce: 0

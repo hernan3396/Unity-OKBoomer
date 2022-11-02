@@ -48,7 +48,6 @@ public class PlayerSlideState : PlayerBaseState
             {
                 if (Utils.RayHit(_crouchHitboxPos.position, _crouchHitboxPos.position + Vector3.up, "Floor", 5, _player.Data.CeilingLayer))
                 {
-                    Debug.Log("Agachado");
                     _canStand = false;
                     stateManager.SwitchState(PlayerStateManager.PlayerState.Crouch);
                     return;
