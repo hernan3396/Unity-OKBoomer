@@ -35,7 +35,8 @@ public class StaticEnemy : Enemy
             if (newBullet.TryGetComponent(out Bullet bullet))
             {
                 Vector3 playerDir = Utils.CalculateDirection(shootPos.position, _player.position);
-                shootPos.transform.forward = _lookDir + new Vector3(0, playerDir.y * 0.5f, 0);
+                // shootPos.transform.forward = _lookDir + new Vector3(0, playerDir.y * 1f, 0);
+                shootPos.transform.forward = _lookDir;
                 bullet.SetData(weapon.Damage, weapon.AmmoSpeed, weapon.MaxBounces, shootPos);
                 bullet.SetInitPos(shootPos.position);
                 newBullet.SetActive(true);
@@ -45,6 +46,12 @@ public class StaticEnemy : Enemy
 
         _canAttack = false;
         _utilTimer.StartTimer(weapon.Cooldown);
+    }
+
+    public override void RotateTowards(Transform other)
+    {
+        _lookDir = Utils.CalculateDirection(_shootingPivot.position, _player.position + PredictMovement());
+        _transform.rotation = Quaternion.LookRotation(_lookDir);
     }
 
     private void OnTimerCompleted()

@@ -41,6 +41,12 @@ public class RangedEnemy : Enemy
         _canAttack = true;
     }
 
+    // public override void RotateTowards(Transform other)
+    // {
+    //     _lookDir = Utils.CalculateDirection(_shootingPos.position, _player.position + PredictMovement());
+    //     _transform.rotation = Quaternion.LookRotation(_lookDir);
+    // }
+
     private void OnDestroy()
     {
         if (_utilTimer != null)

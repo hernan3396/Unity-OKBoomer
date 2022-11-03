@@ -288,7 +288,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         return result;
     }
 
-    public void RotateTowards(Transform other)
+    public virtual void RotateTowards(Transform other)
     {
         _lookDir = Utils.CalculateDirection(_transform.position, _player.position + PredictMovement());
         _transform.rotation = Quaternion.LookRotation(_lookDir);
