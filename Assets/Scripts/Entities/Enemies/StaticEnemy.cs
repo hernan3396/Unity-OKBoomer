@@ -34,7 +34,7 @@ public class StaticEnemy : Enemy
 
             if (newBullet.TryGetComponent(out Bullet bullet))
             {
-                Vector3 playerDir = Utils.CalculateDirection(shootPos.position, _player.position);
+                // Vector3 playerDir = Utils.CalculateDirection(shootPos.position, _player.position);
                 // shootPos.transform.forward = _lookDir + new Vector3(0, playerDir.y * 1f, 0);
                 shootPos.transform.forward = _lookDir;
                 bullet.SetData(weapon.Damage, weapon.AmmoSpeed, weapon.MaxBounces, shootPos);
