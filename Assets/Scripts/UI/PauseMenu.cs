@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour
     public void MainMenu(string value)
     {
         GameManager.GetInstance.OnExit();
+        EventManager.OnResetTime();
         EventManager.OnChangeLevel(value);
     }
 

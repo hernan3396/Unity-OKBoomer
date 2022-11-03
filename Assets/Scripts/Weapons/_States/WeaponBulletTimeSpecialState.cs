@@ -28,8 +28,9 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
         }
 
         _playerMovement.MovementMod = 2;
-        Time.timeScale = _player.CurrentWeaponData.Data.SpecialDamage * 0.1f;
-        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        EventManager.OnBulletTime(_player.CurrentWeaponData.Data.SpecialDamage * 0.1f);
+        // Time.timeScale = _player.CurrentWeaponData.Data.SpecialDamage * 0.1f;
+        // Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
         _utilTimer.StartTimer(_player.CurrentWeaponData.Data.SpecialTime);
         _utilTimer.onTimerCompleted += OnTimerCompleted;
@@ -65,8 +66,7 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
     {
         _playerMovement.MovementMod = 1;
 
-        Time.timeScale = 1f;
-        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        EventManager.OnBulletTime(1);
         _utilTimer.onTimerCompleted -= OnTimerCompleted;
     }
 }

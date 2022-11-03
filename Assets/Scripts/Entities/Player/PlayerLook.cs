@@ -32,7 +32,9 @@ public class PlayerLook : MonoBehaviour
 
     private void LookAtMouse(Vector2 look)
     {
-        _frameVelocity = Vector2.Scale(look, Vector2.one * _player.Data.MouseSensitivity);
+        Vector2 rawFrameVelocity = Vector2.Scale(look, Vector2.one * _player.Data.MouseSensitivity);
+        // _frameVelocity = Vector2.Scale(look, Vector2.one * _player.Data.MouseSensitivity);
+        _frameVelocity = Vector2.Lerp(_frameVelocity, rawFrameVelocity, Time.deltaTime * 1000);
 
         // up & down
         _rotations.x -= _frameVelocity.y;

@@ -3,6 +3,17 @@ using UnityEngine.Events;
 
 public static class EventManager
 {
+    #region TimeScaleManager
+    public static event UnityAction<float> BulletTime;
+    public static void OnBulletTime(float newTimeScale) => BulletTime?.Invoke(newTimeScale);
+
+    public static event UnityAction FreezeFrame;
+    public static void OnFreezeFrame() => FreezeFrame?.Invoke();
+
+    public static event UnityAction ResetTime;
+    public static void OnResetTime() => ResetTime?.Invoke();
+    #endregion
+
     #region Sound
     public static event UnityAction<AudioManager.OST> PlayMusic;
     public static void OnPlayMusic(AudioManager.OST music) => PlayMusic?.Invoke(music);

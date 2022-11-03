@@ -207,6 +207,7 @@ public class Player : Entity, IPauseable
 
         base.TakeDamage(value);
         _cmImpSrc.GenerateImpulse();
+        EventManager.OnFreezeFrame();
         EventManager.OnPlaySound(AudioManager.SFX.PlayerHit);
         EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
     }
