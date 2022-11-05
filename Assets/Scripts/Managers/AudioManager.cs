@@ -146,6 +146,8 @@ public class AudioManager : MonoBehaviour
         source.rolloffMode = AudioRolloffMode.Custom;
         source.maxDistance = 200;
         source.SetCustomCurve(AudioSourceCurveType.CustomRolloff, audioScript.AnimCurve);
+        source.volume = Random.Range(audioScript.volume.x, audioScript.volume.y);
+        source.pitch = Random.Range(audioScript.pitch.x, audioScript.pitch.y);
 
         source.clip = audioScript.GetAudioClip(0);
         source.PlayOneShot(source.clip);

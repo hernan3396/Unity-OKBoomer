@@ -15,8 +15,8 @@ MonoBehaviour:
   clips:
   - {fileID: 8300000, guid: e4a09b8caba175f48afb4d746f7bb6a1, type: 3}
   IsMusic: 0
-  volume: {x: 0.8, y: 1.2}
-  pitch: {x: 0.6, y: 1}
+  volume: {x: 0.8, y: 1}
+  pitch: {x: 0.4, y: 0.7}
   AnimCurve:
     serializedVersion: 2
     m_Curve:
