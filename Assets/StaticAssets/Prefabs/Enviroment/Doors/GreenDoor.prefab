@@ -115,7 +115,7 @@ MonoBehaviour:
   _finalPos: {fileID: 4784596342022746113}
   _easeFunc: 2
   _autoStart: 1
-  _type: 2
+  _type: 3
   _vel: 1
 --- !u!114 &4784596341050429997
 MonoBehaviour:

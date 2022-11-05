@@ -84,7 +84,7 @@ MonoBehaviour:
   _finalPos: {fileID: 1202650295578691645}
   _easeFunc: 2
   _autoStart: 1
-  _type: 2
+  _type: 3
   _vel: 1
 --- !u!114 &1202650294671600145
 MonoBehaviour:

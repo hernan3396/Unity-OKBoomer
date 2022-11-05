@@ -134,7 +134,7 @@ MonoBehaviour:
   _finalPos: {fileID: 3230813994063241118}
   _easeFunc: 4
   _autoStart: 1
-  _type: 2
+  _type: 0
   _vel: 2
 --- !u!114 &6489628874642605546
 MonoBehaviour:
@@ -151,6 +151,7 @@ MonoBehaviour:
   _ammount: 1
   _pickupType: 1
   _weaponIndex: 0
+  _respawn: 0
 --- !u!65 &5328650139150308235
 BoxCollider:
   m_ObjectHideFlags: 0

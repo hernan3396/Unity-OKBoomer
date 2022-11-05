@@ -27,6 +27,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool _autoStart = true;
     [SerializeField] private MovementType _type;
     [SerializeField] private float _vel = 1;
+    private GameObject _player;
     #endregion
 
     private Transform _transform;
@@ -43,6 +44,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         EventManager.Pause += OnPause;
+        _player = GameManager.GetInstance.Player;
 
         if (!_autoStart) return;
 
@@ -130,6 +132,24 @@ public class Movement : MonoBehaviour
         {
             ElevatorUp();
             other.transform.parent = _transform;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && _type == MovementType.Elevator)
+        {
+            ElevatorUp();
+            _player.transform.parent = _transform;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && _type == MovementType.Elevator)
+        {
+            _player.transform.parent = null;
+            ElevatorDown();
         }
     }
 

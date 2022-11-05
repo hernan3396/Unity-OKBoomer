@@ -50,7 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _finalPos: {fileID: 7912377863505778536}
   _easeFunc: 2
-  _type: 2
+  _autoStart: 1
+  _type: 3
   _vel: 1
 --- !u!114 &7912377862533608772
 MonoBehaviour:
@@ -437,6 +438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _finalPos: {fileID: 7912377862542626626}
   _easeFunc: 1
+  _autoStart: 1
   _type: 4
   _vel: 2
 --- !u!4 &7657474805541817882 stripped
