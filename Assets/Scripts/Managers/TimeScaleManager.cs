@@ -31,7 +31,8 @@ public class TimeScaleManager : MonoBehaviour
     {
         if (_bulletTimeActive) return;
 
-        _currentTween.Kill();
+        if (_currentTween != null)
+            _currentTween.Kill();
         _bulletTimeActive = true;
         _lastTimeScale = Time.timeScale;
 
@@ -44,7 +45,8 @@ public class TimeScaleManager : MonoBehaviour
     {
         if (_freezeFrameActive) return;
 
-        _currentTween.Kill();
+        if (_currentTween != null)
+            _currentTween.Kill();
         _freezeFrameActive = true;
         _lastTimeScale = Time.timeScale;
 

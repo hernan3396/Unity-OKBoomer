@@ -10,7 +10,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         Blood
     }
 
-    private enum SFX
+    protected enum SFX
     {
         Hit,
         Death,

@@ -67,6 +67,19 @@ public class Explosion : MonoBehaviour
         .OnComplete(() => gameObject.SetActive(false));
     }
 
+    public void HarmlessExplosion(float size, float lifeTime)
+    {
+        if (_audio != null)
+            _audio.PlaySound();
+
+        _mainMat.SetFloat("_DissolveValue", 1);
+        _mainMat.DOFloat(0, "_DissolveValue", 1)
+        .SetEase(Ease.OutQuint);
+
+        _transform.localScale = new Vector3(size, size, size);
+        _utilTimer.StartTimer(lifeTime);
+    }
+
     private void OnDestroy()
     {
         _utilTimer.onTimerCompleted -= DisableExplosion;
