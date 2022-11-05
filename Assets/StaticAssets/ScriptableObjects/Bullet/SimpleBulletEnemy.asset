@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65994931ab6b1904381baf6578fdd27a, type: 3}
-  m_Name: SimpleBullet
+  m_Name: SimpleBulletEnemy
   m_EditorClassIdentifier: 
-  Duration: 0.4
+  Duration: 1
   AmmoType: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   Id: 1
   Name: Power Glove
   SFX: 1
-  Accuracy: {x: 10, y: 10}
+  Accuracy: {x: 8, y: 8}
   Cooldown: 0.08
   Startup: 0
   Damage: 5
