@@ -20,7 +20,9 @@ public class AudioManager : MonoBehaviour
         PlayerHit,
         PlayerDeath,
         Dialogue,
-        FinishDialogue
+        FinishDialogue,
+        PickupHealth,
+        PickupAmmo
     }
 
     private static AudioManager _instance;

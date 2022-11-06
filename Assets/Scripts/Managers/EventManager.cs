@@ -122,5 +122,11 @@ public static class EventManager
 
     public static event UnityAction<Vector3> PlayerHit;
     public static void OnPlayerHit(Vector3 pos) => PlayerHit?.Invoke(pos);
+
+    public static event UnityAction<int> StartProgressBar;
+    public static void OnStartProgressBar(int maxValue) => StartProgressBar?.Invoke(maxValue);
+
+    public static event UnityAction<int> UpdateProgressBar;
+    public static void OnUpdateProgressBar(int progressValue) => UpdateProgressBar?.Invoke(progressValue);
     #endregion
 }

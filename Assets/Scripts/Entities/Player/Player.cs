@@ -226,6 +226,7 @@ public class Player : Entity, IPauseable
             _currentHp += value;
 
         EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
+        EventManager.OnPlaySound(AudioManager.SFX.PickupHealth);
     }
 
     public void Respawn()
@@ -275,6 +276,7 @@ public class Player : Entity, IPauseable
         // en el caso de armas lo multiplicamos
         // si value = 1, entonces solo le sumas 1/4, si es 2 es 1/2 y asi
         // no hablamos de esto pero lo voy a hacer que agarres 1/4 balas del maximo del arma seleccionada
+        EventManager.OnPlaySound(AudioManager.SFX.PickupAmmo);
 
         foreach (Weapon weapon in _weapons)
         {
