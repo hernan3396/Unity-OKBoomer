@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 746d54f7508fc724dad3c47ab64d9046, type: 3}
-  m_Name: Damage
+  m_Name: PickUpHealth
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: c34732f9a213e23419d8ec1d99fbc3aa, type: 3}
+  - {fileID: 8300000, guid: 48fd75f22a2d2b64db67f1d972b39308, type: 3}
   IsMusic: 0
   volume: {x: 0.8, y: 1.2}
   pitch: {x: 0.6, y: 1}

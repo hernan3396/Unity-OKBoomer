@@ -185,6 +185,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d62db5b5eaad0a845b55af9924452626, type: 2}
   - {fileID: 11400000, guid: 8403cd56413e2844aad3ee08b553599e, type: 2}
   - {fileID: 11400000, guid: 07f1f68cb2142804a9108e01fe12db83, type: 2}
+  - {fileID: 11400000, guid: 5ff85c89aa415db4088d00aeac8be79b, type: 2}
+  - {fileID: 11400000, guid: 5c9274d8500a75540850c8e36a9e8da1, type: 2}
+  - {fileID: 11400000, guid: 362f1d37d55306f4eb2c4d49e5f9097f, type: 2}
+  - {fileID: 11400000, guid: ad037a10a1e3e9646859faee04ce3f04, type: 2}
   _musicSource: {fileID: 4806915044979780202}
   _soundSource: {fileID: 4806915043674093305}
   _mixer: {fileID: 24100000, guid: f64016cde64928d4ca8de295ea39cbb1, type: 2}
