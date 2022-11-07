@@ -18,7 +18,7 @@ MonoBehaviour:
   Accuracy: {x: 1, y: 1}
   Cooldown: 0.5
   Startup: 0
-  Damage: 10
+  Damage: 15
   ChangeDur: 0
   SpecialType: 0
   SpecialDamage: 0

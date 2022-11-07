@@ -84,7 +84,6 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         if (TryGetComponent(out PlayAudio audio))
             _audio = audio;
 
-
         if (TryGetComponent(out Rigidbody rb))
             _rb = rb;
 
@@ -104,7 +103,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     }
 
     #region DamageMethods
-    public void TakeDamage(int value, Transform bullet)
+    public virtual void TakeDamage(int value, Transform bullet)
     {
         // esta solo crea las particulas y luego llama al
         // takedamage de base
