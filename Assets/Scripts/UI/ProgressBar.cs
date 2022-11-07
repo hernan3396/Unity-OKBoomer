@@ -44,7 +44,7 @@ public class ProgressBar : MonoBehaviour
         if (_currentTween != null)
             _currentTween.Kill();
 
-        float relativeValue = (float)actualValue / _maxvalue;
+        float relativeValue = 1 - (float)actualValue / _maxvalue;
         float relativeSize = relativeValue * _maxWidth;
 
         _currentTween = _progressBar.DOSizeDelta(new Vector2(relativeSize, _progressBar.sizeDelta.y), _tweenDur);
