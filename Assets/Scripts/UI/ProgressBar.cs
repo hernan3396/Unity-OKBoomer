@@ -24,6 +24,7 @@ public class ProgressBar : MonoBehaviour
         _maxWidth = (int)_progressBar.sizeDelta.x;
 
         EventManager.StartProgressBar += StartProgressBar;
+        EventManager.DeactivateProgressBar += Deactivate;
         _progressBar.DOSizeDelta(new Vector2(0, _progressBar.sizeDelta.y), 0); // pone el valor en 0
     }
 
@@ -63,5 +64,6 @@ public class ProgressBar : MonoBehaviour
     {
         EventManager.StartProgressBar -= StartProgressBar;
         EventManager.UpdateProgressBar -= UpdateProgressBar;
+        EventManager.DeactivateProgressBar -= Deactivate;
     }
 }

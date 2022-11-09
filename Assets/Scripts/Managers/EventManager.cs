@@ -128,5 +128,8 @@ public static class EventManager
 
     public static event UnityAction<int> UpdateProgressBar;
     public static void OnUpdateProgressBar(int progressValue) => UpdateProgressBar?.Invoke(progressValue);
+
+    public static event UnityAction DeactivateProgressBar;
+    public static void OnDeactivateProgressBar() => DeactivateProgressBar?.Invoke();
     #endregion
 }

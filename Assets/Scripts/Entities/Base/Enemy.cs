@@ -7,7 +7,8 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     public enum PoolType
     {
         SimpleBullet,
-        Blood
+        Blood,
+        TrackerBullet
     }
 
     protected enum SFX
@@ -27,7 +28,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     [SerializeField] private MeshRenderer _bodyModel;
     [SerializeField] private SkinnedMeshRenderer _bodyModelSkinned;
     // [SerializeField] private MeshRenderer _headModel;
-    [SerializeField] private Transform _headPos;
+    [SerializeField] protected Transform _headPos;
     protected PoolManager _bloodPool;
     protected CapsuleCollider _col;
     // protected SphereCollider

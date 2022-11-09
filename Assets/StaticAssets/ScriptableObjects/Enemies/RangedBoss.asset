@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2300711db7a2e77418f591379d1c8ed5, type: 3}
   m_Name: RangedBoss
   m_EditorClassIdentifier: 
-  MaxHealth: 1000
-  DeathDur: 2
+  MaxHealth: 2000
+  DeathDur: 8
   Invulnerability: 0.2
-  Weapon: {fileID: 11400000, guid: f75d186b2f8185349ae9f4b7455a2bd6, type: 2}
+  Weapon: {fileID: 11400000, guid: 653f5390087a4d24cb67096c668b35d2, type: 2}
   Speed: 40
   Acceleration: 20
   WalkPointRange: 60
-  DodgeRange: 10
-  DodgeSpeed: 80
-  DodgeAcceleration: 40
+  DodgeRange: 60
+  DodgeSpeed: 1
+  DodgeAcceleration: 1
   VisionRange: 500
   AttackRange: 200
   ChasingRange: 490
