@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyMat
+  m_Name: BossCoreMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 08df585672681984fb5a8af9a61ef119,
     type: 3}
   m_ValidKeywords:
@@ -80,10 +80,10 @@ Material:
     - _DitherValue: 0.4
     - _DstBlend: 0
     - _EdgeWidth: 0.05
-    - _Intensity: 0.15
+    - _Intensity: 0.25
     - _Metallic: 0
     - _NoiseIntensity: 500
-    - _NoiseSpeed: 2
+    - _NoiseSpeed: 1
     - _NoiseValue: 25
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -101,11 +101,11 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _Color: {r: 0, g: 1, b: 1, a: 0}
+    - _Color: {r: 1, g: 0.03951939, b: 0, a: 0}
     - _EdgeColor: {r: 0.75, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _Secondary_Color: {r: 0, g: 0, b: 1367.1202, a: 0}
+    - _Secondary_Color: {r: 379.143, g: 1367.1202, b: 0, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _Tilling: {r: 0.1, g: 0.1, b: 0, a: 0}
   m_BuildTextureStacks: []
