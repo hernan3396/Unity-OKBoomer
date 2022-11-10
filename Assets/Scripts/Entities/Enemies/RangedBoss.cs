@@ -76,6 +76,11 @@ public class RangedBoss : Enemy
             _tookDamage = true;
 
         base.TakeDamage(value, bullet);
+    }
+
+    public override void TakeDamage(int value)
+    {
+        base.TakeDamage(value);
         EventManager.OnUpdateProgressBar(_data.MaxHealth - _currentHp);
     }
 
