@@ -35,6 +35,7 @@ public class PlayerScriptable : ScriptableObject
     public float SwaySmoothness;
     public int TiltAngle;
     public int TiltSpeed;
+    public Vector2 HurtRecoil;
     #endregion
 
     #region WeaponMovement

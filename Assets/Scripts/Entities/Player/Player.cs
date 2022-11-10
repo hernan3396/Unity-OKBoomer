@@ -1,4 +1,4 @@
-using System;
+// using System;
 using UnityEngine;
 using Cinemachine;
 
@@ -199,6 +199,10 @@ public class Player : Entity, IPauseable
 
         EventManager.OnPlayerHit(pos);
         TakeDamage(value);
+
+        float impulseX = Random.Range(-_data.HurtRecoil.x, _data.HurtRecoil.x);
+        Vector3 recoilForce = new Vector3(_data.HurtRecoil.y, impulseX, 0);
+        _playerLook.AddRecoil(recoilForce);
     }
 
     public override void TakeDamage(int value)

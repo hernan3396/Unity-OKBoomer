@@ -1,5 +1,4 @@
 using UnityEngine;
-using DG.Tweening;
 
 [RequireComponent(typeof(Player))]
 public class PlayerLook : MonoBehaviour

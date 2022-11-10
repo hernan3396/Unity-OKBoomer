@@ -35,5 +35,6 @@ MonoBehaviour:
   SwaySmoothness: 8
   TiltAngle: 5
   TiltSpeed: 5
+  HurtRecoil: {x: -2, y: -2}
   WeaponAmplitude: 0.025
   WeaponFrequency: 10
