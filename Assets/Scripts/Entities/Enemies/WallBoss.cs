@@ -1,19 +1,38 @@
 using UnityEngine;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine.Events;
+using System.Collections;
 
 [RequireComponent(typeof(UtilTimer))]
 public class WallBoss : Enemy
 {
+    enum LaserPos
+    {
+        Top,
+        Bottom,
+        Crazy
+    }
+
     public UnityEvent DeathEvent;
     [SerializeField] private Transform _finalPos;
+
+    [Header("Lasers")]
+    [SerializeField] private Transform[] _lasers;
+    [SerializeField] private Transform[] _lasersInitPos;
+    [SerializeField] private Transform[] _laserEndPos;
+    private Tween _crazyTween;
+    private float _laserTime;
+    private int _maxLaser;
+
     private PoolManager _explosionPool;
+    private int _headDestroyed = 0;
     private Tween _movingTween;
 
     protected override void Start()
     {
         base.Start();
+        _laserTime = _data.VisionRange; // es 10
+        _maxLaser = _lasersInitPos.Length - 1;
         _explosionPool = GameManager.GetInstance.GetUtilsPool(0);
     }
 
@@ -24,21 +43,57 @@ public class WallBoss : Enemy
 
     public override void Attacking()
     {
-        _movingTween = _transform.DOMove(_finalPos.position, 50)
-        .SetEase(Ease.OutSine);
+        return;
     }
 
-    public void Hurt()
+    public void StartLaser()
     {
-        // frena al jefe
-        if (_movingTween != null)
-            _movingTween.Kill();
-        // luego dispara lasers
+        StartCoroutine("ChargeLaser");
     }
 
-    public void ShootLasers()
+    private IEnumerator ChargeLaser()
+    {
+        Transform laserSelected = SelectLaser();
+
+        int randPos = Random.Range(0, _maxLaser);
+
+        laserSelected.position = _lasersInitPos[randPos].position;
+        laserSelected.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(_data.AttackRange);
+        ShootLasers(laserSelected, randPos);
+    }
+
+    public void ShootLasers(Transform laserSelected, int randPos)
     {
         // disparar lasers
+        laserSelected.DOMove(_laserEndPos[randPos].position, 10)
+        .OnComplete(() => { laserSelected.gameObject.SetActive(false); });
+
+        if (randPos == (int)LaserPos.Crazy)
+        {
+            _crazyTween.Play();
+            _crazyTween = laserSelected.DOMoveY(laserSelected.position.y - 15, 1.5f)
+           .SetLoops(-1, LoopType.Yoyo)
+           .OnComplete(() => { _crazyTween.Kill(); });
+        }
+    }
+
+    private Transform SelectLaser()
+    {
+        for (int i = 0; i < _lasers.Length; i++)
+            if (!_lasers[i].gameObject.activeInHierarchy)
+                return _lasers[i];
+
+        return null;
+    }
+
+    public void HeadDestroyed()
+    {
+        _headDestroyed += 1;
+        _laserTime -= 1;
+
+        if (_headDestroyed >= 4) _maxLaser = _lasersInitPos.Length;
     }
 
     public override void TakeDamage(int value)
@@ -93,5 +148,18 @@ public class WallBoss : Enemy
         _currentHp = _data.MaxHealth;
         EventManager.OnDeactivateProgressBar();
         gameObject.SetActive(false);
+        _headDestroyed = 0;
+        _laserTime = _data.VisionRange;
+        _maxLaser = _lasersInitPos.Length - 1;
+
+        foreach (Transform laser in _lasers)
+            laser.gameObject.SetActive(false);
+
+        if (_crazyTween != null) _crazyTween.Kill();
+    }
+
+    public float LaserTime
+    {
+        get { return _laserTime; }
     }
 }

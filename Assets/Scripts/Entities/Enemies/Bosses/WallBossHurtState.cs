@@ -24,7 +24,7 @@ public class WallBossHurtState : EnemyBaseState
 
     private void ShootLasers()
     {
-        _enemy.Hurt();
+        // _enemy.Hurt();
     }
 
     public override void OnExitState(EnemyStateManager state)

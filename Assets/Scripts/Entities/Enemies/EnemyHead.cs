@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class EnemyHead : MonoBehaviour
 {
-    [SerializeField] private Enemy _enemy;
-    private PlayAudio _audio;
+    [SerializeField] protected Enemy _enemy;
+    protected PlayAudio _audio;
 
-    private void Awake()
+    protected void Awake()
     {
         if (TryGetComponent(out PlayAudio audio))
             _audio = audio;
     }
 
-    public void TakeDamage(int value, Transform other)
+    public virtual void TakeDamage(int value, Transform other)
     {
         if (_enemy == null) return;
 
