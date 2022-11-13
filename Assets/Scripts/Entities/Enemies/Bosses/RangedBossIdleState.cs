@@ -13,7 +13,7 @@ public class RangedBossIdleState : EnemyBaseState
             _state = state;
         }
 
-        _utilTimer.StartTimer(2);
+        _utilTimer.StartTimer(_enemy.Data.ChasingRange);
         _utilTimer.onTimerCompleted += Attack;
     }
 

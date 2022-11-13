@@ -146,6 +146,7 @@ public class RangedBoss : Enemy
 
     private void OnDestroy()
     {
+        EventManager.GameStart -= Respawn;
         _utilTimer.onTimerCompleted -= OnTimerCompleted;
     }
 }

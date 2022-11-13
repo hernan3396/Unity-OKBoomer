@@ -1205,8 +1205,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7912377862533608775, guid: 77ab45dd148e9d142a4f82bf6392c854,
         type: 3}
+      propertyPath: m_Size.x
+      value: 9.145447
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912377862533608775, guid: 77ab45dd148e9d142a4f82bf6392c854,
+        type: 3}
       propertyPath: m_Size.z
       value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912377862533608775, guid: 77ab45dd148e9d142a4f82bf6392c854,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -5.5727234
       objectReference: {fileID: 0}
     - target: {fileID: 7912377862755587053, guid: 77ab45dd148e9d142a4f82bf6392c854,
         type: 3}
@@ -10975,8 +10985,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7912377862533608775, guid: 77ab45dd148e9d142a4f82bf6392c854,
         type: 3}
+      propertyPath: m_Size.x
+      value: 9.062262
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912377862533608775, guid: 77ab45dd148e9d142a4f82bf6392c854,
+        type: 3}
       propertyPath: m_Size.z
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912377862533608775, guid: 77ab45dd148e9d142a4f82bf6392c854,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -5.5311317
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912377862533608775, guid: 77ab45dd148e9d142a4f82bf6392c854,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -2.1758704e-14
       objectReference: {fileID: 0}
     - target: {fileID: 7912377862755587053, guid: 77ab45dd148e9d142a4f82bf6392c854,
         type: 3}
@@ -33319,7 +33344,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Mall_Level000
+          m_StringArgument: WallBoss
           m_BoolArgument: 0
         m_CallState: 2
   _onExit:
@@ -35069,8 +35094,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4784596341050429998, guid: d24cf7b199facec408376b3111f87b5f,
         type: 3}
+      propertyPath: m_Size.x
+      value: 9.00415
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784596341050429998, guid: d24cf7b199facec408376b3111f87b5f,
+        type: 3}
       propertyPath: m_Size.z
       value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784596341050429998, guid: d24cf7b199facec408376b3111f87b5f,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -5.502075
       objectReference: {fileID: 0}
     - target: {fileID: 4784596341139256452, guid: d24cf7b199facec408376b3111f87b5f,
         type: 3}

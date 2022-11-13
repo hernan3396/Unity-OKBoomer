@@ -4295,8 +4295,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4784596341050429998, guid: d24cf7b199facec408376b3111f87b5f,
         type: 3}
+      propertyPath: m_Size.x
+      value: 9.267471
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784596341050429998, guid: d24cf7b199facec408376b3111f87b5f,
+        type: 3}
       propertyPath: m_Size.z
       value: 66.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784596341050429998, guid: d24cf7b199facec408376b3111f87b5f,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -5.6337366
+      objectReference: {fileID: 0}
+    - target: {fileID: 4784596341050429998, guid: d24cf7b199facec408376b3111f87b5f,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 2.3216807e-14
       objectReference: {fileID: 0}
     - target: {fileID: 4784596341139256452, guid: d24cf7b199facec408376b3111f87b5f,
         type: 3}
@@ -15613,7 +15628,7 @@ PrefabInstance:
     - target: {fileID: 2395439072523636899, guid: 85bda5b00ff15be4abcf2e8eb1d77d44,
         type: 3}
       propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Parking_Level000
+      value: RangedBoss
       objectReference: {fileID: 0}
     - target: {fileID: 2395439072523636899, guid: 85bda5b00ff15be4abcf2e8eb1d77d44,
         type: 3}
@@ -56367,6 +56382,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7912377862533608775, guid: 77ab45dd148e9d142a4f82bf6392c854,
         type: 3}
+      propertyPath: m_Size.x
+      value: 8.868362
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912377862533608775, guid: 77ab45dd148e9d142a4f82bf6392c854,
+        type: 3}
       propertyPath: m_Size.z
       value: 80.4
       objectReference: {fileID: 0}
@@ -56374,6 +56394,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912377862533608775, guid: 77ab45dd148e9d142a4f82bf6392c854,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -5.434182
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912377862533608775, guid: 77ab45dd148e9d142a4f82bf6392c854,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 2.0380968e-14
       objectReference: {fileID: 0}
     - target: {fileID: 7912377862755587053, guid: 77ab45dd148e9d142a4f82bf6392c854,
         type: 3}
@@ -63472,8 +63502,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1202650294671600146, guid: 18954e3bddec10441bc815e1745d8979,
         type: 3}
+      propertyPath: m_Size.x
+      value: 20.446152
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202650294671600146, guid: 18954e3bddec10441bc815e1745d8979,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 19.346615
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202650294671600146, guid: 18954e3bddec10441bc815e1745d8979,
+        type: 3}
       propertyPath: m_Size.z
       value: 56.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202650294671600146, guid: 18954e3bddec10441bc815e1745d8979,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -11.223079
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202650294671600146, guid: 18954e3bddec10441bc815e1745d8979,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -2.173307
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202650294671600146, guid: 18954e3bddec10441bc815e1745d8979,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 4.580273e-14
       objectReference: {fileID: 0}
     - target: {fileID: 1202650294671600151, guid: 18954e3bddec10441bc815e1745d8979,
         type: 3}

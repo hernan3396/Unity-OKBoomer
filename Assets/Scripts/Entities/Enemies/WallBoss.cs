@@ -162,4 +162,9 @@ public class WallBoss : Enemy
     {
         get { return _laserTime; }
     }
+
+    private void OnDestroy()
+    {
+        EventManager.GameStart -= Respawn;
+    }
 }

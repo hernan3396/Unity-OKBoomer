@@ -12,7 +12,7 @@ public class WallBossAttackingState : EnemyBaseState
             _utilTimer = GetComponent<UtilTimer>();
         }
 
-        _utilTimer.StartTimer(_enemy.LaserTime);
+        _utilTimer.StartTimer(3);
         _utilTimer.onTimerCompleted += ShootLasers;
     }
 
