@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class Weapon : MonoBehaviour
 {
@@ -7,6 +8,11 @@ public class Weapon : MonoBehaviour
     [SerializeField] private WeaponScriptable _data;
     [SerializeField] private Transform[] _shootPos;
     [SerializeField] private int _currentBullets;
+
+    [Header("Model")]
+    [SerializeField] private MeshRenderer _modelRenderer;
+    private Material _material;
+
     private int _lastShootPos = 0;
     private Animator _animator;
 
@@ -19,6 +25,8 @@ public class Weapon : MonoBehaviour
 
         _changeInHash = Animator.StringToHash("ChangeIn");
         _changeOutHash = Animator.StringToHash("ChangeOut");
+
+        _material = _modelRenderer.material;
     }
 
     #region Animations
@@ -78,6 +86,24 @@ public class Weapon : MonoBehaviour
             _lastShootPos = 0;
 
         return pos;
+    }
+
+    // las separo por si luego queremos hacer mas cosas
+    // pero por como vamos de tiempo yo creo que no
+
+    public void IdleAnim()
+    {
+        _material.DOColor(_data.IdleColor, 1);
+    }
+
+    public void ChargingAnim()
+    {
+        _material.DOColor(_data.ChargingColor, 1);
+    }
+
+    public void CooldownAnim()
+    {
+        _material.DOColor(_data.CooldownColor, 1);
     }
     #endregion
 

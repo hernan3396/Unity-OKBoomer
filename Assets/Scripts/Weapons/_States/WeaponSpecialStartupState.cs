@@ -17,6 +17,7 @@ public class WeaponSpecialStartupState : WeaponBaseState
             _utilTimer = GetComponent<UtilTimer>();
         }
 
+        _player.CurrentWeaponData.ChargingAnim();
         _utilTimer.StartTimer(_player.CurrentWeaponData.Data.SpecialStartup);
         _utilTimer.onTimerCompleted += OnTimerCompleted;
     }

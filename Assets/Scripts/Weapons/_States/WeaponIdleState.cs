@@ -1,4 +1,3 @@
-using UnityEngine;
 public class WeaponIdleState : WeaponBaseState
 {
     private Player _player;
@@ -17,6 +16,7 @@ public class WeaponIdleState : WeaponBaseState
 
         EventManager.ChangeWeapon += ChangeWeapon;
         EventManager.PickUpWeapon += PickUpWeapon;
+        _player.CurrentWeaponData.IdleAnim();
     }
 
     public override void UpdateState(WeaponStateManager state)

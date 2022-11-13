@@ -21164,6 +21164,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 109171569411873956, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 474151964441755530, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_RootOrder
@@ -21359,6 +21364,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6325352918645635938, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6496204481732394033, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_Name
@@ -21462,7 +21472,7 @@ PrefabInstance:
     - target: {fileID: 6907486639528443142, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7777778
+      value: 1.7782516
       objectReference: {fileID: 0}
     - target: {fileID: 6907486639528443142, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
@@ -21519,11 +21529,6 @@ PrefabInstance:
       propertyPath: _shootPos
       value: 
       objectReference: {fileID: 6907486640054362921}
-    - target: {fileID: 7404752143931767299, guid: 3766620456c146841a37bb25ccff1851,
-        type: 3}
-      propertyPath: _shootPos.Array.data[1]
-      value: 
-      objectReference: {fileID: 6907486640054362920}
     - target: {fileID: 7404752143931767299, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: _shootPos.Array.data[2]

@@ -31,3 +31,6 @@ MonoBehaviour:
   AmmoSpeed: 300
   MaxAmmo: 20
   RecoilForce: 0.2
+  IdleColor: {r: 1, g: 1, b: 1, a: 1}
+  ChargingColor: {r: 1, g: 1, b: 0, a: 1}
+  CooldownColor: {r: 0, g: 0, b: 0, a: 1}

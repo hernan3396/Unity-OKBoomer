@@ -47,6 +47,12 @@ public class WeaponScriptable : ScriptableObject
     public float RecoilForce;
     #endregion
 
+    #region Colors
+    public Color IdleColor;
+    public Color ChargingColor;
+    public Color CooldownColor;
+    #endregion
+
     // esto lo dejo ya por si lo llegamos a usar de esta
     // manera (con el modelo en el scriptable)
     // public GameObject Model;
