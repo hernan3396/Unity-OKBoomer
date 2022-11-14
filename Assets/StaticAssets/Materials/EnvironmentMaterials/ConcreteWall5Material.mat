@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6493362288298016127
+--- !u!114 &-7964765196133634569
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ConcreteWallMaterial
+  m_Name: ConcreteWall5Material
   m_Shader: {fileID: -6465566751694194690, guid: 43ff367d2750f184dbedd8ad8feaec6c,
     type: 3}
   m_ValidKeywords: []
@@ -36,7 +36,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 31b4186dcf1d1214b8a975ee9eedffa0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 41181dd90438d8c42bed7ad6d25d3ab1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -60,7 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 31b4186dcf1d1214b8a975ee9eedffa0, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -119,15 +119,15 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DissolveValue: 0.5
+    - _DissolveValue: 0
     - _DstBlend: 0
-    - _EdgeWidth: 0.1
+    - _EdgeWidth: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NoiseValue: 25
+    - _NoiseValue: 100
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0

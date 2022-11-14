@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6493362288298016127
+--- !u!114 &-7964765196133634569
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ConcreteWallMaterial
+  m_Name: ConcreteWall4Material 1
   m_Shader: {fileID: -6465566751694194690, guid: 43ff367d2750f184dbedd8ad8feaec6c,
     type: 3}
   m_ValidKeywords: []
@@ -36,7 +36,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 31b4186dcf1d1214b8a975ee9eedffa0, type: 3}
+        m_Texture: {fileID: 2800000, guid: beed72699c15b6443a0f900b06d94345, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -60,7 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 31b4186dcf1d1214b8a975ee9eedffa0, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -155,5 +155,5 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tiling: {r: 4, g: 4, b: 0, a: 0}
+    - _Tiling: {r: 20, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
