@@ -1,19 +1,26 @@
 public class PlayerIdleState : PlayerBaseState
 {
+    private Player _player;
     private PlayerMovement _playerMovement;
     private PlayerJump _playerJump;
+    private PlayerLook _playerLook;
 
     public override void OnEnterState(PlayerStateManager stateManager)
     {
         if (_playerMovement == null)
         {
-            _playerMovement = stateManager.Player.PlayerMovement;
-            _playerJump = stateManager.Player.PlayerJump;
+            _player = stateManager.Player;
+            _playerMovement = _player.PlayerMovement;
+            _playerJump = _player.PlayerJump;
+            _playerLook = _player.PlayerLook;
         }
     }
 
     public override void UpdateState(PlayerStateManager stateManager)
     {
+        if (_player.IsDead)
+            stateManager.SwitchState(PlayerStateManager.PlayerState.Dead);
+
         if (_playerMovement.IsMoving)
         {
             stateManager.SwitchState(PlayerStateManager.PlayerState.Run);
@@ -29,6 +36,6 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void FixedUpdateState(PlayerStateManager player)
     {
-        return;
+        _playerLook.TiltCamera();
     }
 }

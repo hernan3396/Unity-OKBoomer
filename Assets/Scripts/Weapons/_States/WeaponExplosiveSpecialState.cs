@@ -29,10 +29,10 @@ public class WeaponExplosiveSpecialState : WeaponBaseState
     private void ShootBullet()
     {
         // aca se podria hacer una pool de estas balas
-        WeaponScriptable weapon = _player.CurrentWeaponData;
+        Weapon weapon = _player.CurrentWeaponData;
 
         _explosiveScript.ActivateBullet();
-        _explosiveScript.SetData((int)weapon.SpecialDamage, weapon.AmmoSpeed, 0, _player.ShootPos);
+        _explosiveScript.SetData((int)weapon.Data.SpecialDamage, weapon.Data.AmmoSpeed, 0, weapon.GetShootPos());
         _explosiveScript.Shoot(new Vector2(0, 0));
     }
 }

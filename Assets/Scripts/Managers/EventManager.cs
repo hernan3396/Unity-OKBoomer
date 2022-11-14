@@ -3,18 +3,32 @@ using UnityEngine.Events;
 
 public static class EventManager
 {
+    #region TimeScaleManager
+    public static event UnityAction<float> BulletTime;
+    public static void OnBulletTime(float newTimeScale) => BulletTime?.Invoke(newTimeScale);
+
+    public static event UnityAction FreezeFrame;
+    public static void OnFreezeFrame() => FreezeFrame?.Invoke();
+
+    public static event UnityAction ResetTime;
+    public static void OnResetTime() => ResetTime?.Invoke();
+    #endregion
+
     #region Sound
     public static event UnityAction<AudioManager.OST> PlayMusic;
     public static void OnPlayMusic(AudioManager.OST music) => PlayMusic?.Invoke(music);
+
+    public static event UnityAction<AudioManager.SFX> PlaySound;
+    public static void OnPlaySound(AudioManager.SFX sfx) => PlaySound?.Invoke(sfx);
+
+    public static event UnityAction<Vector3, AudioScriptable> Play3dSound;
+    public static void OnPlay3dSound(Vector3 pos, AudioScriptable audioScript) => Play3dSound?.Invoke(pos, audioScript);
+
+    public static event UnityAction<AudioSource, AudioScriptable> PlayOwn3dSound;
+    public static void OnPlayOwn3dSound(AudioSource source, AudioScriptable audioScript) => PlayOwn3dSound?.Invoke(source, audioScript);
     #endregion
 
     #region Utils
-    public static event UnityAction<CanvasElement, int> FadeIn;
-    public static void OnFadeIn(CanvasElement ce, int speed) => FadeIn?.Invoke(ce, speed);
-
-    public static event UnityAction<CanvasElement, int> FadeOut;
-    public static void OnFadeOut(CanvasElement ce, int speed) => FadeOut?.Invoke(ce, speed);
-
     public static event UnityAction<int> StartTransition;
     public static void OnStartTransition(int speed) => StartTransition?.Invoke(speed);
 
@@ -32,11 +46,11 @@ public static class EventManager
     #endregion
 
     #region Saves
-    public static event UnityAction<SavesData[]> LoadTimer;
-    public static void OnLoadTimer(SavesData[] times) => LoadTimer?.Invoke(times);
+    public static event UnityAction<SaveData> GameLoaded;
+    public static void OnGameLoaded(SaveData data) => GameLoaded?.Invoke(data);
 
-    public static event UnityAction<string, float> SaveTime;
-    public static void OnSaveTime(string valueString, float valueInt) => SaveTime?.Invoke(valueString, valueInt);
+    public static event UnityAction Checkpoint;
+    public static void OnCheckpoint() => Checkpoint?.Invoke();
     #endregion
 
     #region Levels
@@ -108,5 +122,14 @@ public static class EventManager
 
     public static event UnityAction<Vector3> PlayerHit;
     public static void OnPlayerHit(Vector3 pos) => PlayerHit?.Invoke(pos);
+
+    public static event UnityAction<int> StartProgressBar;
+    public static void OnStartProgressBar(int maxValue) => StartProgressBar?.Invoke(maxValue);
+
+    public static event UnityAction<int> UpdateProgressBar;
+    public static void OnUpdateProgressBar(int progressValue) => UpdateProgressBar?.Invoke(progressValue);
+
+    public static event UnityAction DeactivateProgressBar;
+    public static void OnDeactivateProgressBar() => DeactivateProgressBar?.Invoke();
     #endregion
 }

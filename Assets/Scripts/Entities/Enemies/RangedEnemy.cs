@@ -26,6 +26,7 @@ public class RangedEnemy : Enemy
 
         if (newBullet.TryGetComponent(out Bullet bullet))
         {
+            _shootingPos.transform.forward = _lookDir;
             bullet.SetData(weapon.Damage, weapon.AmmoSpeed, weapon.MaxBounces, _shootingPos);
             bullet.SetInitPos(_shootingPos.position);
             newBullet.SetActive(true);
@@ -41,8 +42,15 @@ public class RangedEnemy : Enemy
         _canAttack = true;
     }
 
+    // public override void RotateTowards(Transform other)
+    // {
+    //     _lookDir = Utils.CalculateDirection(_shootingPos.position, _player.position + PredictMovement());
+    //     _transform.rotation = Quaternion.LookRotation(_lookDir);
+    // }
+
     private void OnDestroy()
     {
-        _utilTimer.onTimerCompleted -= OnTimerCompleted;
+        if (_utilTimer != null)
+            _utilTimer.onTimerCompleted -= OnTimerCompleted;
     }
 }

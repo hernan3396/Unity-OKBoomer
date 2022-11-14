@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1
   Name: Power Glove
-  Accuracy: {x: 10, y: 10}
+  SFX: 1
+  Accuracy: {x: 8, y: 8}
   Cooldown: 0.08
   Startup: 0
   Damage: 5
-  ChangeDur: 1
+  ChangeDur: 0.5
   SpecialType: 2
   SpecialDamage: 5
   SpecialStartup: 2
@@ -30,3 +31,6 @@ MonoBehaviour:
   AmmoSpeed: 300
   MaxAmmo: 200
   RecoilForce: 0.1
+  IdleColor: {r: 1, g: 1, b: 1, a: 1}
+  ChargingColor: {r: 1, g: 1, b: 0, a: 1}
+  CooldownColor: {r: 0, g: 0, b: 0, a: 1}

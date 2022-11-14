@@ -16,7 +16,8 @@ public class WeaponSpecialCooldownState : WeaponBaseState
             _utilTimer = GetComponent<UtilTimer>();
         }
 
-        _cooldown = _player.CurrentWeaponData.SpecialCooldown;
+        _player.CurrentWeaponData.CooldownAnim();
+        _cooldown = _player.CurrentWeaponData.Data.SpecialCooldown;
         _utilTimer.StartTimer(_cooldown);
         _utilTimer.onTimerCompleted += OnTimerCompleted;
     }

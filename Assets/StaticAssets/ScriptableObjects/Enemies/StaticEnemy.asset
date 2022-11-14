@@ -19,6 +19,10 @@ MonoBehaviour:
   Speed: 5
   Acceleration: 0
   WalkPointRange: 0
+  DodgeRange: 0
+  DodgeSpeed: 0
+  DodgeAcceleration: 0
   VisionRange: 100
   AttackRange: 90
   ChasingRange: 150
+  AimSpeed: 50

@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 2
   Name: Tron's ENCOM
+  SFX: 2
   Accuracy: {x: 0, y: 0}
   Cooldown: 1
   Startup: 0
   Damage: 50
-  ChangeDur: 1
+  ChangeDur: 0.75
   SpecialType: 1
-  SpecialDamage: 100
+  SpecialDamage: 120
   SpecialStartup: 0
   SpecialTime: 1
   SpecialCooldown: 3
@@ -29,4 +30,7 @@ MonoBehaviour:
   MaxBounces: 10
   AmmoSpeed: 300
   MaxAmmo: 20
-  RecoilForce: 0.4
+  RecoilForce: 0.2
+  IdleColor: {r: 1, g: 1, b: 1, a: 1}
+  ChargingColor: {r: 1, g: 1, b: 0, a: 1}
+  CooldownColor: {r: 0, g: 0, b: 0, a: 1}

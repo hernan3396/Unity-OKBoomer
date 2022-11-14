@@ -12,13 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2300711db7a2e77418f591379d1c8ed5, type: 3}
   m_Name: CoreEnemy
   m_EditorClassIdentifier: 
-  MaxHealth: 50
-  DeathDur: 5
+  MaxHealth: 100
+  DeathDur: 4
   Invulnerability: 0.1
   Weapon: {fileID: 11400000, guid: 06a29a49f0c30da4882a2ac877b4d959, type: 2}
   Speed: 20
   Acceleration: 10
   WalkPointRange: 5
+  DodgeRange: 40
+  DodgeSpeed: 1
+  DodgeAcceleration: 1
   VisionRange: 0
   AttackRange: 0
   ChasingRange: 0
+  AimSpeed: 0

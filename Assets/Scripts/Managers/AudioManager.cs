@@ -9,9 +9,26 @@ public class AudioManager : MonoBehaviour
     {
         MainMenu,
         Tutorial,
+        RestoDeLevels,
     }
 
+    public enum SFX
+    {
+        PointingFinger,
+        PowerGloves,
+        TronsEncom,
+        PlayerHit,
+        PlayerDeath,
+        Dialogue,
+        FinishDialogue,
+        PickupHealth,
+        PickupAmmo
+    }
+
+    private static AudioManager _instance;
+
     [SerializeField] private List<AudioScriptable> _audioList;
+    [SerializeField] private List<AudioScriptable> _sfxList;
 
     #region Sources
     [Header("Sources")]
@@ -29,24 +46,29 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        // DontDestroyOnLoad(gameObject);
+        if (_instance != null && _instance != this)
+            Destroy(this.gameObject);
+        else
+            _instance = this;
+
+        DontDestroyOnLoad(gameObject);
 
         EventManager.PlayMusic += FadeBetweenMusic;
+        EventManager.PlaySound += PlaySound;
+        EventManager.Play3dSound += CreateSoundAndPlay;
+        EventManager.PlayOwn3dSound += RandomizeExternalSound;
     }
 
-    public void PlaySound(OST audioItem, bool randomSound = false, int index = 0)
+    public void PlaySound(SFX audioItem)
     {
-        AudioScriptable audioScript = _audioList[(int)audioItem];
+        AudioScriptable audioScript = _sfxList[(int)audioItem];
 
         if (!audioScript) return;
 
         _soundSource.volume = Random.Range(audioScript.volume.x, audioScript.volume.y);
         _soundSource.pitch = Random.Range(audioScript.pitch.x, audioScript.pitch.y);
 
-        if (randomSound)
-            _soundSource.PlayOneShot(audioScript.GetRandom());
-        else
-            _soundSource.PlayOneShot(audioScript.GetAudioClip(index));
+        _soundSource.PlayOneShot(audioScript.GetAudioClip(0));
     }
 
     public void PlayMusic(OST audioItem, bool randomSound = false, int index = 0)
@@ -107,17 +129,16 @@ public class AudioManager : MonoBehaviour
     public void RandomizeExternalSound(AudioSource audioSource, AudioScriptable audioScript)
     {
         if (!audioScript) return;
-        Debug.Log("Explosion");
-        Debug.Log(audioScript);
 
-        // audioSource.clip = audioScript.GetAudioClip(0);
+        audioSource.clip = audioScript.GetAudioClip(0);
         audioSource.volume = Random.Range(audioScript.volume.x, audioScript.volume.y);
         audioSource.pitch = Random.Range(audioScript.pitch.x, audioScript.pitch.y);
+        audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, audioScript.AnimCurve);
 
         audioSource.PlayOneShot(audioScript.GetAudioClip(0));
     }
 
-    public void CreateSoundAndPlay(Vector3 pos, AudioScriptable audioScript, AnimationCurve curve)
+    public void CreateSoundAndPlay(Vector3 pos, AudioScriptable audioScript)
     {
         GameObject go = new GameObject();
         go.transform.position = pos;
@@ -126,7 +147,9 @@ public class AudioManager : MonoBehaviour
         source.spatialBlend = 1.0f;
         source.rolloffMode = AudioRolloffMode.Custom;
         source.maxDistance = 200;
-        source.SetCustomCurve(AudioSourceCurveType.CustomRolloff, curve);
+        source.SetCustomCurve(AudioSourceCurveType.CustomRolloff, audioScript.AnimCurve);
+        source.volume = Random.Range(audioScript.volume.x, audioScript.volume.y);
+        source.pitch = Random.Range(audioScript.pitch.x, audioScript.pitch.y);
 
         source.clip = audioScript.GetAudioClip(0);
         source.PlayOneShot(source.clip);
@@ -137,5 +160,8 @@ public class AudioManager : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.PlayMusic -= FadeBetweenMusic;
+        EventManager.PlaySound -= PlaySound;
+        EventManager.Play3dSound -= CreateSoundAndPlay;
+        EventManager.PlayOwn3dSound -= RandomizeExternalSound;
     }
 }

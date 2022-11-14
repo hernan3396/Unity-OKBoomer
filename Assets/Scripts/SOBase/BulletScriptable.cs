@@ -7,7 +7,7 @@ public class BulletScriptable : ScriptableObject
     {
         Simple,
         Disc,
-        SMG
+        SMG,
     }
 
     public float Duration;

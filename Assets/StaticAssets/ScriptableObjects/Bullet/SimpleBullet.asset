@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65994931ab6b1904381baf6578fdd27a, type: 3}
   m_Name: SimpleBullet
   m_EditorClassIdentifier: 
-  Duration: 1
+  Duration: 0.4
   AmmoType: 0

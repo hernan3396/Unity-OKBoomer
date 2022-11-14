@@ -9,6 +9,9 @@ public class PlayerJump : MonoBehaviour, IPauseable
 
     private bool _isJumpign;
     private float _coyoteTimer;
+    private float _jumpBufferCounter;
+
+    private bool _jumpPressed;
 
     private void Start()
     {
@@ -18,9 +21,30 @@ public class PlayerJump : MonoBehaviour, IPauseable
         EventManager.Pause += OnPause;
     }
 
+    private void Update()
+    {
+
+        if (_jumpPressed)
+            _jumpBufferCounter = _player.Data.JumpBufferTime;
+        else
+        {
+            // le agrego un chequeo solo para que este valor no siga a menos infinito(?)
+            if (_jumpBufferCounter > 0)
+                _jumpBufferCounter -= Time.deltaTime;
+        }
+
+        if (_player.IsGrounded)
+            _coyoteTimer = 0;
+        else
+            _coyoteTimer += Time.deltaTime;
+
+        _isJumpign = (_jumpBufferCounter > 0 && (_player.IsGrounded || _coyoteTimer < _player.Data.CoyoteMaxTime));
+    }
+
     private void JumpInput(bool value)
     {
-        _isJumpign = value;
+        // _isJumpign = value && (_player.IsGrounded || _coyoteTimer < _player.Data.CoyoteMaxTime);
+        _jumpPressed = value;
     }
 
     public void Jump()

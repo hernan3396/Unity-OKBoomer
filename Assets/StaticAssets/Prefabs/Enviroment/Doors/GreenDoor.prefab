@@ -114,7 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _finalPos: {fileID: 4784596342022746113}
   _easeFunc: 2
-  _type: 2
+  _autoStart: 1
+  _type: 3
   _vel: 1
 --- !u!114 &4784596341050429997
 MonoBehaviour:
@@ -368,7 +369,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 70f318bc68e53e940b5b768294708eff,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.02
+      value: 1.3765817
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 70f318bc68e53e940b5b768294708eff,
         type: 3}
@@ -448,6 +449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _finalPos: {fileID: 4784596341027219499}
   _easeFunc: 1
+  _autoStart: 1
   _type: 4
   _vel: 2
 --- !u!23 &3969654510139550040 stripped

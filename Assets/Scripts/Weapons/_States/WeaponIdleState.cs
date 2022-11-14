@@ -15,16 +15,17 @@ public class WeaponIdleState : WeaponBaseState
         }
 
         EventManager.ChangeWeapon += ChangeWeapon;
-        EventManager.PickUpWeapon += ChangeWeapon;
+        EventManager.PickUpWeapon += PickUpWeapon;
+        _player.CurrentWeaponData.IdleAnim();
     }
 
     public override void UpdateState(WeaponStateManager state)
     {
-        if (_player.GetWeapons.Count == 0) return;
+        if (_player.MaxWeapons <= 0) return;
 
         if (_playerShoot.IsShooting)
         {
-            if (_player.BulletsAmount <= 0 && !_player.GodMode) return;
+            if (_player.CurrentWeaponData.CurrentBullets <= 0 && !_player.GodMode) return;
 
             state.SwitchState(WeaponStateManager.State.Startup);
             return;
@@ -40,20 +41,30 @@ public class WeaponIdleState : WeaponBaseState
     public override void OnExitState(WeaponStateManager state)
     {
         EventManager.ChangeWeapon -= ChangeWeapon;
-        EventManager.PickUpWeapon -= ChangeWeapon;
+        EventManager.PickUpWeapon -= PickUpWeapon;
     }
 
     private void OnDestroy()
     {
         EventManager.ChangeWeapon -= ChangeWeapon;
-        EventManager.PickUpWeapon -= ChangeWeapon;
+        EventManager.PickUpWeapon -= PickUpWeapon;
     }
 
     private void ChangeWeapon(int side)
     {
-        if (_player.GetWeapons.Count == 0) return;
+        if (_player.MaxWeapons <= 1) return;
 
         _player.WeaponManager.ChangeWeapon(side);
         _state.SwitchState(WeaponStateManager.State.ChangeOut);
+    }
+
+    private void PickUpWeapon(int side)
+    {
+        _player.WeaponManager.SetWeapon(side);
+
+        if (_player.MaxWeapons > 1)
+            _state.SwitchState(WeaponStateManager.State.ChangeOut);
+        else
+            _state.SwitchState(WeaponStateManager.State.ChangeIn);
     }
 }

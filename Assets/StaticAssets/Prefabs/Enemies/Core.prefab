@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2395439072523636898}
   - component: {fileID: 2395439072523636899}
   - component: {fileID: 2395439072523636908}
+  - component: {fileID: 1227726081699306500}
+  - component: {fileID: 3244955480127499343}
   m_Layer: 0
   m_Name: Core
   m_TagString: Untagged
@@ -51,16 +53,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentHp: 0
   _data: {fileID: 11400000, guid: f47a04b0bcb9758448152ef96b358980, type: 2}
+  _respawn: 0
   _bodyModel: {fileID: 2395439074200689769}
   _bodyModelSkinned: {fileID: 0}
   _headPos: {fileID: 2395439074200689768}
   _playerLayer:
     serializedVersion: 2
     m_Bits: 0
+  _visionLayer:
+    serializedVersion: 2
+    m_Bits: 0
   DeathEvent:
     m_PersistentCalls:
       m_Calls: []
   _intensityStart: 0.15
+  _endingColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!114 &2395439072523636908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +83,120 @@ MonoBehaviour:
   _currentState: {fileID: 0}
   _states:
   - {fileID: 2395439073114239714}
+  - {fileID: 3894230508847350350}
   _stateText: {fileID: 2395439073885014524}
+--- !u!114 &1227726081699306500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2395439072523636897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e3db6c77b58d54db23545014330e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioScript:
+  - {fileID: 11400000, guid: 660bdc369f55b3d4c989591f4bf793ff, type: 2}
+  - {fileID: 11400000, guid: 4c4d7148242f68f449bfe429c0318379, type: 2}
+--- !u!82 &3244955480127499343
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2395439072523636897}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 8944834280328194426, guid: f64016cde64928d4ca8de295ea39cbb1,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 25
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2395439072544815077
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,6 +371,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2395439073114239713}
+  - {fileID: 6835841825429628637}
   m_Father: {fileID: 2395439072523636898}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -518,3 +639,64 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8380202356060175183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6835841825429628637}
+  - component: {fileID: 3894230508847350350}
+  - component: {fileID: 7727359496435975520}
+  m_Layer: 0
+  m_Name: Dying
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6835841825429628637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380202356060175183}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2395439073171361680}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3894230508847350350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380202356060175183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80780a54b04034b49b37cf5f45c13cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7727359496435975520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380202356060175183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61afa1c6a117694b8b4c7dbae91898e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isStarted: 0
+  OnTimerFinished:
+    m_PersistentCalls:
+      m_Calls: []

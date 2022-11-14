@@ -44,6 +44,12 @@ public class EnemyIdleState : EnemyBaseState
         _utilTimer.onTimerCompleted -= OnTimerCompleted;
     }
 
+    private void OnDestroy()
+    {
+        if (_utilTimer == null) return;
+        _utilTimer.onTimerCompleted -= OnTimerCompleted;
+    }
+
     private void OnTimerCompleted()
     {
         _state.SwitchState(EnemyStateManager.EnemyState.Patroling);

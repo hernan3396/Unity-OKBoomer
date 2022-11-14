@@ -105,7 +105,7 @@ Material:
     - _GlossyReflections: 0
     - _Intensity: 0.157
     - _Metallic: 0
-    - _NoiseIntensity: 250
+    - _NoiseIntensity: 500
     - _NoiseSpeed: 1
     - _NoiseValue: 15
     - _OcclusionStrength: 1
@@ -113,7 +113,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.5
+    - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

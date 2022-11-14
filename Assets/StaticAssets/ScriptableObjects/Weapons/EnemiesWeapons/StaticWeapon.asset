@@ -14,18 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 3
   Name: Static Weapon
+  SFX: 0
   Accuracy: {x: 3, y: 3}
   Cooldown: 1
   Startup: 0.3
-  Damage: 25
+  Damage: 30
+  ChangeDur: 0
   SpecialType: 0
   SpecialDamage: 0
   SpecialStartup: 0
   SpecialTime: 0
   SpecialCooldown: 0
+  UseBullets: 1
   AmmoType: 0
   MaxBounces: 0
   AmmoSpeed: 120
   MaxAmmo: 0
   RecoilForce: 0
-  RecoilTime: 0

@@ -42,29 +42,30 @@ public class PlayerShoot : MonoBehaviour
 
     public void Shoot()
     {
-        if (_player.GetWeapons.Count == 0) return;
+        if (_player.MaxWeapons <= 0) return;
 
-        WeaponScriptable weapon = _player.CurrentWeaponData;
+        Weapon weapon = _player.CurrentWeaponData;
+        if (weapon.CurrentBullets <= 0) return;
 
-        GameObject newBullet = _pools[(int)weapon.AmmoType].GetPooledObject();
+        WeaponScriptable weaponData = weapon.Data;
+
+        GameObject newBullet = _pools[(int)weaponData.AmmoType].GetPooledObject();
         if (!newBullet) return;
-
-        StartRecoil(weapon.RecoilForce, weapon.Cooldown);
 
         if (newBullet.TryGetComponent(out Bullet bullet))
         {
-            bullet.SetData(weapon.Damage, weapon.AmmoSpeed, weapon.MaxBounces, _player.ShootPos);
+            bullet.SetData(weaponData.Damage, weaponData.AmmoSpeed, weaponData.MaxBounces, weapon.GetShootPos());
             newBullet.SetActive(true);
-            bullet.Shoot(weapon.Accuracy);
+            bullet.Shoot(weaponData.Accuracy);
+            EventManager.OnPlaySound(weaponData.SFX);
 
-            if (!_player.GodMode && weapon.UseBullets)
-            {
-                _player.BulletsAmount -= 1;
-                _player.GetCurrentBulletCounter.text = _player.BulletsAmount.ToString();
-            }
+            if (!_player.GodMode && weaponData.UseBullets)
+                weapon.UseBullets(1);
 
             // EventManager.OnUpdateUI(UIManager.Element.Bullets, _player.BulletsAmount);
         }
+
+        StartRecoil(weaponData.RecoilForce, weaponData.Cooldown);
     }
 
     private void StartRecoil(float force, float dur)

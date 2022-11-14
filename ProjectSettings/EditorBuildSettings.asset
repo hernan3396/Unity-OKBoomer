@@ -19,8 +19,32 @@ EditorBuildSettings:
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/Levels/Tutorial.unity
-    guid: 36a4ccc41e820be4eaf1772204c9d814
+    guid: 23bd770268e627b49a23c7e0ae1fe739
   - enabled: 1
-    path: Assets/Scenes/Levels/Level1.unity
-    guid: c4e4779485c2dac4b888d70bf4eea451
+    path: Assets/Scenes/Levels/Beach_Level000.unity
+    guid: 6d83143bdee22ed458f2a13e01d4928e
+  - enabled: 1
+    path: Assets/Scenes/Levels/Parking_Level000.unity
+    guid: fd0521760d24e574f8bb0863049eb585
+  - enabled: 1
+    path: Assets/Scenes/Levels/Mall_Level000.unity
+    guid: 9f60b46f996bd4946956880e70920181
+  - enabled: 1
+    path: Assets/Scenes/Levels/Spectator/Spectator_Tutorial.unity
+    guid: ad0d1bf1c75f5d840b785c4764949244
+  - enabled: 1
+    path: Assets/Scenes/Levels/Spectator/Spectator_Parking_Level000.unity
+    guid: d398b0d62a144ca4da4bdc46e9ffd01f
+  - enabled: 1
+    path: Assets/Scenes/Levels/Spectator/Spectator_Mall_Level000.unity
+    guid: 563420f360016f8439761041cf01cbf8
+  - enabled: 1
+    path: Assets/Scenes/Levels/Spectator/Spectator_Beach_Level000.unity
+    guid: 0e46502e5da942a4faf93bfdfd8be800
+  - enabled: 1
+    path: Assets/Scenes/Levels/RangedBoss.unity
+    guid: 1a8b8876c5ad2804e9f152fcb69b5218
+  - enabled: 1
+    path: Assets/Scenes/Levels/WallBoss.unity
+    guid: 43a8acc315de9624abcfb7286e0fc003
   m_configObjects: {}

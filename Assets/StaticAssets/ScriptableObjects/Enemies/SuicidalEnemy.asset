@@ -14,11 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 5
   DeathDur: 2
-  Invulnerability: 0.1
+  Invulnerability: 0.2
   Weapon: {fileID: 11400000, guid: 06a29a49f0c30da4882a2ac877b4d959, type: 2}
-  Speed: 20
+  Speed: 60
   Acceleration: 10
-  WalkPointRange: 5
-  VisionRange: 80
-  AttackRange: 35
-  ChasingRange: 150
+  WalkPointRange: 40
+  DodgeRange: 2
+  DodgeSpeed: 50
+  DodgeAcceleration: 1
+  VisionRange: 150
+  AttackRange: 100
+  ChasingRange: 180
+  AimSpeed: 4

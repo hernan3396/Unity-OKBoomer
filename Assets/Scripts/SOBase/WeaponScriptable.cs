@@ -12,6 +12,7 @@ public class WeaponScriptable : ScriptableObject
 
     public int Id;
     public string Name;
+    public AudioManager.SFX SFX;
 
     #region Stats
     [Header("Stats")]
@@ -44,6 +45,12 @@ public class WeaponScriptable : ScriptableObject
     #region Recoil
     [Header("Recoil")]
     public float RecoilForce;
+    #endregion
+
+    #region Colors
+    public Color IdleColor;
+    public Color ChargingColor;
+    public Color CooldownColor;
     #endregion
 
     // esto lo dejo ya por si lo llegamos a usar de esta

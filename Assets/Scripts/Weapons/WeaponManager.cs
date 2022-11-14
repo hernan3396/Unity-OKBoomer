@@ -3,14 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Player))]
 public class WeaponManager : MonoBehaviour
 {
-    /*
-    Este script sufrio un cambio en su funcionamiento, antes cambiaba el arma enseguida,
-    ahora lo que hace es guardar el valor del arma a cambiar, ya que cuando haces el "Change Out"
-    tenes que hacer con la duracion del arma que tenes y luego hacer el cambio del arma, y en el "Change In"
-    dura lo del arma cambiada (luego de haber hecho el cambio en "Change Out"), asi que dejo las lineas
-    comentadas no por vago, sino por si se rompe algo es solo descomentar eso y sacar en "Change Out" 
-    la linea de  "_player.ChangeWeapons(_weaponManager.CurrentWeapon);"
-    */
     public enum WeaponNumber
     {
         PointingFinger,
@@ -23,7 +15,6 @@ public class WeaponManager : MonoBehaviour
 
     private void Awake()
     {
-        // EventManager.ChangeWeapon += ChangeWeapon;
         EventManager.GameStart += FirstUpdate;
     }
 
@@ -34,16 +25,14 @@ public class WeaponManager : MonoBehaviour
 
     private void FirstUpdate()
     {
-        if (_player.GetWeapons.Count == 0) return;
+        if (_player.MaxWeapons <= 0) return;
 
         _player.ChangeWeapons(_player.CurrentWeapon);
     }
 
     public void ChangeWeapon(int side)
     {
-        if (_player.GetWeapons.Count == 0) return;
-
-        _player.GetCurrentModel.GetComponent<Animator>().Play("ChangeOut");
+        if (_player.MaxWeapons <= 0) return;
 
         _currentWeapon = _player.CurrentWeapon;
         int maxWeapons = _player.MaxWeapons;
@@ -55,8 +44,11 @@ public class WeaponManager : MonoBehaviour
 
         if (_currentWeapon < 0)
             _currentWeapon = maxWeapons - 1;
+    }
 
-        // _player.ChangeWeapons(_currentWeapon);
+    public void SetWeapon(int value)
+    {
+        _currentWeapon = value;
     }
 
     private void OnDestroy()

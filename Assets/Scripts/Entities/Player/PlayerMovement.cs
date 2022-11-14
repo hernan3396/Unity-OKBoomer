@@ -38,6 +38,16 @@ public class PlayerMovement : MonoBehaviour, IPauseable
             _dirInput = Vector3.zero;
     }
 
+    public Vector2 DirInput
+    {
+        get { return _dirInput; }
+    }
+
+    public Vector3 GetVelocity
+    {
+        get { return _player.RB.velocity; }
+    }
+
     public bool IsMoving
     {
         get { return _dirInput.magnitude > 0.01f; }

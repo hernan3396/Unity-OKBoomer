@@ -20,11 +20,19 @@ public class EnviromentalDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        _playerInside = true;
+        // if (other.CompareTag("Player"))
+        // _playerInside = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        _playerInside = false;
+        if (other.CompareTag("Player"))
+            _playerInside = false;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            _player.TakeDamage(_damage);
     }
 }

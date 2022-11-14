@@ -14,15 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   Invulnerability: 1
+  DeathDuration: 1
   CrouchTimer: 0.6
-  CrouchVel: 6
-  Speed: 36
+  CrouchVel: 160
+  Speed: 32
+  SlideCooldown: 0.3
+  CeilingLayer:
+    serializedVersion: 2
+    m_Bits: 2147483647
   HalfGravityLimit: 0.1
-  CoyoteMaxTime: 0.2
+  CoyoteMaxTime: 0.1
+  JumpBufferTime: 0.1
   JumpStrength: 40
   MaxFallSpeed: -60
   Gravity: 12
-  MouseSensitivity: 2
+  MovementModifier: 1.5
+  MouseSensitivity: 0.1
   LookLimits: {x: -90, y: 80}
   SwayMultiplier: 2
   SwaySmoothness: 8
+  TiltAngle: 5
+  TiltSpeed: 5
+  HurtRecoil: {x: -2, y: -2}
+  WeaponAmplitude: 0.025
+  WeaponFrequency: 10

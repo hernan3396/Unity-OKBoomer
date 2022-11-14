@@ -7,12 +7,20 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     public enum PoolType
     {
         SimpleBullet,
-        Blood
+        Blood,
+        TrackerBullet
+    }
+
+    protected enum SFX
+    {
+        Hit,
+        Death,
     }
 
     #region Data
     [Header("Data")]
     [SerializeField] protected EnemyScriptable _data;
+    [SerializeField] private bool _respawn = false;
     #endregion
 
     #region Components
@@ -20,24 +28,30 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     [SerializeField] private MeshRenderer _bodyModel;
     [SerializeField] private SkinnedMeshRenderer _bodyModelSkinned;
     // [SerializeField] private MeshRenderer _headModel;
-    [SerializeField] private Transform _headPos;
+    [SerializeField] protected Transform _headPos;
     protected PoolManager _bloodPool;
     protected CapsuleCollider _col;
     // protected SphereCollider
     protected Material _mainMat;
     protected Material _headMat;
+    protected PlayAudio _audio;
     protected Rigidbody _rb;
     #endregion
 
     #region AI
     [Header("AI")]
     [SerializeField] protected LayerMask _playerLayer;
+    [SerializeField] protected LayerMask _visionLayer;
     protected Vector3 _destination;
     protected NavMeshAgent _agent;
     protected Transform _player;
+    protected PlayerMovement _playerMov;
     protected bool _canAttack = true;
     protected bool _tookDamage = false;
     protected bool _isDodging = false;
+    private Vector2 _playerInputLerped;
+    private Vector3 _initPos;
+    protected Vector3 _lookDir;
     #endregion
 
     #region States
@@ -51,6 +65,10 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         SetComponents();
 
         _currentHp = _data.MaxHealth;
+        _initPos = _transform.position;
+
+        if (_respawn)
+            EventManager.GameStart += Respawn;
     }
 
     protected virtual void SetComponents()
@@ -64,6 +82,8 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         _transform = GetComponent<Transform>();
         _col = GetComponentInChildren<CapsuleCollider>();
 
+        if (TryGetComponent(out PlayAudio audio))
+            _audio = audio;
 
         if (TryGetComponent(out Rigidbody rb))
             _rb = rb;
@@ -79,11 +99,12 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     protected virtual void Start()
     {
         _player = GameManager.GetInstance.Player.GetComponent<Transform>();
+        _playerMov = _player.GetComponent<Player>().PlayerMovement;
         _bloodPool = GameManager.GetInstance.GetEnemyPools[(int)PoolType.Blood];
     }
 
     #region DamageMethods
-    public void TakeDamage(int value, Transform bullet)
+    public virtual void TakeDamage(int value, Transform bullet)
     {
         // esta solo crea las particulas y luego llama al
         // takedamage de base
@@ -95,11 +116,13 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         GameObject blood = _bloodPool.GetPooledObject();
         if (blood)
         {
-
             blood.transform.position = bullet.position;
             blood.transform.forward = bullet.forward;
             blood.SetActive(true);
         }
+
+        if (_audio != null)
+            _audio.PlayOwnSound((int)SFX.Hit);
 
         // en el codigo de las particulas de la sangre
         // ya esta puesto play on awake y disable en stop action
@@ -114,12 +137,28 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
 
         EventManager.OnWaveUpdated();
 
+        if (_audio != null)
+            _audio.PlaySound((int)SFX.Death);
+
         _headMat.DOFloat(1, "_DissolveValue", _data.DeathDur)
         .SetEase(Ease.OutQuint);
 
         _mainMat.DOFloat(1, "_DissolveValue", _data.DeathDur)
         .SetEase(Ease.OutQuint)
         .OnComplete(() => gameObject.SetActive(false));
+    }
+
+    protected virtual void Respawn()
+    {
+        if (_col == null) return;
+
+        _currentHp = _data.MaxHealth;
+        _isDead = false;
+        _col.enabled = true;
+        _transform.position = _initPos;
+        _headMat.SetFloat("_DissolveValue", 0);
+        _mainMat.SetFloat("_DissolveValue", 0);
+        gameObject.SetActive(true);
     }
     #endregion
 
@@ -160,7 +199,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         {
             Vector3 playerPos = circleHit[0].transform.position;
 
-            return Utils.RayHit(_headPos.position, playerPos, "Player", range);
+            return Utils.RayHit(_headPos.position, playerPos, "Player", range, _visionLayer);
         }
 
         return false;
@@ -177,7 +216,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         Vector3 lookDir = (_player.position - _transform.position).normalized;
         float lookingForward = Vector3.Dot(_transform.forward, lookDir);
 
-        if (lookingForward > 0.9f && lookingForward <= 1.1f)
+        if (lookingForward > 0.8f && lookingForward <= 1.2f)
             return true;
 
         return false;
@@ -187,11 +226,23 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     #region MovementMethods
     public void SearchWalkPoint()
     {
-        //Calculate random point in range
-        float randomZ = Random.Range(-_data.WalkPointRange, _data.WalkPointRange);
-        float randomX = Random.Range(-_data.WalkPointRange, _data.WalkPointRange);
+        //Calculates random point in range
+        Vector3 randDir = Utils.RandomNavSphere(_transform.position, _data.WalkPointRange);
+        _destination = randDir;
+    }
 
-        _destination = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+    public void Dodge()
+    {
+        int dir = Random.Range(-1, 1);
+        if (dir == 0) dir = 1;
+
+        Vector3 predictedDir = _transform.right * dir * _data.DodgeRange;
+        Vector3 dodgeDir = _transform.position + predictedDir;
+
+        if (Utils.IsPointInNavMesh(dodgeDir, 4))
+            _destination = dodgeDir;
+        else
+            _destination = _transform.position;
     }
 
     public void GoToDestination()
@@ -218,12 +269,30 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
         _agent.SetDestination(_player.position);
     }
 
-    public void RotateTowards(Transform other)
+    protected Vector3 PredictMovement()
     {
-        Vector3 lookDir = Utils.CalculateDirection(_transform.position, _player.position);
+        float timeToReach = Vector3.Distance(_transform.position, _player.position) / _data.Weapon.AmmoSpeed;
+        _playerInputLerped = Vector2.Lerp(_playerInputLerped, _playerMov.DirInput, Time.deltaTime * _data.AimSpeed);
+        Vector3 forwSpeed = _playerMov.GetVelocity.magnitude * _playerInputLerped;
 
-        Vector3 newDir = Vector3.RotateTowards(_transform.forward, lookDir, _data.Speed * Time.deltaTime, 0.0f);
-        _transform.rotation = Quaternion.LookRotation(newDir);
+        int dir = 1;
+
+        if (_transform.right.x < 0)
+            dir = -1;
+
+        forwSpeed *= -dir;
+
+        Vector3 result = forwSpeed * timeToReach;
+        result.y = 0;
+
+        return result;
+    }
+
+    public virtual void RotateTowards(Transform other)
+    {
+        _lookDir = Utils.CalculateDirection(_transform.position, _player.position + PredictMovement());
+        _transform.rotation = Quaternion.LookRotation(_lookDir);
+        // _transform.forward = Vector3.Slerp(_transform.forward, lookDir, Time.deltaTime * _data.AimSpeed);
     }
 
     public void StopAgent(bool value)
@@ -236,7 +305,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     public abstract void Attacking();
     #endregion
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, _data.VisionRange);
@@ -246,6 +315,11 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
 
         Gizmos.color = Color.gray;
         Gizmos.DrawWireSphere(transform.position, _data.ChasingRange);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.GameStart -= Respawn;
     }
 
     public EnemyScriptable Data

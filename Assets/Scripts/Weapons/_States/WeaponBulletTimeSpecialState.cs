@@ -4,6 +4,7 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
 {
     private Player _player;
     private PlayerShoot _playerShoot;
+    private PlayerMovement _playerMovement;
 
     private WeaponStateManager _state;
     private UtilTimer _utilTimer;
@@ -21,25 +22,30 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
             _state = state;
             _player = state.Player;
             _playerShoot = _player.PlayerShoot;
+            _playerMovement = _player.PlayerMovement;
 
             _utilTimer = GetComponent<UtilTimer>();
         }
 
-        Time.timeScale = _player.CurrentWeaponData.SpecialDamage * 0.1f;
-        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        _playerMovement.MovementMod = 2;
+        EventManager.OnBulletTime(_player.CurrentWeaponData.Data.SpecialDamage * 0.1f);
+        // Time.timeScale = _player.CurrentWeaponData.Data.SpecialDamage * 0.1f;
+        // Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
-        _utilTimer.StartTimer(_player.CurrentWeaponData.SpecialTime);
+        _utilTimer.StartTimer(_player.CurrentWeaponData.Data.SpecialTime);
         _utilTimer.onTimerCompleted += OnTimerCompleted;
         _utilTimerShooting.onTimerCompleted += CanAttack;
     }
 
     public override void UpdateState(WeaponStateManager state)
     {
-        if (_canAttack)
+        _playerMovement.MovementMod = 2;
+
+        if (_canAttack && _player.CurrentWeaponData.CurrentBullets > 0)
         {
             _playerShoot.Shoot();
             _canAttack = false;
-            _utilTimerShooting.StartTimer(_player.CurrentWeaponData.Cooldown);
+            _utilTimerShooting.StartTimer(_player.CurrentWeaponData.Data.Cooldown);
         }
 
         if (!_playerShoot.IsSpecialShooting)
@@ -58,8 +64,9 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
 
     public override void OnExitState(WeaponStateManager state)
     {
-        Time.timeScale = 1f;
-        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        _playerMovement.MovementMod = 1;
+
+        EventManager.OnBulletTime(1);
         _utilTimer.onTimerCompleted -= OnTimerCompleted;
     }
 }

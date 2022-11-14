@@ -5,18 +5,22 @@ public class PlayerScriptable : ScriptableObject
 {
     public int MaxHealth;
     public int Invulnerability;
+    public int DeathDuration; // tiene que ser igual a la death anim
 
     #region Movement
     [Header("Movement")]
     public float CrouchTimer;
     public int CrouchVel;
     public int Speed;
+    public float SlideCooldown;
+    public LayerMask CeilingLayer;
     #endregion
 
     #region Jump
     [Header("Jump")]
     public float HalfGravityLimit;
     public float CoyoteMaxTime;
+    public float JumpBufferTime;
     public int JumpStrength;
     public int MaxFallSpeed;
     public int Gravity;
@@ -29,6 +33,9 @@ public class PlayerScriptable : ScriptableObject
     public Vector2 LookLimits;
     public float SwayMultiplier;
     public float SwaySmoothness;
+    public int TiltAngle;
+    public int TiltSpeed;
+    public Vector2 HurtRecoil;
     #endregion
 
     #region WeaponMovement

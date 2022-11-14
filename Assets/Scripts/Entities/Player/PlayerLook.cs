@@ -1,5 +1,4 @@
 using UnityEngine;
-using DG.Tweening;
 
 [RequireComponent(typeof(Player))]
 public class PlayerLook : MonoBehaviour
@@ -10,14 +9,17 @@ public class PlayerLook : MonoBehaviour
 
     private Vector2 _frameVelocity;
     private float _defaultYPos;
-    private Vector2 _rotations;
+    private Vector3 _rotations;
     private float _timer;
+
+    private Vector2 _dirInput;
 
     private void Start()
     {
         _player = GetComponent<Player>();
 
         EventManager.Look += LookAtMouse;
+        EventManager.Move += ChangeDirection;
         _defaultYPos = _player.Arm.localPosition.y;
         _rotations = new Vector2(0, _player.Transform.eulerAngles.y);
     }
@@ -29,7 +31,9 @@ public class PlayerLook : MonoBehaviour
 
     private void LookAtMouse(Vector2 look)
     {
-        _frameVelocity = Vector2.Scale(look, Vector2.one * _player.Data.MouseSensitivity);
+        Vector2 rawFrameVelocity = Vector2.Scale(look, Vector2.one * _player.Data.MouseSensitivity);
+        // _frameVelocity = Vector2.Scale(look, Vector2.one * _player.Data.MouseSensitivity);
+        _frameVelocity = Vector2.Lerp(_frameVelocity, rawFrameVelocity, Time.deltaTime * 1000);
 
         // up & down
         _rotations.x -= _frameVelocity.y;
@@ -53,9 +57,10 @@ public class PlayerLook : MonoBehaviour
     {
         Quaternion headRotation = Quaternion.AngleAxis(_rotations.x, Vector3.right);
         Quaternion bodyRotation = Quaternion.AngleAxis(_rotations.y, Vector3.up);
+        Quaternion tiltRotation = Quaternion.AngleAxis(_rotations.z, Vector3.forward);
 
         _player.SlideCamera.localRotation = headRotation;
-        _player.FpCamera.localRotation = headRotation;
+        _player.FpCamera.localRotation = headRotation * tiltRotation;
 
         _player.Body.localRotation = bodyRotation;
     }
@@ -81,10 +86,24 @@ public class PlayerLook : MonoBehaviour
         _player.Arm.transform.localPosition = Vector3.Lerp(pos, finalPos, Time.deltaTime * 10);
     }
 
-    // pasar el recoil para aca
+    private void ChangeDirection(Vector2 move)
+    {
+        _dirInput = move;
+    }
+
+    public void TiltCamera()
+    {
+        int tiltDir = Mathf.RoundToInt(-_dirInput.x);
+        int tiltAngle = _player.Data.TiltAngle;
+
+        _rotations.z = Mathf.Lerp(_rotations.z, tiltAngle * tiltDir, Time.deltaTime * _player.Data.TiltSpeed);
+
+        UpdateRotation();
+    }
 
     private void OnDestroy()
     {
         EventManager.Look -= LookAtMouse;
+        EventManager.Move -= ChangeDirection;
     }
 }

@@ -11,11 +11,13 @@ public class WavesManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.WaveUpdated += Counting;
+        EventManager.OnStartProgressBar(_requiredAmount);
     }
 
     private void Counting()
     {
         _currentAmount += 1;
+        EventManager.OnUpdateProgressBar(_currentAmount);
 
         if (_currentAmount >= _requiredAmount)
             WaveFinished?.Invoke();
@@ -29,5 +31,10 @@ public class WavesManager : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.WaveUpdated -= Counting;
+    }
+
+    public void ResetWave()
+    {
+        _currentAmount = 0;
     }
 }

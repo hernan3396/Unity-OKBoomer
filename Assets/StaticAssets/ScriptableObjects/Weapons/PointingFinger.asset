@@ -14,19 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   Name: Pointing Finger
+  SFX: 0
   Accuracy: {x: 2, y: 2}
-  Cooldown: 0.6
+  Cooldown: 0.3
   Startup: 0
-  Damage: 10
+  Damage: 15
   ChangeDur: 0.25
   SpecialType: 0
-  SpecialDamage: 2
-  SpecialStartup: 1
+  SpecialDamage: 1
+  SpecialStartup: 0.8
   SpecialTime: 3
-  SpecialCooldown: 1
+  SpecialCooldown: 0.8
   UseBullets: 0
   AmmoType: 0
   MaxBounces: 0
   AmmoSpeed: 250
   MaxAmmo: 200
   RecoilForce: 0.1
+  IdleColor: {r: 1, g: 1, b: 1, a: 1}
+  ChargingColor: {r: 1, g: 1, b: 0, a: 1}
+  CooldownColor: {r: 0, g: 0, b: 0, a: 1}

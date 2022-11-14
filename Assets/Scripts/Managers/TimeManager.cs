@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TimeManager : MonoBehaviour
 {
@@ -6,12 +7,13 @@ public class TimeManager : MonoBehaviour
     private UIManager _uiManager;
     #endregion
 
+    private string _levelName;
+
     private bool _isPaused = false;
-    private float time;
-    private float msec;
-    private float sec;
-    private float min;
+    private float _time;
     private string totalTime;
+
+    private float _timeCheckpoint;
 
     private void Awake()
     {
@@ -19,6 +21,16 @@ public class TimeManager : MonoBehaviour
 
         EventManager.NextLevel += OnLevelFinished;
         EventManager.Pause += OnPause;
+
+        _levelName = SceneManager.GetActiveScene().name;
+        EventManager.Checkpoint += SetCheckpointTime;
+    }
+
+    private void Start()
+    {
+        EventManager.GameStart += StartGame;
+
+        LoadSaveData();
     }
 
     private void Update()
@@ -27,13 +39,33 @@ public class TimeManager : MonoBehaviour
         UpdateTimer();
     }
 
+    private void LoadSaveData()
+    {
+        SaveData saveData = GameManager.GetInstance.GetSaveData;
+
+        if (saveData.OnALevel)
+        {
+            _timeCheckpoint = saveData.CheckpointTimer;
+            _time = _timeCheckpoint;
+        }
+    }
+
+    private void StartGame()
+    {
+        // esta separado para no cargar del gamemanager cada vez que respawneas
+        _time = _timeCheckpoint;
+    }
+
+    private void SetCheckpointTime()
+    {
+        _timeCheckpoint = _time;
+        GameManager.GetInstance.SaveCheckpointTime(_timeCheckpoint, _levelName);
+    }
+
     private void UpdateTimer()
     {
-        time += Time.deltaTime;
-        msec = (int)((time - (int)time) * 100);
-        sec = (int)(time % 60);
-        min = (int)(time / 60 % 60);
-        totalTime = string.Format("{0:00}:{1:00}:{2:00}", min, sec, msec);
+        _time += Time.deltaTime;
+        totalTime = Utils.FloatToTime(_time);
 
         _uiManager.UpdateUIText(UIManager.Element.Timer, totalTime);
     }
@@ -41,7 +73,8 @@ public class TimeManager : MonoBehaviour
     private void OnLevelFinished()
     {
         _isPaused = true;
-        EventManager.OnSaveTime(totalTime, time);
+        TimerData newTimerData = new TimerData(_levelName, _time);
+        GameManager.GetInstance.OnLevelFinished(newTimerData);
     }
 
     private void OnPause(bool value)
@@ -53,5 +86,7 @@ public class TimeManager : MonoBehaviour
     {
         EventManager.NextLevel -= OnLevelFinished;
         EventManager.Pause -= OnPause;
+        EventManager.GameStart -= StartGame;
+        EventManager.Checkpoint -= SetCheckpointTime;
     }
 }

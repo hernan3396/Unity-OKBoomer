@@ -302,7 +302,8 @@ GameObject:
   - component: {fileID: 4239267127941095}
   - component: {fileID: 4239267127941092}
   - component: {fileID: 4239267127941093}
-  - component: {fileID: 209235253125758658}
+  - component: {fileID: 7423405806531419940}
+  - component: {fileID: 8900859794315585650}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -339,6 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee13e2af1f96fe4b82a2bb87238e71a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _saveManager: {fileID: 7423405806531419940}
   _player: {fileID: 0}
   _mainCam: {fileID: 0}
   _pools:
@@ -348,6 +350,7 @@ MonoBehaviour:
   _enemyPools:
   - {fileID: 4239267741227646}
   - {fileID: 4239267098649812}
+  - {fileID: 8309091656120514265}
   _utilsPools:
   - {fileID: 4239267387694002}
   _pickablesPools:
@@ -405,7 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5c2698c1cd94c34189831038cbef2c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &209235253125758658
+--- !u!114 &7423405806531419940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -414,11 +417,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 4239267127941091}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62025e275b46e9d4aadf88f867d82526, type: 3}
+  m_Script: {fileID: 11500000, guid: ba8913ef77f6eee4f9a41f496b5b9d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _savesPrefix: Hyperwave_
-  _timers: []
+--- !u!114 &8900859794315585650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4239267127941091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d2b724d43116a4a91ea8142f625baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletTimeTime: 0.2
+  _freezeFrameTime: 0.2
 --- !u!1 &4239267305792262
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,6 +470,7 @@ Transform:
   - {fileID: 4239267387688013}
   - {fileID: 4239266434160283}
   - {fileID: 4239266331670259}
+  - {fileID: 3014659219403814494}
   m_Father: {fileID: 4239267127941088}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -554,6 +570,54 @@ MonoBehaviour:
   _objectPrefab: {fileID: 2655278983746728008, guid: 4b0ed5193869bed4181279b3a5aae56f,
     type: 3}
   _objectsAmount: 50
+--- !u!1 &617299549615003248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3014659219403814494}
+  - component: {fileID: 8309091656120514265}
+  m_Layer: 0
+  m_Name: TrackerBulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3014659219403814494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617299549615003248}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4239267305792263}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8309091656120514265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617299549615003248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23555cc00a3fb1499e5efe9a97f085e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectsPool: []
+  _objectPrefab: {fileID: 2655278983746728008, guid: cc7ddb91b3e30e44895e1dfcd436b029,
+    type: 3}
+  _objectsAmount: 10
 --- !u!1 &3226299159676093003
 GameObject:
   m_ObjectHideFlags: 0

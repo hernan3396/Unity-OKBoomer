@@ -30,6 +30,9 @@ public class PlayerFallState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager stateManager)
     {
+        if (_player.IsDead)
+            stateManager.SwitchState(PlayerStateManager.PlayerState.Dead);
+
         if (_player.IsGrounded)
         {
             if (!_playerMovement.IsMoving)

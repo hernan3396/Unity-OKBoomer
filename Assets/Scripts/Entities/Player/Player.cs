@@ -1,8 +1,6 @@
-using System;
+// using System;
 using UnityEngine;
-using TMPro;
 using Cinemachine;
-using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Player : Entity, IPauseable
@@ -10,9 +8,19 @@ public class Player : Entity, IPauseable
     [SerializeField] private bool _godMode;
     private bool _isDead = false;
 
+    #region Checkpoint
+    private Vector3 _currentCheckpoint;
+    private Quaternion _currentRotation;
+    private int _healthCheckpoint;
+    private int[] _ammoCheckpoint;
+    #endregion
+
     #region Components
     [SerializeField] private PlayerScriptable _data;
     [SerializeField] private PhysicMaterial _noFricMat;
+    [SerializeField] private Animator _camAnimator;
+    private int _idleCamAnimation;
+    private Vector3 _initPos;
     private Rigidbody _rb;
     #endregion
 
@@ -60,17 +68,9 @@ public class Player : Entity, IPauseable
 
     #region Weapons
     [Header("Weapons")]
-    // esto se podria haber hecho como una clase sola pero
-    // agregaria un poco de complejidad y ya esta hecho para que funcione asi
-    // ademas creo que se entiende la idea ya que todos usan el indice de
-    // currentWeapon por lo que no hay problemas para manejarlos
-    [SerializeField] private TMP_Text[] _uiIndicators;
-    [SerializeField] private GameObject[] _models;
-    [SerializeField] private List<WeaponScriptable> _weapons = new List<WeaponScriptable>();
-    [SerializeField] private Transform _shootPos;
+    [SerializeField] private Weapon[] _weapons;
+    [SerializeField] private int _maxWeapons;
     private int _currentWeapon = 0;
-    private int _maxWeapons;
-    [SerializeField] private List<int> _bulletsAmount = new List<int>();
     #endregion
 
     private void Awake()
@@ -80,27 +80,38 @@ public class Player : Entity, IPauseable
 
         LoadComponents();
 
+        _currentCheckpoint = _transform.position;
         _currentHp = _data.MaxHealth;
+        _healthCheckpoint = _currentHp;
         _invulnerability = _data.Invulnerability;
 
-        _maxWeapons = _weapons.Count;
         SetBullets();
 
         EventManager.GameStart += GameStart;
+        EventManager.GameLoaded += LoadSaveData;
     }
-
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        EventManager.OnGodMode(_godMode);
-    }
-#endif
 
     private void GameStart()
     {
         EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
-        UpdateBullets();
-        // EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
+        _weapons[_currentWeapon].UpdateBullets();
+    }
+
+    private void LoadSaveData(SaveData saveData)
+    {
+        _maxWeapons = saveData.WeaponsObtained;
+
+        if (saveData.OnALevel)
+        {
+            _currentCheckpoint = saveData.PlayerPos;
+            _currentRotation = saveData.PlayerRot;
+            _transform.position = _currentCheckpoint;
+            _transform.rotation = _currentRotation;
+            _currentHp = saveData.PlayerHealth;
+
+            for (int i = 0; i < _weapons.Length; i++)
+                _weapons[i].LoadBullets(saveData.Ammo[i]);
+        }
     }
 
     private void LoadComponents()
@@ -111,6 +122,9 @@ public class Player : Entity, IPauseable
         _playerShoot = GetComponent<PlayerShoot>();
         _playerLook = GetComponent<PlayerLook>();
         _weaponManager = GetComponent<WeaponManager>();
+        _initPos = _transform.position;
+
+        _idleCamAnimation = Animator.StringToHash("Idle");
     }
 
     private void FixedUpdate()
@@ -185,6 +199,10 @@ public class Player : Entity, IPauseable
 
         EventManager.OnPlayerHit(pos);
         TakeDamage(value);
+
+        float impulseX = Random.Range(-_data.HurtRecoil.x, _data.HurtRecoil.x);
+        Vector3 recoilForce = new Vector3(_data.HurtRecoil.y, impulseX, 0);
+        _playerLook.AddRecoil(recoilForce);
     }
 
     public override void TakeDamage(int value)
@@ -193,13 +211,15 @@ public class Player : Entity, IPauseable
 
         base.TakeDamage(value);
         _cmImpSrc.GenerateImpulse();
+        EventManager.OnFreezeFrame();
+        EventManager.OnPlaySound(AudioManager.SFX.PlayerHit);
         EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
     }
 
     protected override void Death()
     {
         _isDead = true;
-        EventManager.OnGameOver();
+        EventManager.OnPlaySound(AudioManager.SFX.PlayerDeath);
     }
 
     public void PickUpHealth(int value)
@@ -210,25 +230,48 @@ public class Player : Entity, IPauseable
             _currentHp += value;
 
         EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
+        EventManager.OnPlaySound(AudioManager.SFX.PickupHealth);
+    }
+
+    public void Respawn()
+    {
+        _currentHp = _healthCheckpoint;
+        _isDead = false;
+        _transform.position = _currentCheckpoint;
+
+        for (int i = 0; i < _weapons.Length; i++)
+            _weapons[i].LoadBullets(_ammoCheckpoint[i]);
+
+        _camAnimator.Play(_idleCamAnimation);
+
+        EventManager.OnStartTransitionOut(_data.DeathDuration);
+        EventManager.OnGameStart();
     }
     #endregion
 
     #region WeaponMethods
     private void SetBullets()
     {
-        for (int i = 0; i < _maxWeapons; i++)
-            _bulletsAmount.Add(_weapons[i].MaxAmmo);
+        foreach (Weapon weapon in _weapons)
+            weapon.InitialBullets();
+    }
+
+    private void LoadBullets(int[] bullets)
+    {
+        int i = 0;
+        foreach (Weapon weapon in _weapons)
+        {
+            weapon.LoadBullets(bullets[i]);
+            i++;
+        }
     }
 
     public void ChangeWeapons(int value)
     {
         _currentWeapon = value;
-        _models[_currentWeapon].SetActive(true);
-        _models[_currentWeapon].GetComponent<Animator>().Play("ChangeIn");
+        _weapons[_currentWeapon].ChangeIn();
 
-        UpdateBullets();
-
-        EventManager.OnUpdateUIText(UIManager.Element.Weapon, _weapons[_currentWeapon].Name);
+        EventManager.OnUpdateUIText(UIManager.Element.Weapon, _weapons[_currentWeapon].Data.Name);
         // EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
     }
 
@@ -237,32 +280,27 @@ public class Player : Entity, IPauseable
         // en el caso de armas lo multiplicamos
         // si value = 1, entonces solo le sumas 1/4, si es 2 es 1/2 y asi
         // no hablamos de esto pero lo voy a hacer que agarres 1/4 balas del maximo del arma seleccionada
-        int nextAmmount = (int)(_weapons[_currentWeapon].MaxAmmo * 0.25f) * value;
-        if (BulletsAmount + nextAmmount > _weapons[_currentWeapon].MaxAmmo)
-            BulletsAmount = _weapons[_currentWeapon].MaxAmmo;
-        else
-            BulletsAmount += (int)(_weapons[_currentWeapon].MaxAmmo * 0.25f) * value;
+        EventManager.OnPlaySound(AudioManager.SFX.PickupAmmo);
 
-        UpdateBullets();
-        // EventManager.OnUpdateUI(UIManager.Element.Bullets, _bulletsAmount[_currentWeapon]);
+        foreach (Weapon weapon in _weapons)
+        {
+            int nextAmmount = (int)(weapon.Data.MaxAmmo * 0.25f) * value;
+            weapon.AddBullets(nextAmmount);
+        }
     }
 
-    public void PickUpWeapon(WeaponScriptable newWeapon)
+    public void PickUpWeapon(int weaponIndex)
     {
-        _weapons.Add(newWeapon);
+        if (weaponIndex <= _maxWeapons)
+        {
+            PickUpAmmo(1);
+            return; // si spameas el nivel en busca de armas esto no te deja agarrar la siguiente
+        }
 
-        _bulletsAmount.Add(newWeapon.MaxAmmo);
-        _maxWeapons = _weapons.Count;
+        if (_maxWeapons >= _weapons.Length) return;
 
-        EventManager.OnPickUpWeapon(_maxWeapons - 1);
-    }
-
-    private void UpdateBullets()
-    {
-        if (_weapons.Count == 0) return;
-
-        if (_weapons[CurrentWeapon].UseBullets)
-            _uiIndicators[_currentWeapon].text = _bulletsAmount[_currentWeapon].ToString();
+        _maxWeapons += 1;
+        EventManager.OnPickUpWeapon(_maxWeapons - 1); // 1 indica que sumas 1 al indice del currentWeapon
     }
     #endregion
 
@@ -276,6 +314,7 @@ public class Player : Entity, IPauseable
     private void OnDestroy()
     {
         EventManager.GameStart -= GameStart;
+        EventManager.GameLoaded -= LoadSaveData;
     }
 
     #region Getter/Setter
@@ -297,6 +336,11 @@ public class Player : Entity, IPauseable
     public PhysicMaterial NoFricMat
     {
         get { return _noFricMat; }
+    }
+
+    public Animator CamAnimator
+    {
+        get { return _camAnimator; }
     }
 
     public Rigidbody RB
@@ -384,9 +428,9 @@ public class Player : Entity, IPauseable
         get { return _hitboxes[1]; }
     }
 
-    public List<WeaponScriptable> GetWeapons
+    public Weapon CurrentWeaponData
     {
-        get { return _weapons; }
+        get { return _weapons[_currentWeapon]; }
     }
 
     public int CurrentWeapon
@@ -394,35 +438,57 @@ public class Player : Entity, IPauseable
         get { return _currentWeapon; }
     }
 
-    public WeaponScriptable CurrentWeaponData
-    {
-        get { return _weapons[_currentWeapon]; }
-    }
-
-    public GameObject GetCurrentModel
-    {
-        get { return _models[_currentWeapon]; }
-    }
-
-    public TMP_Text GetCurrentBulletCounter
-    {
-        get { return _uiIndicators[_currentWeapon]; }
-    }
-
     public int MaxWeapons
     {
         get { return _maxWeapons; }
     }
 
-    public Transform ShootPos
+    public bool IsDead
     {
-        get { return _shootPos; }
+        get { return _isDead; }
     }
 
-    public int BulletsAmount
+    public int[] GetBullets
     {
-        get { return _bulletsAmount[_currentWeapon]; }
-        set { _bulletsAmount[_currentWeapon] = value; }
+        get
+        {
+            int[] ammoCount = new int[3];
+            for (int i = 0; i < ammoCount.Length; i++)
+            {
+                ammoCount[i] = _weapons[i].CurrentBullets;
+            }
+
+            return ammoCount;
+        }
+    }
+
+    public Vector3 Checkpoint
+    {
+        get { return _currentCheckpoint; }
+        set { _currentCheckpoint = value; }
+    }
+
+    public int CurrentHP
+    {
+        get { return _currentHp; }
+    }
+
+    public int HealthCheckpoint
+    {
+        get { return _healthCheckpoint; }
+        set { _healthCheckpoint = value; }
+    }
+
+    public int[] AmmoCheckpoint
+    {
+        get { return _ammoCheckpoint; }
+        set { _ammoCheckpoint = value; }
+    }
+
+    public Quaternion CurrentRot
+    {
+        get { return _currentRotation; }
+        set { _currentRotation = value; }
     }
     #endregion
 }

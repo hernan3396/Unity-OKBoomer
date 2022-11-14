@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2366307783822315124}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1149454126769252111
 MeshFilter:
@@ -93,6 +93,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2366307783822315124}
   - component: {fileID: 7092767242795895594}
+  - component: {fileID: 6489628874642605546}
+  - component: {fileID: 5328650139150308235}
   m_Layer: 0
   m_Name: AmmoCrate
   m_TagString: Untagged
@@ -113,7 +115,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3230813994063241118}
-  - {fileID: 1237004626343879260}
   - {fileID: 5612621012903891954}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -132,61 +133,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _finalPos: {fileID: 3230813994063241118}
   _easeFunc: 4
-  _type: 2
+  _autoStart: 1
+  _type: 0
   _vel: 2
---- !u!1 &6339949185287089650
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1237004626343879260}
-  - component: {fileID: 4958437145593468263}
-  - component: {fileID: 5818745972186381938}
-  m_Layer: 0
-  m_Name: Hitbox
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1237004626343879260
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6339949185287089650}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 2366307783822315124}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4958437145593468263
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6339949185287089650}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5818745972186381938
+--- !u!114 &6489628874642605546
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6339949185287089650}
+  m_GameObject: {fileID: 3383900504121028152}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ae699c64667ce54582104c3721c77dc, type: 3}
@@ -194,8 +150,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ammount: 1
   _pickupType: 1
-  _weapon: {fileID: 0}
-  _parent: {fileID: 3383900504121028152}
+  _weaponIndex: 0
+  _respawn: 0
+--- !u!65 &5328650139150308235
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3383900504121028152}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5, z: 5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8938612403285758490
 GameObject:
   m_ObjectHideFlags: 0

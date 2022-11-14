@@ -15,10 +15,18 @@ public class EnemyScriptable : ScriptableObject
     public int WalkPointRange;
     #endregion
 
+    #region Dodge
+    [Header("Dodge")]
+    public int DodgeRange;
+    public int DodgeSpeed;
+    public int DodgeAcceleration;
+    #endregion
+
     #region Vision
     [Header("Vision")]
     public int VisionRange;
     public int AttackRange;
     public int ChasingRange;
+    public int AimSpeed;
     #endregion
 }

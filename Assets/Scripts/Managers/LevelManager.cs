@@ -8,7 +8,14 @@ public class LevelManager : MonoBehaviour
     #region Transitions
     [SerializeField] private int _transitionSpeed = 3;
     [SerializeField] private bool _isMenu = false;
+    private string _currentLevel;
     #endregion
+
+    private void Awake()
+    {
+        EventManager.ChangeLevel += OnNextLevelNoSave;
+        EventManager.GameLoaded += SetContinue;
+    }
 
     private void Start()
     {
@@ -16,8 +23,6 @@ public class LevelManager : MonoBehaviour
         {
             StartCoroutine("StartLevel");
             EventManager.Pause += OnPause;
-            EventManager.ChangeLevel += OnNextLevel;
-            EventManager.GameOver += ReloadLevel;
         }
     }
 
@@ -50,9 +55,6 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(_transitionSpeed * 0.5f);
 
         LoadLevel("UI", true);
-
-        yield return new WaitForSeconds(0.1f); // que espere un poquito asi carga la escena antes de lanzar ese evento
-        EventManager.OnGameStart();
     }
 
     public IEnumerator Transition(string scene)
@@ -62,13 +64,10 @@ public class LevelManager : MonoBehaviour
         LoadLevel(scene);
     }
 
-    private void ReloadLevel()
-    {
-        StartCoroutine("ChangingLevel", SceneManager.GetActiveScene().name);
-    }
-
     public void OnNextLevel(string scene)
     {
+        GameManager.GetInstance.OnCheckpoint();
+        GameManager.GetInstance.OnExit();
         StartCoroutine("ChangingLevel", scene);
     }
 
@@ -81,15 +80,39 @@ public class LevelManager : MonoBehaviour
         LoadLevel(scene);
     }
 
-    public void StartTransition(string scene)
+    public void OnNewLevelSelected(string scene)
     {
-        StartCoroutine("Transition", scene);
+        GameManager.GetInstance.OnNewLevel();
+        StartCoroutine("ChangingLevelNoSave", scene);
+    }
+
+    public void OnNextLevelNoSave(string scene)
+    {
+        StartCoroutine("ChangingLevelNoSave", scene);
+    }
+
+    private IEnumerator ChangingLevelNoSave(string scene)
+    {
+        EventManager.OnStartTransition(_transitionSpeed);
+        yield return new WaitForSeconds(_transitionSpeed);
+
+        LoadLevel(scene);
+    }
+
+    private void SetContinue(SaveData save)
+    {
+        _currentLevel = save.CurrentLevel;
+    }
+
+    public void Continue()
+    {
+        StartCoroutine("ChangingLevelNoSave", _currentLevel);
     }
 
     private void OnDestroy()
     {
         EventManager.Pause -= OnPause;
-        EventManager.ChangeLevel -= OnNextLevel;
-        EventManager.GameOver -= ReloadLevel;
+        EventManager.ChangeLevel -= OnNextLevelNoSave;
+        EventManager.GameLoaded -= SetContinue;
     }
 }
