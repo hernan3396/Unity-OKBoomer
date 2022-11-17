@@ -1,35 +1,40 @@
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections.Generic;
 using DG.Tweening;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(UtilTimer))]
-public class RangedBoss : Enemy
+public class BulletHellBoss : Enemy
 {
     public UnityEvent DeathEvent;
 
+    [Header("Config")]
+    [SerializeField] private Transform _headPivot;
+    [SerializeField] private Transform _waypointsPivot;
     [SerializeField] private Transform _shootingPivot;
-    protected PoolManager _bulletsPool;
-    private UtilTimer _utilTimer;
-    private int _weaponIndex = 0;
-    private PoolManager _explosionPool;
+    [SerializeField] private Transform _laserPivot;
 
+    // Components
+    private PoolManager _explosionPool;
+    private PoolManager _bulletsPool;
+    private UtilTimer _utilTimer;
+
+    // lists
+    private List<Transform> _waypoints = new List<Transform>();
     private List<Transform> _shootingPos = new List<Transform>();
+    private List<Transform> _laserPos = new List<Transform>();
 
     protected override void Start()
     {
         base.Start();
-        _bulletsPool = GameManager.GetInstance.GetEnemyPools[(int)PoolType.TrackerBullet];
+
+        _bulletsPool = GameManager.GetInstance.GetEnemyPools[(int)PoolType.SimpleBullet];
+        _explosionPool = GameManager.GetInstance.GetUtilsPool(0);
+
         _utilTimer = GetComponent<UtilTimer>();
         _utilTimer.onTimerCompleted += OnTimerCompleted;
 
-        foreach (Transform pos in _shootingPivot)
-        {
-            _shootingPos.Add(pos);
-            pos.GetComponent<MeshRenderer>().enabled = false;
-        }
-
-        _explosionPool = GameManager.GetInstance.GetUtilsPool(0);
+        FillLists();
     }
 
     private void OnEnable()
@@ -37,48 +42,49 @@ public class RangedBoss : Enemy
         EventManager.OnStartProgressBar(_data.MaxHealth);
     }
 
-    public override void Attacking()
+    private void FillLists()
     {
-        if (!_canAttack) return;
-
-        WeaponScriptable weapon = _data.Weapon;
-        float timeToWait = weapon.Cooldown;
-
-        _shootingPivot.forward = _lookDir;
-
-        GameObject newBullet = _bulletsPool.GetPooledObject();
-        if (!newBullet) return;
-
-        if (newBullet.TryGetComponent(out Bullet bullet))
+        foreach (Transform waypoint in _waypointsPivot)
         {
-            bullet.SetData(weapon.Damage, weapon.AmmoSpeed, weapon.MaxBounces, _shootingPos[_weaponIndex]);
-            bullet.SetInitPos(_shootingPos[_weaponIndex].position);
-            newBullet.SetActive(true);
-            bullet.Shoot(weapon.Accuracy);
-            _weaponIndex += 1;
-
-            if (_weaponIndex >= _shootingPos.Count)
-            {
-                _weaponIndex = 0;
-                timeToWait = weapon.Startup;
-            }
+            _waypoints.Add(waypoint);
+            waypoint.GetComponent<MeshRenderer>().enabled = false;
         }
 
-        _canAttack = false;
-        _utilTimer.StartTimer(timeToWait);
+        foreach (Transform shootingPos in _shootingPivot)
+        {
+            _shootingPos.Add(shootingPos);
+            shootingPos.GetComponent<MeshRenderer>().enabled = false;
+        }
+
+        // foreach (Transform laser in _laserPivot)
+        //     _laserPos.Add(laser);
     }
+
+    public override void Attacking()
+    {
+        // aca hacer un random para elegir que ataque usar
+    }
+
+    #region Behaviour
+    public void ShakeEye()
+    {
+        // cuando sufre x cantidad de daño
+        _headPivot.DOShakeRotation(1, 90, 10, 90);
+    }
+
+    public void MoveToWaypoint()
+    {
+        int randPos = Random.Range(0, _waypoints.Count);
+
+        _transform.DOJump(_waypoints[randPos].position, 60, 1, 3)
+        .SetEase(Ease.OutSine);
+    }
+    #endregion
 
     public override void TakeDamage(int value)
     {
         base.TakeDamage(value);
         EventManager.OnUpdateProgressBar(_data.MaxHealth - _currentHp);
-    }
-
-    public override void RotateTowards(Transform other)
-    {
-        _lookDir = Utils.CalculateDirection(_transform.position, _player.position + PredictMovement());
-        // _transform.rotation = Quaternion.LookRotation(_lookDir);
-        _transform.forward = _lookDir;
     }
 
     public void Dying()
