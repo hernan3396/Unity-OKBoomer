@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PalmLeaveMaterial
+  m_Name: BrickOvergrown2Material
   m_Shader: {fileID: -6465566751694194690, guid: 43ff367d2750f184dbedd8ad8feaec6c,
     type: 3}
   m_ValidKeywords: []
@@ -23,7 +23,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 4560b3b100eef654fa495b7fb24ebd6b, type: 3}
+        m_Texture: {fileID: 2800000, guid: f9a793e5ef7856749a7d9dabc8530c65, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -47,7 +47,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 4560b3b100eef654fa495b7fb24ebd6b, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -121,7 +121,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Scale: 1
-    - _Smoothness: 0.5
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -142,9 +142,9 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Tiling: {r: 4, g: 4, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &7110443277436813993
+--- !u!114 &8837819770977480220
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
