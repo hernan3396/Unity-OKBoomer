@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletTimeTime: 0.2
-  _freezeFrameTime: 0.2
+  _freezeFrameTime: 0.05
 --- !u!1 &4239267305792262
 GameObject:
   m_ObjectHideFlags: 0

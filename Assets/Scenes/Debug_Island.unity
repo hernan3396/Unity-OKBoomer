@@ -17863,6 +17863,11 @@ PrefabInstance:
       propertyPath: _levelNumber
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8900859794315585650, guid: 3d14bf568a5765b41a07f4c9ee570f67,
+        type: 3}
+      propertyPath: _freezeFrameTime
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d14bf568a5765b41a07f4c9ee570f67, type: 3}
 --- !u!114 &4239267215903667 stripped

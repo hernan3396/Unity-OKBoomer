@@ -13,6 +13,7 @@ public class BulletHellBoss : Enemy
     [SerializeField] private Transform _waypointsPivot;
     [SerializeField] private Transform _shootingPivot;
     [SerializeField] private Transform _laserPivot;
+    private int _weaponIndex = 0;
 
     // Components
     private PoolManager _explosionPool;
@@ -78,6 +79,39 @@ public class BulletHellBoss : Enemy
 
         _transform.DOJump(_waypoints[randPos].position, 60, 1, 3)
         .SetEase(Ease.OutSine);
+    }
+    #endregion
+
+    #region Attacking
+    public void Shoot()
+    {
+        if (!_canAttack) return;
+
+        WeaponScriptable weapon = _data.Weapon;
+        float timeToWait = weapon.Cooldown;
+
+        _shootingPivot.forward = _lookDir;
+
+        GameObject newBullet = _bulletsPool.GetPooledObject();
+        if (!newBullet) return;
+
+        if (newBullet.TryGetComponent(out Bullet bullet))
+        {
+            bullet.SetData(weapon.Damage, weapon.AmmoSpeed, weapon.MaxBounces, _shootingPos[_weaponIndex]);
+            bullet.SetInitPos(_shootingPos[_weaponIndex].position);
+            newBullet.SetActive(true);
+            bullet.Shoot(weapon.Accuracy);
+            _weaponIndex += 1;
+
+            if (_weaponIndex >= _shootingPos.Count)
+            {
+                _weaponIndex = 0;
+                timeToWait = weapon.Startup;
+            }
+        }
+
+        _canAttack = false;
+        _utilTimer.StartTimer(timeToWait);
     }
     #endregion
 

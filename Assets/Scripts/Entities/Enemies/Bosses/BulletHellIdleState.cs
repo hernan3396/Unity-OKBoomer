@@ -22,7 +22,8 @@ public class BulletHellIdleState : EnemyBaseState
     private void Test()
     {
         // _enemy.ShakeEye();
-        _enemy.MoveToWaypoint();
+        // _enemy.MoveToWaypoint();
+        _enemy.Shoot();
     }
 
     public override void FixedUpdateState(EnemyStateManager state)
