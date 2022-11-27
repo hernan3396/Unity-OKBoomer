@@ -15,7 +15,7 @@ MonoBehaviour:
   MaxHealth: 1600
   DeathDur: 8
   Invulnerability: 0.2
-  Weapon: {fileID: 11400000, guid: 653f5390087a4d24cb67096c668b35d2, type: 2}
+  Weapon: {fileID: 11400000, guid: 7c5b754f304627e4592325e51c4dac18, type: 2}
   Speed: 200
   Acceleration: 20
   WalkPointRange: 60

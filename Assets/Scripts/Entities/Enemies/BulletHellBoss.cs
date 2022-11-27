@@ -13,7 +13,6 @@ public class BulletHellBoss : Enemy
     [SerializeField] private Transform _waypointsPivot;
     [SerializeField] private Transform _shootingPivot;
     [SerializeField] private Transform _laserPivot;
-    private int _weaponIndex = 0;
 
     // Components
     private PoolManager _explosionPool;
@@ -92,26 +91,28 @@ public class BulletHellBoss : Enemy
 
         _shootingPivot.forward = _lookDir;
 
-        GameObject newBullet = _bulletsPool.GetPooledObject();
-        if (!newBullet) return;
 
-        if (newBullet.TryGetComponent(out Bullet bullet))
+        foreach (Transform shootingPos in _shootingPos)
         {
-            bullet.SetData(weapon.Damage, weapon.AmmoSpeed, weapon.MaxBounces, _shootingPos[_weaponIndex]);
-            bullet.SetInitPos(_shootingPos[_weaponIndex].position);
-            newBullet.SetActive(true);
-            bullet.Shoot(weapon.Accuracy);
-            _weaponIndex += 1;
+            GameObject newBullet = _bulletsPool.GetPooledObject();
+            if (!newBullet) return;
 
-            if (_weaponIndex >= _shootingPos.Count)
+            if (newBullet.TryGetComponent(out Bullet bullet))
             {
-                _weaponIndex = 0;
-                timeToWait = weapon.Startup;
+                bullet.SetData(weapon.Damage, weapon.AmmoSpeed, weapon.MaxBounces, shootingPos);
+                bullet.SetInitPos(shootingPos.position);
+                newBullet.SetActive(true);
+                bullet.Shoot(weapon.Accuracy);
             }
         }
 
         _canAttack = false;
         _utilTimer.StartTimer(timeToWait);
+    }
+
+    public void Lasers()
+    {
+
     }
     #endregion
 
