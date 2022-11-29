@@ -10,32 +10,39 @@ public class BulletHellBoss : Enemy
     public UnityEvent DeathEvent;
 
     [Header("Config")]
+    [SerializeField] private GameObject _bossParent;
     [SerializeField] private Transform _headPivot;
     [SerializeField] private Transform _waypointsPivot;
     [SerializeField] private Transform _shootingPivot;
     [SerializeField] private Transform _laserPivot;
     [SerializeField] private Transform _jumpableLaserPivot;
     [SerializeField] private Transform _slideableLaserPivot;
+    private Vector3 _initPos;
     // Components
     [SerializeField] private PoolManager _bulletsPool;
     private PoolManager _explosionPool;
+    private WeaponScriptable _weapon;
     private UtilTimer _utilTimer;
 
     // lists
-    private List<Transform> _waypoints = new List<Transform>();
+    [SerializeField] private List<Transform> _waypoints = new List<Transform>();
     private List<Transform> _shootingPos = new List<Transform>();
     private List<Transform> _jumpableLasers = new List<Transform>();
     private List<Transform> _slideableLasers = new List<Transform>();
+
+    private bool _isMoving = false;
+    private bool _isLasering = false;
 
     protected override void Start()
     {
         base.Start();
 
-        // _bulletsPool = GameManager.GetInstance.GetEnemyPools[(int)PoolType.SimpleBullet];
         _explosionPool = GameManager.GetInstance.GetUtilsPool(0);
 
         _utilTimer = GetComponent<UtilTimer>();
         _utilTimer.onTimerCompleted += OnTimerCompleted;
+        _weapon = _data.Weapon;
+        _initPos = _transform.position;
 
         FillLists();
     }
@@ -68,7 +75,7 @@ public class BulletHellBoss : Enemy
 
     public override void Attacking()
     {
-        // aca hacer un random para elegir que ataque usar
+        return;
     }
 
     #region Behaviour
@@ -80,23 +87,28 @@ public class BulletHellBoss : Enemy
 
     public void MoveToWaypoint()
     {
+        _isMoving = true;
         int randPos = Random.Range(0, _waypoints.Count);
 
         _transform.DOJump(_waypoints[randPos].position, _data.Speed, _data.WalkPointRange, _data.Acceleration)
-        .SetEase(Ease.OutSine);
+        .SetEase(Ease.OutSine)
+        .OnComplete(() => { _isMoving = false; });
     }
-    #endregion
 
-    #region Attacking
-    public void Shoot()
+    public void StartShooting()
     {
         if (!_canAttack) return;
 
-        WeaponScriptable weapon = _data.Weapon;
-        float timeToWait = weapon.Cooldown;
+        float timeToWait = _weapon.Cooldown;
+        Invoke("Shoot", _weapon.Startup);
 
+        _canAttack = false;
+        _utilTimer.StartTimer(timeToWait);
+    }
+
+    private void Shoot()
+    {
         _shootingPivot.forward = _lookDir;
-
 
         foreach (Transform shootingPos in _shootingPos)
         {
@@ -105,19 +117,17 @@ public class BulletHellBoss : Enemy
 
             if (newBullet.TryGetComponent(out Bullet bullet))
             {
-                bullet.SetData(weapon.Damage, weapon.AmmoSpeed, weapon.MaxBounces, shootingPos);
+                bullet.SetData(_weapon.Damage, _weapon.AmmoSpeed, _weapon.MaxBounces, shootingPos);
                 bullet.SetInitPos(shootingPos.position);
                 newBullet.SetActive(true);
-                bullet.Shoot(weapon.Accuracy);
+                bullet.Shoot(_weapon.Accuracy);
             }
         }
-
-        _canAttack = false;
-        _utilTimer.StartTimer(timeToWait);
     }
 
     public void Lasers()
     {
+        StopCoroutine(ShootingLasers());
         StartCoroutine(ShootingLasers());
     }
 
@@ -154,7 +164,7 @@ public class BulletHellBoss : Enemy
         }
     }
 
-    public void LaserInitPos()
+    public void ResetLasers()
     {
         // OJO esto solo funciona para 2 lasers pero no tenia muchas ganas de terminar esto
         // ademas que esta super cutre (crusher)
@@ -234,12 +244,22 @@ public class BulletHellBoss : Enemy
     {
         _currentHp = _data.MaxHealth;
         EventManager.OnDeactivateProgressBar();
-        gameObject.SetActive(false);
+        _bossParent.SetActive(false);
     }
 
     private void OnDestroy()
     {
         EventManager.GameStart -= Respawn;
         _utilTimer.onTimerCompleted -= OnTimerCompleted;
+    }
+
+    public bool IsMoving
+    {
+        get { return _isMoving; }
+    }
+
+    public bool IsLasering
+    {
+        get { return _isLasering; }
     }
 }

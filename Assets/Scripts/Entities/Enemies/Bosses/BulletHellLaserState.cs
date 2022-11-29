@@ -1,4 +1,4 @@
-public class BulletHellIdleState : EnemyBaseState
+public class BulletHellLaserState : EnemyBaseState
 {
     private EnemyStateManager _state;
     private BulletHellBoss _enemy;
@@ -13,8 +13,12 @@ public class BulletHellIdleState : EnemyBaseState
             _utilTimer = GetComponent<UtilTimer>();
         }
 
-        _utilTimer.StartTimer(1);
+        _utilTimer.StartTimer(_enemy.Data.Acceleration * 1.5f);
         _utilTimer.onTimerCompleted += OnTimerCompleted;
+
+        _enemy.ResetLasers();
+        _enemy.Lasers();
+        EventManager.GameStart += OnGameStart;
     }
 
     private void OnTimerCompleted()
@@ -23,9 +27,17 @@ public class BulletHellIdleState : EnemyBaseState
         _state.SwitchState((EnemyStateManager.EnemyState)1);
     }
 
+    private void OnGameStart()
+    {
+        if (_utilTimer != null)
+            _utilTimer.onTimerCompleted -= OnTimerCompleted;
+
+        _state.SwitchState((EnemyStateManager.EnemyState)0);
+    }
+
     public override void UpdateState(EnemyStateManager state)
     {
-        return;
+        _enemy.RotateTowards(_enemy.Player);
     }
 
     public override void FixedUpdateState(EnemyStateManager state)
@@ -42,5 +54,7 @@ public class BulletHellIdleState : EnemyBaseState
     {
         if (_utilTimer != null)
             _utilTimer.onTimerCompleted -= OnTimerCompleted;
+
+        EventManager.GameStart -= OnGameStart;
     }
 }
