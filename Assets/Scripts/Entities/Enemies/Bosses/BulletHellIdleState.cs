@@ -11,7 +11,8 @@ public class BulletHellIdleState : EnemyBaseState
             _state = state;
         }
 
-        InvokeRepeating("Test", 1, 5);
+        InvokeRepeating("Test", 1, 2);
+        // Invoke("Test", 1);
     }
 
     public override void UpdateState(EnemyStateManager state)
@@ -21,9 +22,11 @@ public class BulletHellIdleState : EnemyBaseState
 
     private void Test()
     {
+        _enemy.LaserInitPos();
         // _enemy.ShakeEye();
         // _enemy.MoveToWaypoint();
         _enemy.Shoot();
+        // _enemy.Lasers();
     }
 
     public override void FixedUpdateState(EnemyStateManager state)
