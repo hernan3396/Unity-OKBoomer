@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Rendering;
+using DG.Tweening;
 
 public class WeaponBulletTimeSpecialState : WeaponBaseState
 {
@@ -10,6 +12,7 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
     private UtilTimer _utilTimer;
 
     [SerializeField] private UtilTimer _utilTimerShooting;
+    [SerializeField] private Volume _volume;
     // usamos un segundo timer para disparar, ya que con la logica
     // de las state machine como esta no podriamos disparar
     // desde este estado, entonces voy a "hardcodear" la logica del disparo aca
@@ -29,8 +32,9 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
 
         _playerMovement.MovementMod = 2;
         EventManager.OnBulletTime(_player.CurrentWeaponData.Data.SpecialDamage * 0.1f);
-        // Time.timeScale = _player.CurrentWeaponData.Data.SpecialDamage * 0.1f;
-        // Time.fixedDeltaTime = Time.timeScale * 0.02f;
+
+        DOTween.To(() => _volume.weight, x => _volume.weight = x, 1, 1)
+        .SetUpdate(true);
 
         _utilTimer.StartTimer(_player.CurrentWeaponData.Data.SpecialTime);
         _utilTimer.onTimerCompleted += OnTimerCompleted;
@@ -65,6 +69,8 @@ public class WeaponBulletTimeSpecialState : WeaponBaseState
     public override void OnExitState(WeaponStateManager state)
     {
         _playerMovement.MovementMod = 1;
+        DOTween.To(() => _volume.weight, x => _volume.weight = x, 0, 1)
+.SetUpdate(true);
 
         EventManager.OnBulletTime(1);
         _utilTimer.onTimerCompleted -= OnTimerCompleted;

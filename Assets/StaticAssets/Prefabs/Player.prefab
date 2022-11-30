@@ -2147,6 +2147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _utilTimerShooting: {fileID: 4725732294278216178}
+  _volume: {fileID: 51688038560397726}
 --- !u!114 &6839436693057144167
 MonoBehaviour:
   m_ObjectHideFlags: 0

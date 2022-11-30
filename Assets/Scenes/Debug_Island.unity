@@ -20584,6 +20584,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerHandsCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 51688038560397726, guid: 3766620456c146841a37bb25ccff1851,
+        type: 3}
+      propertyPath: weight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 109171569411873956, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_Layer
@@ -20902,7 +20907,7 @@ PrefabInstance:
     - target: {fileID: 6907486639528443142, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7792208
+      value: 1.7777778
       objectReference: {fileID: 0}
     - target: {fileID: 6907486639528443142, guid: 3766620456c146841a37bb25ccff1851,
         type: 3}
