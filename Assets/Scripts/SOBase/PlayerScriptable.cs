@@ -36,6 +36,7 @@ public class PlayerScriptable : ScriptableObject
     public int TiltAngle;
     public int TiltSpeed;
     public Vector2 HurtRecoil;
+    public Vector2 HurtShake;
     #endregion
 
     #region WeaponMovement

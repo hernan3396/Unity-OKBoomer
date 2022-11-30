@@ -62,7 +62,7 @@ public class PlayerShoot : MonoBehaviour
             if (!_player.GodMode && weaponData.UseBullets)
                 weapon.UseBullets(1);
 
-            // EventManager.OnUpdateUI(UIManager.Element.Bullets, _player.BulletsAmount);
+            EventManager.OnCameraShake(weaponData.ShakeForce.x, weaponData.ShakeForce.y);
         }
 
         StartRecoil(weaponData.RecoilForce, weaponData.Cooldown);
