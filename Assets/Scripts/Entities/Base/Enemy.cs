@@ -50,7 +50,7 @@ public abstract class Enemy : Entity, IDamageable, IPauseable
     protected bool _tookDamage = false;
     protected bool _isDodging = false;
     private Vector2 _playerInputLerped;
-    private Vector3 _initPos;
+    protected Vector3 _initPos;
     protected Vector3 _lookDir;
     #endregion
 

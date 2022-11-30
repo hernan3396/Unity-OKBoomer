@@ -17,7 +17,6 @@ public class BulletHellBoss : Enemy
     [SerializeField] private Transform _laserPivot;
     [SerializeField] private Transform _jumpableLaserPivot;
     [SerializeField] private Transform _slideableLaserPivot;
-    private Vector3 _initPos;
     // Components
     [SerializeField] private PoolManager _bulletsPool;
     private PoolManager _explosionPool;
