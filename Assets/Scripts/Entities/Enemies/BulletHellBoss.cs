@@ -242,6 +242,7 @@ public class BulletHellBoss : Enemy
     protected override void Respawn()
     {
         _currentHp = _data.MaxHealth;
+        _transform.position = _initPos;
         EventManager.OnDeactivateProgressBar();
         _bossParent.SetActive(false);
     }
