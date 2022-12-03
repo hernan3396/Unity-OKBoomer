@@ -9,7 +9,7 @@ public class RangedBoss : Enemy
     public UnityEvent DeathEvent;
 
     [SerializeField] private Transform _shootingPivot;
-    protected PoolManager _bulletsPool;
+    [SerializeField] protected PoolManager _bulletsPool;
     private UtilTimer _utilTimer;
     private int _weaponIndex = 0;
     private PoolManager _explosionPool;
@@ -19,7 +19,6 @@ public class RangedBoss : Enemy
     protected override void Start()
     {
         base.Start();
-        _bulletsPool = GameManager.GetInstance.GetEnemyPools[(int)PoolType.TrackerBullet];
         _utilTimer = GetComponent<UtilTimer>();
         _utilTimer.onTimerCompleted += OnTimerCompleted;
 

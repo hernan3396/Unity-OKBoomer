@@ -8702,7 +8702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 127
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1474450381
 Transform:
   m_ObjectHideFlags: 0
@@ -14736,6 +14736,10 @@ PrefabInstance:
       propertyPath: _mainCam
       value: 
       objectReference: {fileID: 373059861}
+    - target: {fileID: 4239267127941094, guid: 3d14bf568a5765b41a07f4c9ee570f67, type: 3}
+      propertyPath: _enemyPools.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 209235253125758658, guid: 3d14bf568a5765b41a07f4c9ee570f67,
         type: 3}
       propertyPath: _levelName
@@ -15216,6 +15220,11 @@ PrefabInstance:
       value: Boss_001
       objectReference: {fileID: 0}
     - target: {fileID: 2847234691445746661, guid: 2588a91afc4d577439505a8f8d331a8c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2847234691636736196, guid: 2588a91afc4d577439505a8f8d331a8c,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -15949,6 +15958,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1631838620}
     m_Modifications:
+    - target: {fileID: 6014974207231316145, guid: d30fc2d3b65ed3c4e99289c2279eda34,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6014974207308480660, guid: d30fc2d3b65ed3c4e99289c2279eda34,
         type: 3}
       propertyPath: m_Name
@@ -17290,6 +17304,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Boss_002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411873635671697947, guid: e4e6d0b1f21af0248a12a5b2024dd230,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4e6d0b1f21af0248a12a5b2024dd230, type: 3}
