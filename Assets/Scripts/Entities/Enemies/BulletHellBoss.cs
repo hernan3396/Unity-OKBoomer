@@ -172,7 +172,7 @@ public class BulletHellBoss : Enemy
         foreach (Transform laser in _jumpableLasers)
         {
             laser.gameObject.SetActive(false);
-            laser.position = new Vector3(0, laser.position.y, direction);
+            laser.position = new Vector3(_laserPivot.position.x, laser.position.y, direction);
             direction *= -1;
         }
 
@@ -180,7 +180,7 @@ public class BulletHellBoss : Enemy
         foreach (Transform laser in _slideableLasers)
         {
             laser.gameObject.SetActive(false);
-            laser.position = new Vector3(0, laser.position.y, direction);
+            laser.position = new Vector3(_laserPivot.position.x, laser.position.y, direction);
             direction *= -1;
         }
     }

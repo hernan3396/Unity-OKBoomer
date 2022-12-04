@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/WallBoss.unity
     guid: 43a8acc315de9624abcfb7286e0fc003
+  - enabled: 1
+    path: Assets/Scenes/Levels/BulletHellBoss.unity
+    guid: 12cea6d2a7a3d264881692826f161cf6
   m_configObjects: {}

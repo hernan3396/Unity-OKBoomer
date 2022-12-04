@@ -23,6 +23,6 @@ MonoBehaviour:
   DodgeSpeed: 1
   DodgeAcceleration: 0
   VisionRange: 300
-  AttackRange: 5
+  AttackRange: 8
   ChasingRange: 0
   AimSpeed: 5

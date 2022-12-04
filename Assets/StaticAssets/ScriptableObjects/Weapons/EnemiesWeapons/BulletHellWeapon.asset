@@ -28,9 +28,10 @@ MonoBehaviour:
   UseBullets: 1
   AmmoType: 0
   MaxBounces: 10
-  AmmoSpeed: 200
+  AmmoSpeed: 100
   MaxAmmo: 0
   RecoilForce: 0
+  ShakeForce: {x: 0, y: 0}
   IdleColor: {r: 0, g: 0, b: 0, a: 0}
   ChargingColor: {r: 0, g: 0, b: 0, a: 0}
   CooldownColor: {r: 0, g: 0, b: 0, a: 0}
