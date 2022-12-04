@@ -7007,6 +7007,46 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -100
       objectReference: {fileID: 0}
+    - target: {fileID: 7411873636076788968, guid: e4e6d0b1f21af0248a12a5b2024dd230,
+        type: 3}
+      propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411873636076788968, guid: e4e6d0b1f21af0248a12a5b2024dd230,
+        type: 3}
+      propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411873636076788968, guid: e4e6d0b1f21af0248a12a5b2024dd230,
+        type: 3}
+      propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2077519123}
+    - target: {fileID: 7411873636076788968, guid: e4e6d0b1f21af0248a12a5b2024dd230,
+        type: 3}
+      propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411873636076788968, guid: e4e6d0b1f21af0248a12a5b2024dd230,
+        type: 3}
+      propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnNextLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411873636076788968, guid: e4e6d0b1f21af0248a12a5b2024dd230,
+        type: 3}
+      propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411873636076788968, guid: e4e6d0b1f21af0248a12a5b2024dd230,
+        type: 3}
+      propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411873636076788968, guid: e4e6d0b1f21af0248a12a5b2024dd230,
+        type: 3}
+      propertyPath: DeathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7411873636076788970, guid: e4e6d0b1f21af0248a12a5b2024dd230,
         type: 3}
       propertyPath: m_IsActive
@@ -7614,6 +7654,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2077519121}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2077519123 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4239267127941089, guid: 3d14bf568a5765b41a07f4c9ee570f67,
+    type: 3}
+  m_PrefabInstance: {fileID: 2077519121}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 142cfdee1b8a30949a535d7e23339002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2078755719
 PrefabInstance:
   m_ObjectHideFlags: 0

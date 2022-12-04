@@ -37,8 +37,8 @@ public class ExplosiveBullet : Bullet
     public void ActivateBullet()
     {
         gameObject.SetActive(true);
-        _transform.parent = null;
-        _bulletModel.SetActive(true);
+        // _transform.parent = null;
+        // _bulletModel.SetActive(true);
         _rb.useGravity = true;
     }
 
@@ -49,6 +49,7 @@ public class ExplosiveBullet : Bullet
         _rb.velocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
 
-        _bulletModel.SetActive(false);
+        // _bulletModel.SetActive(false);
+        gameObject.SetActive(false);
     }
 }
