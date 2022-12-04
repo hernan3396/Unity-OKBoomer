@@ -51,7 +51,7 @@ public class ProgressBar : MonoBehaviour
         _currentTween = _progressBar.DOSizeDelta(new Vector2(relativeSize, _progressBar.sizeDelta.y), _tweenDur);
 
         if (actualValue >= _maxvalue)
-            _progressCG.DOFade(0, _fadeDur).OnComplete(() => Deactivate());
+            _currentTween = _progressCG.DOFade(0, _fadeDur).OnComplete(() => Deactivate());
     }
 
     private void Deactivate()
