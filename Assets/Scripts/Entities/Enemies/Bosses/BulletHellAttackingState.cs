@@ -56,6 +56,9 @@ public class BulletHellAttackingState : EnemyBaseState
 
     public override void UpdateState(EnemyStateManager state)
     {
+        // el estado es muerte
+        if (_enemy.IsDead) state.SwitchState(EnemyStateManager.EnemyState.Dodging);
+
         _enemy.RotateTowards(_enemy.Player);
     }
 
