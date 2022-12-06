@@ -1,0 +1,34 @@
+{
+    "name": "MenuInputs",
+    "maps": [
+        {
+            "name": "Menu",
+            "id": "8b45ffa0-f0b9-4434-b6fb-1c5cc733a05d",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "032a941b-e49f-473f-886c-e1adabdd9629",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b9ce7299-02ae-42f2-b234-61c0868a8808",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
