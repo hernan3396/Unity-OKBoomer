@@ -17892,7 +17892,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816093924}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -18165,7 +18165,7 @@ PrefabInstance:
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
         type: 3}
       propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
         type: 3}
@@ -18189,6 +18189,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
         type: 3}
+      propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
+        type: 3}
       propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 851187745}
@@ -18209,6 +18214,11 @@ PrefabInstance:
       objectReference: {fileID: 405067643}
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
         type: 3}
+      propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 851187745}
+    - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
+        type: 3}
       propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -18220,6 +18230,11 @@ PrefabInstance:
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
         type: 3}
       propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
+        type: 3}
+      propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
@@ -18244,6 +18259,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
         type: 3}
+      propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: Force
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
+        type: 3}
       propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: WavesManager, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -18264,7 +18284,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
         type: 3}
+      propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: WavesManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
+        type: 3}
       propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
+        type: 3}
+      propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
@@ -18290,6 +18320,11 @@ PrefabInstance:
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
         type: 3}
       propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
+        type: 3}
+      propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3355623696837842885, guid: 08e905869c83e1c42a61b15453fd6b3b,
@@ -21480,7 +21515,7 @@ PrefabInstance:
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
         type: 3}
       propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
         type: 3}
@@ -21504,6 +21539,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
         type: 3}
+      propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
+        type: 3}
       propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 938255763}
@@ -21524,6 +21564,11 @@ PrefabInstance:
       objectReference: {fileID: 851187744}
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
         type: 3}
+      propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 938255763}
+    - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
+        type: 3}
       propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -21535,6 +21580,11 @@ PrefabInstance:
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
         type: 3}
       propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
+        type: 3}
+      propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
@@ -21559,6 +21609,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
         type: 3}
+      propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: Force
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
+        type: 3}
       propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: WavesManager, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -21579,7 +21634,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
         type: 3}
+      propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: WavesManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
+        type: 3}
       propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
+        type: 3}
+      propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
@@ -21605,6 +21670,11 @@ PrefabInstance:
     - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
         type: 3}
       propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355623696837842883, guid: 08e905869c83e1c42a61b15453fd6b3b,
+        type: 3}
+      propertyPath: WaveFinished.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3355623696837842885, guid: 08e905869c83e1c42a61b15453fd6b3b,
@@ -26186,7 +26256,7 @@ MonoBehaviour:
   _onExit:
     m_PersistentCalls:
       m_Calls: []
-  _useOneTime: 0
+  _useOneTime: 1
   _tag: Player
 --- !u!65 &1131136010
 BoxCollider:
@@ -49218,7 +49288,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh92450
+  m_Name: pb_Mesh72954
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -49382,7 +49452,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh91754
+  m_Name: pb_Mesh72256
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -50287,7 +50357,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh91948
+  m_Name: pb_Mesh72450
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -51459,7 +51529,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34992
+  m_Name: pb_Mesh77384
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

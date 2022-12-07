@@ -136,5 +136,8 @@ public static class EventManager
 
     public static event UnityAction DeactivateProgressBar;
     public static void OnDeactivateProgressBar() => DeactivateProgressBar?.Invoke();
+
+    public static event UnityAction ForceDeactivate;
+    public static void OnForceDeactivate() => ForceDeactivate?.Invoke();
     #endregion
 }

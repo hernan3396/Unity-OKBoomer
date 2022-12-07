@@ -25,6 +25,7 @@ public class ProgressBar : MonoBehaviour
 
         EventManager.StartProgressBar += StartProgressBar;
         EventManager.DeactivateProgressBar += Deactivate;
+        EventManager.ForceDeactivate += ForceDeactivate;
         _progressBar.DOSizeDelta(new Vector2(0, _progressBar.sizeDelta.y), 0); // pone el valor en 0
     }
 
@@ -58,6 +59,14 @@ public class ProgressBar : MonoBehaviour
     {
         EventManager.UpdateProgressBar -= UpdateProgressBar;
         _progressGO.SetActive(false);
+
+        if (_currentTween != null)
+            _currentTween.Kill();
+    }
+
+    private void ForceDeactivate()
+    {
+        EventManager.UpdateProgressBar -= UpdateProgressBar;
     }
 
     private void OnDestroy()
@@ -65,5 +74,9 @@ public class ProgressBar : MonoBehaviour
         EventManager.StartProgressBar -= StartProgressBar;
         EventManager.UpdateProgressBar -= UpdateProgressBar;
         EventManager.DeactivateProgressBar -= Deactivate;
+        EventManager.ForceDeactivate -= ForceDeactivate;
+
+        if (_currentTween != null)
+            _currentTween.Kill();
     }
 }
