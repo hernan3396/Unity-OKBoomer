@@ -37,4 +37,9 @@ public class WavesManager : MonoBehaviour
     {
         _currentAmount = 0;
     }
+
+    public void Force()
+    {
+        EventManager.OnForceDeactivate();
+    }
 }

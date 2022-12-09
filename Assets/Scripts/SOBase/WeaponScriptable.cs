@@ -45,6 +45,7 @@ public class WeaponScriptable : ScriptableObject
     #region Recoil
     [Header("Recoil")]
     public float RecoilForce;
+    public Vector2 ShakeForce;
     #endregion
 
     #region Colors

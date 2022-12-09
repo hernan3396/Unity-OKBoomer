@@ -3,6 +3,13 @@ using UnityEngine;
 public class TrackerBullet : Bullet
 {
     [SerializeField] private Transform _model;
+    private PoolManager _explosionPool;
+
+    protected override void Start()
+    {
+        base.Start();
+        _explosionPool = GameManager.GetInstance.GetUtilsPool(0);
+    }
 
     private void Update()
     {
@@ -27,5 +34,20 @@ public class TrackerBullet : Bullet
         }
 
         DisableBullet();
+    }
+
+    protected override void DisableBullet()
+    {
+        base.DisableBullet();
+
+        GameObject explosion = _explosionPool.GetPooledObject();
+        if (!explosion) return;
+
+        if (explosion.TryGetComponent(out Explosion explosionScript))
+        {
+            explosion.transform.position = _transform.position;
+            explosion.SetActive(true);
+            explosionScript.StartExplosion(10, 0.5f, _damage);
+        }
     }
 }

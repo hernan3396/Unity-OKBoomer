@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using TMPro;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -25,9 +26,16 @@ public class UIManager : MonoBehaviour
     private bool _firstUpdateImage = true;
     #endregion
 
+    #region Vignette
+    [SerializeField] private CanvasGroup _vignetteCanvas;
+    private Image _vignetteImage;
+    private bool _isVignetteFading = false;
+    #endregion
+
     private void Awake()
     {
         _imagesAmount = _hpCanvas.Length;
+        _vignetteImage = _vignetteCanvas.GetComponentInChildren<Image>();
 
         EventManager.UpdateUIValue += UpdateUIValue;
         EventManager.UpdateUIText += UpdateUIText;
@@ -72,7 +80,14 @@ public class UIManager : MonoBehaviour
         _lastHealth = value;
 
         int aux = 1;
-        if (!isDamage) aux = -1;
+        if (!isDamage)
+        {
+            // no es daño
+            VignetteSFX(false);
+            aux = -1;
+        }
+        else
+            VignetteSFX(true);
 
         if (_healthImageIndex + aux < 0 || _healthImageIndex + aux > _imagesAmount - 1) return;
 
@@ -86,6 +101,21 @@ public class UIManager : MonoBehaviour
         _hpCanvas[_healthImageIndex].DOFade(0, 1f);
 
         _healthImageIndex += aux;
+    }
+
+    private void VignetteSFX(bool isDamage)
+    {
+        if (_isVignetteFading) return;
+
+        _isVignetteFading = true;
+
+        if (isDamage) _vignetteImage.color = Color.red;
+        else _vignetteImage.color = Color.green;
+
+        _vignetteCanvas.DOFade(0.4f, 0.2f)
+                       .SetLoops(2, LoopType.Yoyo)
+                       .SetUpdate(true)
+                       .OnComplete(() => { _isVignetteFading = false; });
     }
 
     public void UpdateUIText(Element element, string value)

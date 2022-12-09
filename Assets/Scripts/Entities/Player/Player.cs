@@ -203,6 +203,7 @@ public class Player : Entity, IPauseable
         float impulseX = Random.Range(-_data.HurtRecoil.x, _data.HurtRecoil.x);
         Vector3 recoilForce = new Vector3(_data.HurtRecoil.y, impulseX, 0);
         _playerLook.AddRecoil(recoilForce);
+        EventManager.OnFreezeFrame();
     }
 
     public override void TakeDamage(int value)
@@ -211,9 +212,9 @@ public class Player : Entity, IPauseable
 
         base.TakeDamage(value);
         _cmImpSrc.GenerateImpulse();
-        EventManager.OnFreezeFrame();
         EventManager.OnPlaySound(AudioManager.SFX.PlayerHit);
         EventManager.OnUpdateUI(UIManager.Element.Hp, _currentHp);
+        EventManager.OnCameraShake(_data.HurtShake.x, _data.HurtShake.y);
     }
 
     protected override void Death()

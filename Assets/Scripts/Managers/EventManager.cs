@@ -113,6 +113,11 @@ public static class EventManager
     public static void OnMelee() => Melee?.Invoke();
     #endregion
 
+    #region Camera
+    public static event UnityAction<float, float> CameraShake;
+    public static void OnCameraShake(float intensity, float time) => CameraShake?.Invoke(intensity, time);
+    #endregion
+
     #region UI
     public static event UnityAction<UIManager.Element, int> UpdateUIValue;
     public static void OnUpdateUI(UIManager.Element element, int value) => UpdateUIValue?.Invoke(element, value);
@@ -131,5 +136,8 @@ public static class EventManager
 
     public static event UnityAction DeactivateProgressBar;
     public static void OnDeactivateProgressBar() => DeactivateProgressBar?.Invoke();
+
+    public static event UnityAction ForceDeactivate;
+    public static void OnForceDeactivate() => ForceDeactivate?.Invoke();
     #endregion
 }

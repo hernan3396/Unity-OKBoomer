@@ -34,5 +34,7 @@ public class WeaponExplosiveSpecialState : WeaponBaseState
         _explosiveScript.ActivateBullet();
         _explosiveScript.SetData((int)weapon.Data.SpecialDamage, weapon.Data.AmmoSpeed, 0, weapon.GetShootPos());
         _explosiveScript.Shoot(new Vector2(0, 0));
+
+        EventManager.OnCameraShake(weapon.Data.ShakeForce.x, weapon.Data.ShakeForce.y);
     }
 }

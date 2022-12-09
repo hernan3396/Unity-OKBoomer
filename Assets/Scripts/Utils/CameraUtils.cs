@@ -1,29 +1,37 @@
 using UnityEngine;
+using Cinemachine;
 using DG.Tweening;
 
 public class CameraUtils : MonoBehaviour
 {
-    #region Components
-    private Camera _mainCam;
-    #endregion
-
-    [SerializeField] private Ease _ease = Ease.InOutBack;
+    private CinemachineBasicMultiChannelPerlin _cmBMCP;
+    private bool _isShaking = false;
 
     private void Awake()
     {
-        EventManager.InfiniteRotate += InfiniteRotate;
-        _mainCam = GameManager.GetInstance.MainCam;
+        _cmBMCP = GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        _cmBMCP.m_AmplitudeGain = 0;
+
+        EventManager.CameraShake += StartShake;
     }
 
-    public void InfiniteRotate(int speed)
+    private void StartShake(float intensity, float time)
     {
-        _mainCam.transform.DORotate(new Vector3(0, 360, 0), speed, RotateMode.FastBeyond360)
-        .SetEase(_ease)
-        .SetLoops(-1);
+        if (_isShaking) return;
+        _isShaking = true;
+
+        DOTween.To(() => _cmBMCP.m_AmplitudeGain, x => _cmBMCP.m_AmplitudeGain = x, intensity, time)
+        .OnComplete(() => FinishShake(time));
+    }
+
+    private void FinishShake(float time)
+    {
+        DOTween.To(() => _cmBMCP.m_AmplitudeGain, x => _cmBMCP.m_AmplitudeGain = x, 0, time)
+        .OnComplete(() => { _isShaking = false; });
     }
 
     private void OnDestroy()
     {
-        EventManager.InfiniteRotate -= InfiniteRotate;
+        EventManager.CameraShake -= StartShake;
     }
 }

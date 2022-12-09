@@ -9,7 +9,7 @@ public class RangedBoss : Enemy
     public UnityEvent DeathEvent;
 
     [SerializeField] private Transform _shootingPivot;
-    protected PoolManager _bulletsPool;
+    [SerializeField] protected PoolManager _bulletsPool;
     private UtilTimer _utilTimer;
     private int _weaponIndex = 0;
     private PoolManager _explosionPool;
@@ -19,7 +19,6 @@ public class RangedBoss : Enemy
     protected override void Start()
     {
         base.Start();
-        _bulletsPool = GameManager.GetInstance.GetEnemyPools[(int)PoolType.TrackerBullet];
         _utilTimer = GetComponent<UtilTimer>();
         _utilTimer.onTimerCompleted += OnTimerCompleted;
 
@@ -68,16 +67,6 @@ public class RangedBoss : Enemy
         _utilTimer.StartTimer(timeToWait);
     }
 
-    public override void TakeDamage(int value, Transform bullet)
-    {
-        if (_isInmune || _isDead) return;
-
-        if (!_isDodging)
-            _tookDamage = true;
-
-        base.TakeDamage(value, bullet);
-    }
-
     public override void TakeDamage(int value)
     {
         base.TakeDamage(value);
@@ -112,6 +101,7 @@ public class RangedBoss : Enemy
 
     public void CreateExplosion()
     {
+        // esto podria ser un componente aparte para no manejarlo en todos los bosses
         GameObject explosion = _explosionPool.GetPooledObject();
 
         if (!explosion) return;

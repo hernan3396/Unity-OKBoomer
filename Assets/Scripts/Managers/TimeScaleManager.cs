@@ -43,7 +43,8 @@ public class TimeScaleManager : MonoBehaviour
 
     private void FreezeFrame()
     {
-        if (_freezeFrameActive) return;
+        // si estas en bullet time no queres que te saque del slowmo
+        if (_freezeFrameActive || _bulletTimeActive) return;
 
         if (_currentTween != null)
             _currentTween.Kill();

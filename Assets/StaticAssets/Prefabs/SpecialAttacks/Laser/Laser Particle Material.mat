@@ -92,14 +92,14 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DissolveValue: 0
+    - _DissolveValue: 0.25
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NoiseIntensity: 10
+    - _NoiseIntensity: 281
     - _NoisePower: 2
     - _NoiseValue: 0.5
     - _OcclusionStrength: 1

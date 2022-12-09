@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2300711db7a2e77418f591379d1c8ed5, type: 3}
+  m_Name: BulletHellBoss
+  m_EditorClassIdentifier: 
+  MaxHealth: 1600
+  DeathDur: 8
+  Invulnerability: 0.2
+  Weapon: {fileID: 11400000, guid: 7c5b754f304627e4592325e51c4dac18, type: 2}
+  Speed: 60
+  Acceleration: 3
+  WalkPointRange: 1
+  DodgeRange: 60
+  DodgeSpeed: 1
+  DodgeAcceleration: 2
+  VisionRange: 100
+  AttackRange: 3
+  ChasingRange: 0
+  AimSpeed: 5

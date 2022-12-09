@@ -93,6 +93,9 @@ public class WallBoss : Enemy
         _headDestroyed += 1;
         _laserTime -= 1;
 
+        // a veces quedaba vivo sin cabezas, con esto se solucionaria
+        if (_headDestroyed >= 8) Death(); // tiene 8 cabezas y fui vago, suerte si tenes que verlo en el futuro y no entendes porque hace esto
+
         if (_headDestroyed >= 4) _maxLaser = _lasersInitPos.Length;
     }
 
